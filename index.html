@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrome Mockup - Helios</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #202124;
+            color: #e8eaed;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            z-index: 0;
+        }
+        .top-bar {
+            background-color: #333;
+            display: flex;
+            align-items: center;
+            padding: 6px 10px;
+        }
+
+        .top-bar .tab {
+            display: flex;
+            align-items: center;
+            background-color: #424242;
+            color: #ccc;
+            border-top-right-radius: 11px;
+            border-top-left-radius: 11px;
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            padding: 8px 10px;
+            margin-right: 7px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+            width: 94px;
+            max-width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-bottom: 1px;
+        }
+
+        .top-bar .tab .tab-name {
+            flex-grow: 1;
+            margin-right: 5px;
+            margin-left: 5px;
+            overflow: hidden;
+            font-size: 14px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-top: -1px;
+        }
+
+        .top-bar .tab .close-btn {
+            font-size: 14px;
+            color: #aaa;
+            cursor: pointer;
+            margin-left: 5px;
+            margin-top: 2px;
+            border-radius: 50%;
+            padding: 2px;
+            transition: background-color 0.3s;
+        }
+
+        .top-bar .tab .close-btn:hover {
+            color: #fff;
+        }
+
+        .top-bar .tab.active {
+            background-color: #606060;
+            color: #fff;
+        }
+
+        .top-bar .tab:hover {
+            background-color: #505050;
+        }
+
+        .top-bar .add-tab {
+            font-size: 18px;
+            color: #ccc;
+            cursor: pointer;
+            margin-left: 5px;
+            transition: color 0.3s;
+        }
+
+        .top-bar .add-tab:hover {
+            color: #ffffff;
+        }
+
+        .browser-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #3c4043;
+        }
+
+        .browser-bar button {
+            background-color: transparent;
+            border: none;
+            font-size: 18px;
+            color: #9aa0a6;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .browser-bar button:hover {
+            color: #ffffff;
+        }
+
+        .browser-bar .forward-button {
+            font-size: 20px;
+            font-weight: 600;
+      }
+        .browser-bar .backward-button {
+            font-size: 20px;
+            font-weight: 600;
+      }
+        .browser-bar .reload-button {
+            font-size: 19px;
+            font-weight: 600;
+      }
+        .browser-bar .home-button {}
+        .browser-bar .search-button {}
+        .browser-bar .microphone-button {}
+
+        .browser-bar .address-bar {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            background-color: #52565b;
+            padding: 8px 15px;
+            border-radius: 25px;
+            color: #e8eaed;
+            font-size: 14px;
+            margin-left: 5px;
+            margin-right: 18px;
+        }
+
+        .browser-bar .address-bar input {
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 14.5px;
+            color: #e8eaed;
+            background-color: transparent;
+        }
+
+        .browser-bar .address-bar .lock-icon {
+            color: #8ab4f8;
+            margin-right: 10px;
+        }
+
+        .browser-bar .menu-button {
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 7px;
+            margin-right: 7px;
+            font-weight: 600;
+        }
+
+        .browser-bar .menu-button:hover {
+            color: #ffffff;
+        }
+
+        .browser-bar .wrench-button {
+            font-size: 18px;
+            cursor: pointer;
+            margin-right: 6px;
+            font-weight: 600;
+        }
+
+        .browser-bar .wrench-button:hover {
+            color: #ffffff;
+        }
+
+        .browser-bar .settings-button {
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .browser-bar .settings-button:hover {
+            color: #ffffff;
+        }
+
+        .content {
+            background: linear-gradient(145deg, #1e1e1e, #292929);
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #e8eaed;
+            flex-direction: column;
+            text-align: center;
+        }
+
+.content h20 {
+    font-size: 60px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.content h21 {
+    font-size: 24px;
+    font-weight: 400;
+    color: #9aa0a6;
+    margin-top: 10px;
+}
+
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #3c4043;
+            padding: 15px;
+            border-radius: 30px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            width: 50%;
+            margin-top: 30px;
+            z-index: 1;
+        }
+
+        .search-bar input {
+            border: none;
+            width: 100%;
+            outline: none;
+            font-size: 18px;
+            background-color: transparent;
+            color: #e8eaed;
+        }
+
+        .search-bar i {
+            color: #9aa0a6;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .search-bar i:hover {
+            color: #ffffff;
+        }
+
+        .search-bar .search-icon {
+            font-weight: 600;
+            font-size: 18px;
+            margin-left: 4px;
+        }
+        .search-bar .microphone-icon {
+            font-weight: 600;
+            font-size: 19px;
+            margin-right: 4px;
+      }
+
+        .tab-content {
+            display: none;
+            flex-grow: 1;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="top-bar">
+        <div class="tab active">
+            <span class="tab-name">New Tab</span>
+            <i class="fas fa-times close-btn"></i>
+        </div>
+        <div class="add-tab" id="add-tab">
+            <i class="fas fa-plus"></i>
+        </div>
+    </div>
+    <div class="browser-bar">
+        <button class="backward-button"><i class="fas fa-arrow-left"></i></button>
+        <button class="forward-button"><i class="fas fa-arrow-right"></i></button>
+        <button class="reload-button"><i class="fas fa-redo"></i></button>
+        <button class="home-button"><i class="fas fa-home"></i></button>
+        <div class="address-bar">
+            <i class="fas fa-lock lock-icon"></i>
+            <input type="text" value="helios://start" id="url-bar">
+        </div>
+        <button class="wrench-button"><i class="fas fa-wrench"></i></button>
+        <button class="settings-button"><i class="fas fa-cog"></i></button>
+        <button class="menu-button"><i class="fas fa-ellipsis-v"></i></button>
+    </div> 
+</head>
+<body>
+    <div class="content tab-content active">
+        <h20>Helios</h20>
+        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search Helios or type a URL">
+            <i class="fas fa-microphone microphone-icon"></i>
+        </div>
+    </div>
+    <script>
+let currentTabIndex = 0;
+const tabs = [{ url: 'helios://start', content: `<h20>Helios</h20><h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21><div class="search-bar"><i class="fas fa-search search-icon"></i><input type="text" placeholder="Search Helios or type a URL"><i class="fas fa-microphone microphone-icon"></i></div>` }];
+
+document.getElementById('add-tab').addEventListener('click', function () {
+    const newTab = document.createElement('div');
+    newTab.className = 'tab';
+    newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
+    document.querySelector('.top-bar').insertBefore(newTab, this);
+
+    const newContent = document.createElement('div');
+    newContent.className = 'content tab-content';
+    newContent.innerHTML = tabs[0].content;
+    document.body.appendChild(newContent);
+
+    tabs.push({ url: 'helios://start', content: tabs[0].content });
+
+    updateActiveTab(newTab, newContent, tabs.length - 1);
+    addCloseButtonFunctionality(newTab);
+    addTabClickListener(newTab, newContent, tabs.length - 1);
+});
+
+document.querySelectorAll('.tab').forEach((tab, index) => {
+    addCloseButtonFunctionality(tab);
+    addTabClickListener(tab, document.querySelectorAll('.tab-content')[index], index);
+});
+
+function addCloseButtonFunctionality(tab) {
+    tab.querySelector('.close-btn').addEventListener('click', function () {
+        const index = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
+        tab.remove();
+        document.querySelectorAll('.tab-content')[index].remove();
+        tabs.splice(index, 1);
+        if (index === currentTabIndex) {
+            const newActiveTab = document.querySelectorAll('.tab')[index] || document.querySelectorAll('.tab')[index - 1];
+            if (newActiveTab) {
+                newActiveTab.click();
+            }
+        }
+    });
+}
+
+function addTabClickListener(tab, content, index) {
+    tab.addEventListener('click', function () {
+        updateActiveTab(tab, content, index);
+    });
+}
+
+function updateActiveTab(tab, content, index) {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    // Deactivate all tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+
+    // Activate the clicked tab and show its content
+    tab.classList.add('active');
+    content.classList.add('active');
+
+    currentTabIndex = index;
+    document.getElementById('url-bar').value = tabs[index].url;
+
+    document.getElementById('url-bar').addEventListener('input', function () {
+        tabs[currentTabIndex].url = this.value;
+    });
+}
+
+// Initialize the URL bar input listener for the first tab
+document.getElementById('url-bar').addEventListener('input', function () {
+    tabs[currentTabIndex].url = this.value;
+});
+
+// Home button functionality
+document.querySelector('.home-button').addEventListener('click', function () {
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+
+    if (currentTab && currentContent) {
+        // Reset the tab URL and content
+        tabs[currentTabIndex].url = 'helios://start';
+        document.getElementById('url-bar').value = 'helios://start';
+
+        // Reset the content of the current tab
+        currentContent.innerHTML = tabs[0].content;
+    }
+});
+
+    </script>
+</body>
+
+</html>
