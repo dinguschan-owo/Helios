@@ -17,28 +17,7 @@
             height: 100vh;
             z-index: 0;
         }
-              .construction {
-            position: absolute;
-            top: 71%;
-            left: 52%;
-            width: 50%;
-            height: 30px;
-            transform: translate(-50%, -50%) rotate(-11deg);
-            background-image: linear-gradient(110deg, #f2d026 25%, #0d0d0d 25%, #0d0d0d 50%, #f2d026 50%, #f2d026 75%, #0d0d0d 75%, #0d0d0d 100%);
-background-size: 85.13px 233.90px;
-                z-index: 2;
-        }
-                    .construction2 {
-            position: absolute;
-            top: 69%;
-            left: 50%;
-            width: 57%;
-            height: 30px;
-            transform: translate(-50%, -50%) rotate(6deg);
-            background-image: linear-gradient(110deg, #f2e427 25%, #0d0d0d 25%, #0d0d0d 50%, #f2e427 50%, #f2e427 75%, #0d0d0d 75%, #0d0d0d 100%);
-background-size: 85.13px 233.90px;
-                z-index: 2;
-        }
+
         .top-bar {
             background-color: #333;
             display: flex;
@@ -177,7 +156,10 @@ background-size: 85.13px 233.90px;
 
         .browser-bar .address-bar .lock-icon {
             color: #8ab4f8;
-            margin-right: 10px;
+            margin-right: 9px;
+            margin-left: -1px;
+            margin-bottom: 1px;
+            font-size: 15px;
         }
 
         .browser-bar .menu-button {
@@ -325,8 +307,6 @@ background-size: 85.13px 233.90px;
 </head>
 <body>
     <div class="content tab-content active">
-      <div class="construction"></div>
-      <div class="construction2"></div>
         <h20>Helios</h20>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
@@ -341,8 +321,7 @@ let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
     content: `
-        <div class="construction"></div>
-        <div class="construction2"></div>
+
         <h20>Helios</h20>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
@@ -425,6 +404,19 @@ function updateActiveTab(tab, content, index) {
     }
 }
 
+function updateLockIcon(isLocked) {
+    const lockIcon = document.querySelector('.lock-icon');
+    if (isLocked) {
+        lockIcon.classList.remove('fa-unlock');
+        lockIcon.classList.add('fa-lock');
+        lockIcon.style.color = ''; // Remove yellow color
+    } else {
+        lockIcon.classList.remove('fa-lock');
+        lockIcon.classList.add('fa-unlock');
+        lockIcon.style.color = '#ffff80'; // Set yellow color
+    }
+}
+
 document.getElementById('url-bar').addEventListener('input', function () {
     tabs[currentTabIndex].url = this.value;
 });
@@ -437,11 +429,13 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
         if (url === 'helios://settings') {
             currentContent.innerHTML = '<h20>Settings</h20>';
             tabs[currentTabIndex].url = url;
+            updateLockIcon(true); // Update lock icon to locked state
         } else if (url === 'helios://start') {
             currentContent.innerHTML = tabs[0].content;
             tabs[currentTabIndex].url = url;
-        } else {
-            // Fetch the content of the URL
+            updateLockIcon(true); // Update lock icon to locked state
+        } else if (!url.startsWith('helios://')) {
+            // Fetch the content of the URL if it's not a Helios URL
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
@@ -458,6 +452,7 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
                 });
+            updateLockIcon(false); // Update lock icon to unlocked state
         }
     }
 });
@@ -489,6 +484,7 @@ document.querySelector('.settings-button').addEventListener('click', function ()
 
         // Update the content of the current tab
         currentContent.innerHTML = '<h20>Settings</h20>';
+        updateLockIcon(true); // Update lock icon to locked state
     }
 });
 
