@@ -17,6 +17,28 @@
             height: 100vh;
             z-index: 0;
         }
+              .construction {
+            position: absolute;
+            top: 71%;
+            left: 52%;
+            width: 50%;
+            height: 30px;
+            transform: translate(-50%, -50%) rotate(-11deg);
+            background-image: linear-gradient(110deg, #f2d026 25%, #0d0d0d 25%, #0d0d0d 50%, #f2d026 50%, #f2d026 75%, #0d0d0d 75%, #0d0d0d 100%);
+background-size: 85.13px 233.90px;
+                z-index: 2;
+        }
+                    .construction2 {
+            position: absolute;
+            top: 69%;
+            left: 50%;
+            width: 57%;
+            height: 30px;
+            transform: translate(-50%, -50%) rotate(6deg);
+            background-image: linear-gradient(110deg, #f2e427 25%, #0d0d0d 25%, #0d0d0d 50%, #f2e427 50%, #f2e427 75%, #0d0d0d 75%, #0d0d0d 100%);
+background-size: 85.13px 233.90px;
+                z-index: 2;
+        }
         .top-bar {
             background-color: #333;
             display: flex;
@@ -303,6 +325,8 @@
 </head>
 <body>
     <div class="content tab-content active">
+      <div class="construction"></div>
+      <div class="construction2"></div>
         <h20>Helios</h20>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
@@ -310,10 +334,23 @@
             <input type="text" placeholder="Search Helios or type a URL">
             <i class="fas fa-microphone microphone-icon"></i>
         </div>
+      
     </div>
     <script>
 let currentTabIndex = 0;
-const tabs = [{ url: 'helios://start', content: `<h20>Helios</h20><h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21><div class="search-bar"><i class="fas fa-search search-icon"></i><input type="text" placeholder="Search Helios or type a URL"><i class="fas fa-microphone microphone-icon"></i></div>` }];
+const tabs = [{
+    url: 'helios://start',
+    content: `
+        <div class="construction"></div>
+        <div class="construction2"></div>
+        <h20>Helios</h20>
+        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+        <div class="search-bar">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search Helios or type a URL">
+            <i class="fas fa-microphone microphone-icon"></i>
+        </div>`
+}];
 
 document.getElementById('add-tab').addEventListener('click', function () {
     const newTab = document.createElement('div');
@@ -375,16 +412,54 @@ function updateActiveTab(tab, content, index) {
     content.classList.add('active');
 
     currentTabIndex = index;
-    document.getElementById('url-bar').value = tabs[index].url;
+    const url = tabs[index].url;
+    document.getElementById('url-bar').value = url;
 
-    document.getElementById('url-bar').addEventListener('input', function () {
-        tabs[currentTabIndex].url = this.value;
-    });
+    // Update the content based on the URL
+    if (url === 'helios://settings') {
+        content.innerHTML = '<h20>Settings</h20>';
+    } else if (url === 'helios://start') {
+        content.innerHTML = tabs[0].content;
+    } else {
+        content.innerHTML = tabs[index].content;
+    }
 }
 
-// Initialize the URL bar input listener for the first tab
 document.getElementById('url-bar').addEventListener('input', function () {
     tabs[currentTabIndex].url = this.value;
+});
+
+document.getElementById('url-bar').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        const url = e.target.value;
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+
+        if (url === 'helios://settings') {
+            currentContent.innerHTML = '<h20>Settings</h20>';
+            tabs[currentTabIndex].url = url;
+        } else if (url === 'helios://start') {
+            currentContent.innerHTML = tabs[0].content;
+            tabs[currentTabIndex].url = url;
+        } else {
+            // Fetch the content of the URL
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(htmlContent => {
+                    // Update the current tab's content
+                    currentContent.innerHTML = htmlContent;
+                    tabs[currentTabIndex].content = htmlContent;
+                    tabs[currentTabIndex].url = url;
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+    }
 });
 
 // Home button functionality
@@ -399,6 +474,21 @@ document.querySelector('.home-button').addEventListener('click', function () {
 
         // Reset the content of the current tab
         currentContent.innerHTML = tabs[0].content;
+    }
+});
+
+// Settings button functionality
+document.querySelector('.settings-button').addEventListener('click', function () {
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+
+    if (currentTab && currentContent) {
+        // Set the tab URL to settings
+        tabs[currentTabIndex].url = 'helios://settings';
+        document.getElementById('url-bar').value = 'helios://settings';
+
+        // Update the content of the current tab
+        currentContent.innerHTML = '<h20>Settings</h20>';
     }
 });
 
