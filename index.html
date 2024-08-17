@@ -303,6 +303,7 @@
         <button class="wrench-button"><i class="fas fa-wrench"></i></button>
         <button class="settings-button"><i class="fas fa-cog"></i></button>
         <button class="menu-button"><i class="fas fa-ellipsis-v"></i></button>
+      
     </div> 
 </head>
 <body>
@@ -320,7 +321,7 @@
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
-    content: `
+    content: 
 
         <h20>Helios</h20>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
@@ -328,13 +329,13 @@ const tabs = [{
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="Search Helios or type a URL">
             <i class="fas fa-microphone microphone-icon"></i>
-        </div>`
+        </div>
 }];
 
 document.getElementById('add-tab').addEventListener('click', function () {
     const newTab = document.createElement('div');
     newTab.className = 'tab';
-    newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
+    newTab.innerHTML = <span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>;
     document.querySelector('.top-bar').insertBefore(newTab, this);
 
     const newContent = document.createElement('div');
