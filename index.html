@@ -34,8 +34,9 @@
             border-top-left-radius: 12px;
             border-bottom-right-radius: 4.6px;
             border-bottom-left-radius: 4.6px;
-            padding: 9px 10px;
+            padding: 10px 10px;
             margin-right: 7px;
+            margin-left: -2px;
             font-size: 13px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
@@ -46,6 +47,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             margin-bottom: 1px;
+            margin-top: -1px;
         }
 
         .top-bar .tab .tab-name {
@@ -84,11 +86,13 @@
         }
 
         .top-bar .add-tab {
-            font-size: 18px;
+            font-size: 22px;
             color: #ccc;
             cursor: pointer;
             margin-left: 5px;
             transition: color 0.3s;
+            font-weight: 600;
+            margin-top: 1px;
         }
 
         .top-bar .add-tab:hover {
@@ -105,7 +109,7 @@
         .browser-bar button {
             background-color: transparent;
             border: none;
-            font-size: 18px;
+            font-size: 22px;
             color: #9aa0a6;
             margin-right: 15px;
             cursor: pointer;
@@ -117,15 +121,15 @@
         }
 
         .browser-bar .forward-button {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 600;
       }
         .browser-bar .backward-button {
-            font-size: 20px;
+            font-size: 25px;
             font-weight: 600;
       }
         .browser-bar .reload-button {
-            font-size: 19px;
+            font-size: 22px;
             font-weight: 600;
       }
         .browser-bar .home-button {}
@@ -137,33 +141,56 @@
             display: flex;
             align-items: center;
             background-color: #52565b;
-            padding: 8px 15px;
-            border-radius: 25px;
+            padding: 5px 15px;
+            border-radius: 500px;
             color: #e8eaed;
             font-size: 14px;
             margin-left: 5px;
             margin-right: 18px;
+            margin-top: -1px;
+            margin-bottom: -1px;
         }
 
         .browser-bar .address-bar input {
             border: none;
             width: 100%;
             outline: none;
-            font-size: 14.5px;
+            font-size: 15.4px;
             color: #e8eaed;
             background-color: transparent;
         }
 
         .browser-bar .address-bar .lock-icon {
             color: #8ab4f8;
-            margin-right: 9px;
-            margin-left: -1px;
-            margin-bottom: 1px;
-            font-size: 15px;
+            margin-right: 10px;
+            margin-left: 1px;
+            margin-bottom: 1.05px;
+            font-size: 16px;
+        }
+              .browser-bar .address-bar .official {
+            color: #80ffac;
+            margin-right: 1px;
+            margin-left: 0px;
+            margin-top: 8px;
+            cursor: text;
+            font-size: 15.2px;
+        }
+                    .browser-bar .address-bar .official-c {
+            color: #fff;
+            margin-right: -9px;
+            margin-left: 0px;
+            margin-bottom: 0px;
+            font-size: 17px;
+            background-color: #3c4043;
+            height: 30px;
+            width: 130px;
+            text-align: center;
+            border-radius: 500px;
+            cursor: text;
         }
 
         .browser-bar .menu-button {
-            font-size: 20px;
+            font-size: 25px;
             cursor: pointer;
             margin-left: 7px;
             margin-right: 7px;
@@ -175,9 +202,10 @@
         }
 
         .browser-bar .wrench-button {
-            font-size: 18px;
+            font-size: 22px;
             cursor: pointer;
             margin-right: 6px;
+            margin-bottom: 1px;
             font-weight: 600;
         }
 
@@ -186,10 +214,10 @@
         }
 
         .browser-bar .settings-button {
-            font-size: 18px;
+            font-size: 22px;
             cursor: pointer;
             margin-left: 10px;
-            margin-right: 10px;
+            margin-right: 11px;
         }
 
         .browser-bar .settings-button:hover {
@@ -288,7 +316,7 @@
             <i class="fas fa-times close-btn"></i>
         </div>
         <div class="add-tab" id="add-tab">
-            <i class="fas fa-plus"></i>
+            <i class="fa-solid fa-circle-plus"></i>
         </div>
     </div>
     <div class="browser-bar">
@@ -298,7 +326,7 @@
         <button class="home-button"><i class="fas fa-home"></i></button>
         <div class="address-bar">
             <i class="fas fa-lock lock-icon"></i>
-            <input type="text" value="helios://start" id="url-bar">
+            <input type="text" value="helios://start" id="url-bar">            <div class="official-c"><i class="fa-solid fa-circle-check official">&nbsp𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
         </div>
         <button class="wrench-button"><i class="fas fa-wrench"></i></button>
         <button class="settings-button"><i class="fas fa-cog"></i></button>
@@ -321,21 +349,23 @@
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
-    content: 
-
+    content: `
         <h20>Helios</h20>
-        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚍𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="Search Helios or type a URL">
             <i class="fas fa-microphone microphone-icon"></i>
-        </div>
+        </div>`
 }];
+
+// Updated trusted schemes
+const trustedSchemes = ['helios://', 'https://', 'data://', 'ws://'];
 
 document.getElementById('add-tab').addEventListener('click', function () {
     const newTab = document.createElement('div');
     newTab.className = 'tab';
-    newTab.innerHTML = <span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>;
+    newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
     document.querySelector('.top-bar').insertBefore(newTab, this);
 
     const newContent = document.createElement('div');
@@ -398,15 +428,23 @@ function updateActiveTab(tab, content, index) {
     // Update the content based on the URL
     if (url === 'helios://settings') {
         content.innerHTML = '<h20>Settings</h20>';
+        tab.querySelector('.tab-name').textContent = 'Settings';
     } else if (url === 'helios://start') {
         content.innerHTML = tabs[0].content;
+        tab.querySelector('.tab-name').textContent = 'New Tab';
     } else {
         content.innerHTML = tabs[index].content;
+        tab.querySelector('.tab-name').textContent = 'New Tab';
     }
+
+    // Update lock icon and visibility of special divs
+    updateLockIcon(url);
+    updateSpecialDivs(url);
 }
 
-function updateLockIcon(isLocked) {
+function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
+    const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
     if (isLocked) {
         lockIcon.classList.remove('fa-unlock');
         lockIcon.classList.add('fa-lock');
@@ -418,25 +456,49 @@ function updateLockIcon(isLocked) {
     }
 }
 
+function updateSpecialDivs(url) {
+    const isHeliosURL = url.startsWith('helios://');
+    const officialC = document.querySelector('.official-c');
+    const official = document.querySelector('.official');
+
+    if (officialC) {
+        officialC.style.backgroundColor = isHeliosURL ? '' : '#52565b';
+    }
+    if (official) {
+        official.style.backgroundColor = isHeliosURL ? '' : '#52565b';
+        official.style.color = isHeliosURL ? '' : '#52565b';
+    }
+}
+
+// Listen for input changes in the URL bar to update the lock icon and content dynamically
 document.getElementById('url-bar').addEventListener('input', function () {
-    tabs[currentTabIndex].url = this.value;
+    const url = this.value;
+    tabs[currentTabIndex].url = url;
+    updateLockIcon(url);
+    updateSpecialDivs(url);
 });
 
+// Enter key handling to navigate to helios://settings or other URLs
 document.getElementById('url-bar').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         const url = e.target.value;
         const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
 
         if (url === 'helios://settings') {
             currentContent.innerHTML = '<h20>Settings</h20>';
             tabs[currentTabIndex].url = url;
-            updateLockIcon(true); // Update lock icon to locked state
+            currentTab.querySelector('.tab-name').textContent = 'Settings';
+            updateLockIcon(url); // Update lock icon based on the URL
+            updateSpecialDivs(url); // Update special divs based on the URL
         } else if (url === 'helios://start') {
             currentContent.innerHTML = tabs[0].content;
             tabs[currentTabIndex].url = url;
-            updateLockIcon(true); // Update lock icon to locked state
-        } else if (!url.startsWith('helios://')) {
-            // Fetch the content of the URL if it's not a Helios URL
+            currentTab.querySelector('.tab-name').textContent = 'New Tab';
+            updateLockIcon(url); // Update lock icon based on the URL
+            updateSpecialDivs(url); // Update special divs based on the URL
+        } else if (!trustedSchemes.some(scheme => url.startsWith(scheme))) {
+            // Fetch the content of the URL if it's not a trusted scheme
             fetch(url)
                 .then(response => {
                     if (!response.ok) {
@@ -453,7 +515,8 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
                 });
-            updateLockIcon(false); // Update lock icon to unlocked state
+            updateLockIcon(url); // Update lock icon based on the URL
+            updateSpecialDivs(url); // Update special divs based on the URL
         }
     }
 });
@@ -470,6 +533,9 @@ document.querySelector('.home-button').addEventListener('click', function () {
 
         // Reset the content of the current tab
         currentContent.innerHTML = tabs[0].content;
+        currentTab.querySelector('.tab-name').textContent = 'New Tab';
+        updateLockIcon('helios://start'); // Update lock icon based on the URL
+        updateSpecialDivs('helios://start'); // Update special divs based on the URL
     }
 });
 
@@ -485,7 +551,9 @@ document.querySelector('.settings-button').addEventListener('click', function ()
 
         // Update the content of the current tab
         currentContent.innerHTML = '<h20>Settings</h20>';
-        updateLockIcon(true); // Update lock icon to locked state
+        currentTab.querySelector('.tab-name').textContent = 'Settings';
+        updateLockIcon('helios://settings'); // Update lock icon based on the URL
+        updateSpecialDivs('helios://settings'); // Update special divs based on the URL
     }
 });
 
