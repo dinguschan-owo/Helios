@@ -359,7 +359,6 @@ const tabs = [{
         </div>`
 }];
 
-// Updated trusted schemes
 const trustedSchemes = ['helios://', 'https://', 'data://', 'ws://'];
 
 document.getElementById('add-tab').addEventListener('click', function () {
@@ -407,17 +406,14 @@ function addTabClickListener(tab, content, index) {
 }
 
 function updateActiveTab(tab, content, index) {
-    // Hide all tab contents
     document.querySelectorAll('.tab-content').forEach(content => {
         content.classList.remove('active');
     });
 
-    // Deactivate all tabs
     document.querySelectorAll('.tab').forEach(tab => {
         tab.classList.remove('active');
     });
 
-    // Activate the clicked tab and show its content
     tab.classList.add('active');
     content.classList.add('active');
 
@@ -425,21 +421,42 @@ function updateActiveTab(tab, content, index) {
     const url = tabs[index].url;
     document.getElementById('url-bar').value = url;
 
-    // Update the content based on the URL
-    if (url === 'helios://settings') {
-        content.innerHTML = '<h20>Settings</h20>';
-        tab.querySelector('.tab-name').textContent = 'Settings';
-    } else if (url === 'helios://start') {
-        content.innerHTML = tabs[0].content;
-        tab.querySelector('.tab-name').textContent = 'New Tab';
-    } else {
-        content.innerHTML = tabs[index].content;
-        tab.querySelector('.tab-name').textContent = 'New Tab';
-    }
-
-    // Update lock icon and visibility of special divs
+    updateTabContent(url, content, tab);
     updateLockIcon(url);
     updateSpecialDivs(url);
+}
+
+function updateTabContent(url, content, tab) {
+    if (url.startsWith('helios://')) {
+        if (url === 'helios://settings') {
+            content.innerHTML = '<h20>Settings</h20>';
+            tab.querySelector('.tab-name').textContent = 'Settings';
+        } else if (url === 'helios://start') {
+            content.innerHTML = tabs[0].content;
+            tab.querySelector('.tab-name').textContent = 'New Tab';
+        }
+    } else {
+        fetchExternalContent(url, content);
+    }
+}
+
+function fetchExternalContent(url, content) {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();
+        })
+        .then(htmlContent => {
+            content.innerHTML = htmlContent;
+            tabs[currentTabIndex].content = htmlContent;
+            tabs[currentTabIndex].url = url;
+        })
+        .catch(error => {
+            console.error('Fetch operation failed:', error);
+            content.innerHTML = `<p>Failed to load content from ${url}</p>`;
+        });
 }
 
 function updateLockIcon(url) {
@@ -470,7 +487,6 @@ function updateSpecialDivs(url) {
     }
 }
 
-// Listen for input changes in the URL bar to update the lock icon and content dynamically
 document.getElementById('url-bar').addEventListener('input', function () {
     const url = this.value;
     tabs[currentTabIndex].url = url;
@@ -478,85 +494,50 @@ document.getElementById('url-bar').addEventListener('input', function () {
     updateSpecialDivs(url);
 });
 
-// Enter key handling to navigate to helios://settings or other URLs
 document.getElementById('url-bar').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         const url = e.target.value;
         const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
         const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
 
-        if (url === 'helios://settings') {
-            currentContent.innerHTML = '<h20>Settings</h20>';
-            tabs[currentTabIndex].url = url;
-            currentTab.querySelector('.tab-name').textContent = 'Settings';
-            updateLockIcon(url); // Update lock icon based on the URL
-            updateSpecialDivs(url); // Update special divs based on the URL
-        } else if (url === 'helios://start') {
-            currentContent.innerHTML = tabs[0].content;
-            tabs[currentTabIndex].url = url;
-            currentTab.querySelector('.tab-name').textContent = 'New Tab';
-            updateLockIcon(url); // Update lock icon based on the URL
-            updateSpecialDivs(url); // Update special divs based on the URL
-        } else if (!trustedSchemes.some(scheme => url.startsWith(scheme))) {
-            // Fetch the content of the URL if it's not a trusted scheme
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(htmlContent => {
-                    // Update the current tab's content
-                    currentContent.innerHTML = htmlContent;
-                    tabs[currentTabIndex].content = htmlContent;
-                    tabs[currentTabIndex].url = url;
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
-            updateLockIcon(url); // Update lock icon based on the URL
-            updateSpecialDivs(url); // Update special divs based on the URL
-        }
+        tabs[currentTabIndex].url = url;
+        updateTabContent(url, currentContent, currentTab);
+        updateLockIcon(url);
+        updateSpecialDivs(url);
     }
 });
 
-// Home button functionality
 document.querySelector('.home-button').addEventListener('click', function () {
     const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
     const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
 
     if (currentTab && currentContent) {
-        // Reset the tab URL and content
         tabs[currentTabIndex].url = 'helios://start';
         document.getElementById('url-bar').value = 'helios://start';
 
-        // Reset the content of the current tab
         currentContent.innerHTML = tabs[0].content;
         currentTab.querySelector('.tab-name').textContent = 'New Tab';
-        updateLockIcon('helios://start'); // Update lock icon based on the URL
-        updateSpecialDivs('helios://start'); // Update special divs based on the URL
+        updateLockIcon('helios://start');
+        updateSpecialDivs('helios://start');
     }
 });
 
-// Settings button functionality
 document.querySelector('.settings-button').addEventListener('click', function () {
     const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
     const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
 
     if (currentTab && currentContent) {
-        // Set the tab URL to settings
         tabs[currentTabIndex].url = 'helios://settings';
         document.getElementById('url-bar').value = 'helios://settings';
 
-        // Update the content of the current tab
         currentContent.innerHTML = '<h20>Settings</h20>';
         currentTab.querySelector('.tab-name').textContent = 'Settings';
-        updateLockIcon('helios://settings'); // Update lock icon based on the URL
-        updateSpecialDivs('helios://settings'); // Update special divs based on the URL
+        updateLockIcon('helios://settings');
+        updateSpecialDivs('helios://settings');
     }
 });
 
+      
     </script>
 </body>
 
