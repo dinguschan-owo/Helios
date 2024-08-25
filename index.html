@@ -452,12 +452,22 @@ function fetchExternalContent(url, content) {
             content.innerHTML = htmlContent;
             tabs[currentTabIndex].content = htmlContent;
             tabs[currentTabIndex].url = url;
+
+            // Re-execute any scripts in the loaded content
+            const scripts = content.querySelectorAll('script');
+            scripts.forEach(script => {
+                const newScript = document.createElement('script');
+                newScript.textContent = script.textContent; // Copy script content
+                content.appendChild(newScript); // Append it to the document
+                script.remove(); // Remove the old script tag
+            });
         })
         .catch(error => {
             console.error('Fetch operation failed:', error);
             content.innerHTML = `<p>Failed to load content from ${url}</p>`;
         });
 }
+
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
@@ -496,16 +506,28 @@ document.getElementById('url-bar').addEventListener('input', function () {
 
 document.getElementById('url-bar').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        const url = e.target.value;
+        let url = e.target.value.trim();
+        
+        // Check if the URL starts with any of the trusted schemes
+        const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
+        
+        // If no valid scheme, prepend "https://"
+        if (!hasValidScheme) {
+            url = 'https://' + url;
+        }
+
         const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
         const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
 
+        // Update the tab's URL and content
         tabs[currentTabIndex].url = url;
+        document.getElementById('url-bar').value = url;  // Update the URL bar to reflect the change
         updateTabContent(url, currentContent, currentTab);
         updateLockIcon(url);
         updateSpecialDivs(url);
     }
 });
+
 
 document.querySelector('.home-button').addEventListener('click', function () {
     const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
