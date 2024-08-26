@@ -235,19 +235,18 @@
             text-align: center;
         }
 
-.content h20 {
-    font-size: 60px;
-    font-weight: 600;
-    margin: 0;
-}
+        .content h20 {
+            font-size: 60px;
+            font-weight: 600;
+            margin: 0;
+        }
 
-.content h21 {
-    font-size: 24px;
-    font-weight: 400;
-    color: #9aa0a6;
-    margin-top: 10px;
-}
-
+        .content h21 {
+            font-size: 24px;
+            font-weight: 400;
+            color: #9aa0a6;
+            margin-top: 10px;
+        }
 
         .search-bar {
             display: flex;
@@ -468,7 +467,6 @@ function fetchExternalContent(url, content) {
         });
 }
 
-
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
     const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
@@ -528,7 +526,6 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
     }
 });
 
-
 document.querySelector('.home-button').addEventListener('click', function () {
     const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
     const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
@@ -559,7 +556,6 @@ document.querySelector('.settings-button').addEventListener('click', function ()
     }
 });
 
-      
     </script>
 </body>
 
