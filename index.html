@@ -167,7 +167,7 @@
             margin-bottom: 1.05px;
             font-size: 16px;
         }
-              .browser-bar .address-bar .official {
+        .browser-bar .address-bar .official {
             color: #80ffac;
             margin-right: 1px;
             margin-left: 0px;
@@ -175,7 +175,7 @@
             cursor: text;
             font-size: 15.2px;
         }
-                    .browser-bar .address-bar .official-c {
+        .browser-bar .address-bar .official-c {
             color: #fff;
             margin-right: -9px;
             margin-left: 0px;
@@ -302,6 +302,8 @@
 
         .tab-content.active {
             display: flex;
+            border: 1px;
+            border: 3px solid #39ff14;
         }
 
     </style>
@@ -451,7 +453,9 @@ function updateTabContent(url, content, tab) {
 
 
 function fetchExternalContent(url, content) {
-    fetch(url)
+    const proxyUrl = `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`;
+    
+    fetch(proxyUrl)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -477,6 +481,7 @@ function fetchExternalContent(url, content) {
             content.innerHTML = `<p>Failed to load content from ${url}</p>`;
         });
 }
+
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
