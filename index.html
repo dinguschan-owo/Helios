@@ -350,7 +350,7 @@ const tabs = [{
     url: 'helios://start',
     content: `
         <h20>Helios</h20>
-        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚍𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="Search Helios or type a URL">
@@ -426,18 +426,29 @@ function updateActiveTab(tab, content, index) {
 }
 
 function updateTabContent(url, content, tab) {
-    if (url.startsWith('helios://')) {
-        if (url === 'helios://settings') {
-            content.innerHTML = '<h20>Settings</h20>';
-            tab.querySelector('.tab-name').textContent = 'Settings';
-        } else if (url === 'helios://start') {
-            content.innerHTML = tabs[0].content;
-            tab.querySelector('.tab-name').textContent = 'New Tab';
-        }
+    if (url === 'helios://start') {
+        content.innerHTML = `
+            <h20>Helios</h20>
+            <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search Helios or type a URL">
+                <i class="fas fa-microphone microphone-icon"></i>
+            </div>`;
+        
+        tab.querySelector('.tab-name').textContent = 'New Tab';
+        tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
+        tabs[currentTabIndex].url = url;
+    } else if (url === 'helios://settings') {
+        content.innerHTML = '<h20>Settings</h20>';
+        tab.querySelector('.tab-name').textContent = 'Settings';
+        tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
+        tabs[currentTabIndex].url = url;
     } else {
         fetchExternalContent(url, content);
     }
 }
+
 
 function fetchExternalContent(url, content) {
     fetch(url)
