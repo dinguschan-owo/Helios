@@ -337,6 +337,7 @@
 </head>
 <body>
     <div class="content tab-content active">
+      
         <h20>Helios</h20>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
@@ -434,13 +435,24 @@ function updateTabContent(url, content, tab) {
             <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
             <div class="search-bar">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Search Helios or type a URL">
+                <input type="text" id="url-bar" placeholder="Search Helios or type a URL">
                 <i class="fas fa-microphone microphone-icon"></i>
             </div>`;
         
         tab.querySelector('.tab-name').textContent = 'New Tab';
         tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
         tabs[currentTabIndex].url = url;
+
+        // Add event listener for the Enter key to load the entered URL
+        document.getElementById('url-bar').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const enteredUrl = document.getElementById('url-bar').value;
+                if (enteredUrl) {
+                    updateTabContent(enteredUrl, content, tab);
+                }
+            }
+        });
+
     } else if (url === 'helios://settings') {
         content.innerHTML = '<h20>Settings</h20>';
         tab.querySelector('.tab-name').textContent = 'Settings';
@@ -451,35 +463,17 @@ function updateTabContent(url, content, tab) {
     }
 }
 
-
 function fetchExternalContent(url, content) {
-    const proxyUrl = `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`;
+    const receiverUrl = `https://reciver-two.vercel.app/?url=${encodeURIComponent(url)}`;
     
-    fetch(proxyUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.text();
-        })
-        .then(htmlContent => {
-            content.innerHTML = htmlContent;
-            tabs[currentTabIndex].content = htmlContent;
-            tabs[currentTabIndex].url = url;
-
-            // Re-execute any scripts in the loaded content
-            const scripts = content.querySelectorAll('script');
-            scripts.forEach(script => {
-                const newScript = document.createElement('script');
-                newScript.textContent = script.textContent; // Copy script content
-                content.appendChild(newScript); // Append it to the document
-                script.remove(); // Remove the old script tag
-            });
-        })
-        .catch(error => {
-            console.error('Fetch operation failed:', error);
-            content.innerHTML = `<p>Failed to load content from ${url}</p>`;
-        });
+    // Embed the receiver site in an iframe with scrolling confined to the iframe itself
+    content.innerHTML = `
+        <div style="width: 100%; height: 100%; overflow: hidden;">
+            <iframe src="${receiverUrl}" style="width: 100%; height: 100%; border: none; overflow: auto;" scrolling="yes"></iframe>
+        </div>`;
+    
+    tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
+    tabs[currentTabIndex].url = url;
 }
 
 
