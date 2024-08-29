@@ -28,15 +28,15 @@
         .top-bar .tab {
             display: flex;
             align-items: center;
-            background-color: #424242;
-            color: #ccc;
+            background-color: #454545;
+            color: #d1d1d1;
             border-top-right-radius: 12px;
             border-top-left-radius: 12px;
             border-bottom-right-radius: 4.6px;
             border-bottom-left-radius: 4.6px;
             padding: 9px 10px;
-            margin-right: 7px;
-            margin-left: .6px;
+            margin-right: 9px;
+            margin-left: -1px;
             font-size: 13px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
@@ -80,11 +80,16 @@
             background-color: #606060;
             color: #fff;
         }
-
+        
+        .top-bar .tab.active:hover{
+            background-color: #606060;
+            color: #fff;
+        }
+        
         .top-bar .tab:hover {
             background-color: #505050;
         }
-
+        
         .top-bar .add-tab {
             font-size: 22px;
             color: #ccc;
