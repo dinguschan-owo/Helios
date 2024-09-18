@@ -16,6 +16,7 @@
             flex-direction: column;
             height: 100vh;
             z-index: 0;
+            max-width: 100vw;
         }
 
         .top-bar {
@@ -298,14 +299,15 @@
             margin-right: 4px;
       }
 
-        .tab-content {
-            display: none;
-            flex-grow: 1;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+/* Ensure the tab content area is styled to support shadow DOM */
+.tab-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
 
         .tab-content.active {
             display: flex;
@@ -471,17 +473,37 @@ function updateTabContent(url, content, tab) {
 }
 
 function fetchExternalContent(url, content) {
-    const receiverUrl = `https://reciver-two.vercel.app/?url=${encodeURIComponent(url)}`;
-    
-    // Embed the receiver site in an iframe with scrolling confined to the iframe itself
-    content.innerHTML = `
-        <div style="width: 100%; height: 100%; overflow: hidden;">
-            <iframe src="${receiverUrl}" style="width: 100%; height: 100%; border: none; overflow: auto;" scrolling="yes"></iframe>
-        </div>`;
-    
-    tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
-    tabs[currentTabIndex].url = url;
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.text();  // Get the response as text
+        })
+        .then(data => {
+            // Create a shadow root
+            const shadowRoot = content.attachShadow({ mode: 'open' });
+
+            // Add only the fetched source code to the shadow root
+            shadowRoot.innerHTML = `
+                <pre>${escapeHtml(data)}</pre>
+            `;
+        })
+        .catch(error => {
+            content.innerHTML = `<p>Error fetching content: ${error.message}</p>`;
+        });
 }
+
+// Function to escape HTML special characters
+function escapeHtml(html) {
+    return html
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
 
 
 function updateLockIcon(url) {
