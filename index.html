@@ -716,6 +716,39 @@ document.querySelector('.settings-button').addEventListener('click', function ()
     updateSpecialDivs(lowercaseValue);
 });
 
+      // Update URL and content when Home or Settings button is clicked
+document.querySelector('.home-button').addEventListener('click', function () {
+    changeTabContent('helios://start');
+});
+
+document.querySelector('.settings-button').addEventListener('click', function () {
+    changeTabContent('helios://settings');
+});
+
+// General function to handle URL and content updates
+function changeTabContent(url) {
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+
+    if (currentTab && currentContent) {
+        // Update the URL in the URL bar
+        document.getElementById('url-bar').value = url;
+
+        // Update the tab's URL and content
+        tabs[currentTabIndex].url = url;
+        updateTabContent(url, currentContent, currentTab);
+
+        // Simulate 'Enter' keypress to trigger the fetch or content load
+        const event = new KeyboardEvent('keydown', {
+            bubbles: true,
+            cancelable: true,
+            key: 'Enter',
+            code: 'Enter'
+        });
+        document.getElementById('url-bar').dispatchEvent(event);
+    }
+}
+
     </script>
 </body>
 
