@@ -231,24 +231,14 @@
             color: #ffffff;
         }
 
-        .content {
-            background: linear-gradient(145deg, #1e1e1e, #292929);
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #e8eaed;
-            flex-direction: column;
-            text-align: center;
-        }
 
-        .content h20 {
+        .tab-content h20 {
             font-size: 60px;
             font-weight: 600;
             margin: 0;
         }
 
-        .content h21 {
+        .tab-content h21 {
             font-size: 24px;
             font-weight: 400;
             color: #9aa0a6;
@@ -298,20 +288,27 @@
             margin-right: 4px;
       }
 
-        .tab-content {
-            display: none;
-            flex-grow: 1;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+.tab-content { 
+display: none; 
+flex-grow: 1; 
+flex-direction: column; 
+justify-content: center; 
+align-items: center; 
+text-align: center; 
+margin: 0;  /* Ensure no margin is added */ 
+padding: 0; /* Ensure no padding is added */ 
+overflow: hidden; /* Ensure no overflow issues */ 
+height: 100vh !important;
+background: linear-gradient(145deg, #1e1e1e, #292929); 
+      }
 
-        .tab-content.active {
-            display: flex;
-            border: 1px;
-            border: 3px solid #39ff14;
-        }
+
+.tab-content.active { 
+display: flex; 
+border: 1px; 
+border: 3px solid #39ff14; 
+margin: 0;  /* Ensure no margin is added */ 
+padding: 0; /* Ensure no padding is added */ }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -470,17 +467,140 @@ function updateTabContent(url, content, tab) {
     }
 }
 
-function fetchExternalContent(url, content) {
-    const receiverUrl = `https://reciver-two.vercel.app/?url=${encodeURIComponent(url)}`;
-    
-    // Embed the receiver site in an iframe with scrolling confined to the iframe itself
-    content.innerHTML = `
-        <div style="width: 100%; height: 100%; overflow: hidden;">
-            <iframe src="${receiverUrl}" style="width: 100%; height: 100%; border: none; overflow: auto;" scrolling="yes"></iframe>
-        </div>`;
-    
-    tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
-    tabs[currentTabIndex].url = url;
+
+document.addEventListener('DOMContentLoaded', () => {
+    const urlBar = document.getElementById('url-bar'); // Ensure you have an input element with id 'url-bar'
+    const content = document.getElementById('content'); // Ensure you have an element with id 'content'
+
+    urlBar.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            const url = urlBar.value;
+            fetchExternalContent(url, content);
+        }
+    });
+});
+
+async function fetchExternalContent(url, content) {
+    const proxies = [
+        `https://api.codetabs.com/v1/proxy?quest=${url}`,
+        `https://api.codetabs.com/v1/tmp/?quest=${url}`,
+        `https://corsproxy.io/?${url}`,
+        `https://api.allorigins.win/raw?url=${url}`
+    ];
+
+    const timeout = 10000; // 10 seconds timeout
+
+    // Function to fetch content with proxy
+    async function fetchWithProxy(proxy) {
+        return new Promise((resolve, reject) => {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+
+            fetch(proxy, { signal: controller.signal })
+                .then(response => {
+                    clearTimeout(id);
+                    if (!response.ok) {
+                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(resolve)
+                .catch(reject);
+        });
+    }
+
+    // Try fetching content from proxies
+    let htmlText;
+    for (const proxy of proxies) {
+        try {
+            htmlText = await fetchWithProxy(proxy);
+            break; // Exit loop if successful
+        } catch (error) {
+            console.error(`Error with proxy ${proxy}: ${error}`);
+        }
+    }
+
+    if (!htmlText) {
+        console.error('Failed to fetch content from all proxies');
+        return;
+    }
+
+    // Function to fetch and return linked CSS or JS
+    async function fetchAndInjectResources(html) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+
+        const resources = [];
+        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+        const jsScripts = doc.querySelectorAll('script[src]');
+
+        cssLinks.forEach(link => resources.push(link.href));
+        jsScripts.forEach(script => resources.push(script.src));
+
+        const fetchResource = async (url) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch resource ${url}`);
+                }
+                return await response.text();
+            } catch (error) {
+                console.error(error);
+                return '';
+            }
+        };
+
+        const promises = resources.map(fetchResource);
+        const results = await Promise.all(promises);
+
+        // Create and style the Shadow DOM container
+        const shadowContainer = document.createElement('div');
+        shadowContainer.style.position = 'relative';
+        shadowContainer.style.width = (content.clientWidth - 12) + 'px';  // 50px less wide than .tab-content
+        shadowContainer.style.height = (content.clientHeight + 100) + 'px'; // 100px taller than .tab-content
+        shadowContainer.style.overflow = 'auto';  // Allows scrolling if content exceeds container size
+        shadowContainer.style.border = '6px solid #FF0000'; // Optional: Add a border to visualize the Shadow DOM
+
+        // Inject content into Shadow DOM
+        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+        shadowRoot.innerHTML = html;
+
+        results.forEach((result, index) => {
+            const url = resources[index];
+            if (url.endsWith('.css')) {
+                const style = document.createElement('style');
+                style.textContent = result;
+                shadowRoot.appendChild(style);
+            } else if (url.endsWith('.js')) {
+                const script = document.createElement('script');
+                script.textContent = result;
+                shadowRoot.appendChild(script);
+            }
+        });
+
+        // Ensure styles in the Shadow DOM do not affect the main document
+        shadowRoot.querySelectorAll('style').forEach(style => {
+            style.textContent = `
+                :host {
+                    all: initial;
+                }
+                ${style.textContent}
+            `;
+        });
+
+        return shadowContainer;
+    }
+
+    // Replace existing content with new Shadow DOM container
+    const newShadowContainer = await fetchAndInjectResources(htmlText);
+    content.innerHTML = ''; // Clear existing content
+    content.appendChild(newShadowContainer); // Add new Shadow DOM content
+
+    // Update tab's content in memory
+    requestAnimationFrame(() => {
+        tabs[currentTabIndex].content = content.innerHTML;
+        tabs[currentTabIndex].url = url;
+    });
 }
 
 
@@ -526,8 +646,8 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
         // Check if the URL starts with any of the trusted schemes
         const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
         
-        // If no valid scheme, prepend "https://"
-        if (!hasValidScheme) {
+        // If no valid scheme and URL does not start with "helios://", prepend "https://"
+        if (!hasValidScheme && !url.startsWith('helios://')) {
             url = 'https://' + url;
         }
 
