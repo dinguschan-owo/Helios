@@ -703,6 +703,19 @@ document.querySelector('.settings-button').addEventListener('click', function ()
     }
 });
 
+      document.getElementById('url-bar').addEventListener('input', function () {
+    const urlBar = this;
+    // Convert the value to lowercase
+    const lowercaseValue = urlBar.value.toLowerCase();
+    // Update the URL bar value with lowercase text
+    urlBar.value = lowercaseValue;
+
+    // Update the tab's URL and other related updates
+    tabs[currentTabIndex].url = lowercaseValue;
+    updateLockIcon(lowercaseValue);
+    updateSpecialDivs(lowercaseValue);
+});
+
     </script>
 </body>
 
