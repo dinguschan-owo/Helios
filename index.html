@@ -526,70 +526,80 @@ async function fetchExternalContent(url, content) {
     }
 
     // Function to fetch and return linked CSS or JS
-    async function fetchAndInjectResources(html) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+async function fetchAndInjectResources(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
 
-        const resources = [];
-        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-        const jsScripts = doc.querySelectorAll('script[src]');
+    const resources = [];
+    const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+    const jsScripts = doc.querySelectorAll('script[src]');
 
-        cssLinks.forEach(link => resources.push(link.href));
-        jsScripts.forEach(script => resources.push(script.src));
+    cssLinks.forEach(link => resources.push(link.href));
+    jsScripts.forEach(script => resources.push(script.src));
 
-        const fetchResource = async (url) => {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                return await response.text();
-            } catch (error) {
-                console.error(error);
-                return '';
+    const fetchResource = async (url) => {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch resource ${url}`);
             }
-        };
+            return await response.text();
+        } catch (error) {
+            console.error(error);
+            return '';
+        }
+    };
 
-        const promises = resources.map(fetchResource);
-        const results = await Promise.all(promises);
+    const promises = resources.map(fetchResource);
+    const results = await Promise.all(promises);
 
-        // Create and style the Shadow DOM container
-        const shadowContainer = document.createElement('div');
-        shadowContainer.style.position = 'relative';
-        shadowContainer.style.width = (content.clientWidth - 12) + 'px';  // 50px less wide than .tab-content
-        shadowContainer.style.height = (content.clientHeight + 100) + 'px'; // 100px taller than .tab-content
-        shadowContainer.style.overflow = 'auto';  // Allows scrolling if content exceeds container size
-        shadowContainer.style.border = '6px solid #FF0000'; // Optional: Add a border to visualize the Shadow DOM
+    // Create and style the Shadow DOM container
+    const shadowContainer = document.createElement('div');
+    shadowContainer.style.position = 'relative';
+    shadowContainer.style.width = (content.clientWidth - 12) + 'px';  // 50px less wide than .tab-content
+    shadowContainer.style.height = (content.clientHeight + 100) + 'px'; // 100px taller than .tab-content
+    shadowContainer.style.overflow = 'auto';  // Allows scrolling if content exceeds container size
+    shadowContainer.style.border = '6px solid #FF0000'; // Optional: Add a border to visualize the Shadow DOM
 
-        // Inject content into Shadow DOM
-        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
-        shadowRoot.innerHTML = html;
+    // Inject a default background style into the Shadow DOM with low priority
+    const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `
+        :host {
+            all: initial;
+            background-color: #fff !important;
+        }
+    `;
+    shadowRoot.appendChild(defaultStyle);
 
-        results.forEach((result, index) => {
-            const url = resources[index];
-            if (url.endsWith('.css')) {
-                const style = document.createElement('style');
-                style.textContent = result;
-                shadowRoot.appendChild(style);
-            } else if (url.endsWith('.js')) {
-                const script = document.createElement('script');
-                script.textContent = result;
-                shadowRoot.appendChild(script);
+    // Inject the fetched content into the Shadow DOM
+    shadowRoot.innerHTML += html;
+
+    results.forEach((result, index) => {
+        const url = resources[index];
+        if (url.endsWith('.css')) {
+            const style = document.createElement('style');
+            style.textContent = result;
+            shadowRoot.appendChild(style);
+        } else if (url.endsWith('.js')) {
+            const script = document.createElement('script');
+            script.textContent = result;
+            shadowRoot.appendChild(script);
+        }
+    });
+
+    // Ensure styles in the Shadow DOM do not affect the main document
+    shadowRoot.querySelectorAll('style').forEach(style => {
+        style.textContent = `
+            :host {
+                all: initial;
             }
-        });
+            ${style.textContent}
+        `;
+    });
 
-        // Ensure styles in the Shadow DOM do not affect the main document
-        shadowRoot.querySelectorAll('style').forEach(style => {
-            style.textContent = `
-                :host {
-                    all: initial;
-                }
-                ${style.textContent}
-            `;
-        });
-
-        return shadowContainer;
-    }
+    return shadowContainer;
+}
 
     // Replace existing content with new Shadow DOM container
     const newShadowContainer = await fetchAndInjectResources(htmlText);
