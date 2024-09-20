@@ -646,8 +646,8 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
         // Check if the URL starts with any of the trusted schemes
         const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
         
-        // If no valid scheme and URL does not start with "helios://", prepend "https://"
-        if (!hasValidScheme && !url.startsWith('helios://')) {
+        // If no valid scheme, prepend "https://"
+        if (!hasValidScheme) {
             url = 'https://' + url;
         }
 
