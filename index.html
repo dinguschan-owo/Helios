@@ -283,6 +283,16 @@
             letter-spacing: 0px;
 
         }
+      
+              .tab-content h22 {
+            font-size: 40px;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+            margin-right: 79%;
+            margin-top: -320px;
+
+        }
 
         .search-bar {
             display: flex;
@@ -348,6 +358,36 @@ border: 1px;
 border: 3px solid #39ff14; 
 margin: 0;  /* Ensure no margin is added */ 
 padding: 0; /* Ensure no padding is added */ }
+
+      
+      .clear-button {
+    margin-top: 10px;
+    background-color: #ff4c4c;
+    color: white;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.clear-button:hover {
+    background-color: #ff1a1a;
+}
+
+.clear-message {
+    margin-top: 10px;
+    color: #ff4c4c; /* Same color as the button */
+    font-size: 18px;
+    font-weight: 500;
+    position: absolute; /* Absolute positioning */
+    top: 80%; /* Adjust as necessary */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Centering */
+    display: none; /* Hidden by default */
+    z-index: 2147483647; /* Display above everything else */
+}
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -472,6 +512,10 @@ function updateActiveTab(tab, content, index) {
 }
 
 function updateTabContent(url, content, tab) {
+  
+      localStorage.setItem(`tab_${currentTabIndex}`, url);
+    sessionStorage.setItem(`tab_${currentTabIndex}`, url);
+  
     if (url === 'helios://start') {
         content.innerHTML = `
             <h20>Helios</h20>
@@ -497,15 +541,43 @@ function updateTabContent(url, content, tab) {
         });
 
     } else if (url === 'helios://settings') {
-        content.innerHTML = '<h20>Settings</h20>';
-        tab.querySelector('.tab-name').textContent = 'Settings';
-        tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
-        tabs[currentTabIndex].url = url;
-    } else {
-        fetchExternalContent(url, content);
-    }
+    content.innerHTML = `
+        <h22>Settings</h22>
+        <button id="clear-history" class="clear-button">Clear History</button>
+        <div id="clear-message" class="clear-message"></div>
+    `;
+    tab.querySelector('.tab-name').textContent = 'Settings';
+    tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
+    tabs[currentTabIndex].url = url;
+
+    // Add event listener for the clear history button
+    document.getElementById('clear-history').addEventListener('click', function() {
+        localStorage.clear();
+        sessionStorage.clear();
+        const messageDiv = document.getElementById('clear-message');
+        messageDiv.textContent = 'History has been cleared!';
+        messageDiv.style.display = 'block';
+        
+        // Hide the message after 3 seconds
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 3000);
+    });
+} else {
+    fetchExternalContent(url, content);
 }
 
+}
+
+      document.addEventListener('DOMContentLoaded', () => {
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('tab_')) {
+            const url = localStorage.getItem(key);
+            // Logic to create a new tab with this URL
+        }
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlBar = document.getElementById('url-bar'); // Ensure you have an input element with id 'url-bar'
@@ -569,12 +641,17 @@ async function fetchAndInjectResources(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
 
-    const resources = [];
-    const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-    const jsScripts = doc.querySelectorAll('script[src]');
+  
+  
+const resources = [];
+const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+const jsScripts = doc.querySelectorAll('script[src]');
+const images = doc.querySelectorAll('img'); // Add this line
 
-    cssLinks.forEach(link => resources.push(link.href));
-    jsScripts.forEach(script => resources.push(script.src));
+cssLinks.forEach(link => resources.push(link.href));
+jsScripts.forEach(script => resources.push(script.src));
+images.forEach(img => resources.push(img.src)); // Add this line to handle images
+
 
     const fetchResource = async (url) => {
         try {
@@ -616,7 +693,8 @@ async function fetchAndInjectResources(html) {
 
     // Function to fix relative URLs
     const fixRelativeURLs = (baseUrl) => {
-        const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src]');
+const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]'); // Update this line to include img[src]
+
         anchors.forEach(anchor => {
             const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
             if (anchor.hasAttribute('href')) {
@@ -805,6 +883,7 @@ function changeTabContent(url) {
     }
 }
 
+      
     </script>
 </body>
 
