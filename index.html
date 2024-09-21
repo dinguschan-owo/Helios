@@ -579,6 +579,19 @@ async function fetchAndInjectResources(html) {
     // Inject the fetched content into the Shadow DOM
     shadowRoot.innerHTML += html;
 
+    // Function to fix relative URLs
+    const fixRelativeURLs = (baseUrl) => {
+        const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src]');
+        anchors.forEach(anchor => {
+            const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
+            if (anchor.hasAttribute('href')) {
+                anchor.setAttribute('href', url.href);
+            } else if (anchor.hasAttribute('src')) {
+                anchor.setAttribute('src', url.href);
+            }
+        });
+    };
+
     results.forEach((result, index) => {
         const url = resources[index];
         if (url.endsWith('.css')) {
@@ -601,6 +614,10 @@ async function fetchAndInjectResources(html) {
             ${style.textContent}
         `;
     });
+
+    // Fix relative URLs based on the original HTML
+    const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
+    fixRelativeURLs(baseUrl);
 
     return shadowContainer;
 }
