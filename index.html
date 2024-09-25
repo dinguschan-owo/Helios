@@ -449,6 +449,7 @@ padding: 0; /* Ensure no padding is added */ }
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
+          
             <input type="text" placeholder="Search Helios or type a URL">
             <i class="fas fa-search search-icon"></i>
         </div>
@@ -462,9 +463,8 @@ const tabs = [{
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
-            <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="Search Helios or type a URL">
-            <i class="fas fa-microphone microphone-icon"></i>
+            <i class="fas fa-search search-icon"></i>
         </div>`
 }];
 
@@ -545,9 +545,8 @@ function updateTabContent(url, content, tab) {
             <h23>Helios</h23>
             <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
             <div class="search-bar">
-                <i class="fas fa-search search-icon"></i>
                 <input type="text" id="url-bar" placeholder="Search Helios or type a URL">
-                <i class="fas fa-microphone microphone-icon"></i>
+            <i class="fas fa-search search-icon"></i>
             </div>`;
         
         tab.querySelector('.tab-name').textContent = 'New Tab';
