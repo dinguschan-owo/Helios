@@ -16,9 +16,28 @@
             flex-direction: column;
             height: 100vh;
             z-index: 0;
+              font-size: 17px;
+    font-weight: 500;
         }
       
-      
+        .cloak-button {
+            margin-top: 25px;
+            margin-right: 4px;
+            margin-left: 4px;
+            padding: 11px 0px;
+            width: 170px;
+            font-size: 16px;
+    background-color: #ff4747;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .cloak-button:hover {
+            background-color: #ff3838;
+        }
       
 .settings-grid {
     display: grid;
@@ -35,6 +54,7 @@ background: linear-gradient(145deg, #333333, #404040);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 380px;
     height: 190px;
+    padding-top: 30px;
 }
 
 .clear-block {
@@ -324,6 +344,17 @@ background: linear-gradient(145deg, #333333, #404040);
             margin: 0;
             letter-spacing: 1px;
         }
+      
+                    .tab-content h24 {
+            font-size: 38px;
+            font-weight: 600;
+background: linear-gradient(145deg, #1e1e1e, #292929); 
+            padding: 10px 110px;
+            margin-bottom: 300px;
+            border-radius:  10px;
+            margin-top: 50px;
+
+        }
 
         .search-bar {
             display: flex;
@@ -385,12 +416,12 @@ padding: 0; /* Ensure no padding is added */ }
 
       
       .clear-button {
-    margin-top: 10px;
+    margin-top: 25px;
     background-color: #ff4747;
     color: white;
     padding: 10px 12px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 17px;
     font-weight: 500;
@@ -567,8 +598,9 @@ function updateTabContent(url, content, tab) {
     content.innerHTML = `
     <h20>Helios Settings</h20><br>
         <div class="settings-grid">
-            <div class="settings-block">                <button id="clear-history" class="clear-button">Clear History</button></div>
-            <div class="settings-block">Block 2 Info</div>
+            <div class="settings-block">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history" class="clear-button">Clear History</button></div>
+            <div class="settings-block"><h24>Cloaking</h24>    <button class="cloak-button" onclick="openInAboutBlank()">Open in about:blank</button>
+    <button class="cloak-button" onclick="openInBlob()">Open in blob:</button></div>
             <div class="settings-block">Block 3 Info</div>
             <div class="settings-block">Block 4 Info</div>
             <div class="settings-block">Block 5 Info</div>
@@ -928,7 +960,19 @@ function changeTabContent(url) {
     }
 }
 
-      
+             function openInAboutBlank() {
+            const html = document.documentElement.outerHTML;
+            const newWindow = window.open("about:blank");
+            newWindow.document.write(html);
+            newWindow.document.close();
+        }
+
+        function openInBlob() {
+            const html = document.documentElement.outerHTML;
+            const blob = new Blob([html], { type: 'text/html' });
+            const blobURL = URL.createObjectURL(blob);
+            window.open(blobURL);
+        }
     </script>
 </body>
 
