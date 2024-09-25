@@ -380,8 +380,6 @@ background: linear-gradient(145deg, #1e1e1e, #292929);
 
 .tab-content.active { 
 display: flex; 
-border: 1px; 
-border: 3px solid #39ff14; 
 margin: 0;  /* Ensure no margin is added */ 
 padding: 0; /* Ensure no padding is added */ }
 
@@ -673,23 +671,29 @@ async function fetchExternalContent(url, content) {
         console.error('Failed to fetch content from all proxies');
         return;
     }
+  
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, 'text/html');
+    const title = doc.title; // Extract the title
+    const tab = document.querySelectorAll('.tab')[currentTabIndex];
+    if (tab) {
+        tab.querySelector('.tab-name').textContent = title || 'Untitled'; // Set the tab name
+    }
 
+  
     // Function to fetch and return linked CSS or JS
 async function fetchAndInjectResources(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, 'text/html');
 
-  
-  
-const resources = [];
-const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-const jsScripts = doc.querySelectorAll('script[src]');
-const images = doc.querySelectorAll('img'); // Add this line
+    const resources = [];
+    const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+    const jsScripts = doc.querySelectorAll('script[src]');
+    const images = doc.querySelectorAll('img');
 
-cssLinks.forEach(link => resources.push(link.href));
-jsScripts.forEach(script => resources.push(script.src));
-images.forEach(img => resources.push(img.src)); // Add this line to handle images
-
+    cssLinks.forEach(link => resources.push(link.href));
+    jsScripts.forEach(script => resources.push(script.src));
+    images.forEach(img => resources.push(img.src));
 
     const fetchResource = async (url) => {
         try {
@@ -707,15 +711,13 @@ images.forEach(img => resources.push(img.src)); // Add this line to handle image
     const promises = resources.map(fetchResource);
     const results = await Promise.all(promises);
 
-    // Create and style the Shadow DOM container
     const shadowContainer = document.createElement('div');
     shadowContainer.style.position = 'relative';
-    shadowContainer.style.width = (content.clientWidth - 12) + 'px';  // 50px less wide than .tab-content
-    shadowContainer.style.height = (content.clientHeight + 100) + 'px'; // 100px taller than .tab-content
-    shadowContainer.style.overflow = 'auto';  // Allows scrolling if content exceeds container size
-    shadowContainer.style.border = '6px solid #FF0000'; // Optional: Add a border to visualize the Shadow DOM
+    shadowContainer.style.width = (content.clientWidth - 8) + 'px';
+    shadowContainer.style.height = (content.clientHeight + 100) + 'px';
+    shadowContainer.style.overflow = 'auto';
+    shadowContainer.style.border = '4px solid #333333';
 
-    // Inject a default background style into the Shadow DOM with low priority
     const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
     const defaultStyle = document.createElement('style');
     defaultStyle.textContent = `
@@ -725,13 +727,11 @@ images.forEach(img => resources.push(img.src)); // Add this line to handle image
         }
     `;
     shadowRoot.appendChild(defaultStyle);
-
-    // Inject the fetched content into the Shadow DOM
     shadowRoot.innerHTML += html;
 
     // Function to fix relative URLs
     const fixRelativeURLs = (baseUrl) => {
-const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]'); // Update this line to include img[src]
+        const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]');
 
         anchors.forEach(anchor => {
             const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
@@ -756,7 +756,6 @@ const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], i
         }
     });
 
-    // Ensure styles in the Shadow DOM do not affect the main document
     shadowRoot.querySelectorAll('style').forEach(style => {
         style.textContent = `
             :host {
@@ -766,18 +765,28 @@ const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], i
         `;
     });
 
-    // Fix relative URLs based on the original HTML
     const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
     fixRelativeURLs(baseUrl);
 
+    // Add click event listeners to all links in the shadow DOM
+    shadowRoot.querySelectorAll('a').forEach(anchor => {
+        anchor.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the default action
+            const newUrl = anchor.href; // Get the href of the clicked link
+            updateTabContent(newUrl, content, tab); // Load the new URL in the current tab
+        });
+    });
+
     return shadowContainer;
 }
+
 
     // Replace existing content with new Shadow DOM container
     const newShadowContainer = await fetchAndInjectResources(htmlText);
     content.innerHTML = ''; // Clear existing content
     content.appendChild(newShadowContainer); // Add new Shadow DOM content
 
+  
     // Update tab's content in memory
     requestAnimationFrame(() => {
         tabs[currentTabIndex].content = content.innerHTML;
