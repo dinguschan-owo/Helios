@@ -632,7 +632,15 @@ function updateTabContent(url, content, tab) {
     fetchExternalContent(url, content);
 }
 
+    // Update the URL bar
+    document.getElementById('url-bar').value = url;
+    
+    // Update tab's content and URL in memory
+    tabs[currentTabIndex].content = content.innerHTML;
+    tabs[currentTabIndex].url = url;
 
+    updateLockIcon(url);
+    updateSpecialDivs(url);
 }
 
       document.addEventListener('DOMContentLoaded', () => {
