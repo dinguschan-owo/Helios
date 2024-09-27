@@ -1,598 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helios</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #202124;
-            color: #e8eaed;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            z-index: 0;
-              font-size: 17px;
-    font-weight: 500;
-        }
-      
-  .search-container {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-
-  .search-engine-dropdown {
-    position: absolute;
-    right: 23px;
-    top: -27px;
-    width: 56px;  /* Increased width */
-    height: 55px;  /* Increased height */
-    background-color: #3c4043;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    z-index: 2;
-  }
-
-  .search-engine-dropdown img {
-    width: 32px;  /* Increased image size */
-    height: 32px;  /* Increased image size */
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #3c4043;
-    min-width: 250px;  /* Increased minimum width */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    bottom: 36px;  /* Keep gap at 48px */
-    left: -78px;
-    border-radius: 10px;  /* Updated border-radius */
-    padding: 0;
-  }
-
-  .dropdown-content .status-message {
-    color: #f1f1f1;
-    padding: 14px 14px;  /* Increased padding */
-    background-color: #484d51; /* Background for status message */
-    border-top-left-radius: 10px;  /* Updated border-radius */
-    border-top-right-radius: 10px;  /* Updated border-radius */
-    font-size: 15px;
-  }
-
-  .dropdown-content a {
-    color: #fff;
-    padding: 12px 12px;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    height: 48px;
-    box-sizing: border-box;
-    border-radius: 10px;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #484d51;
-    border-radius: 10px; 
-  }
-
-  .dropdown-content a img {
-    width: 28px;
-    height: 28px;  /* Increased image size */
-    margin-right: 12px;  /* Increased margin */
-  }
-
-  /* Set font to Arial Sans Serif and increase font size */
-  .dropdown-content,
-  .dropdown-content a,
-  .status-message {
-    font-family: Arial, sans-serif;
-    font-size: 15px;  /* Increased font size */
-  }
-      
-        .cloak-button {
-            margin-top: 25px;
-            margin-right: 4px;
-            margin-left: 4px;
-            padding: 11px 0px;
-            width: 170px;
-            font-size: 16px;
-    background-color: #ff4747;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
-        }
-
-        .cloak-button:hover {
-            background-color: #ff3838;
-        }
-      
-.settings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    margin-top: 10px;
-}
-
-.settings-block {
-background: linear-gradient(145deg, #333333, #404040); 
-    border-radius: 11px;
-    padding: 20px;
-    text-align: center; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 380px;
-    height: 190px;
-    padding-top: 30px;
-}
-
-.clear-block {
-    grid-column: span 3;
-    display: flex;
-    justify-content: center;
-}
-
-        .top-bar {
-            background-color: #333;
-            display: flex;
-            align-items: center;
-            padding: 6px 10px;
-            z-index: 2147483647;
-        }
-
-        .top-bar .tab {
-            display: flex;
-            align-items: center;
-            background-color: #454545;
-            color: #d1d1d1;
-            border-top-right-radius: 12px;
-            border-top-left-radius: 12px;
-            border-bottom-right-radius: 4.6px;
-            border-bottom-left-radius: 4.6px;
-            padding: 9px 9px;
-            margin-right: 9px;
-            margin-left: -1px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-            position: relative;
-            width: 124px;
-            max-width: 124px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            margin-bottom: 1px;
-            margin-top: 0px;
-            z-index: 2147483647;
-        }
-
-        .top-bar .tab .tab-name {
-            flex-grow: 1;
-            margin-right: 5px;
-            margin-left: 4px;
-            overflow: hidden;
-            font-size: 14px;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            margin-top: -1px;
-            z-index: 2147483647;
-        }
-
-        .top-bar .tab .close-btn {
-            font-size: 15px;
-            color: #aaa;
-            cursor: pointer;
-            margin-left: 5px;
-            margin-right: 1px;
-            margin-top: 2px;
-            border-radius: 50%;
-            padding: 2px;
-            z-index: 2147483647;
-            transition: background-color 0.3s;
-        }
-
-        .top-bar .tab .close-btn:hover {
-            color: #fff;
-            z-index: 2147483647;
-        }
-
-        .top-bar .tab.active {
-            background-color: #606060;
-            color: #fff;
-            z-index: 2147483647;
-        }
-        
-        .top-bar .tab.active:hover{
-            background-color: #606060;
-            color: #fff;
-            z-index: 2147483647;
-        }
-        
-        .top-bar .tab:hover {
-            background-color: #505050;
-            z-index: 2147483647;
-        }
-        
-        .top-bar .add-tab {
-            font-size: 22px;
-            color: #ccc;
-            cursor: pointer;
-            margin-left: 5px;
-            transition: color 0.3s;
-            font-weight: 600;
-            margin-top: 1px;
-            z-index: 2147483647;
-        }
-
-        .top-bar .add-tab:hover {
-            color: #ffffff;
-            z-index: 2147483647;
-        }
-
-        .browser-bar {
-            display: flex;
-            align-items: center;
-            padding: 10px 15px;
-            background-color: #3c4043;
-            z-index: 2147483647;
-        }
-
-        .browser-bar button {
-            background-color: transparent;
-            border: none;
-            font-size: 20px;
-            color: #9aa0a6;
-            margin-right: 15px;
-            cursor: pointer;
-            transition: color 0.3s;
-            z-index: 2147483647;
-        }
-
-        .browser-bar button:hover {
-            color: #ffffff;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .forward-button {
-            font-size: 23px;
-            font-weight: 600;
-            z-index: 2147483647;
-      }
-        .browser-bar .backward-button {
-            font-size: 23px;
-            font-weight: 600;
-            z-index: 2147483647;
-      }
-        .browser-bar .reload-button {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: -1px;
-            z-index: 2147483647;
-      }
-        .browser-bar .home-button {
-          z-index: 2147483647;
-      }
-      
-        .browser-bar .search-button {
-          z-index: 2147483647;
-      }
-      
-        .browser-bar .microphone-button {
-            z-index: 2147483647;
-      }
-
-        .browser-bar .address-bar {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            background-color: #52565b;
-            padding: 5px 15px;
-            border-radius: 500px;
-            color: #e8eaed;
-            font-size: 14px;
-            margin-left: 5px;
-            margin-right: 18px;
-            margin-top: 0px;
-            margin-bottom: 0px;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .address-bar input {
-            border: none;
-            width: 100%;
-            outline: none;
-            font-size: 15.4px;
-            color: #e8eaed;
-            background-color: transparent;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .address-bar .lock-icon {
-            color: #8ab4f8;
-            margin-right: 10px;
-            margin-left: 1px;
-            margin-bottom: 1.05px;
-            font-size: 16px;
-            z-index: 2147483647;
-        }
-        .browser-bar .address-bar .official {
-            color: #80ffac;
-            margin-right: 1px;
-            margin-left: 0px;
-            margin-top: 8px;
-            cursor: text;
-            font-size: 15.2px;
-            z-index: 2147483647;
-        }
-        .browser-bar .address-bar .official-c {
-            color: #fff;
-            margin-right: -9px;
-            margin-left: 0px;
-            margin-bottom: 0px;
-            font-size: 17px;
-            background-color: #3c4043;
-            height: 30px;
-            width: 130px;
-            text-align: center;
-            border-radius: 500px;
-            cursor: text;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .menu-button {
-            font-size: 23px;
-            cursor: pointer;
-            margin-left: 7px;
-            margin-right: 7px;
-            font-weight: 600;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .menu-button:hover {
-            color: #ffffff;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .wrench-button {
-            font-size: 20px;
-            cursor: pointer;
-            margin-right: 6px;
-            margin-bottom: 0.5px;
-            font-weight: 600;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .wrench-button:hover {
-            color: #ffffff;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .settings-button {
-            font-size: 21px;
-            cursor: pointer;
-            margin-left: 10px;
-            margin-right: 11px;
-            z-index: 2147483647;
-        }
-
-        .browser-bar .settings-button:hover {
-            color: #ffffff;
-            z-index: 2147483647;
-        }
-
-
-        .tab-content h20 {
-            font-size: 61px;
-            font-weight: 600;
-            margin: 0;
-            letter-spacing: 1px;
-
-        }
-
-        .tab-content h21 {
-            font-size: 24px;
-            font-weight: 400;
-            color: #b3b3b3;
-            margin-top: 9px;
-            letter-spacing: 0px;
-        }
-      
-              .tab-content h22 {
-            font-size: 40px;
-            font-weight: 600;
-            margin: 0;
-            letter-spacing: 1px;
-            margin-right: 79%;
-            margin-top: -320px;
-
-        }
-      
-              .tab-content h23 {
-            font-size: 61px;
-            font-weight: 600;
-            margin: 0;
-            letter-spacing: 1px;
-        }
-      
-                    .tab-content h24 {
-            font-size: 38px;
-            font-weight: 600;
-background: linear-gradient(145deg, #1e1e1e, #292929); 
-            padding: 10px 110px;
-            margin-bottom: 300px;
-            border-radius:  10px;
-            margin-top: 50px;
-
-        }
-
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background-color: #3c4043;
-            padding: 15px;
-            border-top-right-radius: 30px;
-            border-bottom-right-radius: 30px;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-            width: 50%;
-            margin-left: 50px;
-            margin-top: 30px;
-            z-index: 1;
-        }
-
-        .search-bar input {
-            border: none;
-            width: 100%;
-            outline: none;
-            font-size: 18px;
-            background-color: transparent;
-            color: #e8eaed;
-        }
-
-        .search-bar i {
-            color: #9aa0a6;
-            margin-right: 15px;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .search-bar i:hover {
-            color: #ffffff;
-        }
-
-        .search-bar .search-icon {
-            font-weight: 600;
-            font-size: 18px;
-            margin-right: 6px;
-        }
-
-.tab-content { 
-display: none; 
-flex-grow: 1; 
-flex-direction: column; 
-justify-content: center; 
-align-items: center; 
-text-align: center; 
-margin: 0;  /* Ensure no margin is added */ 
-padding: 0; /* Ensure no padding is added */ 
-overflow: hidden; /* Ensure no overflow issues */ 
-height: 100vh !important;
-background: linear-gradient(145deg, #1e1e1e, #292929); 
-      }
-
-
-.tab-content.active { 
-display: flex; 
-margin: 0;  /* Ensure no margin is added */ 
-padding: 0; /* Ensure no padding is added */ }
-
-      
-      .clear-button {
-    margin-top: 25px;
-    background-color: #ff4747;
-    color: white;
-    padding: 10px 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.clear-button:hover {
-    background-color: #ff3838;
-}
-
-
-.clear-message {
-    margin-top: 10px;
-    color: #ff4c4c; /* Same color as the button */
-    font-size: 18px;
-    font-weight: 500;
-    position: absolute; /* Absolute positioning */
-    top: 80%; /* Adjust as necessary */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Centering */
-    display: none; /* Hidden by default */
-    z-index: 2147483647; /* Display above everything else */
-}
-
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<body>
-    <div class="top-bar">
-        <div class="tab active">
-            <span class="tab-name">New Tab</span>
-            <i class="fas fa-times close-btn"></i>
-        </div>
-        <div class="add-tab" id="add-tab">
-            <i class="fa-solid fa-circle-plus"></i>
-        </div>
-    </div>
-    <div class="browser-bar">
-        <button class="backward-button"><i class="fas fa-arrow-left"></i></button>
-        <button class="forward-button"><i class="fas fa-arrow-right"></i></button>
-        <button class="reload-button"><i class="fas fa-redo"></i></button>
-        <button class="home-button"><i class="fas fa-home"></i></button>
-        <div class="address-bar">
-            <i class="fas fa-lock lock-icon"></i>
-            <input type="text" value="helios://start" id="url-bar">            <div class="official-c"><i class="fa-solid fa-circle-check official">&nbsp𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
-        </div>
-        <button class="wrench-button"><i class="fas fa-wrench"></i></button>
-        <button class="settings-button"><i class="fas fa-cog"></i></button>
-        <button class="menu-button"><i class="fas fa-ellipsis-v"></i></button>
-      
-    </div> 
-</head>
-<body>
-    <div class="content tab-content active">
-      
-        <h23>Helios</h23>
-        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
-        <div class="search-bar">
-          <div class="search-container">
-  <div class="search-engine-dropdown" onclick="toggleDropdown()">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
-  </div>
-  <div class="dropdown-content" id="engineDropdown">
-    <div class="status-message" id="statusMessage">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
-    </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
-    </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
-    </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
-    </a>
-  </div>
-</div>
-            <input type="text" placeholder="Search the web or type a URL">
-            <i class="fas fa-search search-icon"></i>
-        </div>
-      
-    </div>
-    <script>
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
@@ -601,32 +6,33 @@ const tabs = [{
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
           <div class="search-container">
-  <div class="search-engine-dropdown" onclick="toggleDropdown()">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
+  <div class="search-engine-dropdown" onclick="toggleDropdown(${currentTabIndex})">
+    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
-  <div class="dropdown-content" id="engineDropdown">
-    <div class="status-message" id="statusMessage">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+  <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
+    <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
+    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
     </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
+    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
       <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
     </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
     </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
       <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL">
+            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-icon"></i>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'data://', 'ws://'];
 
 document.getElementById('add-tab').addEventListener('click', function () {
+    const newTabIndex = tabs.length;
     const newTab = document.createElement('div');
     newTab.className = 'tab';
     newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
@@ -634,14 +40,14 @@ document.getElementById('add-tab').addEventListener('click', function () {
 
     const newContent = document.createElement('div');
     newContent.className = 'content tab-content';
-    newContent.innerHTML = tabs[0].content;
+    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
     document.body.appendChild(newContent);
 
-    tabs.push({ url: 'helios://start', content: tabs[0].content });
+    tabs.push({ url: 'helios://start', content: newContent.innerHTML });
 
-    updateActiveTab(newTab, newContent, tabs.length - 1);
+    updateActiveTab(newTab, newContent, newTabIndex);
     addCloseButtonFunctionality(newTab);
-    addTabClickListener(newTab, newContent, tabs.length - 1);
+    addTabClickListener(newTab, newContent, newTabIndex);
 });
 
 document.querySelectorAll('.tab').forEach((tab, index) => {
@@ -692,8 +98,7 @@ function updateActiveTab(tab, content, index) {
 }
 
 function updateTabContent(url, content, tab) {
-  
-      localStorage.setItem(`tab_${currentTabIndex}`, url);
+    localStorage.setItem(`tab_${currentTabIndex}`, url);
     sessionStorage.setItem(`tab_${currentTabIndex}`, url);
   
     if (url === 'helios://start') {
@@ -702,36 +107,35 @@ function updateTabContent(url, content, tab) {
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
           <div class="search-container">
-  <div class="search-engine-dropdown" onclick="toggleDropdown()">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
+  <div class="search-engine-dropdown" onclick="toggleDropdown(${currentTabIndex})">
+    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
-  <div class="dropdown-content" id="engineDropdown">
-    <div class="status-message" id="statusMessage">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+  <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
+    <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
+    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
     </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
+    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
       <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
     </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
     </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
       <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL">
+            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-icon"></i>`;
         
         tab.querySelector('.tab-name').textContent = 'New Tab';
-        tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
+        tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
-        // Add event listener for the Enter key to load the entered URL
-        document.getElementById('url-bar').addEventListener('keydown', function(event) {
+        document.getElementById(`search-input-${currentTabIndex}`).addEventListener('keydown', function(event) {
             if (event.key === 'Enter') {
-                const enteredUrl = document.getElementById('url-bar').value;
+                const enteredUrl = this.value;
                 if (enteredUrl) {
                     updateTabContent(enteredUrl, content, tab);
                 }
@@ -739,12 +143,12 @@ function updateTabContent(url, content, tab) {
         });
 
     } else if (url === 'helios://settings') {
-    content.innerHTML = `
-    <h20>Helios Settings</h20><br>
+        content.innerHTML = `
+        <h20>Helios Settings</h20><br>
         <div class="settings-grid">
-            <div class="settings-block">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history" class="clear-button">Clear History</button></div>
-            <div class="settings-block"><h24>Cloaking</h24>    <button class="cloak-button" onclick="openInAboutBlank()">Open in about:blank</button>
-    <button class="cloak-button" onclick="openInBlob()">Open in blob:</button></div>
+            <div class="settings-block">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history-${currentTabIndex}" class="clear-button">Clear History</button></div>
+            <div class="settings-block"><h24>Cloaking</h24>    <button class="cloak-button" onclick="openInAboutBlank(${currentTabIndex})">Open in about:blank</button>
+    <button class="cloak-button" onclick="openInBlob(${currentTabIndex})">Open in blob:</button></div>
             <div class="settings-block">Block 3 Info</div>
             <div class="settings-block">Block 4 Info</div>
             <div class="settings-block">Block 5 Info</div>
@@ -753,33 +157,29 @@ function updateTabContent(url, content, tab) {
 
             </div>
         </div>
-        <div id="clear-message" class="clear-message"></div>
-    `;
-    tab.querySelector('.tab-name').textContent = 'Settings';
-    tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
-    tabs[currentTabIndex].url = url;
+        <div id="clear-message-${currentTabIndex}" class="clear-message"></div>
+        `;
+        tab.querySelector('.tab-name').textContent = 'Settings';
+        tabs[currentTabIndex].content = content.innerHTML;
+        tabs[currentTabIndex].url = url;
 
-    // Add event listener for the clear history button
-    document.getElementById('clear-history').addEventListener('click', function() {
-        localStorage.clear();
-        sessionStorage.clear();
-        const messageDiv = document.getElementById('clear-message');
-        messageDiv.textContent = 'History has been cleared!';
-        messageDiv.style.display = 'block';
-        
-        // Hide the message after 3 seconds
-        setTimeout(() => {
-            messageDiv.style.display = 'none';
-        }, 3000);
-    });
-} else {
-    fetchExternalContent(url, content);
-}
+        document.getElementById(`clear-history-${currentTabIndex}`).addEventListener('click', function() {
+            localStorage.removeItem(`tab_${currentTabIndex}`);
+            sessionStorage.removeItem(`tab_${currentTabIndex}`);
+            const messageDiv = document.getElementById(`clear-message-${currentTabIndex}`);
+            messageDiv.textContent = 'History has been cleared for this tab!';
+            messageDiv.style.display = 'block';
+            
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        });
+    } else {
+        fetchExternalContent(url, content, currentTabIndex);
+    }
 
-    // Update the URL bar
     document.getElementById('url-bar').value = url;
     
-    // Update tab's content and URL in memory
     tabs[currentTabIndex].content = content.innerHTML;
     tabs[currentTabIndex].url = url;
 
@@ -787,7 +187,7 @@ function updateTabContent(url, content, tab) {
     updateSpecialDivs(url);
 }
 
-      document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key.startsWith('tab_')) {
@@ -798,18 +198,18 @@ function updateTabContent(url, content, tab) {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.getElementById('url-bar'); // Ensure you have an input element with id 'url-bar'
-    const content = document.getElementById('content'); // Ensure you have an element with id 'content'
+    const urlBar = document.getElementById('url-bar');
+    const content = document.getElementById('content');
 
     urlBar.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
             const url = urlBar.value;
-            fetchExternalContent(url, content);
+            fetchExternalContent(url, content, currentTabIndex);
         }
     });
 });
 
-async function fetchExternalContent(url, content) {
+async function fetchExternalContent(url, content, tabIndex) {
     const proxies = [
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
@@ -817,9 +217,8 @@ async function fetchExternalContent(url, content) {
         `https://api.allorigins.win/raw?url=${url}`
     ];
 
-    const timeout = 10000; // 10 seconds timeout
+    const timeout = 10000;
 
-    // Function to fetch content with proxy
     async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
@@ -838,12 +237,11 @@ async function fetchExternalContent(url, content) {
         });
     }
 
-    // Try fetching content from proxies
     let htmlText;
     for (const proxy of proxies) {
         try {
             htmlText = await fetchWithProxy(proxy);
-            break; // Exit loop if successful
+            break;
         } catch (error) {
             console.error(`Error with proxy ${proxy}: ${error}`);
         }
@@ -856,126 +254,117 @@ async function fetchExternalContent(url, content) {
   
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
-    const title = doc.title; // Extract the title
-    const tab = document.querySelectorAll('.tab')[currentTabIndex];
+    const title = doc.title;
+    const tab = document.querySelectorAll('.tab')[tabIndex];
     if (tab) {
-        tab.querySelector('.tab-name').textContent = title || 'Untitled'; // Set the tab name
+        tab.querySelector('.tab-name').textContent = title || 'Untitled';
     }
 
-  
-    // Function to fetch and return linked CSS or JS
-async function fetchAndInjectResources(html) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
+    async function fetchAndInjectResources(html, tabIndex) {
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
 
-    const resources = [];
-    const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-    const jsScripts = doc.querySelectorAll('script[src]');
-    const images = doc.querySelectorAll('img');
+        const resources = [];
+        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+        const jsScripts = doc.querySelectorAll('script[src]');
+        const images = doc.querySelectorAll('img');
 
-    cssLinks.forEach(link => resources.push(link.href));
-    jsScripts.forEach(script => resources.push(script.src));
-    images.forEach(img => resources.push(img.src));
+        cssLinks.forEach(link => resources.push(link.href));
+        jsScripts.forEach(script => resources.push(script.src));
+        images.forEach(img => resources.push(img.src));
 
-    const fetchResource = async (url) => {
-        try {
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`Failed to fetch resource ${url}`);
+        const fetchResource = async (url) => {
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch resource ${url}`);
+                }
+                return await response.text();
+            } catch (error) {
+                console.error(error);
+                return '';
             }
-            return await response.text();
-        } catch (error) {
-            console.error(error);
-            return '';
-        }
-    };
+        };
 
-    const promises = resources.map(fetchResource);
-    const results = await Promise.all(promises);
+        const promises = resources.map(fetchResource);
+        const results = await Promise.all(promises);
 
-    const shadowContainer = document.createElement('div');
-    shadowContainer.style.position = 'relative';
-    shadowContainer.style.width = (content.clientWidth - 0) + 'px';
-    shadowContainer.style.height = (content.clientHeight + 100) + 'px';
-    shadowContainer.style.overflow = 'auto';
-    shadowContainer.style.border = 'none';
+        const shadowContainer = document.createElement('div');
+        shadowContainer.style.position = 'relative';
+        shadowContainer.style.width = (content.clientWidth - 0) + 'px';
+        shadowContainer.style.height = (content.clientHeight + 100) + 'px';
+        shadowContainer.style.overflow = 'auto';
+        shadowContainer.style.border = 'none';
 
-    const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
-    const defaultStyle = document.createElement('style');
-    defaultStyle.textContent = `
-        :host {
-            all: initial;
-            background-color: #fff !important;
-        }
-    `;
-    shadowRoot.appendChild(defaultStyle);
-    shadowRoot.innerHTML += html;
-
-    // Function to fix relative URLs
-    const fixRelativeURLs = (baseUrl) => {
-        const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]');
-
-        anchors.forEach(anchor => {
-            const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
-            if (anchor.hasAttribute('href')) {
-                anchor.setAttribute('href', url.href);
-            } else if (anchor.hasAttribute('src')) {
-                anchor.setAttribute('src', url.href);
-            }
-        });
-    };
-
-    results.forEach((result, index) => {
-        const url = resources[index];
-        if (url.endsWith('.css')) {
-            const style = document.createElement('style');
-            style.textContent = result;
-            shadowRoot.appendChild(style);
-        } else if (url.endsWith('.js')) {
-            const script = document.createElement('script');
-            script.textContent = result;
-            shadowRoot.appendChild(script);
-        }
-    });
-
-    shadowRoot.querySelectorAll('style').forEach(style => {
-        style.textContent = `
+        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+        const defaultStyle = document.createElement('style');
+        defaultStyle.textContent = `
             :host {
                 all: initial;
+                background-color: #fff !important;
             }
-            ${style.textContent}
         `;
-    });
+        shadowRoot.appendChild(defaultStyle);
+        shadowRoot.innerHTML += html;
 
-    const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
-    fixRelativeURLs(baseUrl);
+        const fixRelativeURLs = (baseUrl) => {
+            const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]');
 
-    // Add click event listeners to all links in the shadow DOM
-    shadowRoot.querySelectorAll('a').forEach(anchor => {
-        anchor.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent the default action
-            const newUrl = anchor.href; // Get the href of the clicked link
-            updateTabContent(newUrl, content, tab); // Load the new URL in the current tab
+            anchors.forEach(anchor => {
+                const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
+                if (anchor.hasAttribute('href')) {
+                    anchor.setAttribute('href', url.href);
+                } else if (anchor.hasAttribute('src')) {
+                    anchor.setAttribute('src', url.href);
+                }
+            });
+        };
+
+        results.forEach((result, index) => {
+            const url = resources[index];
+            if (url.endsWith('.css')) {
+                const style = document.createElement('style');
+                style.textContent = result;
+                shadowRoot.appendChild(style);
+            } else if (url.endsWith('.js')) {
+                const script = document.createElement('script');
+                script.textContent = result;
+                shadowRoot.appendChild(script);
+            }
         });
-    });
 
-    return shadowContainer;
-}
+        shadowRoot.querySelectorAll('style').forEach(style => {
+            style.textContent = `
+                :host {
+                    all: initial;
+                }
+                ${style.textContent}
+            `;
+        });
 
+        const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
+        fixRelativeURLs(baseUrl);
 
-    // Replace existing content with new Shadow DOM container
-    const newShadowContainer = await fetchAndInjectResources(htmlText);
-    content.innerHTML = ''; // Clear existing content
-    content.appendChild(newShadowContainer); // Add new Shadow DOM content
+        shadowRoot.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', (event) => {
+                event.preventDefault();
+                const newUrl = anchor.href;
+                updateTabContent(newUrl, content, tab);
+            });
+        });
 
-  
-    // Update tab's content in memory
+        return shadowContainer;
+    }
+
+    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
+    content.innerHTML = '';
+    content.appendChild(newShadowContainer);
+
     requestAnimationFrame(() => {
-        tabs[currentTabIndex].content = content.innerHTML;
-        tabs[currentTabIndex].url = url;
+        tabs[tabIndex].content = content.innerHTML;
+        tabs[tabIndex].url = url;
     });
 }
-
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
@@ -983,11 +372,11 @@ function updateLockIcon(url) {
     if (isLocked) {
         lockIcon.classList.remove('fa-unlock');
         lockIcon.classList.add('fa-lock');
-        lockIcon.style.color = ''; // Remove yellow color
+        lockIcon.style.color = '';
     } else {
         lockIcon.classList.remove('fa-lock');
         lockIcon.classList.add('fa-unlock');
-        lockIcon.style.color = '#ffff80'; // Set yellow color
+        lockIcon.style.color = '#ffff80';
     }
 }
 
@@ -1016,10 +405,8 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         let url = e.target.value.trim();
         
-        // Check if the URL starts with any of the trusted schemes
         const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
         
-        // If no valid scheme, prepend "https://"
         if (!hasValidScheme) {
             url = 'https://' + url;
         }
@@ -1027,59 +414,14 @@ document.getElementById('url-bar').addEventListener('keypress', function (e) {
         const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
         const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
 
-        // Update the tab's URL and content
         tabs[currentTabIndex].url = url;
-        document.getElementById('url-bar').value = url;  // Update the URL bar to reflect the change
+        document.getElementById('url-bar').value = url;
         updateTabContent(url, currentContent, currentTab);
         updateLockIcon(url);
         updateSpecialDivs(url);
     }
 });
 
-document.querySelector('.home-button').addEventListener('click', function () {
-    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
-    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
-
-    if (currentTab && currentContent) {
-        tabs[currentTabIndex].url = 'helios://start';
-        document.getElementById('url-bar').value = 'helios://start';
-
-        currentContent.innerHTML = tabs[0].content;
-        currentTab.querySelector('.tab-name').textContent = 'New Tab';
-        updateLockIcon('helios://start');
-        updateSpecialDivs('helios://start');
-    }
-});
-
-document.querySelector('.settings-button').addEventListener('click', function () {
-    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
-    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
-
-    if (currentTab && currentContent) {
-        tabs[currentTabIndex].url = 'helios://settings';
-        document.getElementById('url-bar').value = 'helios://settings';
-
-        currentContent.innerHTML = '<h20>Settings</h20>';
-        currentTab.querySelector('.tab-name').textContent = 'Settings';
-        updateLockIcon('helios://settings');
-        updateSpecialDivs('helios://settings');
-    }
-});
-
-      document.getElementById('url-bar').addEventListener('input', function () {
-    const urlBar = this;
-    // Convert the value to lowercase
-    const lowercaseValue = urlBar.value.toLowerCase();
-    // Update the URL bar value with lowercase text
-    urlBar.value = lowercaseValue;
-
-    // Update the tab's URL and other related updates
-    tabs[currentTabIndex].url = lowercaseValue;
-    updateLockIcon(lowercaseValue);
-    updateSpecialDivs(lowercaseValue);
-});
-
-      // Update URL and content when Home or Settings button is clicked
 document.querySelector('.home-button').addEventListener('click', function () {
     changeTabContent('helios://start');
 });
@@ -1088,20 +430,16 @@ document.querySelector('.settings-button').addEventListener('click', function ()
     changeTabContent('helios://settings');
 });
 
-// General function to handle URL and content updates
 function changeTabContent(url) {
     const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
     const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
 
     if (currentTab && currentContent) {
-        // Update the URL in the URL bar
         document.getElementById('url-bar').value = url;
 
-        // Update the tab's URL and content
         tabs[currentTabIndex].url = url;
         updateTabContent(url, currentContent, currentTab);
 
-        // Simulate 'Enter' keypress to trigger the fetch or content load
         const event = new KeyboardEvent('keydown', {
             bubbles: true,
             cancelable: true,
@@ -1112,58 +450,63 @@ function changeTabContent(url) {
     }
 }
 
-             function openInAboutBlank() {
-            const html = document.documentElement.outerHTML;
-            const newWindow = window.open("about:blank");
-            newWindow.document.write(html);
-            newWindow.document.close();
-        }
-
-        function openInBlob() {
-            const html = document.documentElement.outerHTML;
-            const blob = new Blob([html], { type: 'text/html' });
-            const blobURL = URL.createObjectURL(blob);
-            window.open(blobURL);
-        }
-      
-      function toggleDropdown() {
-  var dropdown = document.getElementById("engineDropdown");
-  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-  updateDropdownVisibility();
+function openInAboutBlank(tabIndex) {
+    const html = tabs[tabIndex].content;
+    const newWindow = window.open("about:blank");
+    newWindow.document.write(html);
+    newWindow.document.close();
 }
 
-function selectEngine(iconSrc, engineName) {
-  document.getElementById("selected-engine").src = iconSrc;
-  document.getElementById("selected-engine").alt = engineName;
-  document.getElementById("statusMessage").textContent = "Searching with " + engineName;
-  toggleDropdown();
+function openInBlob(tabIndex) {
+    const html = tabs[tabIndex].content;
+    const blob = new Blob([html], { type: 'text/html' });
+    const blobURL = URL.createObjectURL(blob);
+    window.open(blobURL);
 }
 
-function updateDropdownVisibility() {
-  var selectedEngine = document.getElementById("selected-engine").alt;
-  var options = document.querySelectorAll("#engineDropdown a");
-  options.forEach(function(option) {
-    if (option.getAttribute("data-engine") === selectedEngine) {
-      option.style.display = "none";
-    } else {
-      option.style.display = "flex";
-    }
-  });
+function toggleDropdown(tabIndex) {
+    var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
+    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    updateDropdownVisibility(tabIndex);
+}
+
+function selectEngine(iconSrc, engineName, tabIndex) {
+    document.getElementById(`selected-engine-${tabIndex}`).src = iconSrc;
+    document.getElementById(`selected-engine-${tabIndex}`).alt = engineName;
+    document.getElementById(`statusMessage-${tabIndex}`).textContent = "Searching with " + engineName;
+    toggleDropdown(tabIndex);
+}
+
+function updateDropdownVisibility(tabIndex) {
+    var selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
+    var options = document.querySelectorAll(`#engineDropdown-${tabIndex} a`);
+    options.forEach(function(option) {
+        if (option.getAttribute("data-engine") === selectedEngine) {
+            option.style.display = "none";
+        } else {
+            option.style.display = "flex";
+        }
+    });
 }
 
 window.onclick = function(event) {
-  if (!event.target.matches('.search-engine-dropdown') && !event.target.matches('.search-engine-dropdown img')) {
-    var dropdown = document.getElementById("engineDropdown");
-    if (dropdown.style.display === "block") {
-      dropdown.style.display = "none";
+    if (!event.target.matches('.search-engine-dropdown') && !event.target.matches('.search-engine-dropdown img')) {
+        var dropdowns = document.querySelectorAll('.dropdown-content');
+        dropdowns.forEach(function(dropdown) {
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            }
+        });
     }
-  }
 }
 
-// Initialize dropdown visibility and set default engine
-document.getElementById("statusMessage").textContent = "Searching with Google";
-updateDropdownVisibility();
-    </script>
-</body>
-
-</html>
+document.addEventListener('DOMContentLoaded', function() {
+    tabs.forEach((tab, index) => {
+        document.getElementById(`statusMessage-${index}`).textContent = "Searching with Google";
+        updateDropdownVisibility(index);
+    });
+});
+      
+      document.getElementById('url-bar').addEventListener('input', function(e) {
+    this.value = this.value.toLowerCase();
+});
