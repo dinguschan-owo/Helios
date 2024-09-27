@@ -20,6 +20,89 @@
     font-weight: 500;
         }
       
+  .search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .search-engine-dropdown {
+    position: absolute;
+    right: 23px;
+    top: -27px;
+    width: 56px;  /* Increased width */
+    height: 55px;  /* Increased height */
+    background-color: #3c4043;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 2;
+  }
+
+  .search-engine-dropdown img {
+    width: 32px;  /* Increased image size */
+    height: 32px;  /* Increased image size */
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #3c4043;
+    min-width: 250px;  /* Increased minimum width */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    bottom: 36px;  /* Keep gap at 48px */
+    left: -78px;
+    border-radius: 10px;  /* Updated border-radius */
+    padding: 0;
+  }
+
+  .dropdown-content .status-message {
+    color: #f1f1f1;
+    padding: 14px 14px;  /* Increased padding */
+    background-color: #484d51; /* Background for status message */
+    border-top-left-radius: 10px;  /* Updated border-radius */
+    border-top-right-radius: 10px;  /* Updated border-radius */
+    font-size: 15px;
+  }
+
+  .dropdown-content a {
+    color: #fff;
+    padding: 12px 12px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    height: 48px;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #484d51;
+    border-radius: 10px; 
+  }
+
+  .dropdown-content a img {
+    width: 28px;
+    height: 28px;  /* Increased image size */
+    margin-right: 12px;  /* Increased margin */
+  }
+
+  /* Set font to Arial Sans Serif and increase font size */
+  .dropdown-content,
+  .dropdown-content a,
+  .status-message {
+    font-family: Arial, sans-serif;
+    font-size: 15px;  /* Increased font size */
+  }
+      
         .cloak-button {
             margin-top: 25px;
             margin-right: 4px;
@@ -361,9 +444,13 @@ background: linear-gradient(145deg, #1e1e1e, #292929);
             align-items: center;
             background-color: #3c4043;
             padding: 15px;
-            border-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-right-radius: 30px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
             width: 50%;
+            margin-left: 50px;
             margin-top: 30px;
             z-index: 1;
         }
@@ -480,8 +567,27 @@ padding: 0; /* Ensure no padding is added */ }
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
-          
-            <input type="text" placeholder="Search Helios or type a URL">
+          <div class="search-container">
+  <div class="search-engine-dropdown" onclick="toggleDropdown()">
+    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
+  </div>
+  <div class="dropdown-content" id="engineDropdown">
+    <div class="status-message" id="statusMessage">Searching with Google</div>
+    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+    </a>
+    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
+      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+    </a>
+    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+    </a>
+    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+    </a>
+  </div>
+</div>
+            <input type="text" placeholder="Search the web or type a URL">
             <i class="fas fa-search search-icon"></i>
         </div>
       
@@ -494,9 +600,28 @@ const tabs = [{
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-bar">
-            <input type="text" placeholder="Search Helios or type a URL">
-            <i class="fas fa-search search-icon"></i>
-        </div>`
+          <div class="search-container">
+  <div class="search-engine-dropdown" onclick="toggleDropdown()">
+    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
+  </div>
+  <div class="dropdown-content" id="engineDropdown">
+    <div class="status-message" id="statusMessage">Searching with Google</div>
+    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+    </a>
+    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
+      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+    </a>
+    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+    </a>
+    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+    </a>
+  </div>
+</div>
+            <input type="text" placeholder="Search the web or type a URL">
+            <i class="fas fa-search search-icon"></i>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'data://', 'ws://'];
@@ -573,12 +698,31 @@ function updateTabContent(url, content, tab) {
   
     if (url === 'helios://start') {
         content.innerHTML = `
-            <h23>Helios</h23>
-            <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
-            <div class="search-bar">
-                <input type="text" id="url-bar" placeholder="Search Helios or type a URL">
-            <i class="fas fa-search search-icon"></i>
-            </div>`;
+        <h23>Helios</h23>
+        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
+        <div class="search-bar">
+          <div class="search-container">
+  <div class="search-engine-dropdown" onclick="toggleDropdown()">
+    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine">
+  </div>
+  <div class="dropdown-content" id="engineDropdown">
+    <div class="status-message" id="statusMessage">Searching with Google</div>
+    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+    </a>
+    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
+      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+    </a>
+    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+    </a>
+    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+    </a>
+  </div>
+</div>
+            <input type="text" placeholder="Search the web or type a URL">
+            <i class="fas fa-search search-icon"></i>`;
         
         tab.querySelector('.tab-name').textContent = 'New Tab';
         tabs[currentTabIndex].content = content.innerHTML;  // Update tab's content in memory
@@ -751,10 +895,10 @@ async function fetchAndInjectResources(html) {
 
     const shadowContainer = document.createElement('div');
     shadowContainer.style.position = 'relative';
-    shadowContainer.style.width = (content.clientWidth - 8) + 'px';
+    shadowContainer.style.width = (content.clientWidth - 0) + 'px';
     shadowContainer.style.height = (content.clientHeight + 100) + 'px';
     shadowContainer.style.overflow = 'auto';
-    shadowContainer.style.border = '4px solid #333333';
+    shadowContainer.style.border = 'none';
 
     const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
     const defaultStyle = document.createElement('style');
@@ -981,6 +1125,44 @@ function changeTabContent(url) {
             const blobURL = URL.createObjectURL(blob);
             window.open(blobURL);
         }
+      
+      function toggleDropdown() {
+  var dropdown = document.getElementById("engineDropdown");
+  dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+  updateDropdownVisibility();
+}
+
+function selectEngine(iconSrc, engineName) {
+  document.getElementById("selected-engine").src = iconSrc;
+  document.getElementById("selected-engine").alt = engineName;
+  document.getElementById("statusMessage").textContent = "Searching with " + engineName;
+  toggleDropdown();
+}
+
+function updateDropdownVisibility() {
+  var selectedEngine = document.getElementById("selected-engine").alt;
+  var options = document.querySelectorAll("#engineDropdown a");
+  options.forEach(function(option) {
+    if (option.getAttribute("data-engine") === selectedEngine) {
+      option.style.display = "none";
+    } else {
+      option.style.display = "flex";
+    }
+  });
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.search-engine-dropdown') && !event.target.matches('.search-engine-dropdown img')) {
+    var dropdown = document.getElementById("engineDropdown");
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+    }
+  }
+}
+
+// Initialize dropdown visibility and set default engine
+document.getElementById("statusMessage").textContent = "Searching with Google";
+updateDropdownVisibility();
     </script>
 </body>
 
