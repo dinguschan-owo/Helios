@@ -863,10 +863,20 @@ async function fetchExternalContent(url, content, tabIndex) {
         const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
         const jsScripts = doc.querySelectorAll('script[src]');
         const images = doc.querySelectorAll('img');
+        const videos = doc.querySelectorAll('video');
+        const audios = doc.querySelectorAll('audio');
 
         cssLinks.forEach(link => resources.push(link.href));
         jsScripts.forEach(script => resources.push(script.src));
         images.forEach(img => resources.push(img.src));
+        videos.forEach(video => {
+            if (video.src) resources.push(video.src);
+            video.querySelectorAll('source').forEach(source => resources.push(source.src));
+        });
+        audios.forEach(audio => {
+            if (audio.src) resources.push(audio.src);
+            audio.querySelectorAll('source').forEach(source => resources.push(source.src));
+        });
 
         const fetchResource = async (url) => {
             try {
@@ -874,10 +884,15 @@ async function fetchExternalContent(url, content, tabIndex) {
                 if (!response.ok) {
                     throw new Error(`Failed to fetch resource ${url}`);
                 }
-                return await response.text();
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('text')) {
+                    return await response.text();
+                } else {
+                    return await response.blob();
+                }
             } catch (error) {
                 console.error(error);
-                return '';
+                return null;
             }
         };
 
@@ -903,28 +918,31 @@ async function fetchExternalContent(url, content, tabIndex) {
         shadowRoot.innerHTML += html;
 
         const fixRelativeURLs = (baseUrl) => {
-            const anchors = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src]');
+            const elements = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src], video[src], audio[src], source[src]');
 
-            anchors.forEach(anchor => {
-                const url = new URL(anchor.getAttribute('href') || anchor.getAttribute('src'), baseUrl);
-                if (anchor.hasAttribute('href')) {
-                    anchor.setAttribute('href', url.href);
-                } else if (anchor.hasAttribute('src')) {
-                    anchor.setAttribute('src', url.href);
-                }
+            elements.forEach(element => {
+                const attributeName = element.hasAttribute('href') ? 'href' : 'src';
+                const url = new URL(element.getAttribute(attributeName), baseUrl);
+                element.setAttribute(attributeName, url.href);
             });
         };
 
         results.forEach((result, index) => {
             const url = resources[index];
-            if (url.endsWith('.css')) {
-                const style = document.createElement('style');
-                style.textContent = result;
-                shadowRoot.appendChild(style);
-            } else if (url.endsWith('.js')) {
-                const script = document.createElement('script');
-                script.textContent = result;
-                shadowRoot.appendChild(script);
+            if (result instanceof Blob) {
+                const objectURL = URL.createObjectURL(result);
+                const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
+                elements.forEach(element => element.src = objectURL);
+            } else if (typeof result === 'string') {
+                if (url.endsWith('.css')) {
+                    const style = document.createElement('style');
+                    style.textContent = result;
+                    shadowRoot.appendChild(style);
+                } else if (url.endsWith('.js')) {
+                    const script = document.createElement('script');
+                    script.textContent = result;
+                    shadowRoot.appendChild(script);
+                }
             }
         });
 
@@ -1045,19 +1063,17 @@ function changeTabContent(url) {
     }
 }
 
-function openInAboutBlank(tabIndex) {
-    const html = tabs[tabIndex].content;
-    const newWindow = window.open("about:blank");
-    newWindow.document.write(html);
-    newWindow.document.close();
-}
+    function openInAboutBlank() {
+      const newWindow = window.open('about:blank', '_blank');
+      newWindow.document.write(document.documentElement.outerHTML);
+    }
 
-function openInBlob(tabIndex) {
-    const html = tabs[tabIndex].content;
-    const blob = new Blob([html], { type: 'text/html' });
-    const blobURL = URL.createObjectURL(blob);
-    window.open(blobURL);
-}
+    function openInBlob() {
+      const html = document.documentElement.outerHTML;
+      const blob = new Blob([html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    }
 
 function toggleDropdown(tabIndex) {
     var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
@@ -1102,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
       
-      document.getElementById('url-bar').addEventListener('input', function(e) {
+document.getElementById('url-bar').addEventListener('input', function(e) {
     this.value = this.value.toLowerCase();
 });
     </script>
