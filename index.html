@@ -593,6 +593,40 @@ padding: 0; /* Ensure no padding is added */ }
       
     </div>
     <script>
+// Function to initialize tabs
+function initializeTabs() {
+  // Create the second tab
+  const newTabIndex = tabs.length;
+  const newTab = document.createElement('div');
+  newTab.className = 'tab';
+  newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
+  document.querySelector('.top-bar').insertBefore(newTab, document.getElementById('add-tab'));
+
+  const newContent = document.createElement('div');
+  newContent.className = 'content tab-content';
+  newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
+  document.body.appendChild(newContent);
+
+  tabs.push({ url: 'helios://start', content: newContent.innerHTML });
+
+  // Close the original tab
+  const originalTab = document.querySelector('.tab');
+  originalTab.remove();
+  document.querySelectorAll('.tab-content')[0].remove();
+  tabs.shift();
+
+  // Update active tab
+  updateActiveTab(newTab, newContent, 0);
+  addCloseButtonFunctionality(newTab);
+  addTabClickListener(newTab, newContent, 0);
+
+  // Update currentTabIndex
+  currentTabIndex = 0;
+}
+
+// Call initializeTabs when the DOM is fully loaded
+document.addEventListener('DOMContentLoaded', initializeTabs);
+      
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
@@ -1182,6 +1216,7 @@ document.addEventListener('keydown', function(event) {
         handleSearchOrNavigation(event.target.value, tabIndex);
     }
 });
+      
     </script>
 </body>
 
