@@ -815,7 +815,108 @@ function updateTabContent(url, content, tab) {
     updateLockIcon(url);
     updateSpecialDivs(url);
 }
+async function fetchExternalContent(url, content, tabIndex) {
+    const proxies = [
+        `https://api.codetabs.com/v1/proxy?quest=${url}`,
+        `https://api.codetabs.com/v1/tmp/?quest=${url}`,
+        `https://corsproxy.io/?${url}`,
+        `https://api.allorigins.win/raw?url=${url}`
+    ];
 
+    const timeout = 10000;
+
+    async function fetchWithProxy(proxy) {
+        return new Promise((resolve, reject) => {
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+
+            fetch(proxy, { signal: controller.signal })
+                .then(response => {
+                    clearTimeout(id);
+                    if (!response.ok) {
+                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
+                    }
+                    return response.text();
+                })
+                .then(resolve)
+                .catch(reject);
+        });
+    }
+
+    let htmlText;
+    for (const proxy of proxies) {
+        try {
+            htmlText = await fetchWithProxy(proxy);
+            break;
+        } catch (error) {
+            console.error(`Error with proxy ${proxy}: ${error}`);
+        }
+    }
+
+    if (!htmlText) {
+        console.error('Failed to fetch content from all proxies');
+        return;
+    }
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, 'text/html');
+    const title = doc.title;
+    const tab = document.querySelectorAll('.tab')[tabIndex];
+    if (tab) {
+        tab.querySelector('.tab-name').textContent = title || 'Untitled';
+    }
+
+    // Create a new function to handle resource fetching
+    async function fetchResource(url) {
+        for (const proxy of proxies) {
+            try {
+                const response = await fetch(`${proxy}${url}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch resource ${url}`);
+                }
+                return await response.blob();
+            } catch (error) {
+                console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
+            }
+        }
+        console.error(`Failed to fetch resource ${url} with all proxies`);
+        return null;
+    }
+
+    // Modify images, scripts, and stylesheets to use proxied URLs
+    const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
+    for (const resource of resources) {
+        const originalSrc = resource.src || resource.href;
+        if (originalSrc) {
+            const blob = await fetchResource(originalSrc);
+            if (blob) {
+                const blobUrl = URL.createObjectURL(blob);
+                if (resource.tagName === 'IMG') {
+                    resource.src = blobUrl;
+                } else if (resource.tagName === 'SCRIPT') {
+                    resource.src = blobUrl;
+                } else if (resource.tagName === 'LINK') {
+                    resource.href = blobUrl;
+                }
+            }
+        }
+    }
+
+    content.innerHTML = doc.documentElement.outerHTML;
+
+    // Rewrite relative URLs to absolute URLs
+    const baseUrl = new URL(url);
+    content.querySelectorAll('a[href]').forEach(a => {
+        try {
+            a.href = new URL(a.getAttribute('href'), baseUrl).href;
+        } catch (e) {
+            console.error('Error rewriting URL:', e);
+        }
+    });
+
+    tabs[tabIndex].content = content.innerHTML;
+    tabs[tabIndex].url = url;
+}
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
@@ -1216,6 +1317,7 @@ document.addEventListener('keydown', function(event) {
         handleSearchOrNavigation(event.target.value, tabIndex);
     }
 });
+      
       
     </script>
 </body>
