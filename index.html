@@ -532,6 +532,7 @@ padding: 0; /* Ensure no padding is added */ }
     z-index: 2147483647; /* Display above everything else */
 }
 
+      
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -1316,6 +1317,74 @@ document.addEventListener('keydown', function(event) {
         const tabIndex = parseInt(event.target.id.split('-')[2]);
         handleSearchOrNavigation(event.target.value, tabIndex);
     }
+});
+      
+      document.querySelector('.reload-button').addEventListener('click', function() {
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+    const currentUrl = tabs[currentTabIndex].url;
+    
+    updateTabContent(currentUrl, currentContent, currentTab);
+});
+      
+      // Initialize history storage
+const tabHistory = new Map();
+
+// Function to get or create history for a tab
+function getTabHistory(tabIndex) {
+    if (!tabHistory.has(tabIndex)) {
+        tabHistory.set(tabIndex, {
+            history: [],
+            currentIndex: -1
+        });
+    }
+    return tabHistory.get(tabIndex);
+}
+
+// Function to update history when navigating to a new URL
+function updateHistory(tabIndex, url) {
+    const history = getTabHistory(tabIndex);
+    history.currentIndex++;
+    history.history = history.history.slice(0, history.currentIndex);
+    history.history.push(url);
+}
+
+// Modify updateTabContent to update history
+const originalUpdateTabContent = updateTabContent;
+updateTabContent = function(url, content, tab) {
+    const tabIndex = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
+    updateHistory(tabIndex, url);
+    originalUpdateTabContent(url, content, tab);
+};
+
+// Back button functionality
+document.querySelector('.backward-button').addEventListener('click', function() {
+    const history = getTabHistory(currentTabIndex);
+    if (history.currentIndex > 0) {
+        history.currentIndex--;
+        const previousUrl = history.history[history.currentIndex];
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+        originalUpdateTabContent(previousUrl, currentContent, currentTab);
+    }
+});
+
+// Forward button functionality
+document.querySelector('.forward-button').addEventListener('click', function() {
+    const history = getTabHistory(currentTabIndex);
+    if (history.currentIndex < history.history.length - 1) {
+        history.currentIndex++;
+        const nextUrl = history.history[history.currentIndex];
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+        originalUpdateTabContent(nextUrl, currentContent, currentTab);
+    }
+});
+
+// Initialize history for existing tabs
+document.querySelectorAll('.tab').forEach((tab, index) => {
+    const url = tab.querySelector('.tab-name').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-bar').value;
+    updateHistory(index, url);
 });
       
       
