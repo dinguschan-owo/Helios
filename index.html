@@ -1387,7 +1387,51 @@ document.querySelectorAll('.tab').forEach((tab, index) => {
     updateHistory(index, url);
 });
       
-      
+      function closeTab(tab) {
+    const index = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
+    tab.remove();
+    document.querySelectorAll('.tab-content')[index].remove();
+    tabs.splice(index, 1);
+    tabHistory.delete(index);
+
+    // If the closed tab was the active one, switch to another tab
+    if (index === currentTabIndex) {
+        // Try to activate the tab to the left
+        if (index > 0) {
+            currentTabIndex = index - 1;
+        } 
+        // If there's no tab to the left, try to activate the first tab
+        else if (tabs.length > 0) {
+            currentTabIndex = 0;
+        } 
+        // If there are no tabs left, create a new one
+        else {
+            document.getElementById('add-tab').click();
+            return;
+        }
+
+        const newActiveTab = document.querySelectorAll('.tab')[currentTabIndex];
+        const newActiveContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        updateActiveTab(newActiveTab, newActiveContent, currentTabIndex);
+    } 
+    // If a tab to the left of the active tab was closed, update the currentTabIndex
+    else if (index < currentTabIndex) {
+        currentTabIndex--;
+    }
+}
+
+// Replace the existing close button functionality with this new function
+function addCloseButtonFunctionality(tab) {
+    tab.querySelector('.close-btn').addEventListener('click', function(event) {
+        event.stopPropagation(); // Prevent the tab from being activated when closing
+        closeTab(tab);
+    });
+}
+
+// Update existing tabs with the new close functionality
+document.querySelectorAll('.tab').forEach(tab => {
+    addCloseButtonFunctionality(tab);
+});
     </script>
 </body>
 
