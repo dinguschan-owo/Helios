@@ -175,7 +175,7 @@ background: linear-gradient(145deg, #333333, #404040);
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             margin-top: 0px;
             z-index: 2147483647;
         }
@@ -210,17 +210,29 @@ background: linear-gradient(145deg, #333333, #404040);
             z-index: 2147483647;
         }
 
-        .top-bar .tab.active {
-            background-color: #606060;
-            color: #fff;
-            z-index: 2147483647;
-        }
+.top-bar .tab.active {
+    position: relative;
+    background-color: #606060;
+    color: #fff;
+    z-index: 2147483647;
+}
+
+.top-bar .tab.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background-color: #4dffa6; 
+}
+
         
-        .top-bar .tab.active:hover{
-            background-color: #606060;
+        /*.top-bar .tab.active:hover{
+            background-color: #80ffbf;
             color: #fff;
             z-index: 2147483647;
-        }
+        }*/
         
         .top-bar .tab:hover {
             background-color: #505050;
@@ -330,7 +342,7 @@ background: linear-gradient(145deg, #333333, #404040);
             z-index: 2147483647;
         }
         .browser-bar .address-bar .official {
-            color: #80ffac;
+            color: #80ffbf;
             margin-right: 1px;
             margin-left: 0px;
             margin-top: 8px;
