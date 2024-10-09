@@ -110,7 +110,7 @@
             padding: 11px 0px;
             width: 170px;
             font-size: 16px;
-    background-color: #ff4747;
+            background-color: #ff6161;
             color: white;
             border: none;
             cursor: pointer;
@@ -119,7 +119,7 @@
         }
 
         .cloak-button:hover {
-            background-color: #ff3838;
+            background-color: #ff4747;
         }
       
 .settings-grid {
@@ -253,13 +253,12 @@ background: linear-gradient(145deg, #333333, #404040);
             font-weight: 600;
             margin-top: 1px;
             z-index: 2147483647;
+            margin-right: 3px;
         }
 
         .top-bar .add-tab:hover {
             color: #ffffff;
-            z-index: 2147483647;
-            margin-right: 15px;
-        }
+            z-index: 2147483647;        }
 
         .browser-bar {
             display: flex;
@@ -522,7 +521,7 @@ padding: 0; /* Ensure no padding is added */ }
       
       .clear-button {
     margin-top: 25px;
-    background-color: #ff4747;
+    background-color: #ff6161;
     color: white;
     padding: 10px 12px;
     border: none;
@@ -533,24 +532,26 @@ padding: 0; /* Ensure no padding is added */ }
 }
 
 .clear-button:hover {
-    background-color: #ff3838;
+    background-color: #ff4747;
 }
 
 
 .clear-message {
+    background-color: #ff4747;
+    padding: 10px 12px;
+    border-radius: 9px;
     margin-top: 10px;
-    color: #ff4c4c; /* Same color as the button */
+    color: #fff; /* Same color as the button */
     font-size: 18px;
     font-weight: 500;
     position: absolute; /* Absolute positioning */
-    top: 80%; /* Adjust as necessary */
+    top: 80%; 
     left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Centering */
-    display: none; /* Hidden by default */
+    transform: translateX(-50%); 
+    display: none; 
     z-index: 2147483647; /* Display above everything else */
 }
 
-      
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -581,6 +582,7 @@ padding: 0; /* Ensure no padding is added */ }
     </div> 
 </head>
 <body>
+  
     <div class="content tab-content active">
       
         <h23>Helios</h23>
@@ -1450,6 +1452,79 @@ function addCloseButtonFunctionality(tab) {
 document.querySelectorAll('.tab').forEach(tab => {
     addCloseButtonFunctionality(tab);
 });
+      
+      // Function to handle the square button click (browser reset)
+function handleSquareButtonClick() {
+    // Close all tabs except the first one
+    const tabs = document.querySelectorAll('.tab');
+    for (let i = tabs.length - 1; i > 0; i--) {
+        closeTab(tabs[i]);
+    }
+
+    // Reset the first tab to initial state
+    const firstTab = tabs[0];
+    const firstTabContent = document.querySelectorAll('.tab-content')[0];
+    
+    // Update tab name
+    firstTab.querySelector('.tab-name').textContent = 'New Tab';
+    
+    // Reset URL bar
+    document.getElementById('url-bar').value = 'helios://start';
+    
+    // Reset tab content
+    updateTabContent('helios://start', firstTabContent, firstTab);
+    
+    // Reset tab history
+    const history = getTabHistory(0);
+    history.history = ['helios://start'];
+    history.currentIndex = 0;
+    
+    // Update active tab
+    updateActiveTab(firstTab, firstTabContent, 0);
+}
+
+// Add the square button to the DOM
+const squareButton = document.createElement('div');
+squareButton.className = 'square-button';
+squareButton.id = 'square-button';
+squareButton.textContent = '✕';
+squareButton.title = 'Reset Browser';
+
+// Insert the square button before the first tab
+const topBar = document.querySelector('.top-bar');
+topBar.insertBefore(squareButton, topBar.firstChild);
+
+// Add event listener to the square button
+squareButton.addEventListener('click', handleSquareButtonClick);
+
+// Add CSS for the square button
+const style = document.createElement('style');
+style.textContent = `
+    .square-button {
+        padding-top: 7px;
+        padding-bottom: 2px;
+        padding-right: 13px;
+        padding-left: 13px;
+        background-color: #ff6161;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        cursor: pointer;
+        margin-right: 11px;
+        transition: background-color 0.3s;
+        user-select: none;
+        margin-bottom: 1px;
+    }
+
+    .square-button:hover {
+        background-color: #ff4747;
+    }
+`;
+document.head.appendChild(style);
     </script>
 </body>
 
