@@ -20,6 +20,11 @@
     font-weight: 500;
         }
       
+      ::placeholder {
+  color: #c4d4d4;
+  opacity: 1; /* For Firefox users */
+}
+      
   .search-container {
     display: flex;
     align-items: center;
@@ -573,7 +578,7 @@ padding: 0; /* Ensure no padding is added */ }
         <button class="home-button"><i class="fas fa-home"></i></button>
         <div class="address-bar">
             <i class="fas fa-lock lock-icon"></i>
-            <input type="text" value="helios://start" id="url-bar">            <div class="official-c"><i class="fa-solid fa-circle-check official">&nbsp𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
+            <input type="text" placeholder="Enter a URL" value="helios://start" id="url-bar">            <div class="official-c"><i class="fa-solid fa-circle-check official">&nbsp𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
         </div>
         <button class="wrench-button"><i class="fas fa-wrench"></i></button>
         <button class="settings-button"><i class="fas fa-cog"></i></button>
