@@ -1011,7 +1011,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         tab.querySelector('.tab-name').textContent = title || 'Untitled';
     }
 
-    async function fetchAndInjectResources(html, tabIndex) {
+  async function fetchAndInjectResources(html, tabIndex) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
@@ -1102,6 +1102,13 @@ async function fetchExternalContent(url, content, tabIndex) {
             }
         });
 
+        // Execute inline scripts
+        shadowRoot.querySelectorAll('script:not([src])').forEach(script => {
+            const newScript = document.createElement('script');
+            newScript.textContent = script.textContent;
+            shadowRoot.appendChild(newScript);
+        });
+
         shadowRoot.querySelectorAll('style').forEach(style => {
             style.textContent = `
                 :host {
@@ -1134,7 +1141,6 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
-
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-icon');
     const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
