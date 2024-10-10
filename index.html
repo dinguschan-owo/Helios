@@ -151,7 +151,7 @@ background: linear-gradient(145deg, #333333, #404040);
     justify-content: center;
 }
 
-        .top-bar {
+        .uptop-bar {
             background-color: #242729;
             display: flex;
             align-items: center;
@@ -159,7 +159,7 @@ background: linear-gradient(145deg, #333333, #404040);
             z-index: 2147483647;
         }
       
-        .top-bar .tab {
+        .uptop-bar .tab {
             display: flex;
             align-items: center;
             background-color: #454545;
@@ -185,7 +185,7 @@ background: linear-gradient(145deg, #333333, #404040);
             z-index: 2147483647;
         }
 
-        .top-bar .tab .tab-name {
+        .uptop-bar .tab .tab-name {
             flex-grow: 1;
             margin-right: 5px;
             margin-left: 4px;
@@ -197,7 +197,7 @@ background: linear-gradient(145deg, #333333, #404040);
             z-index: 2147483647;
         }
 
-        .top-bar .tab .close-btn {
+        .uptop-bar .tab .close-btn {
             font-size: 15px;
             color: #aaa;
             cursor: pointer;
@@ -210,19 +210,19 @@ background: linear-gradient(145deg, #333333, #404040);
             transition: background-color 0.3s;
         }
 
-        .top-bar .tab .close-btn:hover {
+        .uptop-bar .tab .close-btn:hover {
             color: #fff;
             z-index: 2147483647;
         }
 
-.top-bar .tab.active {
+.uptop-bar .tab.active {
     position: relative;
     background-color: #5c5c5c;
     color: #fff;
     z-index: 2147483647;
 }
 
-.top-bar .tab.active::after {
+.uptop-bar .tab.active::after {
     content: "";
     position: absolute;
     left: 0;
@@ -232,24 +232,24 @@ background: linear-gradient(145deg, #333333, #404040);
     background-color: #4dffa6; 
 }
 
-              .top-bar .tab.active:hover{
+              .uptop-bar .tab.active:hover{
             background-color: #666666;
             color: #fff;
             z-index: 2147483647;
         }
         
-        .top-bar .tab.active::after:hover{
+        .uptop-bar .tab.active::after:hover{
             background-color: #666666;
             color: #fff;
             z-index: 2147483647;
         }
         
-        .top-bar .tab:hover {
+        .uptop-bar .tab:hover {
             background-color: #505050;
             z-index: 2147483647;
         }
         
-        .top-bar .add-tab {
+        .uptop-bar .add-tab {
             font-size: 22px;
             color: #ccc;
             cursor: pointer;
@@ -261,7 +261,7 @@ background: linear-gradient(145deg, #333333, #404040);
             margin-right: 3px;
         }
 
-        .top-bar .add-tab:hover {
+        .uptop-bar .add-tab:hover {
             color: #ffffff;
             z-index: 2147483647;        }
 
@@ -469,7 +469,7 @@ background: linear-gradient(145deg, #1e1e1e, #292929);
             border-top-right-radius: 30px;
             border-bottom-right-radius: 30px;
             border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
+            border-bottom-left-radius:  10px;
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
             width: 50%;
             margin-left: 50px;
@@ -562,7 +562,7 @@ padding: 0; /* Ensure no padding is added */ }
 </head>
 
 <body>
-    <div class="top-bar">
+    <div class="uptop-bar">
         <div class="tab active">
             <span class="tab-name">New Tab</span>
             <i class="fas fa-times close-btn"></i>
@@ -600,16 +600,16 @@ padding: 0; /* Ensure no padding is added */ }
   <div class="dropdown-content" id="engineDropdown">
     <div class="status-message" id="statusMessage">Searching with Google</div>
     <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
     <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
     </a>
     <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
     </a>
     <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
     </a>
   </div>
 </div>
@@ -626,7 +626,7 @@ function initializeTabs() {
   const newTab = document.createElement('div');
   newTab.className = 'tab';
   newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
-  document.querySelector('.top-bar').insertBefore(newTab, document.getElementById('add-tab'));
+  document.querySelector('.uptop-bar').insertBefore(newTab, document.getElementById('add-tab'));
 
   const newContent = document.createElement('div');
   newContent.className = 'content tab-content';
@@ -667,16 +667,16 @@ const tabs = [{
   <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
     <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
     <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
     </a>
     <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
     </a>
     <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
     </a>
   </div>
 </div>
@@ -691,7 +691,7 @@ document.getElementById('add-tab').addEventListener('click', function () {
     const newTab = document.createElement('div');
     newTab.className = 'tab';
     newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
-    document.querySelector('.top-bar').insertBefore(newTab, this);
+    document.querySelector('.uptop-bar').insertBefore(newTab, this);
 
     const newContent = document.createElement('div');
     newContent.className = 'content tab-content';
@@ -768,16 +768,16 @@ function updateTabContent(url, content, tab) {
   <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
     <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> Search with 4get
+      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
     <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> Search with Google
+      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
     </a>
     <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> Search with Bing
+      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
     </a>
     <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> Search with DuckDuckGo
+      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
     </a>
   </div>
 </div>
@@ -1502,7 +1502,7 @@ squareButton.textContent = '✕';
 squareButton.title = 'Reset Browser';
 
 // Insert the square button before the first tab
-const topBar = document.querySelector('.top-bar');
+const topBar = document.querySelector('.uptop-bar');
 topBar.insertBefore(squareButton, topBar.firstChild);
 
 // Add event listener to the square button
