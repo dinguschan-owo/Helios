@@ -1499,7 +1499,7 @@ function handleSquareButtonClick() {
 const squareButton = document.createElement('div');
 squareButton.className = 'square-buttonaa';
 squareButton.id = 'square-buttonaa';
-squareButton.textContent = '✕';
+squareButton.textContent = '×';
 squareButton.title = 'Reset Browser';
 
 // Insert the square button before the first tab
@@ -1513,18 +1513,19 @@ squareButton.addEventListener('click', handleSquareButtonClick);
 const style = document.createElement('style');
 style.textContent = `
     .square-buttonaa {
-        padding-top: 7px;
-        padding-bottom: 2px;
-        padding-right: 13px;
-        padding-left: 13px;
+        height: 37px;
+        padding-top: 2px;
+        padding-right: 10.3px;
+        padding-left: 10.3px;
         background-color: #ff6161;
         color: #fff;
-        font-weight: 600;
+        font-align: center;
+        font-weight: 500;
         border-radius: 9px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 18px;
+        font-size: 36px;
         cursor: pointer;
         margin-right: 11px;
         transition: background-color 0.3s;
