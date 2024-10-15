@@ -12,6 +12,24 @@ do whatever the hell you want with this code, just dont take credit. i worked ha
 - search bar to look up random crap
 - basic navigation buttons (back, forward, reload, whatever)
 - some styling that looks half decent (i hope)
+ 
+## ***`Compatibility`***
+
+Works in the latest version of:
+
+-Chrome
+-Firefox
+-Tor Browser
+-Edge
+-Opera
+-Brave
+-Vivaldi
+
+Does not work in:
+
+-Safari
+
+Sorry Apple users :(
 
 ## ***`How To Use`***
 
