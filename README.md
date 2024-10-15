@@ -8,10 +8,13 @@ do whatever the hell you want with this code, just dont take credit. i worked ha
 
 ## ***`Features`***
 
-- open multiple tabs (don't go too crazy, tho)
-- search bar to look up random crap
-- basic navigation buttons (back, forward, reload, whatever)
-- some styling that looks half decent (i hope)
+- open up to 23 tabs before it starts breaking
+- search bar for searching
+- basic navigation buttons (back, forwards, reload, home)
+- settings page
+- website caching
+- about:blank and blob: cloaking
+- clear all tabs (why would you want this)
  
 ## ***`Compatibility`***
 
@@ -35,7 +38,7 @@ Sorry Apple users :(
 
 1. clone this repo or just download the files, you know the drill.
 2. open `index.html` in your browser (broser in a browser haha).
-3. start clicking around and act like you know what you're doing, you skid.
+3. go crazy!
 
 ## ***`𝚄𝚙𝚍𝚊𝚝𝚎 𝚂𝚌𝚑𝚎𝚍𝚞𝚕𝚎`***
 
