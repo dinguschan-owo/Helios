@@ -892,10 +892,10 @@ const style = document.createElement('style');
 style.textContent = `
     .square-buttonaa {
         margin-top: 1px;
-        height: 30px;
+        height: 32px;
         padding-top: 2px;
-        padding-right: 6px;
-        padding-left: 6px;
+        padding-right: 7px;
+        padding-left: 7px;
         background-color: #ff6161;
         color: #fff;
         font-align: center;
