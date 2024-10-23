@@ -148,7 +148,7 @@ body {
   display: flex;
   align-items: center;
   padding: 6px 10px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa {
@@ -174,7 +174,7 @@ body {
   white-space: nowrap;
   margin-bottom: 2px;
   margin-top: 1px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa .tab-nameaa {
@@ -186,7 +186,7 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: 1px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa .close-btnaa {
@@ -198,20 +198,20 @@ body {
   margin-top: 2px;
   border-radius: 50%;
   padding: 2px;
-  z-index: 2147483647;
+  z-index: 2147483644;
   transition: background-color 0.3s;
 }
 
 .uptop-baraa .tabaa .close-btnaa:hover {
   color: #fff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa.activeaa {
   position: relative;
   background-color: #5c5c5c;
   color: #fff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa.activeaa::after {
@@ -227,18 +227,18 @@ body {
 .uptop-baraa .tabaa.activeaa:hover {
   background-color: #666666;
   color: #fff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa.activeaa::after:hover {
   background-color: #666666;
   color: #fff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .tabaa:hover {
   background-color: #505050;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .uptop-baraa .add-tabaa {
@@ -249,13 +249,13 @@ body {
   transition: color 0.3s;
   font-weight: 600;
   margin-top: 1px;
-  z-index: 2147483647;
+  z-index: 2147483644;
   margin-right: 3px;
 }
 
 .uptop-baraa .add-tabaa:hover {
   color: #ffffff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa {
@@ -263,7 +263,7 @@ body {
   align-items: center;
   padding: 8px 15px;
   background-color: #3c4043;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa button {
@@ -274,40 +274,40 @@ body {
   margin-right: 15px;
   cursor: pointer;
   transition: color 0.3s;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa button:hover {
   color: #ffffff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .forward-buttonaa {
   font-size: 23px;
   font-weight: 600;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 .browser-baraa .backward-buttonaa {
   font-size: 23px;
   font-weight: 600;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 .browser-baraa .reload-buttonaa {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: -1px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 .browser-baraa .home-buttonaa {
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .search-buttonaa {
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .microphone-buttonaa {
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .address-baraa {
@@ -323,7 +323,7 @@ body {
   margin-right: 18px;
   margin-top: 0px;
   margin-bottom: 0px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .address-baraa input {
@@ -333,7 +333,7 @@ body {
   font-size: 15.4px;
   color: #e8eaed;
   background-color: transparent;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .address-baraa .lock-iconaa {
@@ -342,7 +342,7 @@ body {
   margin-left: 1px;
   margin-bottom: 1.05px;
   font-size: 16px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 .browser-baraa .address-baraa .officialaa {
   color: #80ffbf;
@@ -351,7 +351,7 @@ body {
   margin-top: 8px;
   cursor: text;
   font-size: 14px;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 .browser-baraa .address-baraa .official-caa {
   color: #fff;
@@ -365,7 +365,7 @@ body {
   text-align: center;
   border-radius: 500px;
   cursor: text;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .menu-buttonaa {
@@ -374,39 +374,54 @@ body {
   margin-left: 7px;
   margin-right: 7px;
   font-weight: 600;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .menu-buttonaa:hover {
   color: #ffffff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .wrench-buttonaa {
-  font-size: 20px;
+  font-size: 21px;
   cursor: pointer;
-  margin-right: 6px;
-  margin-bottom: 0.5px;
+  margin-right: 1px;
+  margin-bottom: -1px;
   font-weight: 600;
-  z-index: 2147483647;
+  z-index: 2147483644;
+}
+
+.browser-baraa .fullscreen-button:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.browser-baraa .fullscreen-button {
+  font-size: 23px;
+  cursor: pointer;
+  margin-right: 12px;
+  margin-bottom: -1px;
+  font-weight: 600;
+  z-index: 2147483644;
 }
 
 .browser-baraa .wrench-buttonaa:hover {
   color: #ffffff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .browser-baraa .settings-buttonaa {
-  font-size: 21px;
+  font-size: 22px;
   cursor: pointer;
   margin-left: 10px;
-  margin-right: 11px;
-  z-index: 2147483647;
+  margin-right: 9px;
+  z-index: 2147483644;
+  margin-top: 0.5px;
 }
 
 .browser-baraa .settings-buttonaa:hover {
   color: #ffffff;
-  z-index: 2147483647;
+  z-index: 2147483644;
 }
 
 .tab-contentaa h20 {
