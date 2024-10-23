@@ -1,6 +1,6 @@
 ## ***`𝙾𝚟𝚎𝚛𝚟𝚒𝚎𝚠`***
 
-this is the orgignal Helios proxy slapped together soley by me, dinguschan. its a web browser proxy thing i whipped up while absolutly zonked out of my goose, and its in NO way finished. the aim is to be a replacement for dingusProxy, a replacement for your spyware ridden admin controlled browser, and just a plain better proxy than anything any skiddy ass anti censorship "networks" on the internet could cook up. the idea for this was to expand upon dingusProxy's specialized static host, clientside, local, and html css js only web proxy code and unfuck the mess of code in there. i added sandboxed tabs, specialized settings and cloaking, built in threat protection and- I JUST WANNA TO CLONE CHROME. I WANNA BLATENTLY COPY CHROME SOOOOO FUCKING BAD. SHITS GONNA BE 𝘽𝙀𝙏𝙏𝙀𝙍 ITS GONNA BE 𝙁𝘼𝙎𝙏𝙀𝙍 ITS GONNA TAKE YOUR ADMINS SHITASS CENSORSHIP AND FUCK. IT. UP. BEAT THAT SHIT DOWN WITH A RUSTY STEEL PIPE WRENCH MADE OF DINGUSCHAN CERTIFIED BOMB ASS CODE.
+this is the orgignal Helios proxy slapped together soley by me, dinguschan. its a web browser proxy thing i whipped up while absolutly zonked out of my goose, and its in NO way finished. the aim is to be a replacement for dingusProxy, a replacement for your spyware ridden admin controlled browser, and just a plain better proxy than anything any skiddy ass anti censorship "networks" on the internet could cook up. the idea for this was to expand upon dingusProxy's specialized static host, clientside, local, and html css js only web proxy code and unfuck the mess of code in there. i added sandboxed tabs, specialized settings and cloaking, built in threat protection and- I JUST WANNA TO CLONE CHROME. I WANNA BLATENTLY COPY CHROME SOOOOO FUCKING BAD. ITS GONNA BE 𝘽𝙀𝙏𝙏𝙀𝙍 ITS GONNA BE 𝙁𝘼𝙎𝙏𝙀𝙍 ITS GONNA TAKE YOUR ADMINS SHITASS CENSORSHIP AND FUCK. IT. UP. BEAT THAT SHIT DOWN WITH A RUSTY STEEL PIPE WRENCH MADE OF DINGUSCHAN CERTIFIED BOMB ASS CODE.
 
 ## ***`License`***
 
@@ -36,7 +36,7 @@ Sorry Apple users :(
 
 ## ***`How To Use`***
 
-1. clone this repo or just download the files, you know the drill.
+1. clone this repo, host on any site hoster (static or not), or just download the files. you know the drill.
 2. open `index.html` in your browser (broser in a browser haha).
 3. go crazy!
 
