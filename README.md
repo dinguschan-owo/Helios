@@ -50,4 +50,5 @@ NONE FUCK YOU (submit a issue if you find one and ill fix it)
 
 ## ***`Official Links`***
 
-https://helios-blue.vercel.app/
+- https://helios-blue.vercel.app/
+- https://helios-browser.w3spaces.com/
