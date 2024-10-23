@@ -183,7 +183,8 @@ function updateTabContent(url, content, tab) {
             <div class="settings-blockaa">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history-${currentTabIndex}" class="clear-buttonaa">Clear History</button></div>
             <div class="settings-blockaa"><h24>Cloaking</h24>    <button class="cloak-buttonaa" onclick="openInAboutBlank(${currentTabIndex})">Open in about:blank</button>
     <button class="cloak-buttonaa" onclick="openInBlob(${currentTabIndex})">Open in blob:</button></div>
-            <div class="settings-blockaa">Block 3 Info</div>
+            <div class="settings-blockaa"><h24>&nbspSilly&nbsp</h24>    <button id="show-content-button">Show Content</button>
+</div>
             <div class="settings-blockaa">Block 4 Info</div>
             <div class="settings-blockaa">Block 5 Info</div>
             <div class="settings-blockaa">Block 6 Info</div>
@@ -272,21 +273,27 @@ async function fetchExternalContent(url, content, tabIndex) {
     }
 
     // Create a new function to handle resource fetching
-    async function fetchResource(url) {
-        for (const proxy of proxies) {
-            try {
-                const response = await fetch(`${proxy}${url}`);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                return await response.blob();
-            } catch (error) {
-                console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
-            }
-        }
-        console.error(`Failed to fetch resource ${url} with all proxies`);
-        return null;
+async function fetchResource(url) {
+  for (const proxy of proxies) {
+    try {
+      const response = await fetch(`${proxy}${url}`);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch resource ${url}`);
+      }
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('text/css')) {
+        const cssText = await response.text();
+        return modifyCss(cssText);
+      } else {
+        return await response.blob();
+      }
+    } catch (error) {
+      console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
     }
+  }
+  console.error(`Failed to fetch resource ${url} with all proxies`);
+  return null;
+}
 
     // Modify images, scripts, and stylesheets to use proxied URLs
     const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
@@ -343,6 +350,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
 
 async function fetchExternalContent(url, content, tabIndex) {
     const proxies = [
@@ -474,11 +483,11 @@ async function fetchExternalContent(url, content, tabIndex) {
                 const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
                 elements.forEach(element => element.src = objectURL);
             } else if (typeof result === 'string') {
-                if (url.endsWith('.css')) {
-                    const style = document.createElement('style');
-                    style.textContent = result;
-                    shadowRoot.appendChild(style);
-                } else if (url.endsWith('.js')) {
+if (url.endsWith('.css')) {
+  const style = document.createElement('style');
+  style.textContent = result; // result is already modified CSS
+  shadowRoot.appendChild(style);
+} else if (url.endsWith('.js')) {
                     const script = document.createElement('script');
                     script.textContent = result;
                     shadowRoot.appendChild(script);
@@ -537,6 +546,16 @@ function updateLockIcon(url) {
         lockIcon.classList.add('fa-unlock');
         lockIcon.style.color = '#ffff80';
     }
+}
+
+function modifyCss(cssText) {
+  // Regular expression to match z-index declarations
+  const zIndexRegex = /z-index\s*:\s*2147483647\s*;/g;
+
+  // Replace z-index: 2147483647 with z-index: 2147483643
+  const modifiedCss = cssText.replace(zIndexRegex, 'z-index: 2147483643;');
+
+  return modifiedCss;
 }
 
 function updateSpecialDivs(url) {
