@@ -20,13 +20,13 @@ do whatever the hell you want with this code, just dont take credit. i worked ha
 
 Works in the latest version of:
 
--Chrome
--Firefox
--Tor Browser
--Edge
--Opera
--Brave
--Vivaldi
+- Chrome
+- Firefox
+- Tor Browser
+- Edge
+- Opera
+- Brave
+- Vivaldi
 
 Does not work in:
 
