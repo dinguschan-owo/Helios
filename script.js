@@ -63,7 +63,7 @@ const tabs = [{
             <i class="fas fa-search search-iconaa"></i>`
 }];
 
-const trustedSchemes = ['helios://', 'https://', 'data://', 'ws://'];
+const trustedSchemes = ['helios://', 'https://'];
 
 document.getElementById('add-tabaa').addEventListener('click', function () {
     const newTabIndex = tabs.length;
