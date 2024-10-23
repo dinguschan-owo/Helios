@@ -46,6 +46,7 @@ body {
 .search-engine-dropdownaa img {
   width: 32px; /* Increased image size */
   height: 32px; /* Increased image size */
+      pointer-events: none;
 }
 
 .dropdown-contentaa {
