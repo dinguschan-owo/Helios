@@ -957,4 +957,3 @@ document.head.appendChild(style);
                 }
             }
         }
-
