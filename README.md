@@ -51,4 +51,9 @@ fuck you there is no update schedule ill push updates whenever i fucking feel li
 
 ## ***`Known Issues`***
 
-NONE FUCK YOU (submit a issue if you find one and ill fix it)
+NONE ITS PERFECT (submit a issue if you find one and ill fix it)
+
+## ***`Deploy This Project`***
+Vercel:
+ 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdinguschan-owo%2FHelios%2Ftree%2Fmain%2F)
