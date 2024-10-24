@@ -560,3 +560,26 @@ body {
   display: none;
   z-index: 2147483647;
 }
+.top-right-boxaa {
+  position: absolute;
+  top: 120px;
+  right: 10px;
+  width: 53px;
+  height: 49px;
+  background-color: #3c4043;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  z-index: 2147483647;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s; 
+  border: 2px solid #66ffa1;
+}
+
+.top-right-boxaa:hover {
+  background-color: #43474c;
+  border: 2px solid #65ec99;
+}
