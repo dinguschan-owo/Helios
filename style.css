@@ -248,8 +248,9 @@ body {
   cursor: pointer;
   margin-left: 5px;
   transition: color 0.3s;
+  transition: transform 0.3s ease;
   font-weight: 600;
-  margin-top: 1px;
+  margin-top: 2px;
   z-index: 2147483644;
   margin-right: 3px;
 }
@@ -257,6 +258,8 @@ body {
 .uptop-baraa .add-tabaa:hover {
   color: #ffffff;
   z-index: 2147483644;
+  transform: scale(1.1);
+  margin-top: 3px;
 }
 
 .browser-baraa {
