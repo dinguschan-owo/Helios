@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', initializeTabs);
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
-    content: `
+    content: `<div class="top-right-boxaa">
+  <p><i class="fa-brands fa-github"></i></p>
+</div>
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-baraa">
@@ -89,6 +91,12 @@ document.querySelectorAll('.tabaa').forEach((tab, index) => {
     addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
 });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.top-right-boxaa').addEventListener('click', function() {
+            window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+        });
+    });
+
 function addCloseButtonFunctionality(tab) {
     tab.querySelector('.close-btnaa').addEventListener('click', function () {
         const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
@@ -136,7 +144,9 @@ function updateTabContent(url, content, tab) {
     sessionStorage.setItem(`tab_${currentTabIndex}`, url);
   
     if (url === 'helios://start') {
-        content.innerHTML = `
+        content.innerHTML = `<div class="top-right-boxaa">
+  <p><i class="fa-brands fa-github"></i></p>
+</div>
         <h23>Helios</h23>
         <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
         <div class="search-baraa">
@@ -947,3 +957,4 @@ document.head.appendChild(style);
                 }
             }
         }
+
