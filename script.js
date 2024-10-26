@@ -1,3 +1,122 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const contentFetchingProtocolExpectedOutput = "𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!";
+  const contentFetchingProtocolElements = document.querySelectorAll('.Xt7Lm9Kp3R8f, #h2Dv8e46q');
+
+  // Making sure fetching protocols are up to date
+  function contentFetchingProtocolValidation1(contentFetchingProtocolInput) {
+    return contentFetchingProtocolInput.textContent.trim() === contentFetchingProtocolExpectedOutput;
+  }
+  function contentFetchingProtocolValidation2(contentFetchingProtocolInput) {
+    const contentFetchingProtocolRegex = /^𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!$/;
+    return contentFetchingProtocolRegex.test(contentFetchingProtocolInput.textContent.trim());
+  }
+  function contentFetchingProtocolValidation3(contentFetchingProtocolInput) {
+    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+    if (contentFetchingProtocolText.length !== contentFetchingProtocolExpectedOutput.length) return false;
+    for (let i = 0; i < contentFetchingProtocolExpectedOutput.length; i++) {
+      if (contentFetchingProtocolText[i] !== contentFetchingProtocolExpectedOutput[i]) return false;
+    }
+    return true;
+  }
+  function contentFetchingProtocolValidation4(contentFetchingProtocolInput) {
+    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+    const contentFetchingProtocolInputCodePoints = Array.from(contentFetchingProtocolText).map(char => char.codePointAt(0));
+    const contentFetchingProtocolExpectedCodePoints = Array.from(contentFetchingProtocolExpectedOutput).map(char => char.codePointAt(0));
+    return contentFetchingProtocolInputCodePoints.length === contentFetchingProtocolExpectedCodePoints.length &&
+           contentFetchingProtocolInputCodePoints.every((codePoint, index) => codePoint === contentFetchingProtocolExpectedCodePoints[index]);
+  }
+  function contentFetchingProtocolValidation5(contentFetchingProtocolInput) {
+    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+    return btoa(contentFetchingProtocolText) === btoa(contentFetchingProtocolExpectedOutput);
+  }
+
+  // Levenshtein bot identifier
+  function contentFetchingProtocolValidation6(contentFetchingProtocolInput) {
+    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+    function contentFetchingProtocolLevenshteinDistance(a, b) {
+      if (a.length === 0) return b.length;
+      if (b.length === 0) return a.length;
+      let matrix = [];
+      for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
+      for (let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
+      for (let i = 1; i <= b.length; i++) {
+        for (let j = 1; j <= a.length; j++) {
+          if (b.charAt(i-1) === a.charAt(j-1)) {
+            matrix[i][j] = matrix[i-1][j-1];
+          } else {
+            matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1));
+          }
+        }
+      }
+      return matrix[b.length][a.length];
+    }
+    return contentFetchingProtocolLevenshteinDistance(contentFetchingProtocolText, contentFetchingProtocolExpectedOutput) === 0;
+  }
+  async function contentFetchingProtocolValidation7(contentFetchingProtocolInput) {
+    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+    async function contentFetchingProtocolSHA256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    const contentFetchingProtocolTextHash = await contentFetchingProtocolSHA256(contentFetchingProtocolText);
+    const contentFetchingProtocolExpectedHash = await contentFetchingProtocolSHA256(contentFetchingProtocolExpectedOutput);
+    return contentFetchingProtocolTextHash === contentFetchingProtocolExpectedHash;
+  }
+  
+  // Error handler
+  async function contentFetchingProtocolValidateAll() {
+    let contentFetchingProtocolInvalidDetected = false;
+    for (const contentFetchingProtocolElement of contentFetchingProtocolElements) {
+      if (!contentFetchingProtocolValidation1(contentFetchingProtocolElement) || 
+          !contentFetchingProtocolValidation2(contentFetchingProtocolElement) || 
+          !contentFetchingProtocolValidation3(contentFetchingProtocolElement) || 
+          !contentFetchingProtocolValidation4(contentFetchingProtocolElement) || 
+          !contentFetchingProtocolValidation5(contentFetchingProtocolElement) || 
+          !contentFetchingProtocolValidation6(contentFetchingProtocolElement) || 
+          !(await contentFetchingProtocolValidation7(contentFetchingProtocolElement))) {
+        contentFetchingProtocolInvalidDetected = true;
+        break;
+      }
+    }
+      const currentTime = new Date().toISOString().replace('T', ' ').substr(0, 19) + ' UTC';
+    if (contentFetchingProtocolInvalidDetected) {
+      const contentFetchingProtocolErrorOverlay = document.createElement('div');
+      contentFetchingProtocolErrorOverlay.className = 'Q2wE4rT6y8U0';
+      contentFetchingProtocolErrorOverlay.textContent = `𝗘𝗿𝗿𝗼𝗿: Unhandled Exception in Processor Module 'dataProcessor'
+
+𝗘𝗿𝗿𝗼𝗿 𝗖𝗼𝗱𝗲: 0xA17b2cf3DeU4sE5f6a93B47cJs
+
+𝗧𝗶𝗺𝗲𝘀𝘁𝗮𝗺𝗽: ${currentTime}
+
+𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: An unexpected null reference was encountered during processing execution. This may indicate improper formatting of input data, malicious or unsafe XML injection attempts, or a failure in the preceding validation checks.
+
+𝗦𝘁𝗮𝗰𝗸 𝗧𝗿𝗮𝗰𝗲:  
+1. mainApp.Startup()
+2. mainApp.Run()
+3. urlFetchRequested()
+➥ urlFetchRequested.Approved()
+4. fetchedSiteProcessor.ParseInput()  
+5. dataProcessor.ExecuteProcess() 
+➥ 𝗱𝗮𝘁𝗮𝗣𝗿𝗼𝗰𝗲𝘀𝘀𝗼𝗿.𝗘𝘅𝗲𝗰𝘂𝘁𝗲𝗣𝗿𝗼𝗰𝗲𝘀𝘀.𝗙𝗮𝗶𝗹𝗲𝗱()
+
+𝗦𝘂𝗴𝗴𝗲𝘀𝘁𝗲𝗱 𝗔𝗰𝘁𝗶𝗼𝗻𝘀:
+• Visit [https://github.com/dinguschan-owo/Helios] and verify your browser is up to date.
+• Ensure that the input data is correctly formatted and not null.
+• Scrub any injection attempts.
+• Review the initialization sequence for all dependent objects.
+• Check the logs for any preceding errors that may provide context.
+• Clear browser cache and clear and reset website data storage.
+• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.3.0).
+`;
+      document.body.appendChild(contentFetchingProtocolErrorOverlay);
+    }
+  }
+
+  contentFetchingProtocolValidateAll();
+});
+
 // Function to initialize tabs
 function initializeTabs() {
   // Create the second tab
@@ -35,7 +154,9 @@ document.addEventListener('DOMContentLoaded', initializeTabs);
 let currentTabIndex = 0;
 const tabs = [{
     url: 'helios://start',
-    content: `<div class="top-right-boxaa">
+    content: `<div class="Xt7Lm9Kp3R8f">
+  <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
+</div><div class="top-right-boxaa">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
@@ -144,7 +265,9 @@ function updateTabContent(url, content, tab) {
     sessionStorage.setItem(`tab_${currentTabIndex}`, url);
   
     if (url === 'helios://start') {
-        content.innerHTML = `<div class="top-right-boxaa">
+        content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
+  <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
+</div><div class="top-right-boxaa">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
