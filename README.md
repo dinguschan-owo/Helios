@@ -19,7 +19,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 ## ***`License`***
 
-do whatever the hell you want with this code, just dont take credit. i worked hard on this :(
+do whatever the hell you want with this code, just please PLEASE credit me. i worked hard on this :(
 
 ## ***`Deploy This Project`***
 Vercel:
