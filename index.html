@@ -1,80 +1,631 @@
-<!DOCTYPE html>
-<html lang="en">
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #202124;
+  color: #e8eaed;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  z-index: 0;
+  font-size: 17px;
+  font-weight: 500;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Helios</title>
-          <link rel="stylesheet" type="text/css" href="style.css">
+::placeholder {
+  color: #c4d4d4;
+  opacity: 1; /* For Firefox users */
+}
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
+.search-containeraa {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
-<body>
-    <div class="uptop-baraa">
-        <div class="tabaa activeaa">
-            <span class="tab-nameaa">New Tab</span>
-            <i class="fas fa-times close-btnaa"></i>
-        </div>
-        <div class="add-tabaa" id="add-tabaa">
-            <i class="fa-solid fa-circle-plus"></i>
-        </div>
-    </div>
-    <div class="browser-baraa">
-        <button class="backward-buttonaa"><i class="fas fa-arrow-left"></i></button>
-        <button class="forward-buttonaa"><i class="fas fa-arrow-right"></i></button>
-        <button class="reload-buttonaa"><i class="fas fa-redo"></i></button>
-        <button class="home-buttonaa"><i class="fas fa-home"></i></button>
-        <div class="address-baraa">
-            <i class="fas fa-lock lock-iconaa"></i>
-            <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">            <div class="official-caa"><i class="fa-solid fa-circle-check officialaa">&nbsp𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
-        </div>
-          <button class="fullscreen-button" onclick="toggleFullscreen()">
-        <i class="fas fa-expand"></i>
-    </button>
-        <button class="wrench-buttonaa" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
+.search-engine-dropdownaa {
+  position: absolute;
+  right: 23px;
+  top: -27px;
+  width: 56px; /* Increased width */
+  height: 55px; /* Increased height */
+  background-color: #3c4043;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 2;
+}
 
-        <button class="settings-buttonaa"><i class="fas fa-cog"></i></button>
-        <button class="menu-buttonaa"><i class="fas fa-ellipsis-v"></i></button>
-      
-    </div> 
-</head>
-<body>
-  
-    <div class="contentaa tab-contentaa activeaa">
-      <div class="top-right-boxaa">
-  <p><i class="fa-brands fa-github"></i></p>
-</div>
-        <h23>Helios</h23>
-        <h21>𝚖𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</h21>
-        <div class="search-baraa">
-          <div class="search-containeraa">
-  <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engineaa">
-  </div>
-  <div class="dropdown-contentaa" id="engineDropdownaa">
-    <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
-    </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google')" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
-    </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
-    </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
-    </a>
-  </div>
-</div>
-            <input type="text" placeholder="Search the web or type a URL">
-            <i class="fas fa-search search-iconaa"></i>
-        </div>
-      
-    </div>
-      <script src="script.js"></script>
+.search-engine-dropdownaa img {
+  width: 32px; /* Increased image size */
+  height: 32px; /* Increased image size */
+      pointer-events: none;
+}
 
-</body>
+.dropdown-contentaa {
+  display: none;
+  position: absolute;
+  background-color: #3c4043;
+  min-width: 250px; /* Increased minimum width */
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  bottom: 36px; /* Keep gap at 48px */
+  left: -78px;
+  border-radius: 10px; /* Updated border-radius */
+  padding: 0;
+}
 
-</html>
+.dropdown-contentaa .status-messageaa {
+  color: #f1f1f1;
+  padding: 14px 14px; /* Increased padding */
+  background-color: #484d51; /* Background for status message */
+  border-top-left-radius: 10px; /* Updated border-radius */
+  border-top-right-radius: 10px; /* Updated border-radius */
+  font-size: 15px;
+}
+
+.dropdown-contentaa a {
+  color: #fff;
+  padding: 12px 12px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.dropdown-contentaa a:hover {
+  background-color: #484d51;
+  border-radius: 10px;
+}
+
+.dropdown-contentaa a img {
+  width: 28px;
+  height: 28px; /* Increased image size */
+  margin-right: 12px; /* Increased margin */
+}
+
+/* Set font to Arial Sans Serif and increase font size */
+.dropdown-contentaa,
+.dropdown-contentaa a,
+.status-messageaa {
+  font-family: Arial, sans-serif;
+  font-size: 15px; /* Increased font size */
+}
+
+.cloak-buttonaa {
+  margin-top: 25px;
+  margin-right: 4px;
+  margin-left: 4px;
+  padding: 11px 0px;
+  width: 170px;
+  font-size: 16px;
+  background-color: #ff6161;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.cloak-buttonaa:hover {
+  background-color: #ff4747;
+}
+
+.settings-gridaa {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-top: 10px;
+}
+
+.settings-blockaa {
+  background: linear-gradient(145deg, #333333, #404040);
+  border-radius: 11px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 380px;
+  height: 190px;
+  padding-top: 30px;
+}
+
+.clear-blockaa {
+  grid-column: span 3;
+  display: flex;
+  justify-content: center;
+}
+
+.uptop-baraa {
+  background-color: #242729;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa {
+  display: flex;
+  align-items: center;
+  background-color: #454545;
+  color: #d9d9d9;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 4.6px;
+  border-bottom-left-radius: 4.6px;
+  padding: 9px 10px;
+  margin-right: 9px;
+  margin-left: -1px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+  width: 184px;
+  max-width: 184px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 2px;
+  margin-top: 1px;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa .tab-nameaa {
+  flex-grow: 1;
+  margin-right: 5px;
+  margin-left: 3px;
+  overflow: hidden;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 1px;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa .close-btnaa {
+  font-size: 15px;
+  color: #aaa;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 1px;
+  margin-top: 2px;
+  border-radius: 50%;
+  padding: 2px;
+  z-index: 2147483644;
+  transition: background-color 0.3s;
+}
+
+.uptop-baraa .tabaa .close-btnaa:hover {
+  color: #fff;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa.activeaa {
+  position: relative;
+  background-color: #5c5c5c;
+  color: #fff;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa.activeaa::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #4dffa6;
+}
+
+.uptop-baraa .tabaa.activeaa:hover {
+  background-color: #666666;
+  color: #fff;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa.activeaa::after:hover {
+  background-color: #666666;
+  color: #fff;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .tabaa:hover {
+  background-color: #505050;
+  z-index: 2147483644;
+}
+
+.uptop-baraa .add-tabaa {
+  font-size: 22px;
+  color: #ccc;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: color 0.3s;
+  transition: transform 0.3s ease;
+  font-weight: 600;
+  margin-top: 2px;
+  z-index: 2147483644;
+  margin-right: 3px;
+}
+
+.uptop-baraa .add-tabaa:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+  transform: scale(1.1);
+  margin-top: 3px;
+}
+
+.browser-baraa {
+  display: flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: #3c4043;
+  z-index: 2147483644;
+}
+
+.browser-baraa button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #9aa0a6;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+  z-index: 2147483644;
+}
+
+.browser-baraa button:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.browser-baraa .forward-buttonaa {
+  font-size: 23px;
+  font-weight: 600;
+  z-index: 2147483644;
+}
+.browser-baraa .backward-buttonaa {
+  font-size: 23px;
+  font-weight: 600;
+  z-index: 2147483644;
+}
+.browser-baraa .reload-buttonaa {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: -1px;
+  z-index: 2147483644;
+}
+.browser-baraa .home-buttonaa {
+  z-index: 2147483644;
+}
+
+.browser-baraa .search-buttonaa {
+  z-index: 2147483644;
+}
+
+.browser-baraa .microphone-buttonaa {
+  z-index: 2147483644;
+}
+
+.browser-baraa .address-baraa {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  background-color: #52565b;
+  padding: 5px 13px;
+  border-radius: 500px;
+  color: #e8eaed;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-right: 18px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  z-index: 2147483644;
+}
+
+.browser-baraa .address-baraa input {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-size: 15.4px;
+  color: #e8eaed;
+  background-color: transparent;
+  z-index: 2147483644;
+}
+
+.browser-baraa .address-baraa .lock-iconaa {
+  color: #8ab4f8;
+  margin-right: 10px;
+  margin-left: 1px;
+  margin-bottom: 1.05px;
+  font-size: 16px;
+  z-index: 2147483644;
+}
+.browser-baraa .address-baraa .officialaa {
+  color: #80ffbf;
+  margin-right: 1px;
+  margin-left: 0px;
+  margin-top: 8px;
+  cursor: text;
+  font-size: 14px;
+  z-index: 2147483644;
+}
+.browser-baraa .address-baraa .official-caa {
+  color: #fff;
+  margin-right: -7.3px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+  font-size: 17px;
+  background-color: #3c4043;
+  height: 29px;
+  width: 122px;
+  text-align: center;
+  border-radius: 500px;
+  cursor: text;
+  z-index: 2147483644;
+}
+
+.browser-baraa .menu-buttonaa {
+  font-size: 23px;
+  cursor: pointer;
+  margin-left: 7px;
+  margin-right: 7px;
+  font-weight: 600;
+  z-index: 2147483644;
+}
+
+.browser-baraa .menu-buttonaa:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.browser-baraa .wrench-buttonaa {
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 1px;
+  margin-bottom: -1px;
+  font-weight: 600;
+  z-index: 2147483644;
+}
+
+.browser-baraa .fullscreen-button:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.browser-baraa .fullscreen-button {
+  font-size: 23px;
+  cursor: pointer;
+  margin-right: 12px;
+  margin-bottom: -1px;
+  font-weight: 600;
+  z-index: 2147483644;
+}
+
+.browser-baraa .wrench-buttonaa:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.browser-baraa .settings-buttonaa {
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: 9px;
+  z-index: 2147483644;
+  margin-top: 0.5px;
+}
+
+.browser-baraa .settings-buttonaa:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
+.tab-contentaa h20 {
+  font-size: 61px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.tab-contentaa h21 {
+  font-size: 24px;
+  font-weight: 400;
+  color: #b3b3b3;
+  margin-top: 9px;
+  letter-spacing: 0px;
+}
+
+.tab-contentaa h22 {
+  font-size: 40px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+  margin-right: 79%;
+  margin-top: -320px;
+}
+
+.tab-contentaa h23 {
+  font-size: 61px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.tab-contentaa h24 {
+  font-size: 38px;
+  font-weight: 600;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  padding: 10px 110px;
+  margin-bottom: 300px;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.search-baraa {
+  display: flex;
+  align-items: center;
+
+  background-color: #3c4043;
+  padding: 15px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 50%;
+  margin-left: 50px;
+  margin-top: 30px;
+  z-index: 1;
+}
+
+.search-baraa input {
+  border: none;
+  width: 100%;
+  outline: none;
+  font-size: 18px;
+  background-color: transparent;
+  color: #e8eaed;
+}
+
+.search-baraa i {
+  color: #9aa0a6;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.search-baraa i:hover {
+  color: #ffffff;
+}
+
+.search-baraa .search-iconaa {
+  font-weight: 600;
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.tab-contentaa {
+  display: none;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0; /* Ensure no margin is added */
+  padding: 0; /* Ensure no padding is added */
+  overflow: hidden; /* Ensure no overflow issues */
+  height: 100vh !important;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+}
+
+.tab-contentaa.activeaa {
+  display: flex;
+  margin: 0; /* Ensure no margin is added */
+  padding: 0; /* Ensure no padding is added */
+}
+
+.clear-buttonaa {
+  margin-top: 25px;
+  background-color: #ff6161;
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.clear-buttonaa:hover {
+  background-color: #ff4747;
+}
+
+.clear-messageaa {
+  background-color: #ff6161;
+  padding: 10px 12px;
+  border-radius: 9px;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  z-index: 2147483647;
+}
+.top-right-boxaa {
+  position: absolute;
+  top: 120px;
+  right: 10px;
+  width: 53px;
+  height: 49px;
+  background-color: #3c4043;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  z-index: 2147483646;
+  cursor: pointer;
+  transition: color 0.3s, background-color 0.3s; 
+  border: 2px solid #66ffa1;
+}
+
+.top-right-boxaa:hover {
+  background-color: #43474c;
+  border: 2px solid #65ec99;
+}
+.Xt7Lm9Kp3R8f {
+  position: absolute;
+  top: 120px;
+  right: 77px;
+  width: auto;
+  height: 49px;
+  background-color: #3c4043;
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  z-index: 2147483646;
+  border: 2px solid #66ffa1;
+  padding: 0px 14px;
+  white-space: nowrap;
+}
+
+.Xt7Lm9Kp3R8f p {
+  margin: 0;
+}
+
+.Q2wE4rT6y8U0 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 999999999999999999999999;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: normal;
+  color: red;
+  font-family: Arial, sans-serif;
+  white-space: pre-wrap;
+  overflow: auto;
+}
