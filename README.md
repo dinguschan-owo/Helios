@@ -15,12 +15,17 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 - settings page
 - website caching
 - about:blank and blob: cloaking
-- clear all tabs (why would you want this)
+- clear all tabs and reset browser button (why would you want this you freak)
 
 ## ***`License`***
 
 do whatever the hell you want with this code, just dont take credit. i worked hard on this :(
+
+## ***`Deploy This Project`***
+Vercel:
  
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdinguschan-owo%2FHelios%2Ftree%2Fmain%2F)
+
 ## ***`Compatibility`***
 
 Works in the latest version of:
@@ -52,8 +57,3 @@ fuck you there is no update schedule ill push updates whenever i fucking feel li
 ## ***`Known Issues`***
 
 NONE ITS PERFECT (submit a issue if you find one and ill fix it)
-
-## ***`Deploy This Project`***
-Vercel:
- 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdinguschan-owo%2FHelios%2Ftree%2Fmain%2F)
