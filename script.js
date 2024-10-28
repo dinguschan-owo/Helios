@@ -1080,3 +1080,18 @@ document.head.appendChild(style);
                 }
             }
         }
+        function toggleDropdownccc() {
+            document.getElementById("myDropdownccc").classList.toggle("showccc");
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.matches('.menu-buttonaa')) {
+                var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
+                for (var i = 0; i < dropdownsccc.length; i++) {
+                    var openDropdownccc = dropdownsccc[i];
+                    if (openDropdownccc.classList.contains('showccc')) {
+                        openDropdownccc.classList.remove('showccc');
+                    }
+                }
+            }
+        }
