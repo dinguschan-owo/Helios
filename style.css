@@ -44,9 +44,10 @@ body {
 }
 
 .search-engine-dropdownaa img {
-  width: 32px; /* Increased image size */
-  height: 32px; /* Increased image size */
+  width: 38px; 
+  height: 38px; 
       pointer-events: none;
+  margin-left: 1px;
 }
 
 .dropdown-contentaa {
