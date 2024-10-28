@@ -44,9 +44,9 @@ body {
 }
 
 .search-engine-dropdownaa img {
-  width: 38px; 
-  height: 38px; 
-      pointer-events: none;
+  width: 38px;
+  height: 38px;
+  pointer-events: none;
   margin-top: 1px;
 }
 
@@ -580,7 +580,7 @@ body {
   font-size: 32px;
   z-index: 2147483646;
   cursor: pointer;
-  transition: color 0.3s, background-color 0.3s; 
+  transition: color 0.3s, background-color 0.3s;
   border: 2px solid #66ffa1;
 }
 
@@ -605,6 +605,11 @@ body {
   border: 2px solid #66ffa1;
   padding: 0px 14px;
   white-space: nowrap;
+}
+
+.Xt7Lm9Kp3R8f:not(:has(:only-child:contains("𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!"))) {
+  color: none;
+  font-size: 1px;
 }
 
 .Xt7Lm9Kp3R8f p {
