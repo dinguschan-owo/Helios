@@ -374,10 +374,11 @@ body {
 }
 
 .browser-baraa .menu-buttonaa {
-  font-size: 23px;
+  font-size: 27px;
   cursor: pointer;
-  margin-left: 7px;
-  margin-right: 7px;
+  margin-left: 1px;
+  margin-right: 1px;
+  margin-bottom: 2px;
   font-weight: 600;
   z-index: 2147483644;
 }
@@ -568,7 +569,7 @@ body {
 .top-right-boxaa {
   position: absolute;
   top: 120px;
-  right: 10px;
+  left: 10px;
   width: 53px;
   height: 49px;
   background-color: #3c4043;
@@ -591,7 +592,7 @@ body {
 .Xt7Lm9Kp3R8f {
   position: absolute;
   top: 120px;
-  right: 77px;
+  left: 77px;
   width: auto;
   height: 49px;
   background-color: #3c4043;
@@ -636,3 +637,31 @@ body {
   white-space: pre-wrap;
   overflow: auto;
 }
+        .dropdown-menuccc {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 120px;
+            background-color: #3c4043;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 2147483646;
+            border-radius: 10px;
+        }
+
+        .dropdown-menuccc a {
+            color: #e8eaed;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-menuccc a:hover {
+            background-color: #4a4e51;
+                      border-radius: 10px;
+
+        }
+
+        .showccc {
+            display: block;
+        }
