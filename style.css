@@ -440,7 +440,8 @@ body {
   font-size: 24px;
   font-weight: 400;
   color: #b3b3b3;
-  margin-top: 9px;
+  margin-top: 0px;
+  margin-bottom: -9px;
   letter-spacing: 0px;
 }
 
