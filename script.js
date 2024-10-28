@@ -164,15 +164,15 @@ const tabs = [{
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine-${currentTabIndex}">
+    <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
   <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
     <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
+    <a href="#" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
+      <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbspSearch with Google
     </a>
     <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
@@ -275,15 +275,15 @@ function updateTabContent(url, content, tab) {
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
-    <img src="https://www.google.com/favicon.ico" alt="Google" id="selected-engine-${currentTabIndex}">
+    <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
   <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
     <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
-    <a href="#" onclick="selectEngine('https://www.google.com/favicon.ico', 'Google', ${currentTabIndex})" data-engine="Google">
-      <img src="https://www.google.com/favicon.ico" alt="Google"> &nbspSearch with Google
+    <a href="#" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
+      <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbspSearch with Google
     </a>
     <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
