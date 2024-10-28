@@ -9,7 +9,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 ## ***`Features`***
 
-- open up to 23 tabs before it starts breaking
+- open up to 23 tabs before it starts breaking (thats a lot!)
 - search bar for searching
 - basic navigation buttons (back, forwards, reload, home)
 - settings page
