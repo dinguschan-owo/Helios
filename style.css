@@ -266,7 +266,7 @@ body {
 .browser-baraa {
   display: flex;
   align-items: center;
-  padding: 8px 15px;
+  padding: 6px 15px;
   background-color: #3c4043;
   z-index: 2147483644;
 }
@@ -374,13 +374,16 @@ body {
 }
 
 .browser-baraa .menu-buttonaa {
-  font-size: 27px;
+  font-size: 29px;
   cursor: pointer;
+  margin-left: 7px;
+  margin-right: 7px;
   margin-left: 1px;
-  margin-right: 1px;
-  margin-bottom: 2px;
+  margin-right: 2px;
+  margin-bottom: -7px;
   font-weight: 600;
   z-index: 2147483644;
+  font-stretch: 50%;
 }
 
 .browser-baraa .menu-buttonaa:hover {
@@ -568,7 +571,7 @@ body {
 }
 .top-right-boxaa {
   position: absolute;
-  top: 120px;
+  top: 119px;
   left: 10px;
   width: 53px;
   height: 49px;
@@ -591,8 +594,8 @@ body {
 }
 .Xt7Lm9Kp3R8f {
   position: absolute;
-  top: 120px;
-  left: 77px;
+  top: 119px;
+  left: 75px;
   width: auto;
   height: 49px;
   background-color: #3c4043;
