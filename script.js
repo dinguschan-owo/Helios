@@ -1080,18 +1080,33 @@ document.head.appendChild(style);
                 }
             }
         }
-        function toggleDropdownccc() {
-            document.getElementById("myDropdownccc").classList.toggle("showccc");
-        }
+function toggleDropdownccc() {
+    document.getElementById("myDropdownccc").classList.toggle("showccc");
+}
 
-        window.onclick = function(event) {
-            if (!event.target.matches('.menu-buttonaa')) {
-                var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
-                for (var i = 0; i < dropdownsccc.length; i++) {
-                    var openDropdownccc = dropdownsccc[i];
-                    if (openDropdownccc.classList.contains('showccc')) {
-                        openDropdownccc.classList.remove('showccc');
-                    }
-                }
+window.onclick = function(event) {
+    if (!event.target.matches('.menu-buttonaa')) {
+        var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
+        for (var i = 0; i < dropdownsccc.length; i++) {
+            var openDropdownccc = dropdownsccc[i];
+            if (openDropdownccc.classList.contains('showccc')) {
+                openDropdownccc.classList.remove('showccc');
             }
         }
+    }
+}
+
+// Add this new function to handle the "New Tab" menu item click
+function handleNewTabMenuClick(event) {
+    event.preventDefault();
+    document.getElementById('add-tabaa').click();
+    toggleDropdownccc(); // Close the dropdown after creating a new tab
+}
+
+// Modify the dropdown menu HTML to include an event handler
+document.addEventListener('DOMContentLoaded', function() {
+    const newTabMenuItem = document.querySelector('.dropdown-menuccc a');
+    if (newTabMenuItem) {
+        newTabMenuItem.addEventListener('click', handleNewTabMenuClick);
+    }
+});
