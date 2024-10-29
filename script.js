@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 𝗧𝗶𝗺𝗲𝘀𝘁𝗮𝗺𝗽: ${currentTime}
 
-𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: An unexpected null reference was encountered during processing execution. This may indicate improper formatting of input data, malicious or unsafe XML injection attempts, or a failure in the preceding validation checks.
+𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: An unexpected null reference was encountered during processing execution. This may indicate improper formatting of input data, malicious or malformed XML injection attempts, or a failure in the preceding validation checks.
 
 𝗦𝘁𝗮𝗰𝗸 𝗧𝗿𝗮𝗰𝗲:  
 1. mainApp.Startup()
