@@ -266,7 +266,7 @@ body {
 .browser-baraa {
   display: flex;
   align-items: center;
-  padding: 7px 15px;
+  padding: 2px 15px;
   background-color: #3c4043;
   z-index: 2147483644;
 }
@@ -374,13 +374,13 @@ body {
 }
 
 .browser-baraa .menu-buttonaa {
-  font-size: 29px;
+  font-size: 33px;
   cursor: pointer;
   margin-left: 7px;
-  margin-right: 7px;
+  margin-right: 10px;
   margin-left: 1px;
   margin-right: 2px;
-  margin-bottom: -7px;
+  margin-bottom: 4px;
   font-weight: 600;
   z-index: 2147483644;
   font-stretch: 50%;
@@ -425,7 +425,7 @@ body {
   margin-left: 10px;
   margin-right: 9px;
   z-index: 2147483644;
-  margin-top: 0.5px;
+  margin-top: 1px;
 }
 
 .browser-baraa .settings-buttonaa:hover {
