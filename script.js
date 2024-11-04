@@ -327,7 +327,7 @@ function updateTabContent(url, content, tab) {
         </div>
         <div id="clear-message-${currentTabIndex}" class="clear-messageaa"></div>
         `;
-        tab.querySelector('.tab-nameaa').textContent = 'Settings';
+        tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
@@ -342,6 +342,8 @@ function updateTabContent(url, content, tab) {
                 messageDiv.style.display = 'none';
             }, 3000);
         });
+ } else if (url === 'helios://urls') {
+        showUrlsList(content, tab);
     } else {
         fetchExternalContent(url, content, currentTabIndex);
     }
@@ -1110,3 +1112,34 @@ document.addEventListener('DOMContentLoaded', function() {
         newTabMenuItem.addEventListener('click', handleNewTabMenuClick);
     }
 });
+function showUrlsList(content, tab) {
+    content.innerHTML = `
+        <h2 style="font-size: 48px; margin-bottom: 20px;">Helios Internal URLs</h2>
+        <ul style="list-style-type: none; padding: 0;">
+            <li style="margin-bottom: 15px;">
+                <a href="#" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start</a>
+                <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios start page</p>
+            </li>
+            <li style="margin-bottom: 15px;">
+                <a href="#" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings</a>
+                <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios settings page</p>
+            </li>
+            <li style="margin-bottom: 15px;">
+                <a href="#" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls</a>
+                <p style="margin: 5px 0 0 0; color: #b3b3b3;">List of Helios internal URLs</p>
+            </li>
+        </ul>
+    `;
+    tab.querySelector('.tab-nameaa').textContent = 'Helios URLs';
+
+    // Add click event listeners to the custom URL links
+    content.querySelectorAll('.custom-url-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = this.getAttribute('data-url');
+            document.getElementById('url-baraa').value = url;
+            updateTabContent(url, content, tab);
+        });
+    });
+}
+
