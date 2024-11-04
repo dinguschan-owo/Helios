@@ -244,12 +244,11 @@ body {
 }
 
 .uptop-baraa .add-tabaa {
-  font-size: 22px;
-  color: #ccc;
+  font-size: 23px;
+  color: #c5c5c5;
   cursor: pointer;
   margin-left: 5px;
   transition: color 0.3s;
-  transition: transform 0.3s ease;
   font-weight: 600;
   margin-top: 2px;
   z-index: 2147483644;
@@ -259,7 +258,6 @@ body {
 .uptop-baraa .add-tabaa:hover {
   color: #ffffff;
   z-index: 2147483644;
-  transform: scale(1.1);
   margin-top: 3px;
 }
 
