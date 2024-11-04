@@ -48,6 +48,7 @@ body {
   height: 38px;
   pointer-events: none;
   margin-top: 1px;
+  margin-left: 1px;
 }
 
 .dropdown-contentaa {
