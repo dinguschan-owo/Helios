@@ -35,14 +35,16 @@
         <button class="wrench-buttonaa" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
 
         <button class="settings-buttonaa"><i class="fas fa-cog"></i></button>
-        <button class="menu-buttonaa" onclick="toggleDropdownccc()">⋮</button>
-        <div id="myDropdownccc" class="dropdown-menuccc">
-            <a href="#">New Tab</a>
-            <a href="https://github.com/dinguschan-owo/Helios" target="_blank">
-    Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
-</a>
-<a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i></a>
-        </div>
+<button class="menu-buttonaa" onclick="toggleDropdownccc()">⋮</button>
+    <div id="myDropdownccc" class="dropdown-menuccc">
+        <a href="#">New Tab</a>
+        <a href="#" onclick="changeTabContent('helios://settings')">Settings</a>
+        <a href="#" onclick="changeTabContent('helios://urls')">Internal URLs</a>
+        <a href="https://github.com/dinguschan-owo/Helios" target="_blank">
+            Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        </a>
+        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i></a>
+    </div>
       
     </div> 
 </head>
@@ -82,6 +84,7 @@
         </div>
       
     </div>
+  
       <script src="script.js"></script>
 
 </body>
