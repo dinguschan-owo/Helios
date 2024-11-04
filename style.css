@@ -271,6 +271,12 @@ body {
   z-index: 2147483644;
 }
 
+@-moz-document url-prefix() {
+  .browser-baraa {
+    padding: 5px 15px;
+  }
+}
+
 .browser-baraa button {
   background-color: transparent;
   border: none;
