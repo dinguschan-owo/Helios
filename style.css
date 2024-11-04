@@ -266,7 +266,7 @@ body {
 .browser-baraa {
   display: flex;
   align-items: center;
-  padding: 5px 15px;
+  padding: 2.3px 15px;
   background-color: #3c4043;
   z-index: 2147483644;
 }
