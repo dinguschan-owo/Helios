@@ -398,7 +398,9 @@ async function fetchExternalContent(url, content, tabIndex) {
         console.error('Failed to fetch content from all proxies');
         return;
     }
-
+  
+    htmlText = htmlText.replace(/�/g, 'é');
+  
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
@@ -1142,4 +1144,3 @@ function showUrlsList(content, tab) {
         });
     });
 }
-
