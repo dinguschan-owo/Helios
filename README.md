@@ -8,6 +8,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 ## ***`Official Links`***
 
+- https://helios-browser.vercel.app/
 - https://helios-blue.vercel.app/
 - https://helios-browser.w3spaces.com/
 
