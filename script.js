@@ -1179,3 +1179,30 @@ function hideSpinner(tabElement) {
         spinner.remove();
     }
 }
+function downloadPage() {
+    // Try fetching locally
+    fetch('/Offline-File/Helios-Offline.html')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch from local server');
+            }
+            return response.text();
+        })
+        .then(data => downloadFile(data))
+        .catch(error => console.error('Error with local file:', error));
+
+    function downloadFile(data) {
+        const blob = new Blob([data], { type: 'text/html' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Helios-Offline.html';
+        document.body.appendChild(a);
+
+        a.click();
+
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    }
+}
