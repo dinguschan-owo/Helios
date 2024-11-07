@@ -261,6 +261,7 @@ function updateActiveTab(tab, content, index) {
 }
 
 function updateTabContent(url, content, tab) {
+      showSpinner(tab);
     localStorage.setItem(`tab_${currentTabIndex}`, url);
     sessionStorage.setItem(`tab_${currentTabIndex}`, url);
   
@@ -355,8 +356,19 @@ function updateTabContent(url, content, tab) {
 
     updateLockIcon(url);
     updateSpecialDivs(url);
+  if (url === 'helios://start' || url === 'helios://settings' || url === 'helios://urls') {
+        // For internal pages, hide the spinner immediately after setting content
+        hideSpinner(tab);
+    } else {
+        // For external content, the spinner will be hidden in fetchExternalContent
+        fetchExternalContent(url, content, currentTabIndex);
+    }
 }
+
 async function fetchExternalContent(url, content, tabIndex) {
+    const tab = document.querySelectorAll('.tabaa')[tabIndex];
+    showSpinner(tab);
+
     const proxies = [
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
@@ -396,6 +408,8 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     if (!htmlText) {
         console.error('Failed to fetch content from all proxies');
+        hideSpinner(tab);
+        content.innerHTML = '<p>Error loading content</p>';
         return;
     }
   
@@ -404,67 +418,73 @@ async function fetchExternalContent(url, content, tabIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
-    const tab = document.querySelectorAll('.tabaa')[tabIndex];
     if (tab) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
 
     // Create a new function to handle resource fetching
-async function fetchResource(url) {
-  for (const proxy of proxies) {
-    try {
-      const response = await fetch(`${proxy}${url}`);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch resource ${url}`);
-      }
-      const contentType = response.headers.get('content-type');
-      if (contentType && contentType.includes('text/css')) {
-        const cssText = await response.text();
-        return modifyCss(cssText);
-      } else {
-        return await response.blob();
-      }
-    } catch (error) {
-      console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
+    async function fetchResource(url) {
+        for (const proxy of proxies) {
+            try {
+                const response = await fetch(`${proxy}${url}`);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch resource ${url}`);
+                }
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('text/css')) {
+                    const cssText = await response.text();
+                    return modifyCss(cssText);
+                } else {
+                    return await response.blob();
+                }
+            } catch (error) {
+                console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
+            }
+        }
+        console.error(`Failed to fetch resource ${url} with all proxies`);
+        return null;
     }
-  }
-  console.error(`Failed to fetch resource ${url} with all proxies`);
-  return null;
-}
 
-    // Modify images, scripts, and stylesheets to use proxied URLs
-    const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
-    for (const resource of resources) {
-        const originalSrc = resource.src || resource.href;
-        if (originalSrc) {
-            const blob = await fetchResource(originalSrc);
-            if (blob) {
-                const blobUrl = URL.createObjectURL(blob);
-                if (resource.tagName === 'IMG') {
-                    resource.src = blobUrl;
-                } else if (resource.tagName === 'SCRIPT') {
-                    resource.src = blobUrl;
-                } else if (resource.tagName === 'LINK') {
-                    resource.href = blobUrl;
+    try {
+        // Modify images, scripts, and stylesheets to use proxied URLs
+        const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
+        for (const resource of resources) {
+            const originalSrc = resource.src || resource.href;
+            if (originalSrc) {
+                const blob = await fetchResource(originalSrc);
+                if (blob) {
+                    const blobUrl = URL.createObjectURL(blob);
+                    if (resource.tagName === 'IMG') {
+                        resource.src = blobUrl;
+                    } else if (resource.tagName === 'SCRIPT') {
+                        resource.src = blobUrl;
+                    } else if (resource.tagName === 'LINK') {
+                        resource.href = blobUrl;
+                    }
                 }
             }
         }
+
+        content.innerHTML = doc.documentElement.outerHTML;
+
+        // Rewrite relative URLs to absolute URLs
+        const baseUrl = new URL(url);
+        content.querySelectorAll('a[href]').forEach(a => {
+            try {
+                a.href = new URL(a.getAttribute('href'), baseUrl).href;
+            } catch (e) {
+                console.error('Error rewriting URL:', e);
+            }
+        });
+
+        tabs[tabIndex].content = content.innerHTML;
+        tabs[tabIndex].url = url;
+    } catch (error) {
+        console.error('Error fetching content:', error);
+        content.innerHTML = '<p>Error loading content</p>';
+    } finally {
+        hideSpinner(tab);
     }
-
-    content.innerHTML = doc.documentElement.outerHTML;
-
-    // Rewrite relative URLs to absolute URLs
-    const baseUrl = new URL(url);
-    content.querySelectorAll('a[href]').forEach(a => {
-        try {
-            a.href = new URL(a.getAttribute('href'), baseUrl).href;
-        } catch (e) {
-            console.error('Error rewriting URL:', e);
-        }
-    });
-
-    tabs[tabIndex].content = content.innerHTML;
-    tabs[tabIndex].url = url;
 }
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
@@ -1143,4 +1163,19 @@ function showUrlsList(content, tab) {
             updateTabContent(url, content, tab);
         });
     });
+}
+function showSpinner(tabElement) {
+    let tabName = tabElement.querySelector('.tab-nameaa');
+    if (!tabName.querySelector('.spinner')) {
+        let spinner = document.createElement('div');
+        spinner.className = 'spinner';
+        tabName.insertBefore(spinner, tabName.firstChild);
+    }
+}
+
+function hideSpinner(tabElement) {
+    let spinner = tabElement.querySelector('.spinner');
+    if (spinner) {
+        spinner.remove();
+    }
 }
