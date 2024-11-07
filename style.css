@@ -197,7 +197,7 @@ body {
 }
 
 .tabaa:has(.spinner) .tab-nameaa {
-    margin-left: 25px;
+    margin-left: 24px;
 }
 
 .uptop-baraa .tabaa .close-btnaa {
@@ -690,8 +690,8 @@ body {
     left: 9px;
     top: 10px;
     transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     border: 3px solid #66ffb3;
     border-radius: 50%;
     border-top-color: transparent;
