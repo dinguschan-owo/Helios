@@ -1,6 +1,6 @@
 ## ***`Instructions`***
 
-visit one of the offical links below, or click the "Download Helios Offline" option in the menu dropdown. you can also go through the file tree in the repository and download the "Helios-Offline.html" file to get the same result. this file can not be blocked unless your admin physically deletes the file off of your device, which was the main point of Helios and i STRONGLY recomend doing this.
+visit one of the offical links below, or click the "Download Helios Offline" option in the menu dropdown. you can also go through the file tree in the repository and download the "Helios-Offline.html" file to get the same result. this file can not be blocked unless your admin physically deletes the file off of your device, which was the main point of Helios and i STRONGLY recomend doing this. you can also host this on any static or non static hosting service like Netlify, Heroku, Vercel, or whatever happens to not be blocked by your admin, or alternitivly just copy and paste into Codepen, Replit, or any WYSIWYG HTML editor on the internet for extremely quick access, without having it show up in your history!
 
 ## ***`𝙾𝚟𝚎𝚛𝚟𝚒𝚎𝚠`***
 
