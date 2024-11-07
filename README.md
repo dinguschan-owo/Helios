@@ -1,6 +1,6 @@
 ## ***`Instructions`***
 
-visit either of the offical links below, or click the green "Code" button and download the .ZIP. next, open up ur file manager and right click on the .ZIP before clicking "Extract All". from there just navagate to the new folder and open index.html to open the Helios Browser locally in your browser! this file can not be blocked unless your admin physically deletes the file off of your device, so i recomend doing this.
+visit one of the offical links below, or click the "Download Helios Offline" option in the menu dropdown. you can also go through the file tree in the repository and download the "Helios-Offline.html" file to get the same result. this file can not be blocked unless your admin physically deletes the file off of your device, which was the main point of Helios and i STRONGLY recomend doing this.
 
 ## ***`𝙾𝚟𝚎𝚛𝚟𝚒𝚎𝚠`***
 
