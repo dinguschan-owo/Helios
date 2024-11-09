@@ -51,8 +51,9 @@ sorry Apple users.
 
 ## ***`How To Use`***
 
-1. clone this repo, host on any site hoster (Netlify/Codepen/Render/CodeSandbox/Vercel/Heroku) and deploy the project.
-2. deploy and use
+1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project.
+2. deploy
+3. use freely!
 
 alternativly: 
 
@@ -60,6 +61,13 @@ alternativly:
 3. open the file in your browser (broser in a browser haha).
 4. go crazy!
 
+alternativly alternativly: *Note: This method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML
+
+1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
+2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
+3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`
+4. enjoy uncesored local browsing!
+   
 ## ***`𝚄𝚙𝚍𝚊𝚝𝚎 𝚂𝚌𝚑𝚎𝚍𝚞𝚕𝚎`***
 
 fuck you there is no update schedule ill push updates whenever i fucking feel like it. i do promise to constantly update though, because i love you guys (litrally nobody) :33
