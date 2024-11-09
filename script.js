@@ -383,11 +383,13 @@ async function fetchExternalContent(url, content, tabIndex) {
     const tab = document.querySelectorAll('.tabaa')[tabIndex];
     showSpinner(tab);
 
+    console.log(`Fetching content for URL: ${url}`);
+
     const proxies = [
-        `https://api.codetabs.com/v1/proxy?quest=${url}`,
-        `https://api.codetabs.com/v1/tmp/?quest=${url}`,
-        `https://corsproxy.io/?${url}`,
-        `https://api.allorigins.win/raw?url=${url}`
+        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+        `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`,
+        `https://corsproxy.io/?${encodeURIComponent(url)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
     ];
 
     const timeout = 10000;
@@ -395,13 +397,23 @@ async function fetchExternalContent(url, content, tabIndex) {
     async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), timeout);
+            const id = setTimeout(() => {
+                controller.abort();
+                reject(new Error('Timeout'));
+            }, timeout);
 
-            fetch(proxy, { signal: controller.signal })
+            console.log(`Attempting to fetch with proxy: ${proxy}`);
+
+            fetch(proxy, { 
+                signal: controller.signal,
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                }
+            })
                 .then(response => {
                     clearTimeout(id);
                     if (!response.ok) {
-                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
+                        throw new Error(`HTTP error! status: ${response.status}`);
                     }
                     return response.text();
                 })
@@ -411,21 +423,37 @@ async function fetchExternalContent(url, content, tabIndex) {
     }
 
     let htmlText;
+    let errors = [];
+
     for (const proxy of proxies) {
         try {
             htmlText = await fetchWithProxy(proxy);
+            console.log(`Fetch successful using proxy: ${proxy}`);
             break;
         } catch (error) {
-            console.error(`Error with proxy ${proxy}: ${error}`);
+            console.error(`Error with proxy ${proxy}: ${error.message}`);
+            errors.push(`${proxy}: ${error.message}`);
         }
     }
 
     if (!htmlText) {
         console.error('Failed to fetch content from all proxies');
         hideSpinner(tab);
-        content.innerHTML = '<p>Error loading content</p>';
+        content.innerHTML = `
+            <div style="color: #ff6161; padding: 20px; text-align: center;">
+                <h2>Error loading content</h2>
+                <p>Unable to fetch the requested content. Please try again later.</p>
+                <p>sorry :(</p>
+                <details>
+                    <summary>Error details</summary>
+                    <pre>${errors.join('\n')}</pre>
+                </details>
+            </div>
+        `;
         return;
     }
+
+    console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -433,6 +461,8 @@ async function fetchExternalContent(url, content, tabIndex) {
     if (tab) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
+
+    console.log(`Parsed document title: ${title || 'Untitled'}`);
 
     const shadowContainer = document.createElement('div');
     shadowContainer.style.position = 'relative';
@@ -446,15 +476,21 @@ async function fetchExternalContent(url, content, tabIndex) {
     // Remove the default style that forces a white background
     shadowRoot.innerHTML = doc.documentElement.outerHTML;
 
+    console.log('Shadow DOM created and populated with fetched content');
+
     // Rewrite relative URLs to absolute URLs
     const baseUrl = new URL(url);
+    let rewrittenUrls = 0;
     shadowRoot.querySelectorAll('a[href]').forEach(a => {
         try {
             a.href = new URL(a.getAttribute('href'), baseUrl).href;
+            rewrittenUrls++;
         } catch (e) {
             console.error('Error rewriting URL:', e);
         }
     });
+
+    console.log(`Rewrote ${rewrittenUrls} relative URLs to absolute URLs`);
 
     content.innerHTML = '';
     content.appendChild(shadowContainer);
@@ -462,8 +498,10 @@ async function fetchExternalContent(url, content, tabIndex) {
     tabs[tabIndex].content = content.innerHTML;
     tabs[tabIndex].url = url;
 
-    hideSpinner(tab);
+    console.log('Content injected into the page');
 
+    hideSpinner(tab);
+    console.log('Fetch and render process completed');
 }
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
