@@ -688,7 +688,7 @@ body {
 .spinner {
     position: absolute;
     left: 9px;
-    top: 10px;
+    top: 11px;
     transform: translateY(-50%);
     width: 11px;
     height: 11px;
