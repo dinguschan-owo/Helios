@@ -12,20 +12,6 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 - https://helios-blue.vercel.app/
 - https://helios-browser.w3spaces.com/
 
-## ***`Features`***
-
-- open up to 23 tabs before it starts breaking (thats a lot!)
-- search bar for searching
-- basic navigation buttons (back, forwards, reload, home)
-- settings page
-- website caching
-- about:blank and blob: cloaking
-- clear all tabs and reset browser button (why would you want this you freak)
-
-## ***`License`***
-
-do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :(
-
 ## ***`How To Use`***
 
 1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project. if you plan to deploy with Vercel, you do not have to clone this repo, and the button for quick deploy is right below these instructions
@@ -49,6 +35,20 @@ alternativly alternativly: *Note: This method will create a temporary Helios ins
 Vercel:
  
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdinguschan-owo%2FHelios%2Ftree%2Fmain%2F)
+
+## ***`Features`***
+
+- open up to 23 tabs before it starts breaking (thats a lot!)
+- search bar for searching
+- basic navigation buttons (back, forwards, reload, home)
+- settings page
+- website caching
+- about:blank and blob: cloaking
+- clear all tabs and reset browser button (why would you want this you freak)
+
+## ***`License`***
+
+do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :(
 
 ## ***`Compatibility`***
 
