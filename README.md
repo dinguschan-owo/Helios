@@ -24,7 +24,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 ## ***`License`***
 
-do whatever the hell you want with this code, just please PLEASE credit me. i worked hard on this :(
+do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :(
 
 ## ***`Deploy This Project`***
 Vercel:
@@ -33,7 +33,7 @@ Vercel:
 
 ## ***`Compatibility`***
 
-Works in the latest version of:
+Helios works in the latest versions of:
 
 - Chrome
 - Firefox
@@ -43,17 +43,22 @@ Works in the latest version of:
 - Brave
 - Vivaldi
 
-Does not work in:
+but does not work in:
 
 -Safari
 
-Sorry Apple users :(
+sorry Apple users.
 
 ## ***`How To Use`***
 
-1. clone this repo, host on any site hoster (static or not), or just download the files. you know the drill.
-2. open `index.html` in your browser (broser in a browser haha).
-3. go crazy!
+1. clone this repo, host on any site hoster (Netlify/Codepen/Render/CodeSandbox/Vercel/Heroku) and deploy the project.
+2. deploy and use
+
+alternativly: 
+
+1. download the offline file either from this repo or from the dropdown menu in Helios (`Helios-Offline.html`)
+3. open the file in your browser (broser in a browser haha).
+4. go crazy!
 
 ## ***`𝚄𝚙𝚍𝚊𝚝𝚎 𝚂𝚌𝚑𝚎𝚍𝚞𝚕𝚎`***
 
