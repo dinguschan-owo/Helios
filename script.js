@@ -1,3 +1,17 @@
+
+// Prevent administrators from closing the tab
+function preventUnwantedTabClosing(message = 'This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.') {
+    window.addEventListener('beforeunload', function (e) {
+        e.preventDefault();  
+        e.returnValue = message; 
+        return message; 
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    preventUnwantedTabClosing('Custom message: This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.');
+});
+
 document.addEventListener('DOMContentLoaded', function() {
   const contentFetchingProtocolExpectedOutput = "𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!";
   const contentFetchingProtocolElements = document.querySelectorAll('.Xt7Lm9Kp3R8f, #h2Dv8e46q');
@@ -412,9 +426,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         content.innerHTML = '<p>Error loading content</p>';
         return;
     }
-  
-    htmlText = htmlText.replace(/�/g, 'é');
-  
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
@@ -422,69 +434,36 @@ async function fetchExternalContent(url, content, tabIndex) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
 
-    // Create a new function to handle resource fetching
-    async function fetchResource(url) {
-        for (const proxy of proxies) {
-            try {
-                const response = await fetch(`${proxy}${url}`);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('text/css')) {
-                    const cssText = await response.text();
-                    return modifyCss(cssText);
-                } else {
-                    return await response.blob();
-                }
-            } catch (error) {
-                console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
-            }
+    const shadowContainer = document.createElement('div');
+    shadowContainer.style.position = 'relative';
+    shadowContainer.style.width = '100%';
+    shadowContainer.style.height = '100%';
+    shadowContainer.style.overflow = 'auto';
+    shadowContainer.style.border = 'none';
+
+    const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
+
+    // Remove the default style that forces a white background
+    shadowRoot.innerHTML = doc.documentElement.outerHTML;
+
+    // Rewrite relative URLs to absolute URLs
+    const baseUrl = new URL(url);
+    shadowRoot.querySelectorAll('a[href]').forEach(a => {
+        try {
+            a.href = new URL(a.getAttribute('href'), baseUrl).href;
+        } catch (e) {
+            console.error('Error rewriting URL:', e);
         }
-        console.error(`Failed to fetch resource ${url} with all proxies`);
-        return null;
-    }
+    });
 
-    try {
-        // Modify images, scripts, and stylesheets to use proxied URLs
-        const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
-        for (const resource of resources) {
-            const originalSrc = resource.src || resource.href;
-            if (originalSrc) {
-                const blob = await fetchResource(originalSrc);
-                if (blob) {
-                    const blobUrl = URL.createObjectURL(blob);
-                    if (resource.tagName === 'IMG') {
-                        resource.src = blobUrl;
-                    } else if (resource.tagName === 'SCRIPT') {
-                        resource.src = blobUrl;
-                    } else if (resource.tagName === 'LINK') {
-                        resource.href = blobUrl;
-                    }
-                }
-            }
-        }
+    content.innerHTML = '';
+    content.appendChild(shadowContainer);
 
-        content.innerHTML = doc.documentElement.outerHTML;
+    tabs[tabIndex].content = content.innerHTML;
+    tabs[tabIndex].url = url;
 
-        // Rewrite relative URLs to absolute URLs
-        const baseUrl = new URL(url);
-        content.querySelectorAll('a[href]').forEach(a => {
-            try {
-                a.href = new URL(a.getAttribute('href'), baseUrl).href;
-            } catch (e) {
-                console.error('Error rewriting URL:', e);
-            }
-        });
+    hideSpinner(tab);
 
-        tabs[tabIndex].content = content.innerHTML;
-        tabs[tabIndex].url = url;
-    } catch (error) {
-        console.error('Error fetching content:', error);
-        content.innerHTML = '<p>Error loading content</p>';
-    } finally {
-        hideSpinner(tab);
-    }
 }
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
