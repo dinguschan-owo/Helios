@@ -24,12 +24,14 @@ alternativly:
 3. open the file in your browser (broser in a browser haha).
 4. go crazy!
 
-alternativly alternativly: *Note: This method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML
+alternativly alternativly:
 
 1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
 2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
 3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`
 4. enjoy uncesored local browsing!
+
+***Note: This last method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML**
 
 ## ***`Deploy This Project`***
 Vercel:
