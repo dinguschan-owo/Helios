@@ -26,6 +26,25 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :(
 
+## ***`How To Use`***
+
+1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project. if you plan to deploy with Vercel, you do not have to clone this repo, and the button for quick deploy is right below these instructions
+2. deploy
+3. use freely!
+
+alternativly: 
+
+1. download the offline file either from this repo or from the dropdown menu in Helios (`Helios-Offline.html`)
+3. open the file in your browser (broser in a browser haha).
+4. go crazy!
+
+alternativly alternativly: *Note: This method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML
+
+1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
+2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
+3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`
+4. enjoy uncesored local browsing!
+
 ## ***`Deploy This Project`***
 Vercel:
  
@@ -48,25 +67,6 @@ but does not work in:
 -Safari
 
 sorry Apple users.
-
-## ***`How To Use`***
-
-1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project.
-2. deploy
-3. use freely!
-
-alternativly: 
-
-1. download the offline file either from this repo or from the dropdown menu in Helios (`Helios-Offline.html`)
-3. open the file in your browser (broser in a browser haha).
-4. go crazy!
-
-alternativly alternativly: *Note: This method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML
-
-1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
-2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
-3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`
-4. enjoy uncesored local browsing!
    
 ## ***`𝚄𝚙𝚍𝚊𝚝𝚎 𝚂𝚌𝚑𝚎𝚍𝚞𝚕𝚎`***
 
