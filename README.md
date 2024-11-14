@@ -36,7 +36,9 @@ alternativly alternativly alternativly:
 1. click on the green code button in this repo
 2. click on the codespaces tab
 3. create a new codespace by clicking the "Create codespace on main" button
-4. navagate to the terminal near the bottom and run `python3 -m http.server 8080` 
+4. navagate to the terminal near the bottom and run <div style="width: 100%; overflow-x: auto;">
+    <pre><code>python3 -m http.server 8080</code></pre>
+</div>
 5. click the "Make Public" option in the popup that shows up, or go to the Ports tab, right click on 8080, hover on "Port Visiblity" and click "Public"
 6. click on the Forwarded Address in the Ports tab. it should look something like `https://<your-repo-name>-<random-id>.<your-username>.github.dev`
 7. boom! use your temorary link for its full 30 minute lifetime!
