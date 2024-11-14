@@ -1223,3 +1223,24 @@ function downloadPage() {
         document.body.removeChild(a);
     }
 }
+
+    function generateUserID() {
+      const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+      const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      const numbers = '0123456789';
+      let userId = 'Session ID: ';
+      
+      for (let i = 0; i < 14; i++) {
+        if (i % 3 === 0) {
+          userId += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+        } else if (i % 3 === 1) {
+          userId += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+        } else {
+          userId += numbers.charAt(Math.floor(Math.random() * numbers.length));
+        }
+      }
+
+      document.getElementById('user-idff').textContent = userId;
+    }
+
+    window.onload = generateUserID;
