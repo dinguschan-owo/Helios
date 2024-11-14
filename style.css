@@ -666,7 +666,7 @@ body {
 
         .dropdown-menuccc a {
             color: #e8eaed;
-            padding: 12px 17px;
+            padding: 13px 17px;
             text-decoration: none;
             display: block;
         }
@@ -694,6 +694,20 @@ body {
     height: 11px;
     border: 3px solid #66ffb3;
     border-radius: 50%;
-    border-top-color: transparent;
+    border-top-color: transparent; 
     animation: spin 1s linear infinite;
 }
+.user-idff {
+      font-size: 16px;
+      color: #e8eaed;
+      margin-top: 0px;
+      padding: 13px;
+      padding-left: 18px;
+      padding-right: 18px;
+      display: inline-block;
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      border-top-right-radius: 0px;
+      background-color: #484d51;
+    }
