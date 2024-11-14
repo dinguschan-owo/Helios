@@ -33,6 +33,17 @@ alternativly alternativly:
 
 ***Note: This last method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML**
 
+alternativly alternativly alternativly:
+
+1. click on the green code button in this repo
+2. click on the codespaces tab
+3. create a new codespace by clicking the "Create codespace on main" button
+4. navagate to the terminal near the bottom and run ```python3 -m http.server 8080``` 
+5. click the "Make Public" option in the popup that shows up, or go to the Ports tab, right click on 8080, hover on "Port Visiblity" and click "Public"
+6. click on the Forwarded Address in the Ports tab. it should look something like `https://<your-repo-name>-<random-id>.<your-username>.github.dev`
+
+***Note: To extend the life of your codespace link visit your profile settings, go to the Codespaces tab, and change the "Default idle timeout" time from 30 minutes to 240 minutes, which is the maximum time.
+
 ## ***`Deploy This Project`***
 Vercel:
  
