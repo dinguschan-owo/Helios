@@ -1071,7 +1071,7 @@ const squareButton = document.createElement('div');
 squareButton.className = 'square-buttonaa';
 squareButton.id = 'square-buttonaa';
 squareButton.textContent = '×';
-squareButton.title = 'Reset Browser';
+squareButton.title = 'Reset Tabs';
 
 // Insert the square button before the first tab
 const topBar = document.querySelector('.uptop-baraa');
