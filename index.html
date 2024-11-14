@@ -16,26 +16,26 @@
             <span class="tab-nameaa">New Tab</span>
             <i class="fas fa-times close-btnaa"></i>
         </div>
-        <div class="add-tabaa" id="add-tabaa">
+        <div class="add-tabaa" title="Add tab" id="add-tabaa">
             <i class="fa-solid fa-circle-plus"></i>
         </div>
     </div>
     <div class="browser-baraa">
-        <button class="backward-buttonaa"><i class="fas fa-arrow-left"></i></button>
-        <button class="forward-buttonaa"><i class="fas fa-arrow-right"></i></button>
-        <button class="reload-buttonaa"><i class="fas fa-redo"></i></button>
-        <button class="home-buttonaa"><i class="fas fa-home"></i></button>
+        <button class="backward-buttonaa" title="Click to go back"><i class="fas fa-arrow-left"></i></button>
+        <button class="forward-buttonaa" title="Click to go forward"><i class="fas fa-arrow-right"></i></button>
+        <button class="reload-buttonaa" title="Reload this page"><i class="fas fa-redo"></i></button>
+        <button class="home-buttonaa" title="Shortcut to helios://start"><i class="fas fa-home"></i></button>
         <div class="address-baraa">
             <i class="fas fa-lock lock-iconaa"></i>
             <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">            <div class="official-caa"><i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
         </div>
-          <button class="fullscreen-button" onclick="toggleFullscreen()">
+          <button class="fullscreen-button" title="Enter fullscreen" onclick="toggleFullscreen()">
         <i class="fas fa-expand"></i>
     </button>
-        <button class="wrench-buttonaa" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
+        <button class="wrench-buttonaa" title="Show current page's source code" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
 
-        <button class="settings-buttonaa"><i class="fas fa-cog"></i></button>
-<button class="menu-buttonaa" onclick="toggleDropdownccc()">⋮</button>
+        <button class="settings-buttonaa" title="Shortcut to helios://settings"><i class="fas fa-cog"></i></button>
+<button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
     <div id="myDropdownccc" class="dropdown-menuccc">
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
