@@ -1,95 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helios Browser</title>
-          <link rel="stylesheet" type="text/css" href="style.css">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<body>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
     <div class="uptop-baraa">
-        <div class="tabaa activeaa">
-            <span class="tab-nameaa">New Tab</span>
-            <i class="fas fa-times close-btnaa"></i>
-        </div>
-        <div class="add-tabaa" title="Add tab" id="add-tabaa">
-            <i class="fa-solid fa-circle-plus"></i>
-        </div>
+      <div class="tabaa activeaa">
+        <span class="tab-nameaa">New Tab</span>
+        <i class="fas fa-times close-btnaa"></i>
+      </div>
+      <div class="add-tabaa" title="Add tab" id="add-tabaa">
+        <i class="fa-solid fa-circle-plus"></i>
+      </div>
     </div>
     <div class="browser-baraa">
-        <button class="backward-buttonaa" title="Click to go back"><i class="fas fa-arrow-left"></i></button>
-        <button class="forward-buttonaa" title="Click to go forward"><i class="fas fa-arrow-right"></i></button>
-        <button class="reload-buttonaa" title="Reload this page"><i class="fas fa-redo"></i></button>
-        <button class="home-buttonaa" title="Shortcut to helios://start"><i class="fas fa-home"></i></button>
-        <div class="address-baraa">
-            <i class="fas fa-lock lock-iconaa"></i>
-            <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">            <div class="official-caa"><i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
+      <button class="backward-buttonaa" title="Click to go back">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="forward-buttonaa" title="Click to go forward">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button class="reload-buttonaa" title="Reload this page">
+        <i class="fas fa-redo"></i>
+      </button>
+      <button class="home-buttonaa" title="Shortcut to helios://start">
+        <i class="fas fa-home"></i>
+      </button>
+      <div class="address-baraa">
+        <i class="fas fa-lock lock-iconaa"></i>
+        <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">
+        <div class="official-caa">
+          <i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i>
         </div>
-          <button class="fullscreen-button" title="Enter fullscreen" onclick="toggleFullscreen()">
+      </div>
+      <button class="fullscreen-button" title="Enter fullscreen" onclick="toggleFullscreen()">
         <i class="fas fa-expand"></i>
-    </button>
-        <button class="wrench-buttonaa" title="Show current page's source code" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
-
-        <button class="settings-buttonaa" title="Shortcut to helios://settings"><i class="fas fa-cog"></i></button>
-<button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
-    <div id="myDropdownccc" class="dropdown-menuccc">
+      </button>
+      <button class="wrench-buttonaa" title="Show current page's source code" id="toggleSourceCode">
+        <i class="fa-solid fa-code"></i>
+      </button>
+      <button class="settings-buttonaa" title="Shortcut to helios://settings">
+        <i class="fas fa-cog"></i>
+      </button>
+      <button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
+      <div id="myDropdownccc" class="dropdown-menuccc">
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Internal URLs</a>
-<a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp;<i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i></a>
-
-        <a href="https://github.com/dinguschan-owo/Helios" target="_blank">
-            Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp; <i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i></a>
-      <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
+        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        </a>
+        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        </a>
+        <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
+      </div>
     </div>
-      
-    </div> 
-</head>
-<body>
-  
-    <div class="contentaa tab-contentaa activeaa">
-      <div class="Xt7Lm9Kp3R8f">
-  <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
-  <p><i class="fa-brands fa-github"></i></p>
-</div>
+    </head>
+    <body>
+      <div class="contentaa tab-contentaa activeaa">
+        <div class="Xt7Lm9Kp3R8f">
+          <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
+        </div>
+        <div class="top-right-boxaa">
+          <p>
+            <i class="fa-brands fa-github"></i>
+          </p>
+        </div>
         <h23>Helios</h23>
         <h21>𝚟𝟷.𝟺.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
-  <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
-    <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engineaa">
-  </div>
-  <div class="dropdown-contentaa" id="engineDropdownaa">
-    <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
-    <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
-    </a>
-    <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google')" data-engine="Google">
-      <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbsp;Search with Google
-    </a>
-    <a href="javascript:void(0);" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbsp;Search with Bing
-    </a>
-    <a href="javascript:void(0);" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
-    </a>
-  </div>
-</div>
-            <input type="text" placeholder="Search the web or type a URL">
-            <i class="fas fa-search search-iconaa"></i>
+            <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
+              <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engineaa">
+            </div>
+            <div class="dropdown-contentaa" id="engineDropdownaa">
+              <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
+              <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+                <img src="https://4get.ca/favicon.ico" alt="4get"> - <s>Search with 4get</s>- </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google')" data-engine="Google">
+                <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbsp;Search with Google </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+                <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbsp;Search with Bing </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+                <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> - <s>Search with DuckDuckGo</s>- </a>
+            </div>
+          </div>
+          <input type="text" placeholder="Search the web or type a URL">
+          <i class="fas fa-search search-iconaa"></i>
         </div>
-      
-    </div>
-  
+      </div>
       <script src="script.js"></script>
-
-</body>
-
+    </body>
 </html>
