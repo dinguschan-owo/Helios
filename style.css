@@ -192,12 +192,12 @@ body {
   margin-top: 1px;
   z-index: 2147483644;
   display: flex;
-    align-items: center;
-    transition: margin-left 0.3s ease;
+  align-items: center;
+  transition: margin-left 0.3s ease;
 }
 
 .tabaa:has(.spinner) .tab-nameaa {
-    margin-left: 22px;
+  margin-left: 22px;
 }
 
 .uptop-baraa .tabaa .close-btnaa {
@@ -652,62 +652,65 @@ body {
   white-space: pre-wrap;
   overflow: auto;
 }
-        .dropdown-menuccc {
-            display: none;
-            position: absolute;
-            right: 10px;
-            top: 120px;
-            background-color: #3c4043;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 2147483646;
-            border-radius: 10px;
-        }
+.dropdown-menuccc {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 120px;
+  background-color: #3c4043;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2147483646;
+  border-radius: 10px;
+}
 
-        .dropdown-menuccc a {
-            color: #e8eaed;
-            padding: 13px 17px;
-            text-decoration: none;
-            display: block;
-        }
+.dropdown-menuccc a {
+  color: #e8eaed;
+  padding: 13px 17px;
+  text-decoration: none;
+  display: block;
+}
 
-        .dropdown-menuccc a:hover {
-            background-color: #4a4e51;
-                      border-radius: 10px;
+.dropdown-menuccc a:hover {
+  background-color: #4a4e51;
+  border-radius: 10px;
+}
 
-        }
-
-        .showccc {
-            display: block;
-        }
+.showccc {
+  display: block;
+}
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner {
-    position: absolute;
-    left: 9px;
-    top: 11px;
-    transform: translateY(-50%);
-    width: 11px;
-    height: 11px;
-    border: 3px solid #66ffb3;
-    border-radius: 50%;
-    border-top-color: transparent; 
-    animation: spin 1s linear infinite;
+  position: absolute;
+  left: 9px;
+  top: 11px;
+  transform: translateY(-50%);
+  width: 11px;
+  height: 11px;
+  border: 3px solid #66ffb3;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
 }
 .user-idff {
-      font-size: 16px;
-      color: #e8eaed;
-      margin-top: 0px;
-      padding: 13px;
-      padding-left: 18px;
-      padding-right: 18px;
-      display: inline-block;
-      border-top-left-radius: 0px;
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: 10px;
-      border-top-right-radius: 0px;
-      background-color: #484d51;
-    }
+  font-size: 16px;
+  color: #e8eaed;
+  margin-top: 0px;
+  padding: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
+  display: inline-block;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 0px;
+  background-color: #484d51;
+}
