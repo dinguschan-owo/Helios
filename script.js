@@ -218,7 +218,7 @@ const tabs = [{
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i>`
 }];
 
@@ -333,7 +333,7 @@ function updateTabContent(url, content, tab) {
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i>`;
 
 		tab.querySelector('.tab-nameaa').textContent = 'New Tab';
