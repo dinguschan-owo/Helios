@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    
+<!-- Google tag (gtag.js) --> <!-- This is just so I can see page views and anylitics for Helios. None of your data is collected. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8VVWXBH142"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-<head>
+  gtag('config', 'G-8VVWXBH142');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Helios Browser</title>
-          <style>body {
+    <style>body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -199,12 +209,12 @@
   margin-top: 1px;
   z-index: 2147483644;
   display: flex;
-    align-items: center;
-    transition: margin-left 0.3s ease;
+  align-items: center;
+  transition: margin-left 0.3s ease;
 }
 
 .tabaa:has(.spinner) .tab-nameaa {
-    margin-left: 24px;
+  margin-left: 22px;
 }
 
 .uptop-baraa .tabaa .close-btnaa {
@@ -592,15 +602,15 @@
   position: absolute;
   top: 119px;
   left: 10px;
-  width: 53px;
-  height: 49px;
+  width: 43px;
+  height: 42.4px;
   background-color: #3c4043;
   color: #fff;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 32px;
+  font-size: 28px;
   z-index: 2147483646;
   cursor: pointer;
   transition: color 0.3s, background-color 0.3s;
@@ -614,9 +624,9 @@
 .Xt7Lm9Kp3R8f {
   position: absolute;
   top: 119px;
-  left: 75px;
+  left: 66px;
   width: auto;
-  height: 49px;
+  height: 42px;
   background-color: #3c4043;
   color: #fff;
   border-radius: 10px;
@@ -659,218 +669,277 @@
   white-space: pre-wrap;
   overflow: auto;
 }
-        .dropdown-menuccc {
-            display: none;
-            position: absolute;
-            right: 10px;
-            top: 120px;
-            background-color: #3c4043;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 2147483646;
-            border-radius: 10px;
-        }
+.dropdown-menuccc {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: 120px;
+  background-color: #3c4043;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 2147483646;
+  border-radius: 10px;
+}
 
-        .dropdown-menuccc a {
-            color: #e8eaed;
-            padding: 12px 17px;
-            text-decoration: none;
-            display: block;
-        }
+.dropdown-menuccc a {
+  color: #e8eaed;
+  padding: 13px 17px;
+  text-decoration: none;
+  display: block;
+}
 
-        .dropdown-menuccc a:hover {
-            background-color: #4a4e51;
-                      border-radius: 10px;
+.dropdown-menuccc a:hover {
+  background-color: #4a4e51;
+  border-radius: 10px;
+}
 
-        }
-
-        .showccc {
-            display: block;
-        }
+.showccc {
+  display: block;
+}
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner {
-    position: absolute;
-    left: 9px;
-    top: 10px;
-    transform: translateY(-50%);
-    width: 11px;
-    height: 11px;
-    border: 3px solid #66ffb3;
-    border-radius: 50%;
-    border-top-color: transparent;
-    animation: spin 1s linear infinite;
+  position: absolute;
+  left: 9px;
+  top: 11px;
+  transform: translateY(-50%);
+  width: 11px;
+  height: 11px;
+  border: 3px solid #66ffb3;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+.user-idff {
+  font-size: 16px;
+  color: #e8eaed;
+  margin-top: 0px;
+  padding: 13px;
+  padding-left: 18px;
+  padding-right: 18px;
+  display: inline-block;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 0px;
+  background-color: #484d51;
 }</style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  </head>
+  <body>
     <div class="uptop-baraa">
-        <div class="tabaa activeaa">
-            <span class="tab-nameaa">New Tab</span>
-            <i class="fas fa-times close-btnaa"></i>
-        </div>
-        <div class="add-tabaa" id="add-tabaa">
-            <i class="fa-solid fa-circle-plus"></i>
-        </div>
+    <div class="tabaa activeaa">
+      <span class="tab-nameaa">New Tab</span>
+      <i class="fas fa-times close-btnaa"></i>
     </div>
+  <div class="add-tabaa" title="Add tab" id="add-tabaa">
+    <i class="fa-solid fa-circle-plus"></i>
+  </div>
+</div>
     <div class="browser-baraa">
-        <button class="backward-buttonaa"><i class="fas fa-arrow-left"></i></button>
-        <button class="forward-buttonaa"><i class="fas fa-arrow-right"></i></button>
-        <button class="reload-buttonaa"><i class="fas fa-redo"></i></button>
-        <button class="home-buttonaa"><i class="fas fa-home"></i></button>
-        <div class="address-baraa">
-            <i class="fas fa-lock lock-iconaa"></i>
-            <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">            <div class="official-caa"><i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i></div>
+      <button class="backward-buttonaa" title="Click to go back">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="forward-buttonaa" title="Click to go forward">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <button class="reload-buttonaa" title="Reload this page">
+        <i class="fas fa-redo"></i>
+      </button>
+      <button class="home-buttonaa" title="Shortcut to helios://start">
+        <i class="fas fa-home"></i>
+      </button>
+      <div class="address-baraa">
+        <i class="fas fa-lock lock-iconaa"></i>
+        <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">
+        <div class="official-caa">
+          <i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i>
         </div>
-          <button class="fullscreen-button" onclick="toggleFullscreen()">
+      </div>
+      <button class="fullscreen-button" title="Enter fullscreen" onclick="toggleFullscreen()">
         <i class="fas fa-expand"></i>
-    </button>
-        <button class="wrench-buttonaa" id="toggleSourceCode"><i class="fa-solid fa-code"></i></button>
-
-        <button class="settings-buttonaa"><i class="fas fa-cog"></i></button>
-<button class="menu-buttonaa" onclick="toggleDropdownccc()">⋮</button>
-    <div id="myDropdownccc" class="dropdown-menuccc">
+      </button>
+      <button class="wrench-buttonaa" title="Show current page's source code" id="toggleSourceCode">
+        <i class="fa-solid fa-code"></i>
+      </button>
+      <button class="settings-buttonaa" title="Shortcut to helios://settings">
+        <i class="fas fa-cog"></i>
+      </button>
+      <button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
+      <div id="myDropdownccc" class="dropdown-menuccc">
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Internal URLs</a>
-<a href="javascript:void(0);" onclick="downloadPage()">Download Helios Offline&nbsp;&nbsp;<i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i></a>
-
-        <a href="https://github.com/dinguschan-owo/Helios" target="_blank">
-            Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp; <i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i></a>
+        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        </a>
+        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        </a>
+        <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
+      </div>
     </div>
-      
-    </div> 
-</head>
-<body>
-  
-    <div class="contentaa tab-contentaa activeaa">
-      <div class="Xt7Lm9Kp3R8f">
-  <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
-  <p><i class="fa-brands fa-github"></i></p>
-</div>
+    </head>
+    <body>
+      <div class="contentaa tab-contentaa activeaa">
+        <div class="Xt7Lm9Kp3R8f">
+          <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
+        </div>
+        <div class="top-right-boxaa">
+          <p>
+            <i class="fa-brands fa-github"></i>
+          </p>
+        </div>
         <h23>Helios</h23>
         <h21>𝚟𝟷.𝟺.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
-  <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
-    <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engineaa">
-  </div>
-  <div class="dropdown-contentaa" id="engineDropdownaa">
-    <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
-      <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
-    </a>
-    <a href="#" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google')" data-engine="Google">
-      <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbsp;Search with Google
-    </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
-      <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbsp;Search with Bing
-    </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
-      <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
-    </a>
-  </div>
-</div>
-            <input type="text" placeholder="Search the web or type a URL">
-            <i class="fas fa-search search-iconaa"></i>
+            <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
+              <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engineaa">
+            </div>
+            <div class="dropdown-contentaa" id="engineDropdownaa">
+              <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
+              <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
+                <img src="https://4get.ca/favicon.ico" alt="4get"> - <s>Search with 4get</s>- </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google')" data-engine="Google">
+                <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbsp;Search with Google </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing')" data-engine="Bing">
+                <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbsp;Search with Bing </a>
+              <a href="javascript:void(0);" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo')" data-engine="DuckDuckGo">
+                <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> - <s>Search with DuckDuckGo</s>- </a>
+            </div>
+          </div>
+          <input type="text" placeholder="Search the web or enter a URL">
+          <i class="fas fa-search search-iconaa"></i>
         </div>
-      
-    </div>
-  
-      <script>document.addEventListener('DOMContentLoaded', function() {
-  const contentFetchingProtocolExpectedOutput = "𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!";
-  const contentFetchingProtocolElements = document.querySelectorAll('.Xt7Lm9Kp3R8f, #h2Dv8e46q');
+      </div>
+      <script>function switchTabWithoutDeactivating(tabIndex) {
+	// Activate the clicked tab and its content
+	const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
+	const activeTab = document.querySelectorAll('.tabaa')[tabIndex];
 
-  // Making sure fetching protocols are up to date
-  function contentFetchingProtocolValidation1(contentFetchingProtocolInput) {
-    return contentFetchingProtocolInput.textContent.trim() === contentFetchingProtocolExpectedOutput;
-  }
-  function contentFetchingProtocolValidation2(contentFetchingProtocolInput) {
-    const contentFetchingProtocolRegex = /^𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!$/;
-    return contentFetchingProtocolRegex.test(contentFetchingProtocolInput.textContent.trim());
-  }
-  function contentFetchingProtocolValidation3(contentFetchingProtocolInput) {
-    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
-    if (contentFetchingProtocolText.length !== contentFetchingProtocolExpectedOutput.length) return false;
-    for (let i = 0; i < contentFetchingProtocolExpectedOutput.length; i++) {
-      if (contentFetchingProtocolText[i] !== contentFetchingProtocolExpectedOutput[i]) return false;
-    }
-    return true;
-  }
-  function contentFetchingProtocolValidation4(contentFetchingProtocolInput) {
-    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
-    const contentFetchingProtocolInputCodePoints = Array.from(contentFetchingProtocolText).map(char => char.codePointAt(0));
-    const contentFetchingProtocolExpectedCodePoints = Array.from(contentFetchingProtocolExpectedOutput).map(char => char.codePointAt(0));
-    return contentFetchingProtocolInputCodePoints.length === contentFetchingProtocolExpectedCodePoints.length &&
-           contentFetchingProtocolInputCodePoints.every((codePoint, index) => codePoint === contentFetchingProtocolExpectedCodePoints[index]);
-  }
-  function contentFetchingProtocolValidation5(contentFetchingProtocolInput) {
-    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
-    return btoa(contentFetchingProtocolText) === btoa(contentFetchingProtocolExpectedOutput);
-  }
+	if (activeContent && activeTab) {
+		activeContent.classList.add('activeaa');
+		activeTab.classList.add('activeaa');
+	}
+}
 
-  // Levenshtein bot identifier
-  function contentFetchingProtocolValidation6(contentFetchingProtocolInput) {
-    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
-    function contentFetchingProtocolLevenshteinDistance(a, b) {
-      if (a.length === 0) return b.length;
-      if (b.length === 0) return a.length;
-      let matrix = [];
-      for (let i = 0; i <= b.length; i++) { matrix[i] = [i]; }
-      for (let j = 0; j <= a.length; j++) { matrix[0][j] = j; }
-      for (let i = 1; i <= b.length; i++) {
-        for (let j = 1; j <= a.length; j++) {
-          if (b.charAt(i-1) === a.charAt(j-1)) {
-            matrix[i][j] = matrix[i-1][j-1];
-          } else {
-            matrix[i][j] = Math.min(matrix[i-1][j-1] + 1, Math.min(matrix[i][j-1] + 1, matrix[i-1][j] + 1));
-          }
-        }
-      }
-      return matrix[b.length][a.length];
-    }
-    return contentFetchingProtocolLevenshteinDistance(contentFetchingProtocolText, contentFetchingProtocolExpectedOutput) === 0;
-  }
-  async function contentFetchingProtocolValidation7(contentFetchingProtocolInput) {
-    const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
-    async function contentFetchingProtocolSHA256(message) {
-      const msgBuffer = new TextEncoder().encode(message);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-    const contentFetchingProtocolTextHash = await contentFetchingProtocolSHA256(contentFetchingProtocolText);
-    const contentFetchingProtocolExpectedHash = await contentFetchingProtocolSHA256(contentFetchingProtocolExpectedOutput);
-    return contentFetchingProtocolTextHash === contentFetchingProtocolExpectedHash;
-  }
-  
-  // Error handler
-  async function contentFetchingProtocolValidateAll() {
-    let contentFetchingProtocolInvalidDetected = false;
-    for (const contentFetchingProtocolElement of contentFetchingProtocolElements) {
-      if (!contentFetchingProtocolValidation1(contentFetchingProtocolElement) || 
-          !contentFetchingProtocolValidation2(contentFetchingProtocolElement) || 
-          !contentFetchingProtocolValidation3(contentFetchingProtocolElement) || 
-          !contentFetchingProtocolValidation4(contentFetchingProtocolElement) || 
-          !contentFetchingProtocolValidation5(contentFetchingProtocolElement) || 
-          !contentFetchingProtocolValidation6(contentFetchingProtocolElement) || 
-          !(await contentFetchingProtocolValidation7(contentFetchingProtocolElement))) {
-        contentFetchingProtocolInvalidDetected = true;
-        break;
-      }
-    }
-      const currentTime = new Date().toISOString().replace('T', ' ').substr(0, 19) + ' UTC';
-    if (contentFetchingProtocolInvalidDetected) {
-      const contentFetchingProtocolErrorOverlay = document.createElement('div');
-      contentFetchingProtocolErrorOverlay.className = 'Q2wE4rT6y8U0';
-      contentFetchingProtocolErrorOverlay.textContent = `𝗘𝗿𝗿𝗼𝗿: Unhandled Exception in Processor Module 'dataProcessor'
+// Prevent administrators from closing the tab
+function preventUnwantedTabClosing(message = 'This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.') {
+	window.addEventListener('beforeunload', function(e) {
+		e.preventDefault();
+		e.returnValue = message;
+		return message;
+	});
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	preventUnwantedTabClosing('Custom message: This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+	const contentFetchingProtocolExpectedOutput = "𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!";
+	const contentFetchingProtocolElements = document.querySelectorAll('.Xt7Lm9Kp3R8f, #h2Dv8e46q');
+
+	// Making sure fetching protocols are up to date
+	function contentFetchingProtocolValidation1(contentFetchingProtocolInput) {
+		return contentFetchingProtocolInput.textContent.trim() === contentFetchingProtocolExpectedOutput;
+	}
+
+	function contentFetchingProtocolValidation2(contentFetchingProtocolInput) {
+		const contentFetchingProtocolRegex = /^𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!$/;
+		return contentFetchingProtocolRegex.test(contentFetchingProtocolInput.textContent.trim());
+	}
+
+	function contentFetchingProtocolValidation3(contentFetchingProtocolInput) {
+		const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+		if (contentFetchingProtocolText.length !== contentFetchingProtocolExpectedOutput.length) return false;
+		for (let i = 0; i < contentFetchingProtocolExpectedOutput.length; i++) {
+			if (contentFetchingProtocolText[i] !== contentFetchingProtocolExpectedOutput[i]) return false;
+		}
+		return true;
+	}
+
+	function contentFetchingProtocolValidation4(contentFetchingProtocolInput) {
+		const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+		const contentFetchingProtocolInputCodePoints = Array.from(contentFetchingProtocolText).map(char => char.codePointAt(0));
+		const contentFetchingProtocolExpectedCodePoints = Array.from(contentFetchingProtocolExpectedOutput).map(char => char.codePointAt(0));
+		return contentFetchingProtocolInputCodePoints.length === contentFetchingProtocolExpectedCodePoints.length &&
+			contentFetchingProtocolInputCodePoints.every((codePoint, index) => codePoint === contentFetchingProtocolExpectedCodePoints[index]);
+	}
+
+	function contentFetchingProtocolValidation5(contentFetchingProtocolInput) {
+		const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+		return btoa(contentFetchingProtocolText) === btoa(contentFetchingProtocolExpectedOutput);
+	}
+
+	// Levenshtein bot identifier
+	function contentFetchingProtocolValidation6(contentFetchingProtocolInput) {
+		const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+
+		function contentFetchingProtocolLevenshteinDistance(a, b) {
+			if (a.length === 0) return b.length;
+			if (b.length === 0) return a.length;
+			let matrix = [];
+			for (let i = 0; i <= b.length; i++) {
+				matrix[i] = [i];
+			}
+			for (let j = 0; j <= a.length; j++) {
+				matrix[0][j] = j;
+			}
+			for (let i = 1; i <= b.length; i++) {
+				for (let j = 1; j <= a.length; j++) {
+					if (b.charAt(i - 1) === a.charAt(j - 1)) {
+						matrix[i][j] = matrix[i - 1][j - 1];
+					} else {
+						matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, Math.min(matrix[i][j - 1] + 1, matrix[i - 1][j] + 1));
+					}
+				}
+			}
+			return matrix[b.length][a.length];
+		}
+		return contentFetchingProtocolLevenshteinDistance(contentFetchingProtocolText, contentFetchingProtocolExpectedOutput) === 0;
+	}
+	async function contentFetchingProtocolValidation7(contentFetchingProtocolInput) {
+		const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+		async function contentFetchingProtocolSHA256(message) {
+			const msgBuffer = new TextEncoder().encode(message);
+			const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+			const hashArray = Array.from(new Uint8Array(hashBuffer));
+			return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+		}
+		const contentFetchingProtocolTextHash = await contentFetchingProtocolSHA256(contentFetchingProtocolText);
+		const contentFetchingProtocolExpectedHash = await contentFetchingProtocolSHA256(contentFetchingProtocolExpectedOutput);
+		return contentFetchingProtocolTextHash === contentFetchingProtocolExpectedHash;
+	}
+
+	// Error handler
+	async function contentFetchingProtocolValidateAll() {
+		let contentFetchingProtocolInvalidDetected = false;
+		for (const contentFetchingProtocolElement of contentFetchingProtocolElements) {
+			if (!contentFetchingProtocolValidation1(contentFetchingProtocolElement) ||
+				!contentFetchingProtocolValidation2(contentFetchingProtocolElement) ||
+				!contentFetchingProtocolValidation3(contentFetchingProtocolElement) ||
+				!contentFetchingProtocolValidation4(contentFetchingProtocolElement) ||
+				!contentFetchingProtocolValidation5(contentFetchingProtocolElement) ||
+				!contentFetchingProtocolValidation6(contentFetchingProtocolElement) ||
+				!(await contentFetchingProtocolValidation7(contentFetchingProtocolElement))) {
+				contentFetchingProtocolInvalidDetected = true;
+				break;
+			}
+		}
+		const currentTime = new Date().toISOString().replace('T', ' ').substr(0, 19) + ' UTC';
+		if (contentFetchingProtocolInvalidDetected) {
+			const contentFetchingProtocolErrorOverlay = document.createElement('div');
+			contentFetchingProtocolErrorOverlay.className = 'Q2wE4rT6y8U0';
+			contentFetchingProtocolErrorOverlay.textContent = `𝗘𝗿𝗿𝗼𝗿: Unhandled Exception in Processor Module 'dataProcessor'
 
 𝗘𝗿𝗿𝗼𝗿 𝗖𝗼𝗱𝗲: 0xA17b2cf3DeU4sE5f6a93B47cJs
 
@@ -896,51 +965,54 @@
 • Clear browser cache and clear and reset website data storage.
 • If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.3.0).
 `;
-      document.body.appendChild(contentFetchingProtocolErrorOverlay);
-    }
-  }
+			document.body.appendChild(contentFetchingProtocolErrorOverlay);
+		}
+	}
 
-  contentFetchingProtocolValidateAll();
+	contentFetchingProtocolValidateAll();
 });
 
 // Function to initialize tabs
 function initializeTabs() {
-  // Create the second tab
-  const newTabIndex = tabs.length;
-  const newTab = document.createElement('div');
-  newTab.className = 'tabaa';
-  newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-  document.querySelector('.uptop-baraa').insertBefore(newTab, document.getElementById('add-tabaa'));
+	// Create the second tab
+	const newTabIndex = tabs.length;
+	const newTab = document.createElement('div');
+	newTab.className = 'tabaa';
+	newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
+	document.querySelector('.uptop-baraa').insertBefore(newTab, document.getElementById('add-tabaa'));
 
-  const newContent = document.createElement('div');
-  newContent.className = 'contentaa tab-contentaa';
-  newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
-  document.body.appendChild(newContent);
+	const newContent = document.createElement('div');
+	newContent.className = 'contentaa tab-contentaa';
+	newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
+	document.body.appendChild(newContent);
 
-  tabs.push({ url: 'helios://start', content: newContent.innerHTML });
+	tabs.push({
+		url: 'helios://start',
+		content: newContent.innerHTML
+	});
 
-  // Close the original tab
-  const originalTab = document.querySelector('.tabaa');
-  originalTab.remove();
-  document.querySelectorAll('.tab-contentaa')[0].remove();
-  tabs.shift();
+	// Close the original tab
+	const originalTab = document.querySelector('.tabaa');
+	originalTab.remove();
+	document.querySelectorAll('.tab-contentaa')[0].remove();
+	tabs.shift();
 
-  // Update active tab
-  updateActiveTab(newTab, newContent, 0);
-  addCloseButtonFunctionality(newTab);
-  addTabClickListener(newTab, newContent, 0);
+	// Update active tab
+	updateActiveTab(newTab, newContent, 0);
+	addCloseButtonFunctionality(newTab);
+	addTabClickListener(newTab, newContent, 0);
 
-  // Update currentTabIndex
-  currentTabIndex = 0;
+	// Update currentTabIndex
+	currentTabIndex = 0;
 }
 
 // Call initializeTabs when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initializeTabs);
-      
+
 let currentTabIndex = 0;
 const tabs = [{
-    url: 'helios://start',
-    content: `<div class="Xt7Lm9Kp3R8f">
+	url: 'helios://start',
+	content: `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
 </div><div class="top-right-boxaa">
   <p><i class="fa-brands fa-github"></i></p>
@@ -954,105 +1026,108 @@ const tabs = [{
   </div>
   <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
     <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
+    <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
-    <a href="#" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
+    <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
       <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbspSearch with Google
     </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
+    <a href="javascript:void(0);" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
     </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
+    <a href="javascript:void(0);" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
       <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'http://'];
 
-document.getElementById('add-tabaa').addEventListener('click', function () {
-    const newTabIndex = tabs.length;
-    const newTab = document.createElement('div');
-    newTab.className = 'tabaa';
-    newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-    document.querySelector('.uptop-baraa').insertBefore(newTab, this);
+document.getElementById('add-tabaa').addEventListener('click', function() {
+	const newTabIndex = tabs.length;
+	const newTab = document.createElement('div');
+	newTab.className = 'tabaa';
+	newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
+	document.querySelector('.uptop-baraa').insertBefore(newTab, this);
 
-    const newContent = document.createElement('div');
-    newContent.className = 'contentaa tab-contentaa';
-    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
-    document.body.appendChild(newContent);
+	const newContent = document.createElement('div');
+	newContent.className = 'contentaa tab-contentaa';
+	newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
+	document.body.appendChild(newContent);
 
-    tabs.push({ url: 'helios://start', content: newContent.innerHTML });
+	tabs.push({
+		url: 'helios://start',
+		content: newContent.innerHTML
+	});
 
-    updateActiveTab(newTab, newContent, newTabIndex);
-    addCloseButtonFunctionality(newTab);
-    addTabClickListener(newTab, newContent, newTabIndex);
+	updateActiveTab(newTab, newContent, newTabIndex);
+	addCloseButtonFunctionality(newTab);
+	addTabClickListener(newTab, newContent, newTabIndex);
 });
 
 document.querySelectorAll('.tabaa').forEach((tab, index) => {
-    addCloseButtonFunctionality(tab);
-    addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
+	addCloseButtonFunctionality(tab);
+	addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
 });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelector('.top-right-boxaa').addEventListener('click', function() {
-            window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
-        });
-    });
+document.addEventListener('DOMContentLoaded', function() {
+	document.querySelector('.top-right-boxaa').addEventListener('click', function() {
+		window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+	});
+});
 
 function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function () {
-        const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
-        tab.remove();
-        document.querySelectorAll('.tab-contentaa')[index].remove();
-        tabs.splice(index, 1);
-        if (index === currentTabIndex) {
-            const newActiveTab = document.querySelectorAll('.tabaa')[index] || document.querySelectorAll('.tabaa')[index - 1];
-            if (newActiveTab) {
-                newActiveTab.click();
-            }
-        }
-    });
+	tab.querySelector('.close-btnaa').addEventListener('click', function() {
+		const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+		tab.remove();
+		document.querySelectorAll('.tab-contentaa')[index].remove();
+		tabs.splice(index, 1);
+		if (index === currentTabIndex) {
+			const newActiveTab = document.querySelectorAll('.tabaa')[index] || document.querySelectorAll('.tabaa')[index - 1];
+			if (newActiveTab) {
+				newActiveTab.click();
+			}
+		}
+	});
 }
 
 function addTabClickListener(tab, content, index) {
-    tab.addEventListener('click', function () {
-        updateActiveTab(tab, content, index);
-    });
+	tab.addEventListener('click', function() {
+		updateActiveTab(tab, content, index);
+	});
 }
 
 function updateActiveTab(tab, content, index) {
-    document.querySelectorAll('.tab-contentaa').forEach(content => {
-        content.classList.remove('activeaa');
-    });
+	document.querySelectorAll('.tab-contentaa').forEach(content => {
+		content.classList.remove('activeaa');
+	});
 
-    document.querySelectorAll('.tabaa').forEach(tab => {
-        tab.classList.remove('activeaa');
-    });
+	document.querySelectorAll('.tabaa').forEach(tab => {
+		tab.classList.remove('activeaa');
+	});
 
-    tab.classList.add('activeaa');
-    content.classList.add('activeaa');
+	tab.classList.add('activeaa');
+	content.classList.add('activeaa');
 
-    currentTabIndex = index;
-    const url = tabs[index].url;
-    document.getElementById('url-baraa').value = url;
+	currentTabIndex = index;
+	const url = tabs[index].url;
+	document.getElementById('url-baraa').value = url;
 
-    updateTabContent(url, content, tab);
-    updateLockIcon(url);
-    updateSpecialDivs(url);
+	updateTabContent(url, content, tab);
+	updateLockIcon(url);
+	updateSpecialDivs(url);
 }
 
 function updateTabContent(url, content, tab) {
-      showSpinner(tab);
-    localStorage.setItem(`tab_${currentTabIndex}`, url);
-    sessionStorage.setItem(`tab_${currentTabIndex}`, url);
-  
-    if (url === 'helios://start') {
-        content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
+	showSpinner(tab);
+	localStorage.setItem(`tab_${currentTabIndex}`, url);
+	sessionStorage.setItem(`tab_${currentTabIndex}`, url);
+
+	if (url === 'helios://start') {
+		content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
 </div><div class="top-right-boxaa">
   <p><i class="fa-brands fa-github"></i></p>
@@ -1066,38 +1141,38 @@ function updateTabContent(url, content, tab) {
   </div>
   <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
     <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
-    <a href="#" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
+    <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
-    <a href="#" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
+    <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google', ${currentTabIndex})" data-engine="Google">
       <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google"> &nbspSearch with Google
     </a>
-    <a href="#" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
+    <a href="javascript:void(0);" onclick="selectEngine('https://www.bing.com/favicon.ico', 'Bing', ${currentTabIndex})" data-engine="Bing">
       <img src="https://www.bing.com/favicon.ico" alt="Bing"> &nbspSearch with Bing
     </a>
-    <a href="#" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
+    <a href="javascript:void(0);" onclick="selectEngine('https://duckduckgo.com/favicon.ico', 'DuckDuckGo', ${currentTabIndex})" data-engine="DuckDuckGo">
       <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> -<s>Search with DuckDuckGo</s>-
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or type a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i>`;
-        
-        tab.querySelector('.tab-nameaa').textContent = 'New Tab';
-        tabs[currentTabIndex].content = content.innerHTML;
-        tabs[currentTabIndex].url = url;
 
-        document.getElementById(`search-input-${currentTabIndex}`).addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                const enteredUrl = this.value;
-                if (enteredUrl) {
-                    updateTabContent(enteredUrl, content, tab);
-                }
-            }
-        });
+		tab.querySelector('.tab-nameaa').textContent = 'New Tab';
+		tabs[currentTabIndex].content = content.innerHTML;
+		tabs[currentTabIndex].url = url;
 
-    } else if (url === 'helios://settings') {
-        content.innerHTML = `
+		document.getElementById(`search-input-${currentTabIndex}`).addEventListener('keydown', function(event) {
+			if (event.key === 'Enter') {
+				const enteredUrl = this.value;
+				if (enteredUrl) {
+					updateTabContent(enteredUrl, content, tab);
+				}
+			}
+		});
+
+	} else if (url === 'helios://settings') {
+		content.innerHTML = `
         <h20>Helios Settings</h20><br>
         <div class="settings-gridaa">
             <div class="settings-blockaa">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history-${currentTabIndex}" class="clear-buttonaa">Clear History</button></div>
@@ -1114,725 +1189,737 @@ function updateTabContent(url, content, tab) {
         </div>
         <div id="clear-message-${currentTabIndex}" class="clear-messageaa"></div>
         `;
-        tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
-        tabs[currentTabIndex].content = content.innerHTML;
-        tabs[currentTabIndex].url = url;
+		tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
+		tabs[currentTabIndex].content = content.innerHTML;
+		tabs[currentTabIndex].url = url;
 
-        document.getElementById(`clear-history-${currentTabIndex}`).addEventListener('click', function() {
-            localStorage.removeItem(`tab_${currentTabIndex}`);
-            sessionStorage.removeItem(`tab_${currentTabIndex}`);
-            const messageDiv = document.getElementById(`clear-message-${currentTabIndex}`);
-            messageDiv.textContent = 'History has been cleared for this tab!';
-            messageDiv.style.display = 'block';
-            
-            setTimeout(() => {
-                messageDiv.style.display = 'none';
-            }, 3000);
-        });
- } else if (url === 'helios://urls') {
-        showUrlsList(content, tab);
-    } else {
-        fetchExternalContent(url, content, currentTabIndex);
-    }
+		document.getElementById(`clear-history-${currentTabIndex}`).addEventListener('click', function() {
+			localStorage.removeItem(`tab_${currentTabIndex}`);
+			sessionStorage.removeItem(`tab_${currentTabIndex}`);
+			const messageDiv = document.getElementById(`clear-message-${currentTabIndex}`);
+			messageDiv.textContent = 'History has been cleared for this tab!';
+			messageDiv.style.display = 'block';
 
-    document.getElementById('url-baraa').value = url;
-    
-    tabs[currentTabIndex].content = content.innerHTML;
-    tabs[currentTabIndex].url = url;
+			setTimeout(() => {
+				messageDiv.style.display = 'none';
+			}, 3000);
+		});
+	} else if (url === 'helios://urls') {
+		showUrlsList(content, tab);
+	} else {
+		fetchExternalContent(url, content, currentTabIndex);
+	}
 
-    updateLockIcon(url);
-    updateSpecialDivs(url);
-  if (url === 'helios://start' || url === 'helios://settings' || url === 'helios://urls') {
-        // For internal pages, hide the spinner immediately after setting content
-        hideSpinner(tab);
-    } else {
-        // For external content, the spinner will be hidden in fetchExternalContent
-        fetchExternalContent(url, content, currentTabIndex);
-    }
+	document.getElementById('url-baraa').value = url;
+
+	tabs[currentTabIndex].content = content.innerHTML;
+	tabs[currentTabIndex].url = url;
+
+	updateLockIcon(url);
+	updateSpecialDivs(url);
+	if (url === 'helios://start' || url === 'helios://settings' || url === 'helios://urls') {
+		// For internal pages, hide the spinner immediately after setting content
+		hideSpinner(tab);
+	} else {
+		// For external content, the spinner will be hidden in fetchExternalContent
+		fetchExternalContent(url, content, currentTabIndex);
+	}
 }
 
 async function fetchExternalContent(url, content, tabIndex) {
-    const tab = document.querySelectorAll('.tabaa')[tabIndex];
-    showSpinner(tab);
+	const tab = document.querySelectorAll('.tabaa')[tabIndex];
+	showSpinner(tab);
 
-    const proxies = [
-        `https://api.codetabs.com/v1/proxy?quest=${url}`,
-        `https://api.codetabs.com/v1/tmp/?quest=${url}`,
-        `https://corsproxy.io/?${url}`,
-        `https://api.allorigins.win/raw?url=${url}`
-    ];
+	console.log(`Fetching content for URL: ${url}`);
 
-    const timeout = 10000;
+	const proxies = [
+		`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
+		`https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`,
+		`https://corsproxy.io/?${encodeURIComponent(url)}`,
+		`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+	];
 
-    async function fetchWithProxy(proxy) {
-        return new Promise((resolve, reject) => {
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), timeout);
+	const timeout = 10000;
 
-            fetch(proxy, { signal: controller.signal })
-                .then(response => {
-                    clearTimeout(id);
-                    if (!response.ok) {
-                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(resolve)
-                .catch(reject);
-        });
-    }
+	async function fetchWithProxy(proxy) {
+		return new Promise((resolve, reject) => {
+			const controller = new AbortController();
+			const id = setTimeout(() => {
+				controller.abort();
+				reject(new Error('Timeout'));
+			}, timeout);
 
-    let htmlText;
-    for (const proxy of proxies) {
-        try {
-            htmlText = await fetchWithProxy(proxy);
-            break;
-        } catch (error) {
-            console.error(`Error with proxy ${proxy}: ${error}`);
-        }
-    }
+			console.log(`Attempting to fetch with proxy: ${proxy}`);
 
-    if (!htmlText) {
-        console.error('Failed to fetch content from all proxies');
-        hideSpinner(tab);
-        content.innerHTML = '<p>Error loading content</p>';
-        return;
-    }
-  
-    htmlText = htmlText.replace(/�/g, 'é');
-  
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlText, 'text/html');
-    const title = doc.title;
-    if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
-    }
+			fetch(proxy, {
+					signal: controller.signal,
+					headers: {
+						'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+					}
+				})
+				.then(response => {
+					clearTimeout(id);
+					if (!response.ok) {
+						throw new Error(`HTTP error! status: ${response.status}`);
+					}
+					return response.text();
+				})
+				.then(resolve)
+				.catch(reject);
+		});
+	}
 
-    // Create a new function to handle resource fetching
-    async function fetchResource(url) {
-        for (const proxy of proxies) {
-            try {
-                const response = await fetch(`${proxy}${url}`);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('text/css')) {
-                    const cssText = await response.text();
-                    return modifyCss(cssText);
-                } else {
-                    return await response.blob();
-                }
-            } catch (error) {
-                console.error(`Error fetching resource with proxy ${proxy}: ${error}`);
-            }
-        }
-        console.error(`Failed to fetch resource ${url} with all proxies`);
-        return null;
-    }
+	let htmlText;
+	let errors = [];
 
-    try {
-        // Modify images, scripts, and stylesheets to use proxied URLs
-        const resources = doc.querySelectorAll('img, script, link[rel="stylesheet"]');
-        for (const resource of resources) {
-            const originalSrc = resource.src || resource.href;
-            if (originalSrc) {
-                const blob = await fetchResource(originalSrc);
-                if (blob) {
-                    const blobUrl = URL.createObjectURL(blob);
-                    if (resource.tagName === 'IMG') {
-                        resource.src = blobUrl;
-                    } else if (resource.tagName === 'SCRIPT') {
-                        resource.src = blobUrl;
-                    } else if (resource.tagName === 'LINK') {
-                        resource.href = blobUrl;
-                    }
-                }
-            }
-        }
+	for (const proxy of proxies) {
+		try {
+			htmlText = await fetchWithProxy(proxy);
+			console.log(`Fetch successful using proxy: ${proxy}`);
+			break;
+		} catch (error) {
+			console.error(`Error with proxy ${proxy}: ${error.message}`);
+			errors.push(`${proxy}: ${error.message}`);
+		}
+	}
 
-        content.innerHTML = doc.documentElement.outerHTML;
+	if (!htmlText) {
+		console.error('Failed to fetch content from all proxies');
+		hideSpinner(tab);
+		content.innerHTML = `
+            <div style="color: #ff6161; padding: 20px; text-align: center;">
+                <h2>Error loading content</h2>
+                <p>Unable to fetch the requested content. Please try again later.</p>
+                <p>sorry :(</p>
+                <details>
+                    <summary>Error details</summary>
+                    <pre>${errors.join('\n')}</pre>
+                </details>
+            </div>
+        `;
+		return;
+	}
 
-        // Rewrite relative URLs to absolute URLs
-        const baseUrl = new URL(url);
-        content.querySelectorAll('a[href]').forEach(a => {
-            try {
-                a.href = new URL(a.getAttribute('href'), baseUrl).href;
-            } catch (e) {
-                console.error('Error rewriting URL:', e);
-            }
-        });
+	console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
-        tabs[tabIndex].content = content.innerHTML;
-        tabs[tabIndex].url = url;
-    } catch (error) {
-        console.error('Error fetching content:', error);
-        content.innerHTML = '<p>Error loading content</p>';
-    } finally {
-        hideSpinner(tab);
-    }
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlText, 'text/html');
+	const title = doc.title;
+	if (tab) {
+		tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+	}
+
+	console.log(`Parsed document title: ${title || 'Untitled'}`);
+
+	const shadowContainer = document.createElement('div');
+	shadowContainer.style.position = 'relative';
+	shadowContainer.style.width = '100%';
+	shadowContainer.style.height = '100%';
+	shadowContainer.style.overflow = 'auto';
+	shadowContainer.style.border = 'none';
+
+	const shadowRoot = shadowContainer.attachShadow({
+		mode: 'open'
+	});
+
+	// Remove the default style that forces a white background
+	shadowRoot.innerHTML = doc.documentElement.outerHTML;
+
+	console.log('Shadow DOM created and populated with fetched content');
+
+	// Rewrite relative URLs to absolute URLs
+	const baseUrl = new URL(url);
+	let rewrittenUrls = 0;
+	shadowRoot.querySelectorAll('a[href]').forEach(a => {
+		try {
+			a.href = new URL(a.getAttribute('href'), baseUrl).href;
+			rewrittenUrls++;
+		} catch (e) {
+			console.error('Error rewriting URL:', e);
+		}
+	});
+
+	console.log(`Rewrote ${rewrittenUrls} relative URLs to absolute URLs`);
+
+	content.innerHTML = '';
+	content.appendChild(shadowContainer);
+
+	tabs[tabIndex].content = content.innerHTML;
+	tabs[tabIndex].url = url;
+
+	console.log('Content injected into the page');
+
+	hideSpinner(tab);
+	console.log('Fetch and render process completed');
 }
 document.addEventListener('DOMContentLoaded', () => {
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key.startsWith('tab_')) {
-            const url = localStorage.getItem(key);
-            // Logic to create a new tab with this URL
-        }
-    }
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i);
+		if (key.startsWith('tab_')) {
+			const url = localStorage.getItem(key);
+			// Logic to create a new tab with this URL
+		}
+	}
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.getElementById('url-baraa');
-    const content = document.getElementById('contentaa');
+	const urlBar = document.getElementById('url-baraa');
+	const content = document.getElementById('contentaa');
 
-    urlBar.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-            const url = urlBar.value;
-            fetchExternalContent(url, content, currentTabIndex);
-        }
-    });
+	urlBar.addEventListener('keydown', (event) => {
+		if (event.key === 'Enter') {
+			const url = urlBar.value;
+			fetchExternalContent(url, content, currentTabIndex);
+		}
+	});
 });
 
 
 
 async function fetchExternalContent(url, content, tabIndex) {
-    const proxies = [
-        `https://api.codetabs.com/v1/proxy?quest=${url}`,
-        `https://api.codetabs.com/v1/tmp/?quest=${url}`,
-        `https://corsproxy.io/?${url}`,
-        `https://api.allorigins.win/raw?url=${url}`
-    ];
+	const proxies = [
+		`https://api.codetabs.com/v1/proxy?quest=${url}`,
+		`https://api.codetabs.com/v1/tmp/?quest=${url}`,
+		`https://corsproxy.io/?${url}`,
+		`https://api.allorigins.win/raw?url=${url}`
+	];
 
-    const timeout = 10000;
+	const timeout = 10000;
 
-    async function fetchWithProxy(proxy) {
-        return new Promise((resolve, reject) => {
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), timeout);
+	async function fetchWithProxy(proxy) {
+		return new Promise((resolve, reject) => {
+			const controller = new AbortController();
+			const id = setTimeout(() => controller.abort(), timeout);
 
-            fetch(proxy, { signal: controller.signal })
-                .then(response => {
-                    clearTimeout(id);
-                    if (!response.ok) {
-                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
-                    }
-                    return response.text();
-                })
-                .then(resolve)
-                .catch(reject);
-        });
-    }
+			fetch(proxy, {
+					signal: controller.signal
+				})
+				.then(response => {
+					clearTimeout(id);
+					if (!response.ok) {
+						reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
+					}
+					return response.text();
+				})
+				.then(resolve)
+				.catch(reject);
+		});
+	}
 
-    let htmlText;
-    for (const proxy of proxies) {
-        try {
-            htmlText = await fetchWithProxy(proxy);
-            break;
-        } catch (error) {
-            console.error(`Error with proxy ${proxy}: ${error}`);
-        }
-    }
+	let htmlText;
+	for (const proxy of proxies) {
+		try {
+			htmlText = await fetchWithProxy(proxy);
+			break;
+		} catch (error) {
+			console.error(`Error with proxy ${proxy}: ${error}`);
+		}
+	}
 
-    if (!htmlText) {
-        console.error('Failed to fetch content from all proxies');
-        return;
-    }
-  
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(htmlText, 'text/html');
-    const title = doc.title;
-    const tab = document.querySelectorAll('.tabaa')[tabIndex];
-    if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
-    }
+	if (!htmlText) {
+		console.error('Failed to fetch content from all proxies');
+		return;
+	}
 
-  async function fetchAndInjectResources(html, tabIndex) {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
+	const parser = new DOMParser();
+	const doc = parser.parseFromString(htmlText, 'text/html');
+	const title = doc.title;
+	const tab = document.querySelectorAll('.tabaa')[tabIndex];
+	if (tab) {
+		tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+	}
 
-        const resources = [];
-        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-        const jsScripts = doc.querySelectorAll('script[src]');
-        const images = doc.querySelectorAll('img');
-        const videos = doc.querySelectorAll('video');
-        const audios = doc.querySelectorAll('audio');
+	async function fetchAndInjectResources(html, tabIndex) {
+		const parser = new DOMParser();
+		const doc = parser.parseFromString(html, 'text/html');
 
-        cssLinks.forEach(link => resources.push(link.href));
-        jsScripts.forEach(script => resources.push(script.src));
-        images.forEach(img => resources.push(img.src));
-        videos.forEach(video => {
-            if (video.src) resources.push(video.src);
-            video.querySelectorAll('source').forEach(source => resources.push(source.src));
-        });
-        audios.forEach(audio => {
-            if (audio.src) resources.push(audio.src);
-            audio.querySelectorAll('source').forEach(source => resources.push(source.src));
-        });
+		const resources = [];
+		const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
+		const jsScripts = doc.querySelectorAll('script[src]');
+		const images = doc.querySelectorAll('img');
+		const videos = doc.querySelectorAll('video');
+		const audios = doc.querySelectorAll('audio');
 
-        const fetchResource = async (url) => {
-            try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('text')) {
-                    return await response.text();
-                } else {
-                    return await response.blob();
-                }
-            } catch (error) {
-                console.error(error);
-                return null;
-            }
-        };
+		cssLinks.forEach(link => resources.push(link.href));
+		jsScripts.forEach(script => resources.push(script.src));
+		images.forEach(img => resources.push(img.src));
+		videos.forEach(video => {
+			if (video.src) resources.push(video.src);
+			video.querySelectorAll('source').forEach(source => resources.push(source.src));
+		});
+		audios.forEach(audio => {
+			if (audio.src) resources.push(audio.src);
+			audio.querySelectorAll('source').forEach(source => resources.push(source.src));
+		});
 
-        const promises = resources.map(fetchResource);
-        const results = await Promise.all(promises);
+		const fetchResource = async (url) => {
+			try {
+				const response = await fetch(url);
+				if (!response.ok) {
+					throw new Error(`Failed to fetch resource ${url}`);
+				}
+				const contentType = response.headers.get('content-type');
+				if (contentType && contentType.includes('text')) {
+					return await response.text();
+				} else {
+					return await response.blob();
+				}
+			} catch (error) {
+				console.error(error);
+				return null;
+			}
+		};
 
-        const shadowContainer = document.createElement('div');
-        shadowContainer.style.position = 'relative';
-        shadowContainer.style.width = (content.clientWidth - 0) + 'px';
-        shadowContainer.style.height = (content.clientHeight + 100) + 'px';
-        shadowContainer.style.overflow = 'auto';
-        shadowContainer.style.border = 'none';
+		const promises = resources.map(fetchResource);
+		const results = await Promise.all(promises);
 
-        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
-        const defaultStyle = document.createElement('style');
-        defaultStyle.textContent = `
+		const shadowContainer = document.createElement('div');
+		shadowContainer.style.position = 'relative';
+		shadowContainer.style.width = (content.clientWidth - 0) + 'px';
+		shadowContainer.style.height = (content.clientHeight + 100) + 'px';
+		shadowContainer.style.overflow = 'auto';
+		shadowContainer.style.border = 'none';
+
+		const shadowRoot = shadowContainer.attachShadow({
+			mode: 'open'
+		});
+		const defaultStyle = document.createElement('style');
+		defaultStyle.textContent = `
             :host {
                 all: initial;
                 background-color: #fff !important;
             }
         `;
-        shadowRoot.appendChild(defaultStyle);
-        shadowRoot.innerHTML += html;
+		shadowRoot.appendChild(defaultStyle);
+		shadowRoot.innerHTML += html;
 
-        const fixRelativeURLs = (baseUrl) => {
-            const elements = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src], video[src], audio[src], source[src]');
+		const fixRelativeURLs = (baseUrl) => {
+			const elements = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src], video[src], audio[src], source[src]');
 
-            elements.forEach(element => {
-                const attributeName = element.hasAttribute('href') ? 'href' : 'src';
-                const url = new URL(element.getAttribute(attributeName), baseUrl);
-                element.setAttribute(attributeName, url.href);
-            });
-        };
+			elements.forEach(element => {
+				const attributeName = element.hasAttribute('href') ? 'href' : 'src';
+				const url = new URL(element.getAttribute(attributeName), baseUrl);
+				element.setAttribute(attributeName, url.href);
+			});
+		};
 
-        results.forEach((result, index) => {
-            const url = resources[index];
-            if (result instanceof Blob) {
-                const objectURL = URL.createObjectURL(result);
-                const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
-                elements.forEach(element => element.src = objectURL);
-            } else if (typeof result === 'string') {
-if (url.endsWith('.css')) {
-  const style = document.createElement('style');
-  style.textContent = result; // result is already modified CSS
-  shadowRoot.appendChild(style);
-} else if (url.endsWith('.js')) {
-                    const script = document.createElement('script');
-                    script.textContent = result;
-                    shadowRoot.appendChild(script);
-                }
-            }
-        });
+		results.forEach((result, index) => {
+			const url = resources[index];
+			if (result instanceof Blob) {
+				const objectURL = URL.createObjectURL(result);
+				const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
+				elements.forEach(element => element.src = objectURL);
+			} else if (typeof result === 'string') {
+				if (url.endsWith('.css')) {
+					const style = document.createElement('style');
+					style.textContent = result; // result is already modified CSS
+					shadowRoot.appendChild(style);
+				} else if (url.endsWith('.js')) {
+					const script = document.createElement('script');
+					script.textContent = result;
+					shadowRoot.appendChild(script);
+				}
+			}
+		});
 
-        // Execute inline scripts
-        shadowRoot.querySelectorAll('script:not([src])').forEach(script => {
-            const newScript = document.createElement('script');
-            newScript.textContent = script.textContent;
-            shadowRoot.appendChild(newScript);
-        });
+		// Execute inline scripts
+		shadowRoot.querySelectorAll('script:not([src])').forEach(script => {
+			const newScript = document.createElement('script');
+			newScript.textContent = script.textContent;
+			shadowRoot.appendChild(newScript);
+		});
 
-        shadowRoot.querySelectorAll('style').forEach(style => {
-            style.textContent = `
+		shadowRoot.querySelectorAll('style').forEach(style => {
+			style.textContent = `
                 :host {
                     all: initial;
                 }
                 ${style.textContent}
             `;
-        });
+		});
 
-        const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
-        fixRelativeURLs(baseUrl);
+		const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
+		fixRelativeURLs(baseUrl);
 
-        shadowRoot.querySelectorAll('a').forEach(anchor => {
-            anchor.addEventListener('click', (event) => {
-                event.preventDefault();
-                const newUrl = anchor.href;
-                updateTabContent(newUrl, content, tab);
-            });
-        });
+		shadowRoot.querySelectorAll('a').forEach(anchor => {
+			anchor.addEventListener('click', (event) => {
+				event.preventDefault();
+				const newUrl = anchor.href;
+				updateTabContent(newUrl, content, tab);
+			});
+		});
 
-        return shadowContainer;
-    }
+		return shadowContainer;
+	}
 
-    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
-    content.innerHTML = '';
-    content.appendChild(newShadowContainer);
+	const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
+	content.innerHTML = '';
+	content.appendChild(newShadowContainer);
 
-    requestAnimationFrame(() => {
-        tabs[tabIndex].content = content.innerHTML;
-        tabs[tabIndex].url = url;
-    });
+	requestAnimationFrame(() => {
+		tabs[tabIndex].content = content.innerHTML;
+		tabs[tabIndex].url = url;
+	});
 }
+
 function updateLockIcon(url) {
-    const lockIcon = document.querySelector('.lock-iconaa');
-    const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
-    if (isLocked) {
-        lockIcon.classList.remove('fa-unlock');
-        lockIcon.classList.add('fa-lock');
-        lockIcon.style.color = '';
-    } else {
-        lockIcon.classList.remove('fa-lock');
-        lockIcon.classList.add('fa-unlock');
-        lockIcon.style.color = '#ffff80';
-    }
+	const lockIcon = document.querySelector('.lock-iconaa');
+	const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
+	if (isLocked) {
+		lockIcon.classList.remove('fa-unlock');
+		lockIcon.classList.add('fa-lock');
+		lockIcon.style.color = '';
+	} else {
+		lockIcon.classList.remove('fa-lock');
+		lockIcon.classList.add('fa-unlock');
+		lockIcon.style.color = '#ffff80';
+	}
 }
 
 function modifyCss(cssText) {
-  // Regular expression to match z-index declarations
-  const zIndexRegex = /z-index\s*:\s*2147483647\s*;/g;
+	// Regular expression to match z-index declarations
+	const zIndexRegex = /z-index\s*:\s*2147483647\s*;/g;
 
-  // Replace z-index: 2147483647 with z-index: 2147483643
-  const modifiedCss = cssText.replace(zIndexRegex, 'z-index: 2147483643;');
+	// Replace z-index: 2147483647 with z-index: 2147483643
+	const modifiedCss = cssText.replace(zIndexRegex, 'z-index: 2147483643;');
 
-  return modifiedCss;
+	return modifiedCss;
 }
 
 function updateSpecialDivs(url) {
-    const isHeliosURL = url.startsWith('helios://');
-    const officialC = document.querySelector('.official-caa');
-    const official = document.querySelector('.officialaa');
+	const isHeliosURL = url.startsWith('helios://');
+	const officialC = document.querySelector('.official-caa');
+	const official = document.querySelector('.officialaa');
 
-    if (officialC) {
-        officialC.style.backgroundColor = isHeliosURL ? '' : '#52565b';
-    }
-    if (official) {
-        official.style.backgroundColor = isHeliosURL ? '' : '#52565b';
-        official.style.color = isHeliosURL ? '' : '#52565b';
-    }
+	if (officialC) {
+		officialC.style.backgroundColor = isHeliosURL ? '' : '#52565b';
+	}
+	if (official) {
+		official.style.backgroundColor = isHeliosURL ? '' : '#52565b';
+		official.style.color = isHeliosURL ? '' : '#52565b';
+	}
 }
 
-document.getElementById('url-baraa').addEventListener('input', function () {
-    const url = this.value;
-    tabs[currentTabIndex].url = url;
-    updateLockIcon(url);
-    updateSpecialDivs(url);
+document.getElementById('url-baraa').addEventListener('input', function() {
+	const url = this.value;
+	tabs[currentTabIndex].url = url;
+	updateLockIcon(url);
+	updateSpecialDivs(url);
 });
 
-document.getElementById('url-baraa').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        let url = e.target.value.trim();
-        
-        const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
-        
-        if (!hasValidScheme) {
-            url = 'https://' + url;
-        }
+document.getElementById('url-baraa').addEventListener('keypress', function(e) {
+	if (e.key === 'Enter') {
+		let url = e.target.value.trim();
 
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+		const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
 
-        tabs[currentTabIndex].url = url;
-        document.getElementById('url-baraa').value = url;
-        updateTabContent(url, currentContent, currentTab);
-        updateLockIcon(url);
-        updateSpecialDivs(url);
-    }
+		if (!hasValidScheme) {
+			url = 'https://' + url;
+		}
+
+		const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+		const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+
+		tabs[currentTabIndex].url = url;
+		document.getElementById('url-baraa').value = url;
+		updateTabContent(url, currentContent, currentTab);
+		updateLockIcon(url);
+		updateSpecialDivs(url);
+	}
 });
 
-document.querySelector('.home-buttonaa').addEventListener('click', function () {
-    changeTabContent('helios://start');
+document.querySelector('.home-buttonaa').addEventListener('click', function() {
+	changeTabContent('helios://start');
 });
 
-document.querySelector('.settings-buttonaa').addEventListener('click', function () {
-    changeTabContent('helios://settings');
+document.querySelector('.settings-buttonaa').addEventListener('click', function() {
+	changeTabContent('helios://settings');
 });
 
 function changeTabContent(url) {
-    const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-    const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+	const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+	const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
 
-    if (currentTab && currentContent) {
-        document.getElementById('url-baraa').value = url;
+	if (currentTab && currentContent) {
+		document.getElementById('url-baraa').value = url;
 
-        tabs[currentTabIndex].url = url;
-        updateTabContent(url, currentContent, currentTab);
+		tabs[currentTabIndex].url = url;
+		updateTabContent(url, currentContent, currentTab);
 
-        const event = new KeyboardEvent('keydown', {
-            bubbles: true,
-            cancelable: true,
-            key: 'Enter',
-            code: 'Enter'
-        });
-        document.getElementById('url-baraa').dispatchEvent(event);
-    }
+		const event = new KeyboardEvent('keydown', {
+			bubbles: true,
+			cancelable: true,
+			key: 'Enter',
+			code: 'Enter'
+		});
+		document.getElementById('url-baraa').dispatchEvent(event);
+	}
 }
 
-    function openInAboutBlank() {
-      const newWindow = window.open('about:blank', '_blank');
-      newWindow.document.write(document.documentElement.outerHTML);
-    }
+function openInAboutBlank() {
+	const newWindow = window.open('about:blank', '_blank');
+	newWindow.document.write(document.documentElement.outerHTML);
+}
 
-    function openInBlob() {
-      const html = document.documentElement.outerHTML;
-      const blob = new Blob([html], { type: 'text/html' });
-      const url = URL.createObjectURL(blob);
-      window.open(url, '_blank');
-    }
+function openInBlob() {
+	const html = document.documentElement.outerHTML;
+	const blob = new Blob([html], {
+		type: 'text/html'
+	});
+	const url = URL.createObjectURL(blob);
+	window.open(url, '_blank');
+}
 
 function toggleDropdown(tabIndex) {
-    var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
-    dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    updateDropdownVisibility(tabIndex);
+	var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
+	dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+	updateDropdownVisibility(tabIndex);
 }
 
 function selectEngine(iconSrc, engineName, tabIndex) {
-    document.getElementById(`selected-engine-${tabIndex}`).src = iconSrc;
-    document.getElementById(`selected-engine-${tabIndex}`).alt = engineName;
-    document.getElementById(`statusMessage-${tabIndex}`).textContent = "Searching with " + engineName;
-    toggleDropdown(tabIndex);
+	document.getElementById(`selected-engine-${tabIndex}`).src = iconSrc;
+	document.getElementById(`selected-engine-${tabIndex}`).alt = engineName;
+	document.getElementById(`statusMessage-${tabIndex}`).textContent = "Searching with " + engineName;
+	toggleDropdown(tabIndex);
 }
 
 function updateDropdownVisibility(tabIndex) {
-    var selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
-    var options = document.querySelectorAll(`#engineDropdown-${tabIndex} a`);
-    options.forEach(function(option) {
-        if (option.getAttribute("data-engine") === selectedEngine) {
-            option.style.display = "none";
-        } else {
-            option.style.display = "flex";
-        }
-    });
+	var selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
+	var options = document.querySelectorAll(`#engineDropdown-${tabIndex} a`);
+	options.forEach(function(option) {
+		if (option.getAttribute("data-engine") === selectedEngine) {
+			option.style.display = "none";
+		} else {
+			option.style.display = "flex";
+		}
+	});
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.search-engine-dropdownaa') && !event.target.matches('.search-engine-dropdownaa img')) {
-        var dropdowns = document.querySelectorAll('.dropdown-contentaa');
-        dropdowns.forEach(function(dropdown) {
-            if (dropdown.style.display === "block") {
-                dropdown.style.display = "none";
-            }
-        });
-    }
+	if (!event.target.matches('.search-engine-dropdownaa') && !event.target.matches('.search-engine-dropdownaa img')) {
+		var dropdowns = document.querySelectorAll('.dropdown-contentaa');
+		dropdowns.forEach(function(dropdown) {
+			if (dropdown.style.display === "block") {
+				dropdown.style.display = "none";
+			}
+		});
+	}
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    tabs.forEach((tab, index) => {
-        document.getElementById(`statusMessage-${index}`).textContent = "Searching with Google";
-        updateDropdownVisibility(index);
-    });
+	tabs.forEach((tab, index) => {
+		document.getElementById(`statusMessage-${index}`).textContent = "Searching with Google";
+		updateDropdownVisibility(index);
+	});
 });
-      
+
 document.getElementById('url-baraa').addEventListener('input', function(e) {
-    this.value = this.value.toLowerCase();
+	this.value = this.value.toLowerCase();
 });
-      
-      // Function to check if a string is a valid URL
+
+// Function to check if a string is a valid URL
 function isValidURL(string) {
-    try {
-        new URL(string);
-        return true;
-    } catch (_) {
-        return false;
-    }
+	try {
+		new URL(string);
+		return true;
+	} catch (_) {
+		return false;
+	}
 }
 
 // Function to handle search or URL navigation
 function handleSearchOrNavigation(input, tabIndex) {
-    let url = input.trim();
-    
-    // Check if it's a valid URL
-    if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
-        if (!/^https?:\/\//i.test(url)) {
-            url = 'https://' + url;
-        }
-        updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
-    } else {
-        // If not a URL, perform a search
-        const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
-        let searchUrl;
-        switch(selectedEngine) {
-            case '4get':
-                searchUrl = `https://4get.ca/web?q=${encodeURIComponent(input)}`;
-                break;
-            case 'Google':
-                searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
-                break;
-            case 'Bing':
-                searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(input)}`;
-                break;
-            case 'DuckDuckGo':
-                searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
-                break;
-            default:
-                searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
-        }
-        updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+  let url = input.trim();
+
+  // Check if it's a valid URL
+  if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
     }
+    updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+  } else {
+    // If not a URL, perform a search
+    const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
+    let searchUrl;
+    switch (selectedEngine) {
+      case '4get':
+        searchUrl = `https://4get.ca/web?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'Google':
+        searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'Bing':
+        searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'DuckDuckGo':
+        searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      default:
+        searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+    }
+    updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+  }
 }
 
 // Add event listener for the search input in each tab
 document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('search-iconaa')) {
-        const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
-        const input = document.getElementById(`search-input-${tabIndex}`).value;
-        handleSearchOrNavigation(input, tabIndex);
-    }
+  if (event.target.classList.contains('search-iconaa')) {
+    const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
+    const input = document.getElementById(`search-input-${tabIndex}`).value;
+    handleSearchOrNavigation(input, tabIndex);
+  }
 });
 
 // Add event listener for the Enter key in search inputs
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
-        const tabIndex = parseInt(event.target.id.split('-')[2]);
-        handleSearchOrNavigation(event.target.value, tabIndex);
-    }
+  if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
+    const tabIndex = parseInt(event.target.id.split('-')[2]);
+    handleSearchOrNavigation(event.target.value, tabIndex);
+  }
 });
-      
-      document.querySelector('.reload-buttonaa').addEventListener('click', function() {
-    const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-    const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-    const currentUrl = tabs[currentTabIndex].url;
-    
-    updateTabContent(currentUrl, currentContent, currentTab);
+
+document.querySelector('.reload-buttonaa').addEventListener('click', function() {
+	const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+	const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+	const currentUrl = tabs[currentTabIndex].url;
+
+	updateTabContent(currentUrl, currentContent, currentTab);
 });
-      
-      // Initialize history storage
+
+// Initialize history storage
 const tabHistory = new Map();
 
 // Function to get or create history for a tab
 function getTabHistory(tabIndex) {
-    if (!tabHistory.has(tabIndex)) {
-        tabHistory.set(tabIndex, {
-            history: [],
-            currentIndex: -1
-        });
-    }
-    return tabHistory.get(tabIndex);
+	if (!tabHistory.has(tabIndex)) {
+		tabHistory.set(tabIndex, {
+			history: [],
+			currentIndex: -1
+		});
+	}
+	return tabHistory.get(tabIndex);
 }
 
 // Function to update history when navigating to a new URL
 function updateHistory(tabIndex, url) {
-    const history = getTabHistory(tabIndex);
-    history.currentIndex++;
-    history.history = history.history.slice(0, history.currentIndex);
-    history.history.push(url);
+	const history = getTabHistory(tabIndex);
+	history.currentIndex++;
+	history.history = history.history.slice(0, history.currentIndex);
+	history.history.push(url);
 }
 
 // Modify updateTabContent to update history
 const originalUpdateTabContent = updateTabContent;
 updateTabContent = function(url, content, tab) {
-    const tabIndex = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
-    updateHistory(tabIndex, url);
-    originalUpdateTabContent(url, content, tab);
+	const tabIndex = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+	updateHistory(tabIndex, url);
+	originalUpdateTabContent(url, content, tab);
 };
 
 // Back button functionality
 document.querySelector('.backward-buttonaa').addEventListener('click', function() {
-    const history = getTabHistory(currentTabIndex);
-    if (history.currentIndex > 0) {
-        history.currentIndex--;
-        const previousUrl = history.history[history.currentIndex];
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-        originalUpdateTabContent(previousUrl, currentContent, currentTab);
-    }
+	const history = getTabHistory(currentTabIndex);
+	if (history.currentIndex > 0) {
+		history.currentIndex--;
+		const previousUrl = history.history[history.currentIndex];
+		const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+		const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+		originalUpdateTabContent(previousUrl, currentContent, currentTab);
+	}
 });
 
 // Forward button functionality
 document.querySelector('.forward-buttonaa').addEventListener('click', function() {
-    const history = getTabHistory(currentTabIndex);
-    if (history.currentIndex < history.history.length - 1) {
-        history.currentIndex++;
-        const nextUrl = history.history[history.currentIndex];
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-        originalUpdateTabContent(nextUrl, currentContent, currentTab);
-    }
+	const history = getTabHistory(currentTabIndex);
+	if (history.currentIndex < history.history.length - 1) {
+		history.currentIndex++;
+		const nextUrl = history.history[history.currentIndex];
+		const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+		const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+		originalUpdateTabContent(nextUrl, currentContent, currentTab);
+	}
 });
 
 // Initialize history for existing tabs
 document.querySelectorAll('.tabaa').forEach((tab, index) => {
-    const url = tab.querySelector('.tab-nameaa').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-baraa').value;
-    updateHistory(index, url);
+	const url = tab.querySelector('.tab-nameaa').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-baraa').value;
+	updateHistory(index, url);
 });
-      
-      function closeTab(tab) {
-    const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
-    tab.remove();
-    document.querySelectorAll('.tab-contentaa')[index].remove();
-    tabs.splice(index, 1);
-    tabHistory.delete(index);
 
-    // If the closed tab was the active one, switch to another tab
-    if (index === currentTabIndex) {
-        // Try to activate the tab to the left
-        if (index > 0) {
-            currentTabIndex = index - 1;
-        } 
-        // If there's no tab to the left, try to activate the first tab
-        else if (tabs.length > 0) {
-            currentTabIndex = 0;
-        } 
-        // If there are no tabs left, create a new one
-        else {
-            document.getElementById('add-tabaa').click();
-            return;
-        }
+function closeTab(tab) {
+	const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+	tab.remove();
+	document.querySelectorAll('.tab-contentaa')[index].remove();
+	tabs.splice(index, 1);
+	tabHistory.delete(index);
 
-        const newActiveTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-        const newActiveContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        updateActiveTab(newActiveTab, newActiveContent, currentTabIndex);
-    } 
-    // If a tab to the left of the active tab was closed, update the currentTabIndex
-    else if (index < currentTabIndex) {
-        currentTabIndex--;
-    }
+	// If the closed tab was the active one, switch to another tab
+	if (index === currentTabIndex) {
+		// Try to activate the tab to the left
+		if (index > 0) {
+			currentTabIndex = index - 1;
+		}
+		// If there's no tab to the left, try to activate the first tab
+		else if (tabs.length > 0) {
+			currentTabIndex = 0;
+		}
+		// If there are no tabs left, create a new one
+		else {
+			document.getElementById('add-tabaa').click();
+			return;
+		}
+
+		const newActiveTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+		const newActiveContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+		updateActiveTab(newActiveTab, newActiveContent, currentTabIndex);
+	}
+	// If a tab to the left of the active tab was closed, update the currentTabIndex
+	else if (index < currentTabIndex) {
+		currentTabIndex--;
+	}
 }
 
 // Replace the existing close button functionality with this new function
 function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function(event) {
-        event.stopPropagation(); // Prevent the tab from being activated when closing
-        closeTab(tab);
-    });
+	tab.querySelector('.close-btnaa').addEventListener('click', function(event) {
+		event.stopPropagation(); // Prevent the tab from being activated when closing
+		closeTab(tab);
+	});
 }
 
 // Update existing tabs with the new close functionality
 document.querySelectorAll('.tabaa').forEach(tab => {
-    addCloseButtonFunctionality(tab);
+	addCloseButtonFunctionality(tab);
 });
-      
-      // Function to handle the square button click (browser reset)
-function handleSquareButtonClick() {
-    // Close all tabs except the first one
-    const tabs = document.querySelectorAll('.tabaa');
-    for (let i = tabs.length - 1; i > 0; i--) {
-        closeTab(tabs[i]);
-    }
 
-    // Reset the first tab to initial state
-    const firstTab = tabs[0];
-    const firstTabContent = document.querySelectorAll('.tab-contentaa')[0];
-    
-    // Update tab name
-    firstTab.querySelector('.tab-nameaa').textContent = 'New Tab';
-    
-    // Reset URL bar
-    document.getElementById('url-baraa').value = 'helios://start';
-    
-    // Reset tab content
-    updateTabContent('helios://start', firstTabContent, firstTab);
-    
-    // Reset tab history
-    const history = getTabHistory(0);
-    history.history = ['helios://start'];
-    history.currentIndex = 0;
-    
-    // Update active tab
-    updateActiveTab(firstTab, firstTabContent, 0);
+// Function to handle the square button click (browser reset)
+function handleSquareButtonClick() {
+	// Close all tabs except the first one
+	const tabs = document.querySelectorAll('.tabaa');
+	for (let i = tabs.length - 1; i > 0; i--) {
+		closeTab(tabs[i]);
+	}
+
+	// Reset the first tab to initial state
+	const firstTab = tabs[0];
+	const firstTabContent = document.querySelectorAll('.tab-contentaa')[0];
+
+	// Update tab name
+	firstTab.querySelector('.tab-nameaa').textContent = 'New Tab';
+
+	// Reset URL bar
+	document.getElementById('url-baraa').value = 'helios://start';
+
+	// Reset tab content
+	updateTabContent('helios://start', firstTabContent, firstTab);
+
+	// Reset tab history
+	const history = getTabHistory(0);
+	history.history = ['helios://start'];
+	history.currentIndex = 0;
+
+	// Update active tab
+	updateActiveTab(firstTab, firstTabContent, 0);
 }
 
 // Add the square button to the DOM
@@ -1840,7 +1927,7 @@ const squareButton = document.createElement('div');
 squareButton.className = 'square-buttonaa';
 squareButton.id = 'square-buttonaa';
 squareButton.textContent = '×';
-squareButton.title = 'Reset Browser';
+squareButton.title = 'Reset Tabs';
 
 // Insert the square button before the first tab
 const topBar = document.querySelector('.uptop-baraa');
@@ -1881,119 +1968,143 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
+function toggleFullscreen() {
+	if (!document.fullscreenElement) {
+		document.documentElement.requestFullscreen();
+	} else {
+		if (document.exitFullscreen) {
+			document.exitFullscreen();
+		}
+	}
+}
+
 function toggleDropdownccc() {
-    document.getElementById("myDropdownccc").classList.toggle("showccc");
+	document.getElementById("myDropdownccc").classList.toggle("showccc");
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.menu-buttonaa')) {
-        var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
-        for (var i = 0; i < dropdownsccc.length; i++) {
-            var openDropdownccc = dropdownsccc[i];
-            if (openDropdownccc.classList.contains('showccc')) {
-                openDropdownccc.classList.remove('showccc');
-            }
-        }
-    }
+	if (!event.target.matches('.menu-buttonaa')) {
+		var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
+		for (var i = 0; i < dropdownsccc.length; i++) {
+			var openDropdownccc = dropdownsccc[i];
+			if (openDropdownccc.classList.contains('showccc')) {
+				openDropdownccc.classList.remove('showccc');
+			}
+		}
+	}
 }
 
 // Add this new function to handle the "New Tab" menu item click
 function handleNewTabMenuClick(event) {
-    event.preventDefault();
-    document.getElementById('add-tabaa').click();
-    toggleDropdownccc(); // Close the dropdown after creating a new tab
+	event.preventDefault();
+	document.getElementById('add-tabaa').click();
+	toggleDropdownccc(); // Close the dropdown after creating a new tab
 }
 
 // Modify the dropdown menu HTML to include an event handler
 document.addEventListener('DOMContentLoaded', function() {
-    const newTabMenuItem = document.querySelector('.dropdown-menuccc a');
-    if (newTabMenuItem) {
-        newTabMenuItem.addEventListener('click', handleNewTabMenuClick);
-    }
+	const newTabMenuItem = document.querySelector('.dropdown-menuccc a');
+	if (newTabMenuItem) {
+		newTabMenuItem.addEventListener('click', handleNewTabMenuClick);
+	}
 });
+
 function showUrlsList(content, tab) {
-    content.innerHTML = `
+	content.innerHTML = `
         <h2 style="font-size: 48px; margin-bottom: 20px;">Helios Internal URLs</h2>
         <ul style="list-style-type: none; padding: 0;">
             <li style="margin-bottom: 15px;">
-                <a href="#" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start</a>
+                <a href="javascript:void(0);" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start</a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios start page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="#" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings</a>
+                <a href="javascript:void(0);" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings</a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios settings page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="#" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls</a>
+                <a href="javascript:void(0);" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls</a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">List of Helios internal URLs</p>
             </li>
         </ul>
     `;
-    tab.querySelector('.tab-nameaa').textContent = 'Helios URLs';
+	tab.querySelector('.tab-nameaa').textContent = 'Helios URLs';
 
-    // Add click event listeners to the custom URL links
-    content.querySelectorAll('.custom-url-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const url = this.getAttribute('data-url');
-            document.getElementById('url-baraa').value = url;
-            updateTabContent(url, content, tab);
-        });
-    });
+	// Add click event listeners to the custom URL links
+	content.querySelectorAll('.custom-url-link').forEach(link => {
+		link.addEventListener('click', function(e) {
+			e.preventDefault();
+			const url = this.getAttribute('data-url');
+			document.getElementById('url-baraa').value = url;
+			updateTabContent(url, content, tab);
+		});
+	});
 }
+
 function showSpinner(tabElement) {
-    let tabName = tabElement.querySelector('.tab-nameaa');
-    if (!tabName.querySelector('.spinner')) {
-        let spinner = document.createElement('div');
-        spinner.className = 'spinner';
-        tabName.insertBefore(spinner, tabName.firstChild);
-    }
+	let tabName = tabElement.querySelector('.tab-nameaa');
+	if (!tabName.querySelector('.spinner')) {
+		let spinner = document.createElement('div');
+		spinner.className = 'spinner';
+		tabName.insertBefore(spinner, tabName.firstChild);
+	}
 }
 
 function hideSpinner(tabElement) {
-    let spinner = tabElement.querySelector('.spinner');
-    if (spinner) {
-        spinner.remove();
-    }
+	let spinner = tabElement.querySelector('.spinner');
+	if (spinner) {
+		spinner.remove();
+	}
 }
+
 function downloadPage() {
-    // Try fetching locally
-    fetch('/Offline-File/Helios-Offline.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch from local server');
-            }
-            return response.text();
-        })
-        .then(data => downloadFile(data))
-        .catch(error => console.error('Error with local file:', error));
+	// Try fetching locally
+	fetch('/Offline-File/Helios-Offline.html')
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Failed to fetch from local server');
+			}
+			return response.text();
+		})
+		.then(data => downloadFile(data))
+		.catch(error => console.error('Error with local file:', error));
 
-    function downloadFile(data) {
-        const blob = new Blob([data], { type: 'text/html' });
-        const url = URL.createObjectURL(blob);
+	function downloadFile(data) {
+		const blob = new Blob([data], {
+			type: 'text/html'
+		});
+		const url = URL.createObjectURL(blob);
 
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Helios-Offline.html';
-        document.body.appendChild(a);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = 'Helios-Offline.html';
+		document.body.appendChild(a);
 
-        a.click();
+		a.click();
 
-        URL.revokeObjectURL(url);
-        document.body.removeChild(a);
-    }
+		URL.revokeObjectURL(url);
+		document.body.removeChild(a);
+	}
 }
-</script>
 
-</body>
+function generateUserID() {
+	const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+	const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	const numbers = '0123456789';
+	let userId = 'Session ID: ';
 
+	for (let i = 0; i < 14; i++) {
+		if (i % 3 === 0) {
+			userId += lowercase.charAt(Math.floor(Math.random() * lowercase.length));
+		} else if (i % 3 === 1) {
+			userId += uppercase.charAt(Math.floor(Math.random() * uppercase.length));
+		} else {
+			userId += numbers.charAt(Math.floor(Math.random() * numbers.length));
+		}
+	}
+
+	document.getElementById('user-idff').textContent = userId;
+}
+
+window.onload = generateUserID;</script>
+    </body>
 </html>
