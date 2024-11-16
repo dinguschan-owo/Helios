@@ -907,53 +907,53 @@ function isValidURL(string) {
 
 // Function to handle search or URL navigation
 function handleSearchOrNavigation(input, tabIndex) {
-	let url = input.trim();
+  let url = input.trim();
 
-	// Check if it's a valid URL
-	if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
-		if (!/^https?:\/\//i.test(url)) {
-			url = 'https://' + url;
-		}
-		updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
-	} else {
-		// If not a URL, perform a search
-		const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
-		let searchUrl;
-		switch (selectedEngine) {
-			case '4get':
-				searchUrl = `https://4get.ca/web?q=${encodeURIComponent(input)}`;
-				break;
-			case 'Google':
-				searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
-				break;
-			case 'Bing':
-				searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(input)}`;
-				break;
-			case 'DuckDuckGo':
-				searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(input)}`;
-				break;
-			default:
-				searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input)}`;
-		}
-		updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
-	}
+  // Check if it's a valid URL
+  if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
+    updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+  } else {
+    // If not a URL, perform a search
+    const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
+    let searchUrl;
+    switch (selectedEngine) {
+      case '4get':
+        searchUrl = `https://4get.ca/web?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'Google':
+        searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'Bing':
+        searchUrl = `https://www.bing.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      case 'DuckDuckGo':
+        searchUrl = `https://duckduckgo.com/?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+        break;
+      default:
+        searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
+    }
+    updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+  }
 }
 
 // Add event listener for the search input in each tab
 document.addEventListener('click', function(event) {
-	if (event.target.classList.contains('search-iconaa')) {
-		const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
-		const input = document.getElementById(`search-input-${tabIndex}`).value;
-		handleSearchOrNavigation(input, tabIndex);
-	}
+  if (event.target.classList.contains('search-iconaa')) {
+    const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
+    const input = document.getElementById(`search-input-${tabIndex}`).value;
+    handleSearchOrNavigation(input, tabIndex);
+  }
 });
 
 // Add event listener for the Enter key in search inputs
 document.addEventListener('keydown', function(event) {
-	if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
-		const tabIndex = parseInt(event.target.id.split('-')[2]);
-		handleSearchOrNavigation(event.target.value, tabIndex);
-	}
+  if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
+    const tabIndex = parseInt(event.target.id.split('-')[2]);
+    handleSearchOrNavigation(event.target.value, tabIndex);
+  }
 });
 
 document.querySelector('.reload-buttonaa').addEventListener('click', function() {
