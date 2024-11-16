@@ -1,6 +1,6 @@
 ## ***`Common Questions`***
 
-Ok so a lot of people have been asking how Helios works (and how it can be completely unblockable) so this quick blurb should hopefully help explain it to you. first, i wanna start by explaining what a proxy is. Heres how a web proxy works:
+Ok so a lot of people have been asking how Helios works (and how it can be completely unblockable) so this quick(?) blurb should hopefully help explain it to you. first, i wanna start by explaining what a proxy is. Heres how a web proxy works:
 \
 \
 ![image](https://github.com/user-attachments/assets/25e4405b-1cdd-42ad-b22c-ff64377d8df7)
@@ -29,9 +29,12 @@ Lets break it down.
 
 Wait a minute. Those two seem excatly the same? whats the difference? Lets break it down. Again.
 
+A traditional web proxy acts as an intermediary for your traffic, relaying your requests to a target server and then sending the response back to you. However, the proxy server **can** see and log everything that goes through it, including sensitive information like login credentials, personal data, and search history (yikes!). this is a potential privacy risk, as many proxies that are advertised to be free for the user will track your browsing behavior to store amd sell for cash to keep their services running. this is obviously not good at all.
 
+Helios, on the other hand, is designed to minimize any exposure of your requests and traffic. unlike traditional web proxies, Helios operates completely client-side. when you make a request to a website, Helios bypasses your browser's default networking mechanisms and uses JavaScript's fetch() function to make the request. this means the CORS and target servers never sees your actual browser or info — it only interacts with the fetch() request, which makes your actual browsing activity invisible to the target server as well and browser. 
 
-## ***`𝙾𝚟𝚎𝚛𝚟𝚒𝚎𝚠`***
+Use Helios guys, dont trust any shifty ass Networks on the internet named after random objects that promise free proxy use. *cough cough, * titanium. keep your info safe.
+## ***`Background`***
 
 this is the orgignal Helios proxy slapped together soley by me, dinguschan. its a web browser proxy thing i whipped up while absolutly zonked out of my goose, and its in NO way finished. the aim is to be a replacement for dingusProxy, a replacement for your spyware ridden admin controlled browser, and just a plain better proxy than anything any skiddy ass anti censorship "networks" on the internet could cook up. the idea for this was to expand upon dingusProxy's specialized static host, clientside, local, and html css js only web proxy code and unfuck the mess of code in there. i added sandboxed tabs, specialized settings and cloaking, built in threat protection and- I JUST WANNA TO CLONE CHROME. I WANNA BLATENTLY COPY CHROME SOOOOO FUCKING BAD. ITS GONNA BE 𝘽𝙀𝙏𝙏𝙀𝙍 ITS GONNA BE 𝙁𝘼𝙎𝙏𝙀𝙍 ITS GONNA TAKE YOUR ADMINS SHITASS CENSORSHIP AND FUCK. IT. UP. BEAT THAT SHIT DOWN WITH A RUSTY STEEL PIPE WRENCH MADE OF DINGUSCHAN CERTIFIED BOMB ASS CODE. 
 
