@@ -480,6 +480,12 @@ async function fetchExternalContent(url, content, tabIndex) {
 
 	console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
+    // Fix fonts in the fetched content
+  htmlText = await fixFontsInFetchedContent(htmlText, url);
+  
+  // Execute scripts from the fetched content
+  htmlText = executeScriptsFromContent(htmlText);
+  
 	const parser = new DOMParser();
 	const doc = parser.parseFromString(htmlText, 'text/html');
 	const title = doc.title;
@@ -551,8 +557,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 });
-
-
 
 async function fetchExternalContent(url, content, tabIndex) {
 	const proxies = [
@@ -1284,3 +1288,123 @@ function generateUserID() {
 }
 
 window.onload = generateUserID;
+        function executeScriptsFromContent(content) {
+            // Create a temporary div to hold the content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+
+            // Find all script tags in the content
+            const scripts = tempDiv.getElementsByTagName('script');
+
+            // Execute each script
+            Array.from(scripts).forEach(script => {
+                const newScript = document.createElement('script');
+                
+                // If the script has a src attribute, copy it
+                if (script.src) {
+                    newScript.src = script.src;
+                } else {
+                    // Otherwise, copy the inline script content
+                    newScript.textContent = script.textContent;
+                }
+
+                // Set other attributes like type, async, defer if present
+                Array.from(script.attributes).forEach(attr => {
+                    if (attr.name !== 'src') {
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                });
+
+                // Append the new script to the document to execute it
+                document.head.appendChild(newScript);
+                // Optionally remove the script after execution
+                // document.head.removeChild(newScript);
+            });
+
+            // Return the content without the original script tags
+            return tempDiv.innerHTML;
+        }
+// Execute scripts and update the content
+        const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
+
+        // Display the code
+        document.getElementById('codeBlock').textContent = executeScriptsFromContent.toString();
+
+        // Append the content to the body
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = contentWithoutScripts;
+        document.body.appendChild(contentDiv);
+ function fixFontsInFetchedContent(htmlContent, baseUrl) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            
+            // Find all stylesheet links
+            const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
+            
+            // Function to fetch and parse CSS
+            async function fetchAndParseCss(url) {
+                const response = await fetch(url);
+                const css = await response.text();
+                return css;
+            }
+
+            // Function to extract @font-face rules
+            function extractFontFaceRules(css) {
+                const fontFaceRegex = /@font-face\s*{[^}]*}/g;
+                return css.match(fontFaceRegex) || [];
+            }
+
+            // Function to modify font URLs
+            function modifyFontUrls(css, baseUrl) {
+                return css.replace(/url$$['"]?(.+?)['"]?$$/g, (match, url) => {
+                    if (!url.startsWith('http')) {
+                        return `url("${new URL(url, baseUrl)}")`;
+                    }
+                    return match;
+                });
+            }
+
+            // Process stylesheets
+            Promise.all(Array.from(stylesheets).map(link => {
+                const href = new URL(link.getAttribute('href'), baseUrl).href;
+                return fetchAndParseCss(href).then(css => {
+                    const fontFaceRules = extractFontFaceRules(css);
+                    return fontFaceRules.map(rule => modifyFontUrls(rule, href));
+                });
+            })).then(results => {
+                const allFontFaceRules = results.flat();
+                
+                // Create a style element for font-face rules
+                const styleElement = doc.createElement('style');
+                styleElement.textContent = allFontFaceRules.join('\n');
+                doc.head.appendChild(styleElement);
+
+                // Preload fonts
+                allFontFaceRules.forEach(rule => {
+                    const urlMatch = rule.match(/url$$['"]?(.+?)['"]?$$/);
+                    if (urlMatch) {
+                        const fontUrl = urlMatch[1];
+                        const link = doc.createElement('link');
+                        link.rel = 'preload';
+                        link.as = 'font';
+                        link.href = fontUrl;
+                        link.crossOrigin = 'anonymous';
+                        doc.head.appendChild(link);
+                    }
+                });
+
+                // Convert back to string
+                const modifiedHtml = new XMLSerializer().serializeToString(doc);
+                
+                // Use the modified HTML content
+                console.log('Font-fixed HTML:', modifiedHtml);
+                // You would typically return or use this modifiedHtml in your Helios browser
+            });
+
+            // Return the original content for now (async operation will update later)
+            return htmlContent;
+        }
+ fixFontsInFetchedContent(fetchedHtml, baseUrl);
+
+        // Display the code
+        document.getElementById('codeBlock').textContent = fixFontsInFetchedContent.toString();
