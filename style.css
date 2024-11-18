@@ -27,8 +27,8 @@ body {
   position: absolute;
   right: 23px;
   top: -27px;
-  width: 56px; /* Increased width */
-  height: 55px; /* Increased height */
+  width: 56px; 
+  height: 55px;
   background-color: #3c4043;
   border: none;
   cursor: pointer;
@@ -55,21 +55,21 @@ body {
   display: none;
   position: absolute;
   background-color: #3c4043;
-  min-width: 250px; /* Increased minimum width */
+  min-width: 250px; 
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  bottom: 36px; /* Keep gap at 48px */
+  bottom: 36px;
   left: -78px;
-  border-radius: 10px; /* Updated border-radius */
+  border-radius: 10px;
   padding: 0;
 }
 
 .dropdown-contentaa .status-messageaa {
   color: #f1f1f1;
-  padding: 14px 14px; /* Increased padding */
-  background-color: #484d51; /* Background for status message */
-  border-top-left-radius: 10px; /* Updated border-radius */
-  border-top-right-radius: 10px; /* Updated border-radius */
+  padding: 14px 14px; 
+  background-color: #484d51; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
   font-size: 15px;
 }
 
@@ -91,16 +91,15 @@ body {
 
 .dropdown-contentaa a img {
   width: 28px;
-  height: 28px; /* Increased image size */
-  margin-right: 12px; /* Increased margin */
+  height: 28px; 
+  margin-right: 12px; 
 }
 
-/* Set font to Arial Sans Serif and increase font size */
 .dropdown-contentaa,
 .dropdown-contentaa a,
 .status-messageaa {
   font-family: Arial, sans-serif;
-  font-size: 15px; /* Increased font size */
+  font-size: 15px; 
 }
 
 .cloak-buttonaa {
@@ -537,17 +536,17 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0; /* Ensure no margin is added */
-  padding: 0; /* Ensure no padding is added */
-  overflow: hidden; /* Ensure no overflow issues */
+  margin: 0; 
+  padding: 0;
+  overflow: hidden;
   height: 100vh !important;
   background: linear-gradient(145deg, #1e1e1e, #292929);
 }
 
 .tab-contentaa.activeaa {
   display: flex;
-  margin: 0; /* Ensure no margin is added */
-  padding: 0; /* Ensure no padding is added */
+  margin: 0; 
+  padding: 0;
 }
 
 .clear-buttonaa {
@@ -714,3 +713,13 @@ body {
   border-top-right-radius: 0px;
   background-color: #484d51;
 }
+        .encryption-status {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
