@@ -87,3 +87,7 @@ fuck you there is no update schedule ill push updates whenever i fucking feel li
 ## ***`Known Issues`***
 
 NONE ITS PERFECT (submit a issue if you find one and ill fix it)
+
+## *** FAQ ***
+
+https://github.com/Project516/Helios/blob/main/faq.md
