@@ -435,7 +435,7 @@ async function fetchWithProxy(proxy) {
                     fetch(proxy, {
                         signal: controller.signal,
                         headers: {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' // User agent to spoof your actual User ID to the CORS proxy server and target server
                         }
                     })
                     .then(response => {
@@ -843,11 +843,13 @@ function changeTabContent(url) {
 		document.getElementById('url-baraa').dispatchEvent(event);
 	}
 }
+// Function to open Helios in an about:blank tab
 
 function openInAboutBlank() {
 	const newWindow = window.open('about:blank', '_blank');
 	newWindow.document.write(document.documentElement.outerHTML);
 }
+// Function to open Helios in a blob: tab
 
 function openInBlob() {
 	const html = document.documentElement.outerHTML;
@@ -1182,7 +1184,6 @@ window.onclick = function(event) {
 	}
 }
 
-// Add this new function to handle the "New Tab" menu item click
 function handleNewTabMenuClick(event) {
 	event.preventDefault();
 	document.getElementById('add-tabaa').click();
@@ -1275,9 +1276,9 @@ function downloadPage() {
 }
 
 function generateUserID() {
-	const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+	const lowercase = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
 	const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	const numbers = '0123456789';
+	const numbers = '01234567890123456789';
 	let userId = 'Session ID: ';
 
 	for (let i = 0; i < 14; i++) {
@@ -1404,7 +1405,7 @@ window.onload = generateUserID;
                 
                 // Use the modified HTML content
                 console.log('Font-fixed HTML:', modifiedHtml);
-                // You would typically return or use this modifiedHtml in your Helios browser
+                
             });
 
             // Return the original content for now (async operation will update later)
@@ -1414,6 +1415,8 @@ window.onload = generateUserID;
 
         // Display the code
         document.getElementById('codeBlock').textContent = fixFontsInFetchedContent.toString();
+
+// Generates a cryptographic key using the Web Crypto API which wil be used for the encryption and decryption of the request
 async function generateKey() {
             return await window.crypto.subtle.generateKey(
                 {
@@ -1424,6 +1427,7 @@ async function generateKey() {
                 ["encrypt", "decrypt"]
             );
         }
+// Encrypts data with key 
 
         async function encryptData(data, key) {
             const encodedData = new TextEncoder().encode(data);
@@ -1441,6 +1445,7 @@ async function generateKey() {
                 encryptedData: Array.from(new Uint8Array(encryptedData))
             };
         }
+// Decrypts data with key
 
         async function decryptData(encryptedObj, key) {
             const decryptedData = await window.crypto.subtle.decrypt(
