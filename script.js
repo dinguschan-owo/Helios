@@ -419,33 +419,39 @@ async function fetchExternalContent(url, content, tabIndex) {
 
 	const timeout = 10000;
 
-	async function fetchWithProxy(proxy) {
-		return new Promise((resolve, reject) => {
-			const controller = new AbortController();
-			const id = setTimeout(() => {
-				controller.abort();
-				reject(new Error('Timeout'));
-			}, timeout);
+              const key = await generateKey();
+            const encryptedUrl = await encryptData(url, key);
+  
+async function fetchWithProxy(proxy) {
+                return new Promise((resolve, reject) => {
+                    const controller = new AbortController();
+                    const id = setTimeout(() => {
+                        controller.abort();
+                        reject(new Error('Timeout'));
+                    }, timeout);
 
-			console.log(`Attempting to fetch with proxy: ${proxy}`);
+                    console.log(`Attempting to fetch with proxy: ${proxy}`);
 
-			fetch(proxy, {
-					signal: controller.signal,
-					headers: {
-						'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-					}
-				})
-				.then(response => {
-					clearTimeout(id);
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					return response.text();
-				})
-				.then(resolve)
-				.catch(reject);
-		});
-	}
+                    fetch(proxy, {
+                        signal: controller.signal,
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                        }
+                    })
+                    .then(response => {
+                        clearTimeout(id);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(async encryptedResponse => {
+                        const decryptedResponse = await decryptData(JSON.parse(encryptedResponse), key);
+                        resolve(decryptedResponse);
+                    })
+                    .catch(reject);
+                });
+            }
 
 	let htmlText;
 	let errors = [];
@@ -1408,3 +1414,42 @@ window.onload = generateUserID;
 
         // Display the code
         document.getElementById('codeBlock').textContent = fixFontsInFetchedContent.toString();
+async function generateKey() {
+            return await window.crypto.subtle.generateKey(
+                {
+                    name: "AES-GCM",
+                    length: 256
+                },
+                true,
+                ["encrypt", "decrypt"]
+            );
+        }
+
+        async function encryptData(data, key) {
+            const encodedData = new TextEncoder().encode(data);
+            const iv = window.crypto.getRandomValues(new Uint8Array(12));
+            const encryptedData = await window.crypto.subtle.encrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv
+                },
+                key,
+                encodedData
+            );
+            return {
+                iv: Array.from(iv),
+                encryptedData: Array.from(new Uint8Array(encryptedData))
+            };
+        }
+
+        async function decryptData(encryptedObj, key) {
+            const decryptedData = await window.crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: new Uint8Array(encryptedObj.iv)
+                },
+                key,
+                new Uint8Array(encryptedObj.encryptedData)
+            );
+            return new TextDecoder().decode(decryptedData);
+        }
