@@ -287,7 +287,7 @@ body {
   border: none;
   font-size: 20px;
   color: #9aa0a6;
-  margin-right: 15px;
+  margin-right: 10px;
   cursor: pointer;
   transition: color 0.3s;
   z-index: 2147483644;
@@ -313,7 +313,23 @@ body {
   font-weight: 600;
   margin-bottom: -1px;
   z-index: 2147483644;
+  animation: none;
 }
+
+.browser-baraa .reload-buttonaa:hover {
+  animation: spin 0.5s forwards; 
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); 
+  }
+}
+
+
 .browser-baraa .home-buttonaa {
   z-index: 2147483644;
 }
