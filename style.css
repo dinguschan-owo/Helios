@@ -371,7 +371,7 @@ body {
 }
 
 .browser-baraa .reload-buttonaa:hover {
-  animation: spin 0.5s forwards; 
+  animation: spin 0.7s forwards; 
 }
 
 @keyframes spin {
@@ -561,11 +561,21 @@ body {
   margin-top: 1px;
 }
 
+
 .browser-baraa .settings-buttonaa:hover {
-  color: #ffffff;
+  animation: spin 0.8s forwards; 
+    color: #ffffff;
   z-index: 2147483644;
 }
 
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); 
+  }
+}
 .tab-contentaa h20 {
   font-size: 61px;
   font-weight: 600;
