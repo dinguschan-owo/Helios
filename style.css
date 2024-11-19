@@ -371,7 +371,7 @@ body {
 }
 
 .browser-baraa .reload-buttonaa:hover {
-  animation: spin 0.5s forwards; 
+  animation: spin 0.7s forwards; 
 }
 
 @keyframes spin {
