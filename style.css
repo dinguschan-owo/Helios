@@ -324,7 +324,7 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(5px); 
+    transform: translateX(4.6px); 
   }
   50% {
     transform: translateX(-2px); 
@@ -342,7 +342,7 @@ body {
     transform: translateX(0);
   }
   30% {
-    transform: translateX(-5px); 
+    transform: translateX(-4.6px); 
   }
   50% {
     transform: translateX(2px); 
@@ -402,13 +402,13 @@ body {
     transform: scale(1) translateZ(0);
   }
   30% {
-    transform: scale(1.1) translateZ(15px);
+    transform: scale(1.07) translateZ(15px);
   }
   50% {
     transform: scale(0.9) translateZ(5px);
   }
   70% {
-    transform: scale(1.1) translateZ(8px);
+    transform: scale(1.07) translateZ(8px);
   }
   100% {
     transform: scale(1) translateZ(0);
