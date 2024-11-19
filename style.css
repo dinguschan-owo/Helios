@@ -371,7 +371,7 @@ body {
 }
 
 .browser-baraa .reload-buttonaa:hover {
-  animation: spin 0.7s forwards; 
+  animation: spin 0.5s forwards; 
 }
 
 @keyframes spin {
@@ -402,13 +402,13 @@ body {
     transform: scale(1) translateZ(0);
   }
   30% {
-    transform: scale(1.06) translateZ(15px);
+    transform: scale(1.07) translateZ(15px);
   }
   50% {
     transform: scale(0.9) translateZ(5px);
   }
   70% {
-    transform: scale(1.06) translateZ(8px);
+    transform: scale(1.07) translateZ(8px);
   }
   100% {
     transform: scale(1) translateZ(0);
@@ -508,6 +508,11 @@ body {
   z-index: 2147483644;
 }
 
+.browser-baraa .fullscreen-button:hover {
+  color: #ffffff;
+  z-index: 2147483644;
+}
+
 .browser-baraa .fullscreen-button {
   font-size: 23px;
   cursor: pointer;
@@ -515,37 +520,7 @@ body {
   margin-bottom: -1px;
   font-weight: 600;
   z-index: 2147483644;
-  transition: transform 0.3s ease;
-  animation-duration: 0.5s;
-  animation-fill-mode: forwards;
-  animation-play-state: paused;
 }
-
-.browser-baraa .fullscreen-button:hover {
-  color: #ffffff;
-  animation: bounceFullscreen 0.5s ease-out forwards;
-  animation-play-state: running;
-  transform: translateX(-2px);
-}
-
-@keyframes bounceFullscreen {
-  0% {
-    transform: scale(1) translateZ(0);
-  }
-  30% {
-    transform: scale(1.06) translateZ(15px);
-  }
-  50% {
-    transform: scale(0.9) translateZ(5px);
-  }
-  70% {
-    transform: scale(1.06) translateZ(8px);
-  }
-  100% {
-    transform: scale(1) translateZ(0);
-  }
-}
-
 
 .browser-baraa .wrench-buttonaa:hover {
   color: #ffffff;
@@ -561,21 +536,11 @@ body {
   margin-top: 1px;
 }
 
-
 .browser-baraa .settings-buttonaa:hover {
-  animation: spin 0.8s forwards; 
-    color: #ffffff;
+  color: #ffffff;
   z-index: 2147483644;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg); 
-  }
-}
 .tab-contentaa h20 {
   font-size: 61px;
   font-weight: 600;
