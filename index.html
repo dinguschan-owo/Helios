@@ -110,18 +110,14 @@
 
 
       
-      <button id ="my">embed about:blank</button>
     <button id = "myP" onclick = "REPlICASELF()">Click to replica</button>
-    <p> Go to wfogame on github</p>
-    <label for ="name">Type something in here for anti close, TEXT NOT VISIBLE</label>
-    <input name="name" id="name"/>
 
 <script type="text/javascript">
     const beforeUnloadListener = (event) => {
         event.preventDefault();
         return event.returnValue = "Are you sure you want to exit?";
     };
-  
+  <input id ="name" name = "name"></input>
     const nameInput = document.querySelector("#name");
 
     nameInput.addEventListener("input", (event) => {
@@ -132,43 +128,16 @@
         }
     });
 
-    </script>
-
-    <script type="text/javascript">
-
-        
-        var urlobj = new window.URL(window.location.href);
-
-        let url = prompt("Please enter the url", "index.html");
-    // Place the code you want to execute when the URL is not 'about blank'
-
-       
-if (url) { var win; document.querySelector('button').onclick = function() { if (win) { win.focus(); } else { win = window.open();
-                                                                                                            win.document.body.style.margin = '0';
-                                                                                                            win.document.body.style.height = '100vh'; 
-                                                                                                            var iframe = win.document.createElement('iframe'); 
-                                                                                                            iframe.style.border = 'none'; 
-                                                                                                            iframe.style.width = '100%';
-                                  iframe.style.height = '100%'; 
-                                            iframe.style.margin = '0';
-                                              iframe.src = url;
-                                            win.document.body.appendChild(iframe); 
-                                            } document.querySelector('button').style.background='#ff5148'; 
-                                        document.getElementById("my").innerHTML="Launched"; }; }
-
-
-            function REPlICASELF (){
+   function REPlICASELF (){
         let html = document.getElementById("demo").innerHTML;
          var s = window.open();
         s.document.body.innerHTML = html;
 document.getElementById("myP").innerHTML="REPLICATED";
 
         } 
+    </script>
 
-    </script> 
-    <style> * { color: white; font-family: arial; text-align: center; } 
-        button { width: 220px; height: 40px; border-radius: 12px; 
-                background-color: #1F51FF; font-family: Arial, Helvetica, sans-serif; border: none; transition: background-color 500ms; } button:hover { background-color: #1F51FF; }
+  
 
       
     </body>
