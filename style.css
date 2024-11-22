@@ -287,7 +287,7 @@ body {
   border: none;
   font-size: 20px;
   color: #9aa0a6;
-  margin-right: 15px;
+  margin-right: 12px;
   cursor: pointer;
   transition: color 0.3s;
   z-index: 2147483644;
@@ -298,24 +298,121 @@ body {
   z-index: 2147483644;
 }
 
-.browser-baraa .forward-buttonaa {
-  font-size: 23px;
-  font-weight: 600;
-  z-index: 2147483644;
-}
+.browser-baraa .forward-buttonaa,
 .browser-baraa .backward-buttonaa {
   font-size: 23px;
   font-weight: 600;
   z-index: 2147483644;
+  transition: transform 0.3s ease; 
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
 }
+
+.browser-baraa .forward-buttonaa:hover {
+  animation: bounceForward 0.5s ease-out forwards;
+  animation-play-state: running; 
+}
+
+.browser-baraa .backward-buttonaa:hover {
+  animation: bounceBackward 0.5s ease-out forwards;
+  animation-play-state: running;
+}
+
+@keyframes bounceForward {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(4.6px); 
+  }
+  50% {
+    transform: translateX(-2px); 
+  }
+  70% {
+    transform: translateX(1px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceBackward {
+  0% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-4.6px); 
+  }
+  50% {
+    transform: translateX(2px); 
+  }
+  70% {
+    transform: translateX(-1px);
+  }
+  100% {
+    transform: translateX(0); 
+  }
+}
+
+.browser-baraa .home-button,
+.browser-baraa .reload-button,
+.browser-baraa .forward-buttonaa,
+.browser-baraa .backward-buttonaa {
+  animation-delay: 0.1s;
+}
+
 .browser-baraa .reload-buttonaa {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: -1px;
   z-index: 2147483644;
+  animation: none;
 }
+
+.browser-baraa .reload-buttonaa:hover {
+  animation: spin 0.7s forwards; 
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg); 
+  }
+}
+
+
 .browser-baraa .home-buttonaa {
   z-index: 2147483644;
+  transition: transform 0.3s ease;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
+}
+
+.browser-baraa .home-buttonaa:hover {
+  animation: bounceHome 0.5s ease-out forwards;
+  animation-play-state: running;
+}
+
+@keyframes bounceHome {
+  0% {
+    transform: scale(1) translateZ(0);
+  }
+  30% {
+    transform: scale(1.07) translateZ(15px);
+  }
+  50% {
+    transform: scale(0.9) translateZ(5px);
+  }
+  70% {
+    transform: scale(1.07) translateZ(8px);
+  }
+  100% {
+    transform: scale(1) translateZ(0);
+  }
 }
 
 .browser-baraa .search-buttonaa {

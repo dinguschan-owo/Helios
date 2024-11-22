@@ -44,8 +44,8 @@
   position: absolute;
   right: 23px;
   top: -27px;
-  width: 56px; /* Increased width */
-  height: 55px; /* Increased height */
+  width: 56px; 
+  height: 55px;
   background-color: #3c4043;
   border: none;
   cursor: pointer;
@@ -72,21 +72,21 @@
   display: none;
   position: absolute;
   background-color: #3c4043;
-  min-width: 250px; /* Increased minimum width */
+  min-width: 250px; 
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
-  bottom: 36px; /* Keep gap at 48px */
+  bottom: 36px;
   left: -78px;
-  border-radius: 10px; /* Updated border-radius */
+  border-radius: 10px;
   padding: 0;
 }
 
 .dropdown-contentaa .status-messageaa {
   color: #f1f1f1;
-  padding: 14px 14px; /* Increased padding */
-  background-color: #484d51; /* Background for status message */
-  border-top-left-radius: 10px; /* Updated border-radius */
-  border-top-right-radius: 10px; /* Updated border-radius */
+  padding: 14px 14px; 
+  background-color: #484d51; 
+  border-top-left-radius: 10px; 
+  border-top-right-radius: 10px;
   font-size: 15px;
 }
 
@@ -108,16 +108,15 @@
 
 .dropdown-contentaa a img {
   width: 28px;
-  height: 28px; /* Increased image size */
-  margin-right: 12px; /* Increased margin */
+  height: 28px; 
+  margin-right: 12px; 
 }
 
-/* Set font to Arial Sans Serif and increase font size */
 .dropdown-contentaa,
 .dropdown-contentaa a,
 .status-messageaa {
   font-family: Arial, sans-serif;
-  font-size: 15px; /* Increased font size */
+  font-size: 15px; 
 }
 
 .cloak-buttonaa {
@@ -554,17 +553,17 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: 0; /* Ensure no margin is added */
-  padding: 0; /* Ensure no padding is added */
-  overflow: hidden; /* Ensure no overflow issues */
+  margin: 0; 
+  padding: 0;
+  overflow: hidden;
   height: 100vh !important;
   background: linear-gradient(145deg, #1e1e1e, #292929);
 }
 
 .tab-contentaa.activeaa {
   display: flex;
-  margin: 0; /* Ensure no margin is added */
-  padding: 0; /* Ensure no padding is added */
+  margin: 0; 
+  padding: 0;
 }
 
 .clear-buttonaa {
@@ -730,7 +729,17 @@
   border-bottom-right-radius: 10px;
   border-top-right-radius: 0px;
   background-color: #484d51;
-}</style>
+}
+        .encryption-status {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   </head>
   <body>
@@ -798,7 +807,7 @@
           </p>
         </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟺.𝟶</h21>
+        <h21>𝚟𝟷.𝟼.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
             <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
@@ -963,7 +972,7 @@ document.addEventListener('DOMContentLoaded', function() {
 • Review the initialization sequence for all dependent objects.
 • Check the logs for any preceding errors that may provide context.
 • Clear browser cache and clear and reset website data storage.
-• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.3.0).
+• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.6.0).
 `;
 			document.body.appendChild(contentFetchingProtocolErrorOverlay);
 		}
@@ -1018,7 +1027,7 @@ const tabs = [{
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟺.𝟶</h21>
+        <h21>𝚟𝟷.𝟼.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -1133,7 +1142,7 @@ function updateTabContent(url, content, tab) {
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟺.𝟶</h21>
+        <h21>𝚟𝟷.𝟼.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -1241,33 +1250,39 @@ async function fetchExternalContent(url, content, tabIndex) {
 
 	const timeout = 10000;
 
-	async function fetchWithProxy(proxy) {
-		return new Promise((resolve, reject) => {
-			const controller = new AbortController();
-			const id = setTimeout(() => {
-				controller.abort();
-				reject(new Error('Timeout'));
-			}, timeout);
+              const key = await generateKey();
+            const encryptedUrl = await encryptData(url, key);
+  
+async function fetchWithProxy(proxy) {
+                return new Promise((resolve, reject) => {
+                    const controller = new AbortController();
+                    const id = setTimeout(() => {
+                        controller.abort();
+                        reject(new Error('Timeout'));
+                    }, timeout);
 
-			console.log(`Attempting to fetch with proxy: ${proxy}`);
+                    console.log(`Attempting to fetch with proxy: ${proxy}`);
 
-			fetch(proxy, {
-					signal: controller.signal,
-					headers: {
-						'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-					}
-				})
-				.then(response => {
-					clearTimeout(id);
-					if (!response.ok) {
-						throw new Error(`HTTP error! status: ${response.status}`);
-					}
-					return response.text();
-				})
-				.then(resolve)
-				.catch(reject);
-		});
-	}
+                    fetch(proxy, {
+                        signal: controller.signal,
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' // User agent to spoof your actual User ID to the CORS proxy server and target server
+                        }
+                    })
+                    .then(response => {
+                        clearTimeout(id);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.text();
+                    })
+                    .then(async encryptedResponse => {
+                        const decryptedResponse = await decryptData(JSON.parse(encryptedResponse), key);
+                        resolve(decryptedResponse);
+                    })
+                    .catch(reject);
+                });
+            }
 
 	let htmlText;
 	let errors = [];
@@ -1302,6 +1317,12 @@ async function fetchExternalContent(url, content, tabIndex) {
 
 	console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
+    // Fix fonts in the fetched content
+  htmlText = await fixFontsInFetchedContent(htmlText, url);
+  
+  // Execute scripts from the fetched content
+  htmlText = executeScriptsFromContent(htmlText);
+  
 	const parser = new DOMParser();
 	const doc = parser.parseFromString(htmlText, 'text/html');
 	const title = doc.title;
@@ -1373,8 +1394,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	});
 });
-
-
 
 async function fetchExternalContent(url, content, tabIndex) {
 	const proxies = [
@@ -1655,11 +1674,13 @@ function changeTabContent(url) {
 		document.getElementById('url-baraa').dispatchEvent(event);
 	}
 }
+// Function to open Helios in an about:blank tab
 
 function openInAboutBlank() {
 	const newWindow = window.open('about:blank', '_blank');
 	newWindow.document.write(document.documentElement.outerHTML);
 }
+// Function to open Helios in a blob: tab
 
 function openInBlob() {
 	const html = document.documentElement.outerHTML;
@@ -1994,7 +2015,6 @@ window.onclick = function(event) {
 	}
 }
 
-// Add this new function to handle the "New Tab" menu item click
 function handleNewTabMenuClick(event) {
 	event.preventDefault();
 	document.getElementById('add-tabaa').click();
@@ -2087,9 +2107,9 @@ function downloadPage() {
 }
 
 function generateUserID() {
-	const lowercase = 'abcdefghijklmnopqrstuvwxyz';
+	const lowercase = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
 	const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	const numbers = '0123456789';
+	const numbers = '01234567890123456789';
 	let userId = 'Session ID: ';
 
 	for (let i = 0; i < 14; i++) {
@@ -2105,6 +2125,169 @@ function generateUserID() {
 	document.getElementById('user-idff').textContent = userId;
 }
 
-window.onload = generateUserID;</script>
+window.onload = generateUserID;
+        function executeScriptsFromContent(content) {
+            // Create a temporary div to hold the content
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+
+            // Find all script tags in the content
+            const scripts = tempDiv.getElementsByTagName('script');
+
+            // Execute each script
+            Array.from(scripts).forEach(script => {
+                const newScript = document.createElement('script');
+                
+                // If the script has a src attribute, copy it
+                if (script.src) {
+                    newScript.src = script.src;
+                } else {
+                    // Otherwise, copy the inline script content
+                    newScript.textContent = script.textContent;
+                }
+
+                // Set other attributes like type, async, defer if present
+                Array.from(script.attributes).forEach(attr => {
+                    if (attr.name !== 'src') {
+                        newScript.setAttribute(attr.name, attr.value);
+                    }
+                });
+
+                // Append the new script to the document to execute it
+                document.head.appendChild(newScript);
+                // Optionally remove the script after execution
+                // document.head.removeChild(newScript);
+            });
+
+            // Return the content without the original script tags
+            return tempDiv.innerHTML;
+        }
+// Execute scripts and update the content
+        const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
+
+        // Display the code
+        document.getElementById('codeBlock').textContent = executeScriptsFromContent.toString();
+
+        // Append the content to the body
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = contentWithoutScripts;
+        document.body.appendChild(contentDiv);
+ function fixFontsInFetchedContent(htmlContent, baseUrl) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlContent, 'text/html');
+            
+            // Find all stylesheet links
+            const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
+            
+            // Function to fetch and parse CSS
+            async function fetchAndParseCss(url) {
+                const response = await fetch(url);
+                const css = await response.text();
+                return css;
+            }
+
+            // Function to extract @font-face rules
+            function extractFontFaceRules(css) {
+                const fontFaceRegex = /@font-face\s*{[^}]*}/g;
+                return css.match(fontFaceRegex) || [];
+            }
+
+            // Function to modify font URLs
+            function modifyFontUrls(css, baseUrl) {
+                return css.replace(/url$$['"]?(.+?)['"]?$$/g, (match, url) => {
+                    if (!url.startsWith('http')) {
+                        return `url("${new URL(url, baseUrl)}")`;
+                    }
+                    return match;
+                });
+            }
+
+            // Process stylesheets
+            Promise.all(Array.from(stylesheets).map(link => {
+                const href = new URL(link.getAttribute('href'), baseUrl).href;
+                return fetchAndParseCss(href).then(css => {
+                    const fontFaceRules = extractFontFaceRules(css);
+                    return fontFaceRules.map(rule => modifyFontUrls(rule, href));
+                });
+            })).then(results => {
+                const allFontFaceRules = results.flat();
+                
+                // Create a style element for font-face rules
+                const styleElement = doc.createElement('style');
+                styleElement.textContent = allFontFaceRules.join('\n');
+                doc.head.appendChild(styleElement);
+
+                // Preload fonts
+                allFontFaceRules.forEach(rule => {
+                    const urlMatch = rule.match(/url$$['"]?(.+?)['"]?$$/);
+                    if (urlMatch) {
+                        const fontUrl = urlMatch[1];
+                        const link = doc.createElement('link');
+                        link.rel = 'preload';
+                        link.as = 'font';
+                        link.href = fontUrl;
+                        link.crossOrigin = 'anonymous';
+                        doc.head.appendChild(link);
+                    }
+                });
+
+                // Convert back to string
+                const modifiedHtml = new XMLSerializer().serializeToString(doc);
+                
+                // Use the modified HTML content
+                console.log('Font-fixed HTML:', modifiedHtml);
+                
+            });
+
+            // Return the original content for now (async operation will update later)
+            return htmlContent;
+        }
+ fixFontsInFetchedContent(fetchedHtml, baseUrl);
+
+        // Display the code
+        document.getElementById('codeBlock').textContent = fixFontsInFetchedContent.toString();
+
+// Generates a cryptographic key using the Web Crypto API which wil be used for the encryption and decryption of the request
+async function generateKey() {
+            return await window.crypto.subtle.generateKey(
+                {
+                    name: "AES-GCM",
+                    length: 256
+                },
+                true,
+                ["encrypt", "decrypt"]
+            );
+        }
+// Encrypts data with key 
+
+        async function encryptData(data, key) {
+            const encodedData = new TextEncoder().encode(data);
+            const iv = window.crypto.getRandomValues(new Uint8Array(12));
+            const encryptedData = await window.crypto.subtle.encrypt(
+                {
+                    name: "AES-GCM",
+                    iv: iv
+                },
+                key,
+                encodedData
+            );
+            return {
+                iv: Array.from(iv),
+                encryptedData: Array.from(new Uint8Array(encryptedData))
+            };
+        }
+// Decrypts data with key
+
+        async function decryptData(encryptedObj, key) {
+            const decryptedData = await window.crypto.subtle.decrypt(
+                {
+                    name: "AES-GCM",
+                    iv: new Uint8Array(encryptedObj.iv)
+                },
+                key,
+                new Uint8Array(encryptedObj.encryptedData)
+            );
+            return new TextDecoder().decode(decryptedData);
+        }</script>
     </body>
 </html>
