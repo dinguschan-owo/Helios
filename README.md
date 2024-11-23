@@ -90,4 +90,4 @@ NONE ITS PERFECT (submit a issue if you find one and ill fix it)
 
 ## ***`FAQ`***
 
-[FAQ.md](faq.md.md).
+[FAQ.md](faq.md).
