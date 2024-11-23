@@ -90,4 +90,4 @@ NONE ITS PERFECT (submit a issue if you find one and ill fix it)
 
 ## ***`FAQ`***
 
-https://github.com/dinguschan-owo/Helios/blob/main/faq.md
+[FAQ.md](faq.md.md).
