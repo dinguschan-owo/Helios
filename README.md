@@ -50,13 +50,16 @@ Vercel:
 
 ## ***`Features`***
 
+- built in request encryption
+- user agent disguising
 - open up to 23 tabs before it starts breaking (thats a lot!)
 - search bar for searching
 - basic navigation buttons (back, forwards, reload, home)
-- settings page
+- numerous internal urls (settings, new page, internal links)
 - website caching
-- about:blank and blob: cloaking
-- clear all tabs and reset browser button (why would you want this you freak)
+- about:blank and blob: tab cloaking
+- random proxy rotation so ur harder to trace
+- clear all tabs and reset browser button (why would you want this, you 𝓯𝓻𝓮𝓪𝓴 ❤️)
 
 ## ***`License`***
 
