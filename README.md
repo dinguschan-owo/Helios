@@ -63,11 +63,11 @@ Vercel:
 
 ## ***`License`***
 
-do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :(
+do whatever the you want with this code, its open sauce! just please PLEASE credit me, cause i worked hard on this :3. also consider leaving a star, it helps my self esteem a ton :D
 
 ## ***`Compatibility`***
 
-Helios works in the latest versions of:
+Helios works in the latest desktop versions of:
 
 - Chrome
 - Firefox
