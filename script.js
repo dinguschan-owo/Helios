@@ -1246,20 +1246,38 @@ function hideSpinner(tabElement) {
 }
 
 function downloadPage() {
-    // Try fetching locally
-    fetch('/Offline-File/Helios-Offline.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to fetch from local server');
-            }
-            return response.text();
+    // Attempt to fetch from GitHub first
+    const url = "https://raw.githubusercontent.com/dinguschan-owo/Helios/refs/heads/main/Offline-File/Helios-Offline.html";
+    fetch(url)
+        .then(response => response.blob())        .then(blob => {
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = "Helios-Offline.html";
+            a.click();
         })
-        .then(data => downloadFile(data))
-        .catch(error => console.error('Error with local file:', error));
+        .catch(error => {
+            console.error("Error downloading from GitHub:", error);
+            // If GitHub fetch fails, attempt to fetch from the local server
+            fetchLocalFile();
+        });
+
+    function fetchLocalFile() {
+        fetch('/Offline-File/Helios-Offline.html')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch from local server');
+                }
+                return response.text();
+            })
+            .then(data => {
+                downloadFile(data);
+            })
+            .catch(error => console.error('Error with local file:', error));
+    }
 
     function downloadFile(data) {
         const blob = new Blob([data], {
-            type: 'text/html'
+            type: 'text/html'  // Set the MIME type for HTML files
         });
         const url = URL.createObjectURL(blob);
 
@@ -1274,6 +1292,7 @@ function downloadPage() {
         document.body.removeChild(a);
     }
 }
+
 
 function generateUserID() {
     const lowercase = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
