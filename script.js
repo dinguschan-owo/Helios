@@ -1476,3 +1476,50 @@ async function decryptData(encryptedObj, key) {
     );
     return new TextDecoder().decode(decryptedData);
 }
+
+    // Function to generate a unique data URL
+
+       function generateDataURL() {
+    const htmlContent = document.documentElement.outerHTML;
+    const dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+   
+    document.getElementById("dataURLText").value = dataURL;
+    document.getElementById("myModal").style.display = "flex"; 
+    document.querySelector(".modal-contentgg").style.display = "block";
+}
+
+document.getElementById("dataURL").addEventListener("click", generateDataURL);
+
+        // Function to copy the data URL to clipboard
+        function copyDataURL() {
+            const dataURLText = document.getElementById("dataURLText");
+            const copyButton = document.getElementById("copyButton");
+
+            dataURLText.select(); 
+            navigator.clipboard.writeText(dataURLText.value)
+                .then(() => {
+                    copyButton.textContent = "Copied!"; 
+                    setTimeout(() => {
+                        copyButton.textContent = "Copy"; 
+                    }, 3000);
+                })
+                .catch(() => {
+                    copyButton.textContent = "Error"; 
+                    setTimeout(() => {
+                        copyButton.textContent = "Copy";
+                    }, 3000);
+                });
+        }
+
+        // Function to close the modal
+        function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    document.querySelector(".modal-contentgg").style.display = "none";
+}
+
+document.getElementById("dataURL").addEventListener("click", generateDataURL);
+
+window.onload = function() {
+    document.getElementById("myModal").style.display = "none";
+    document.querySelector(".modal-contentgg").style.display = "none";
+};
