@@ -852,7 +852,9 @@ body {
             height: 200px;
             padding: 10px;
             font-size: 14px;
-            border: 1px solid #ccc;
+          color: #fff;
+            background-color: #52565b;
+            border: none;
             border-radius: 5px;
             margin-top: 10px;
             resize: none;
@@ -865,9 +867,9 @@ body {
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: #007BFF; 
+            background-color: #52565b; 
             color: white;
-            border: none;
+              border: 2px solid #66ffa1;
             padding: 5px 10px;
             border-radius: 5px;
             cursor: pointer;
@@ -875,14 +877,14 @@ body {
         }
 
         .copy-buttongg:hover {
-            background-color: #0056b3; 
+            background-color: #55595e; 
         }
 
         .close-buttongg {
             margin-top: 20px;
-            background-color: #4CAF50;
+            background-color: #52565b;
+              border: 2px solid #66ffa1;
             color: white;
-            border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
@@ -890,5 +892,5 @@ body {
         }
 
         .close-buttongg:hover {
-            background-color: #45a049; 
+            background-color: #55595e; 
         }
