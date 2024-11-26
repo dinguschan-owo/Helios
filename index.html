@@ -62,11 +62,12 @@
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Internal URLs</a>
-        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp; <i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp;<i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" id="dataURL"  onclick="generateDataURL()">Generate Session's Data Url</a>
+        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
         <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
       </div>
@@ -105,6 +106,15 @@
           <i class="fas fa-search search-iconaa"></i>
         </div>
       </div>
+      <div class="modalgg" id="myModal">
+        <div class="modal-contentgg">
+            <h2>Here is your generated Data URL</h2>
+            <textarea id="dataURLText" rows="6" readonly></textarea>
+            <button class="copy-buttongg" id="copyButton" onclick="copyDataURL()">Copy</button>
+            <br>
+            <button class="close-buttongg" onclick="closeModal()">Close</button>
+        </div>
+    </div>
       <script src="script.js"></script>
     </body>
 </html>
