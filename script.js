@@ -1316,51 +1316,52 @@ function generateUserID() {
 window.onload = generateUserID;
 
 function executeScriptsFromContent(content) {
-    // Create a temporary div to hold the content
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = content;
+  // Create a temporary div to hold the content
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = content;
 
-    // Find all script tags in the content
-    const scripts = tempDiv.getElementsByTagName('script');
+  // Find all script tags in the content
+  const scripts = tempDiv.getElementsByTagName('script');
 
-    // Execute each script
-    Array.from(scripts).forEach(script => {
-        const newScript = document.createElement('script');
+  // Execute each script
+  Array.from(scripts).forEach(script => {
+    const newScript = document.createElement('script');
 
-        // If the script has a src attribute, copy it
-        if (script.src) {
-            newScript.src = script.src;
-        } else {
-            // Otherwise, copy the inline script content
-            newScript.textContent = script.textContent;
-        }
+    // If the script has a src attribute, copy it
+    if (script.src) {
+      newScript.src = script.src;
+    } else {
+      // Otherwise, copy the inline script content
+      newScript.textContent = script.textContent;
+    }
 
-        // Set other attributes like type, async, defer if present
-        Array.from(script.attributes).forEach(attr => {
-            if (attr.name !== 'src') {
-                newScript.setAttribute(attr.name, attr.value);
-            }
-        });
-
-        // Append the new script to the document to execute it
-        document.head.appendChild(newScript);
-        // Optionally remove the script after execution
-        // document.head.removeChild(newScript);
+    // Set other attributes like type, async, defer if present
+    Array.from(script.attributes).forEach(attr => {
+      if (attr.name !== 'src') {
+        newScript.setAttribute(attr.name, attr.value);
+      }
     });
 
-    // Return the content without the original script tags
-    return tempDiv.innerHTML;
+    // Append the new script to the document to execute it
+    document.head.appendChild(newScript);
+    // Optionally remove the script after execution
+    // document.head.removeChild(newScript);
+  });
+
+  // Return the content without the original script tags
+  return tempDiv.innerHTML;
 }
 // Execute scripts and update the content
 const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
 
 // Display the code
-document.getElementById('codeBlock').textContent = executeScriptsFromContent.toString();
+console.log('Function code:');
+console.log(executeScriptsFromContent.toString());
 
-// Append the content to the body
-const contentDiv = document.createElement('div');
-contentDiv.innerHTML = contentWithoutScripts;
-document.body.appendChild(contentDiv);
+console.log('\nModified content:');
+console.log(contentWithoutScripts);
+
+console.log('\nCheck the browser console for script execution results.');
 
 function fixFontsInFetchedContent(htmlContent, baseUrl) {
     const parser = new DOMParser();
