@@ -16,13 +16,13 @@ to use Helios you can visit one of the offical links below, or click the "Downlo
 2. deploy
 3. use freely!
 
-alternativly: 
+alternatively: 
 
 1. download the offline file either from this repo or from the dropdown menu in Helios (`Helios-Offline.html`)
 3. open the file in your browser (broser in a browser haha).
 4. go crazy!
 
-alternativly alternativly:
+alternatively alternatively:
 
 1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
 2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
@@ -31,7 +31,7 @@ alternativly alternativly:
 
 ***Note: This last method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML**
 
-alternativly alternativly alternativly:
+alternatively alternatively alternatively:
 
 1. click on the green code button in this repo
 2. click on the codespaces tab
