@@ -7,6 +7,7 @@ to use Helios you can visit one of the offical links below, or click the "Downlo
 ## ***`Official Links`***
 
 - https://helios-browser.vercel.app/
+- https://helios-browser.pages.dev/
 - https://helios-blue.vercel.app/
 - https://helios-browser.w3spaces.com/
 - https://helios-browser.rf.gd
