@@ -7,11 +7,11 @@ to use Helios you can visit one of the offical links below, or click the "Downlo
 ## ***`Official Links`***
 
 - https://helios-browser.vercel.app/
+- https://helios-browser.rf.gd
+- https://helios-browser.w3spaces.com/
 - https://helios-browser.pages.dev/
 - https://helios-blue.vercel.app/
-- https://helios-browser.w3spaces.com/
-- https://helios-browser.rf.gd
-
+  
 ## ***`How To Use`***
 
 1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project. if you plan to deploy with Vercel, you do not have to clone this repo, and the button for quick deploy is right below these instructions
