@@ -14,6 +14,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Helios in a completely unblockable web proxy, built with speed and privacy in mind.">
     <title>Helios Browser</title>
     <style>body {
   margin: 0;
@@ -836,6 +837,80 @@
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 12px;
+        }
+
+.modalgg {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-contentgg {
+            display: none; 
+            background-color: #3c4043;
+            padding: 20px;
+            border-radius: 10px;
+            width: 40%;
+            text-align: center;
+            position: relative;
+        }
+        .modal-contentgg h2 {
+            margin-bottom: 20px;
+        }
+
+        .modal-contentgg textarea {
+            width: 100%;
+            height: 200px;
+            padding: 10px;
+            font-size: 14px;
+          color: #fff;
+            background-color: #52565b;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            resize: none;
+            box-sizing: border-box; 
+            white-space: normal;
+            overflow: auto;
+        }
+
+        .copy-buttongg {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #52565b; 
+            color: white;
+              border: 2px solid #66ffa1;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .copy-buttongg:hover {
+            background-color: #55595e; 
+        }
+
+        .close-buttongg {
+            margin-top: 20px;
+            background-color: #52565b;
+              border: 2px solid #66ffa1;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .close-buttongg:hover {
+            background-color: #55595e; 
         }</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   </head>
@@ -883,11 +958,12 @@
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Internal URLs</a>
-        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp; <i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp;<i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="javascript:void(0);" id="dataURL"  onclick="generateDataURL()">Generate Session's Data Url</a>
+        <a href="https://github.com/dinguschan-owo/Helios" target="_blank"> Source Code&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
-        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp; <i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
+        <a href="https://github.com/dinguschan-owo/Helios/issues/new" target="_blank">Submit an Issue&nbsp;&nbsp;<i class="fa-solid fa-up-right-from-square" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
         <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
       </div>
@@ -904,7 +980,7 @@
           </p>
         </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟼.𝟶</h21>
+        <h21>𝚟𝟷.𝟽.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
             <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
@@ -926,6 +1002,15 @@
           <i class="fas fa-search search-iconaa"></i>
         </div>
       </div>
+      <div class="modalgg" id="myModal">
+        <div class="modal-contentgg">
+            <h2>Here is the data URL for this session:</h2>
+            <textarea id="dataURLText" rows="6" readonly></textarea>
+            <button class="copy-buttongg" id="copyButton" onclick="copyDataURL()">Copy</button>
+            <br>
+            <button class="close-buttongg" onclick="closeModal()">Close</button>
+        </div>
+    </div>
       <script>function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
     const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
@@ -1069,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', function() {
 • Review the initialization sequence for all dependent objects.
 • Check the logs for any preceding errors that may provide context.
 • Clear browser cache and clear and reset website data storage.
-• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.6.0).
+• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.𝟽.0).
 `;
             document.body.appendChild(contentFetchingProtocolErrorOverlay);
         }
@@ -1124,7 +1209,7 @@ const tabs = [{
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟼.𝟶</h21>
+        <h21>𝚟𝟷.𝟽.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -1239,7 +1324,7 @@ function updateTabContent(url, content, tab) {
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟼.𝟶</h21>
+        <h21>𝚟𝟷.𝟽.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -2244,51 +2329,52 @@ function generateUserID() {
 window.onload = generateUserID;
 
 function executeScriptsFromContent(content) {
-    // Create a temporary div to hold the content
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = content;
+  // Create a temporary div to hold the content
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = content;
 
-    // Find all script tags in the content
-    const scripts = tempDiv.getElementsByTagName('script');
+  // Find all script tags in the content
+  const scripts = tempDiv.getElementsByTagName('script');
 
-    // Execute each script
-    Array.from(scripts).forEach(script => {
-        const newScript = document.createElement('script');
+  // Execute each script
+  Array.from(scripts).forEach(script => {
+    const newScript = document.createElement('script');
 
-        // If the script has a src attribute, copy it
-        if (script.src) {
-            newScript.src = script.src;
-        } else {
-            // Otherwise, copy the inline script content
-            newScript.textContent = script.textContent;
-        }
+    // If the script has a src attribute, copy it
+    if (script.src) {
+      newScript.src = script.src;
+    } else {
+      // Otherwise, copy the inline script content
+      newScript.textContent = script.textContent;
+    }
 
-        // Set other attributes like type, async, defer if present
-        Array.from(script.attributes).forEach(attr => {
-            if (attr.name !== 'src') {
-                newScript.setAttribute(attr.name, attr.value);
-            }
-        });
-
-        // Append the new script to the document to execute it
-        document.head.appendChild(newScript);
-        // Optionally remove the script after execution
-        // document.head.removeChild(newScript);
+    // Set other attributes like type, async, defer if present
+    Array.from(script.attributes).forEach(attr => {
+      if (attr.name !== 'src') {
+        newScript.setAttribute(attr.name, attr.value);
+      }
     });
 
-    // Return the content without the original script tags
-    return tempDiv.innerHTML;
+    // Append the new script to the document to execute it
+    document.head.appendChild(newScript);
+    // Optionally remove the script after execution
+    // document.head.removeChild(newScript);
+  });
+
+  // Return the content without the original script tags
+  return tempDiv.innerHTML;
 }
 // Execute scripts and update the content
 const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
 
 // Display the code
-document.getElementById('codeBlock').textContent = executeScriptsFromContent.toString();
+console.log('Function code:');
+console.log(executeScriptsFromContent.toString());
 
-// Append the content to the body
-const contentDiv = document.createElement('div');
-contentDiv.innerHTML = contentWithoutScripts;
-document.body.appendChild(contentDiv);
+console.log('\nModified content:');
+console.log(contentWithoutScripts);
+
+console.log('\nCheck the browser console for script execution results.');
 
 function fixFontsInFetchedContent(htmlContent, baseUrl) {
     const parser = new DOMParser();
@@ -2403,6 +2489,53 @@ async function decryptData(encryptedObj, key) {
         new Uint8Array(encryptedObj.encryptedData)
     );
     return new TextDecoder().decode(decryptedData);
-}</script>
+}
+
+    // Function to generate a unique data URL
+
+       function generateDataURL() {
+    const htmlContent = document.documentElement.outerHTML;
+    const dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
+   
+    document.getElementById("dataURLText").value = dataURL;
+    document.getElementById("myModal").style.display = "flex"; 
+    document.querySelector(".modal-contentgg").style.display = "block";
+}
+
+document.getElementById("dataURL").addEventListener("click", generateDataURL);
+
+        // Function to copy the data URL to clipboard
+        function copyDataURL() {
+            const dataURLText = document.getElementById("dataURLText");
+            const copyButton = document.getElementById("copyButton");
+
+            dataURLText.select(); 
+            navigator.clipboard.writeText(dataURLText.value)
+                .then(() => {
+                    copyButton.textContent = "Copied!"; 
+                    setTimeout(() => {
+                        copyButton.textContent = "Copy"; 
+                    }, 3000);
+                })
+                .catch(() => {
+                    copyButton.textContent = "Error"; 
+                    setTimeout(() => {
+                        copyButton.textContent = "Copy";
+                    }, 3000);
+                });
+        }
+
+        // Function to close the modal
+        function closeModal() {
+    document.getElementById("myModal").style.display = "none";
+    document.querySelector(".modal-contentgg").style.display = "none";
+}
+
+document.getElementById("dataURL").addEventListener("click", generateDataURL);
+
+window.onload = function() {
+    document.getElementById("myModal").style.display = "none";
+    document.querySelector(".modal-contentgg").style.display = "none";
+};</script>
     </body>
 </html>
