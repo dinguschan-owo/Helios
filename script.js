@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 • Review the initialization sequence for all dependent objects.
 • Check the logs for any preceding errors that may provide context.
 • Clear browser cache and clear and reset website data storage.
-• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.6.0).
+• If all else fails, visit the above mentioned offical Github page [https://github.com/dinguschan-owo/Helios] and redownload the latest stable version (Helios v1.𝟽.0).
 `;
             document.body.appendChild(contentFetchingProtocolErrorOverlay);
         }
@@ -196,7 +196,7 @@ const tabs = [{
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟼.𝟶</h21>
+        <h21>𝚟𝟷.𝟽.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -311,7 +311,7 @@ function updateTabContent(url, content, tab) {
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟼.𝟶</h21>
+        <h21>𝚟𝟷.𝟽.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
