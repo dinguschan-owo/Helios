@@ -851,14 +851,62 @@ function openInAboutBlank() {
 }
 // Function to open Helios in a blob: tab
 
-function openInBlob() {
-    const html = document.documentElement.outerHTML;
-    const blob = new Blob([html], {
-        type: 'text/html'
+async function openInBlob() {
+    // Clone the document's static DOM structure
+    const htmlDocument = document.documentElement.cloneNode(true);
+
+    // Defer all scripts in the cloned document
+    const scripts = htmlDocument.querySelectorAll('script[src], script:not([src])');
+    scripts.forEach(script => {
+        const deferredScript = document.createElement('script');
+        deferredScript.type = 'text/javascript';
+        
+        // Wrap inline scripts in a function and defer execution
+        if (script.textContent) {
+            deferredScript.textContent = `
+                document.addEventListener('DOMContentLoaded', function() {
+                    ${script.textContent}
+                });
+            `;
+        }
+
+        // Defer external scripts
+        if (script.src) {
+            deferredScript.textContent = `
+                document.addEventListener('DOMContentLoaded', function() {
+                    const script = document.createElement('script');
+                    script.src = "${script.src}";
+                    document.body.appendChild(script);
+                });
+            `;
+        }
+
+        script.parentNode.replaceChild(deferredScript, script);
     });
+
+    // Inline CSS styles concurrently
+    const stylesheets = Array.from(document.styleSheets).filter(sheet => sheet.href);
+    const cssPromises = stylesheets.map(async sheet => {
+        try {
+            const response = await fetch(sheet.href);
+            const text = await response.text();
+            const style = document.createElement('style');
+            style.textContent = text;
+            htmlDocument.querySelector('head').appendChild(style);
+        } catch (e) {
+            console.warn('Could not inline CSS:', sheet.href, e);
+        }
+    });
+
+    // Wait for all CSS to be inlined
+    await Promise.all(cssPromises);
+
+    // Serialize the modified document and create a Blob
+    const blob = new Blob([htmlDocument.outerHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
 }
+
 
 function toggleDropdown(tabIndex) {
     var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
