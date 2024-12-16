@@ -847,14 +847,29 @@ function changeTabContent(url) {
 
 function openInAboutBlank() {
     const newWindow = window.open('about:blank', '_blank');
-    newWindow.document.write(document.documentElement.outerHTML);
+    
+    const clonedDocument = document.documentElement.cloneNode(true);
+    
+    // Remove the square button from the cloned document
+    const squareButton = clonedDocument.querySelector('#square-buttonaa');
+    if (squareButton) {
+        squareButton.remove();
+    }
+    
+    newWindow.document.write(clonedDocument.outerHTML);
+    
+    newWindow.document.close();
 }
 // Function to open Helios in a blob: tab
 
 async function openInBlob() {
     // Clone the document's static DOM structure
     const htmlDocument = document.documentElement.cloneNode(true);
-
+  // Block duplication of square button
+const squareButton = htmlDocument.querySelector('#square-buttonaa');
+    if (squareButton) {
+        squareButton.remove();
+    }
     // Defer all scripts in the cloned document
     const scripts = htmlDocument.querySelectorAll('script[src], script:not([src])');
     scripts.forEach(script => {
