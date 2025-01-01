@@ -8,14 +8,14 @@ to use Helios you can visit one of the offical links below, or click the "Downlo
 
 - https://helios-browser.vercel.app/
 - https://helios-browser.rf.gd
-- https://helios-browser.w3spaces.com/
+- https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< )
 - https://helios-browser.pages.dev/
 - https://helios-browser.ct.ws
 - https://helios-blue.vercel.app/
   
 ## ***`How To Use`***
 
-1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/CodeSandbox/Vercel/Heroku/etc.) and deploy the project. if you plan to deploy with Vercel, you do not have to clone this repo, and the button for quick deploy is right below these instructions
+1. clone this repo, host on ANY site hoster, static or not, (Netlify/Render/Cloudflare Pages/Github  Pages/CodeSandbox/Vercel/Heroku/etc.) and deploy the project. if you plan to deploy with Vercel, you do not have to clone this repo, and the button for quick deploy is right below these instructions
 2. deploy
 3. use freely!
 
@@ -29,7 +29,7 @@ alternatively alternatively:
 
 1. copy and the entirerty of `Helios-Offline.html`, or copy `index.html`, `style.css`, and `script.js` seperartly
 2. visit ANY online WYSIWYG HTML editor (Webmaker/CodeBeautify/OnlineHtmlEditor/Codepen/etc.)
-3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`
+3. paste and replace `<style>` and `<script>` tags where appropriate (not nessasary if you copied `Helios-Offline.html`)
 4. enjoy uncesored local browsing!
 
 ***Note: This last method will create a temporary Helios instance, and you will have to repeat these steps everytime you close or reset the tabs, unless you download the HTML**
@@ -75,16 +75,16 @@ Helios works in the latest desktop versions of:
 - Chrome
 - Firefox
 - Tor Browser
-- Edge
 - Opera
 - Brave
 - Vivaldi
 
-but does not (well) work in:
+but does not work (well) in:
 
 - Safari
+- Edge
 
-sorry Apple users.
+sorry Apple users (hop off your high horse) and default windows browser users (find a better browser maybe?). this will be fixed later so dw
    
 ## ***`𝚄𝚙𝚍𝚊𝚝𝚎 𝚂𝚌𝚑𝚎𝚍𝚞𝚕𝚎`***
 
