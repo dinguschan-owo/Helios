@@ -1,3 +1,84 @@
+async function fixFetchedFonts(html, fetchedUrl) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Fetch and inject external stylesheets
+    await fetchAndInjectStyles(doc, fetchedUrl);
+
+    // Fix inline styles
+    const inlineStyles = doc.querySelectorAll('style');
+    inlineStyles.forEach(style => {
+        style.textContent = rewriteFontUrls(style.textContent, fetchedUrl);
+    });
+
+    // Add a fallback font
+    setFallbackFont(doc);
+
+    // Return the modified HTML
+    return doc.documentElement.outerHTML;
+}
+
+async function fetchAndInjectStyles(doc, baseUrl) {
+    const links = doc.querySelectorAll('link[rel="stylesheet"]');
+    for (const link of links) {
+        const href = link.getAttribute('href');
+        if (href) {
+            const fullUrl = new URL(href, baseUrl).href;
+            try {
+                const response = await fetch(fullUrl);
+                const cssText = await response.text();
+
+                // Rewrite relative URLs in the CSS (e.g., for fonts)
+                const fixedCssText = cssText.replace(/url\(['"]?(.*?)['"]?\)/g, (match, url) => {
+                    const absoluteUrl = new URL(url, fullUrl).href;
+                    return `url('${absoluteUrl}')`;
+                });
+
+                // Inject the fixed CSS into a <style> tag
+                const styleTag = document.createElement('style');
+                styleTag.textContent = fixedCssText;
+                document.head.appendChild(styleTag);
+            } catch (error) {
+                console.error(`Failed to fetch stylesheet: ${fullUrl}`, error);
+            }
+        }
+    }
+}
+
+function rewriteFontUrls(cssText, baseUrl) {
+    return cssText.replace(/url\(['"]?(.*?)['"]?\)/g, (match, url) => {
+        try {
+            const absoluteUrl = new URL(url, baseUrl).href;
+            return `url('${absoluteUrl}')`;
+        } catch {
+            return match; // Leave unchanged if invalid
+        }
+    });
+}
+
+function setFallbackFont(doc) {
+    const styleTag = document.createElement('style');
+    styleTag.textContent = `
+        * {
+            font-family: Arial, sans-serif !important;
+        }
+    `;
+    doc.head.appendChild(styleTag);
+}
+
+async function handleFetchedContent(html, url) {
+    const fixedHtml = await fixFetchedFonts(html, url);
+
+    // Inject the modified content into your page or Shadow DOM
+    const contentContainer = document.getElementById('content'); // Adjust to your container
+    contentContainer.innerHTML = fixedHtml;
+}
+
+// Usage: Call `handleFetchedContent(html, url)`
+// - `html`: Fetched HTML content as a string.
+// - `url`: URL of the fetched site.
+
+
 function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
     const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
@@ -486,6 +567,9 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
+    // Fix the function to fix fonts in the fetched content
+    htmlText = await fixFetchedFonts(htmlText, url);
+    
     // Fix fonts in the fetched content
     htmlText = await fixFontsInFetchedContent(htmlText, url);
 
@@ -676,6 +760,7 @@ async function fetchExternalContent(url, content, tabIndex) {
             :host {
                 all: initial;
                 background-color: #fff !important;
+                font-family: Arial, sans-serif;
             }
         `;
         shadowRoot.appendChild(defaultStyle);
