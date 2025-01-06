@@ -906,3 +906,107 @@ body {
         .close-buttongg:hover {
             background-color: #55595e; 
         }
+  .sidebarvv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #2a2c2e;
+    color: #f8f8f2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 115px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebarvv button {
+    background-color: #3c4043;
+    border: none;
+    color: #f8f8f2;
+    padding: 10px;
+    margin-bottom: 9px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .sidebarvv button:hover {
+    background-color: #4d5255;
+  }
+
+  .content-containervv {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    display: none;
+  }
+
+  .content-containervv.activevv {
+    display: block;
+  }
+
+  .content-containervv h3 {
+    font-size: 25px;
+    margin-top: 3px;
+    margin-bottom: 18px;
+    color: #fff;
+    padding-bottom: 3px;
+    border-bottom: 2px solid white;
+  }
+
+  .content-containervv button {
+    background-color: #ff5555;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+  .content-containervv button:hover {
+    background-color: #ff4444;
+  }
+
+  .cleared-messagevv {
+    display: none;
+    margin-top: 20px;
+    color: #50fa7b;
+    font-size: 16px;
+  }
+.sidebarvv h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  padding-bottom: 8px;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+.sidebarvv button.active {
+  border: 3px solid #4dffa6;
+  position: relative;
+  box-sizing: border-box;
+  padding: 7.6px;
+}
+
+.sidebarvv button.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10.6px;
+  width: 11px;
+  height: 11px;
+  background-color: #4dffa6;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
