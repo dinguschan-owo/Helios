@@ -277,7 +277,7 @@ const tabs = [{
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟽.𝟶</h21>
+        <h21>𝚟𝟷.𝟾.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -392,7 +392,7 @@ function updateTabContent(url, content, tab) {
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟽.𝟶</h21>
+        <h21>𝚟𝟷.𝟾.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -432,21 +432,31 @@ function updateTabContent(url, content, tab) {
 
     } else if (url === 'helios://settings') {
         content.innerHTML = `
-        <h20>Helios Settings</h20><br>
-        <div class="settings-gridaa">
-            <div class="settings-blockaa">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history-${currentTabIndex}" class="clear-buttonaa">Clear History</button></div>
-            <div class="settings-blockaa"><h24>Cloaking</h24>    <button class="cloak-buttonaa" onclick="openInAboutBlank(${currentTabIndex})">Open in about:blank</button>
-    <button class="cloak-buttonaa" onclick="openInBlob(${currentTabIndex})">Open in blob:</button></div>
-            <div class="settings-blockaa"><h24>&nbspSilly&nbsp</h24>    <button id="show-content-button">Show Content</button>
+        <div class="sidebarvv">
+  <h1>Helios Settings</h1>
+  
+  <button onclick="showCategory('historyvv')">History</button>
+  <button onclick="showCategory('cloakingvv')">Cloaking</button>
+  <button onclick="showCategory('miscvv')">Miscellaneous</button>
 </div>
-            <div class="settings-blockaa">Block 4 Info</div>
-            <div class="settings-blockaa">Block 5 Info</div>
-            <div class="settings-blockaa">Block 6 Info</div>
-            <div class="clear-blockaa">
 
-            </div>
-        </div>
-        <div id="clear-message-${currentTabIndex}" class="clear-messageaa"></div>
+<div class="content-containervv activevv" id="historyvv">
+  <h3>Manage History</h3>
+  <button id="clear-history">Clear History</button>
+  <div class="cleared-messagevv" id="cleared-message">History cleared!</div>
+</div>
+
+<div class="content-containervv" id="cloakingvv">
+  <h3>Cloaking Options</h3>
+  <button onclick="openInAboutBlank()">Open in about:blank</button>
+  <button onclick="openInBlob()">Open in blob:</button>
+</div>
+
+<div class="content-containervv" id="miscvv">
+  <h3>Miscellaneous</h3>
+  <button id="reset-history">idk i didnt get this far</button>
+</div>
+
         `;
         tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
@@ -1672,3 +1682,31 @@ window.onload = function() {
     document.getElementById("myModal").style.display = "none";
     document.querySelector(".modal-contentgg").style.display = "none";
 };
+  function showCategory(category) {
+    document.querySelectorAll('.content-containervv').forEach(content => {
+      content.classList.remove('activevv');
+    });
+    document.getElementById(category).classList.add('activevv');
+  }
+
+  document.getElementById('clear-history').addEventListener('click', () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    const message = document.getElementById('cleared-message');
+    message.style.display = 'block';
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 3000);
+  });
+
+    function showCategory(categoryId) {
+      document.querySelectorAll('.content-containervv').forEach(container => {
+        container.classList.remove('activevv');
+      });
+      document.getElementById(categoryId).classList.add('activevv');
+
+      document.querySelectorAll('.sidebarvv button').forEach(button => {
+        button.classList.remove('active');
+      });
+      document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+    }
