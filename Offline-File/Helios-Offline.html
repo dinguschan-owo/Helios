@@ -196,6 +196,18 @@
   margin-top: 1px;
   z-index: 2147483644;
 }
+#dataURLText::selection {
+    background-color: #6745ff;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+#dataURLText {
+    outline: none;
+    border: none;
+    border-radius: 8px;
+}
 
 .uptop-baraa .tabaa .tab-nameaa {
   flex-grow: 1;
@@ -203,7 +215,7 @@
   margin-left: 3px;
   margin-bottom: 2px;
   overflow: hidden;
-  font-size: 14px;
+  font-size: 14.6px;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-top: 1px;
@@ -911,7 +923,111 @@
 
         .close-buttongg:hover {
             background-color: #55595e; 
-        }</style>
+        }
+  .sidebarvv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #2a2c2e;
+    color: #f8f8f2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 115px;
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-bottom: 0px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebarvv button {
+    background-color: #3c4043;
+    border: none;
+    color: #f8f8f2;
+    padding: 10px;
+    margin-bottom: 9px;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+
+  .sidebarvv button:hover {
+    background-color: #4d5255;
+  }
+
+  .content-containervv {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    display: none;
+  }
+
+  .content-containervv.activevv {
+    display: block;
+  }
+
+  .content-containervv h3 {
+    font-size: 25px;
+    margin-top: 3px;
+    margin-bottom: 18px;
+    color: #fff;
+    padding-bottom: 3px;
+    border-bottom: 2px solid white;
+  }
+
+  .content-containervv button {
+    background-color: #ff5555;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+  .content-containervv button:hover {
+    background-color: #ff4444;
+  }
+
+  .cleared-messagevv {
+    display: none;
+    margin-top: 20px;
+    color: #50fa7b;
+    font-size: 16px;
+  }
+.sidebarvv h1 {
+  display: block;
+  font-size: 2em;
+  margin-top: 0.67em;
+  margin-bottom: 0.67em;
+  padding-bottom: 8px;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+.sidebarvv button.active {
+  border: 3px solid #4dffa6;
+  position: relative;
+  box-sizing: border-box;
+  padding: 7.6px;
+}
+
+.sidebarvv button.active::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10.6px;
+  width: 11px;
+  height: 11px;
+  background-color: #4dffa6;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   </head>
   <body>
@@ -980,7 +1096,7 @@
           </p>
         </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟽.𝟶</h21>
+        <h21>𝚟𝟷.𝟾.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
             <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
@@ -1004,14 +1120,95 @@
       </div>
       <div class="modalgg" id="myModal">
         <div class="modal-contentgg">
-            <h2>Here is the data URL for this session:</h2>
-            <textarea id="dataURLText" rows="6" readonly></textarea>
+            <h2>Here is the data URL for this session (HTML):</h2>
+<textarea id="dataURLText" rows="5" style="height: 250px; font-size: 14.6px; width: 100%; white-space: pre-wrap; overflow-wrap: break-word; resize: none;" readonly></textarea>
             <button class="copy-buttongg" id="copyButton" onclick="copyDataURL()">Copy</button>
             <br>
             <button class="close-buttongg" onclick="closeModal()">Close</button>
         </div>
     </div>
-      <script>function switchTabWithoutDeactivating(tabIndex) {
+      <script>async function fixFetchedFonts(html, fetchedUrl) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+
+    // Fetch and inject external stylesheets
+    await fetchAndInjectStyles(doc, fetchedUrl);
+
+    // Fix inline styles
+    const inlineStyles = doc.querySelectorAll('style');
+    inlineStyles.forEach(style => {
+        style.textContent = rewriteFontUrls(style.textContent, fetchedUrl);
+    });
+
+    // Add a fallback font
+    setFallbackFont(doc);
+
+    // Return the modified HTML
+    return doc.documentElement.outerHTML;
+}
+
+async function fetchAndInjectStyles(doc, baseUrl) {
+    const links = doc.querySelectorAll('link[rel="stylesheet"]');
+    for (const link of links) {
+        const href = link.getAttribute('href');
+        if (href) {
+            const fullUrl = new URL(href, baseUrl).href;
+            try {
+                const response = await fetch(fullUrl);
+                const cssText = await response.text();
+
+                // Rewrite relative URLs in the CSS (e.g., for fonts)
+                const fixedCssText = cssText.replace(/url\(['"]?(.*?)['"]?\)/g, (match, url) => {
+                    const absoluteUrl = new URL(url, fullUrl).href;
+                    return `url('${absoluteUrl}')`;
+                });
+
+                // Inject the fixed CSS into a <style> tag
+                const styleTag = document.createElement('style');
+                styleTag.textContent = fixedCssText;
+                document.head.appendChild(styleTag);
+            } catch (error) {
+                console.error(`Failed to fetch stylesheet: ${fullUrl}`, error);
+            }
+        }
+    }
+}
+
+function rewriteFontUrls(cssText, baseUrl) {
+    return cssText.replace(/url\(['"]?(.*?)['"]?\)/g, (match, url) => {
+        try {
+            const absoluteUrl = new URL(url, baseUrl).href;
+            return `url('${absoluteUrl}')`;
+        } catch {
+            return match; // Leave unchanged if invalid
+        }
+    });
+}
+
+function setFallbackFont(doc) {
+    const styleTag = document.createElement('style');
+    styleTag.textContent = `
+        * {
+            font-family: Arial, sans-serif !important;
+        }
+    `;
+    doc.head.appendChild(styleTag);
+}
+
+async function handleFetchedContent(html, url) {
+    const fixedHtml = await fixFetchedFonts(html, url);
+
+    // Inject the modified content into your page or Shadow DOM
+    const contentContainer = document.getElementById('content'); // Adjust to your container
+    contentContainer.innerHTML = fixedHtml;
+}
+
+// Usage: Call `handleFetchedContent(html, url)`
+// - `html`: Fetched HTML content as a string.
+// - `url`: URL of the fetched site.
+
+
+function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
     const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
     const activeTab = document.querySelectorAll('.tabaa')[tabIndex];
@@ -1209,7 +1406,7 @@ const tabs = [{
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟽.𝟶</h21>
+        <h21>𝚟𝟷.𝟾.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -1324,7 +1521,7 @@ function updateTabContent(url, content, tab) {
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
-        <h21>𝚟𝟷.𝟽.𝟶</h21>
+        <h21>𝚟𝟷.𝟾.𝟶</h21>
         <div class="search-baraa">
           <div class="search-containeraa">
   <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
@@ -1364,21 +1561,31 @@ function updateTabContent(url, content, tab) {
 
     } else if (url === 'helios://settings') {
         content.innerHTML = `
-        <h20>Helios Settings</h20><br>
-        <div class="settings-gridaa">
-            <div class="settings-blockaa">   <h24>&nbspHistory&nbsp</h24>             <button id="clear-history-${currentTabIndex}" class="clear-buttonaa">Clear History</button></div>
-            <div class="settings-blockaa"><h24>Cloaking</h24>    <button class="cloak-buttonaa" onclick="openInAboutBlank(${currentTabIndex})">Open in about:blank</button>
-    <button class="cloak-buttonaa" onclick="openInBlob(${currentTabIndex})">Open in blob:</button></div>
-            <div class="settings-blockaa"><h24>&nbspSilly&nbsp</h24>    <button id="show-content-button">Show Content</button>
+        <div class="sidebarvv">
+  <h1>Helios Settings</h1>
+  
+  <button onclick="showCategory('historyvv')">History</button>
+  <button onclick="showCategory('cloakingvv')">Cloaking</button>
+  <button onclick="showCategory('miscvv')">Miscellaneous</button>
 </div>
-            <div class="settings-blockaa">Block 4 Info</div>
-            <div class="settings-blockaa">Block 5 Info</div>
-            <div class="settings-blockaa">Block 6 Info</div>
-            <div class="clear-blockaa">
 
-            </div>
-        </div>
-        <div id="clear-message-${currentTabIndex}" class="clear-messageaa"></div>
+<div class="content-containervv activevv" id="historyvv">
+  <h3>Manage History</h3>
+  <button id="clear-history">Clear History</button>
+  <div class="cleared-messagevv" id="cleared-message">History cleared!</div>
+</div>
+
+<div class="content-containervv" id="cloakingvv">
+  <h3>Cloaking Options</h3>
+  <button onclick="openInAboutBlank()">Open in about:blank</button>
+  <button onclick="openInBlob()">Open in blob:</button>
+</div>
+
+<div class="content-containervv" id="miscvv">
+  <h3>Miscellaneous</h3>
+  <button id="reset-history">idk i didnt get this far</button>
+</div>
+
         `;
         tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
@@ -1499,6 +1706,9 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
+    // Fix the function to fix fonts in the fetched content
+    htmlText = await fixFetchedFonts(htmlText, url);
+    
     // Fix fonts in the fetched content
     htmlText = await fixFontsInFetchedContent(htmlText, url);
 
@@ -1689,6 +1899,7 @@ async function fetchExternalContent(url, content, tabIndex) {
             :host {
                 all: initial;
                 background-color: #fff !important;
+                font-family: Arial, sans-serif;
             }
         `;
         shadowRoot.appendChild(defaultStyle);
@@ -2599,6 +2810,34 @@ document.getElementById("dataURL").addEventListener("click", generateDataURL);
 window.onload = function() {
     document.getElementById("myModal").style.display = "none";
     document.querySelector(".modal-contentgg").style.display = "none";
-};</script>
+};
+  function showCategory(category) {
+    document.querySelectorAll('.content-containervv').forEach(content => {
+      content.classList.remove('activevv');
+    });
+    document.getElementById(category).classList.add('activevv');
+  }
+
+  document.getElementById('clear-history').addEventListener('click', () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    const message = document.getElementById('cleared-message');
+    message.style.display = 'block';
+    setTimeout(() => {
+      message.style.display = 'none';
+    }, 3000);
+  });
+
+    function showCategory(categoryId) {
+      document.querySelectorAll('.content-containervv').forEach(container => {
+        container.classList.remove('activevv');
+      });
+      document.getElementById(categoryId).classList.add('activevv');
+
+      document.querySelectorAll('.sidebarvv button').forEach(button => {
+        button.classList.remove('active');
+      });
+      document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+    }</script>
     </body>
 </html>
