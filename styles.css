@@ -901,6 +901,7 @@ body {
     padding-left: 20px;
     padding-bottom: 0px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    border-right: 3px solid #4dffa6;
   }
 
   .sidebarvv button {
