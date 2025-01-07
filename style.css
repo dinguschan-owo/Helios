@@ -121,29 +121,6 @@ body {
   background-color: #ff4747;
 }
 
-.settings-gridaa {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px;
-  margin-top: 10px;
-}
-
-.settings-blockaa {
-  background: linear-gradient(145deg, #333333, #404040);
-  border-radius: 11px;
-  padding: 20px;
-  text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 380px;
-  height: 190px;
-  padding-top: 30px;
-}
-
-.clear-blockaa {
-  grid-column: span 3;
-  display: flex;
-  justify-content: center;
-}
 
 .uptop-baraa {
   background-color: #242729;
@@ -927,11 +904,11 @@ body {
     background-color: #3c4043;
     border: none;
     color: #f8f8f2;
-    padding: 10px;
+    padding: 11px;
     margin-bottom: 9px;
     text-align: left;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
     transition: background-color 0.3s;
   }
@@ -995,7 +972,7 @@ body {
   border: 3px solid #4dffa6;
   position: relative;
   box-sizing: border-box;
-  padding: 7.6px;
+  padding: 8.6px;
 }
 
 .sidebarvv button.active::after {
@@ -1009,4 +986,3 @@ body {
   border-radius: 50%;
   transform: translateY(-50%);
 }
-
