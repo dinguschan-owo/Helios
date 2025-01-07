@@ -982,7 +982,7 @@ body {
   margin-left: 0;
   margin-right: 0;
   font-weight: bold;
-  border-bottom: 2px solid white;
+  border-bottom: 3px solid white;
 }
 .sidebarvv button.active {
   border: 3px solid #4dffa6;
