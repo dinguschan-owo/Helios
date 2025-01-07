@@ -62,6 +62,7 @@ body {
   left: -78px;
   border-radius: 10px;
   padding: 0;
+  border: 3px solid #66ffa1;
 }
 
 .dropdown-contentaa .status-messageaa {
@@ -669,7 +670,7 @@ body {
 .top-right-boxaa {
   position: absolute;
   top: 119px;
-  left: 10px;
+  left: 9px;
   width: 43px;
   height: 42.4px;
   background-color: #3c4043;
@@ -682,7 +683,7 @@ body {
   z-index: 2147483646;
   cursor: pointer;
   transition: color 0.3s, background-color 0.3s;
-  border: 2px solid #66ffa1;
+  border: 3px solid #66ffa1;
 }
 
 .top-right-boxaa:hover {
@@ -692,7 +693,7 @@ body {
 .Xt7Lm9Kp3R8f {
   position: absolute;
   top: 119px;
-  left: 66px;
+  left: 65px;
   width: auto;
   height: 42px;
   background-color: #3c4043;
@@ -703,7 +704,7 @@ body {
   align-items: center;
   font-size: 18px;
   z-index: 2147483646;
-  border: 2px solid #66ffa1;
+  border: 3px solid #66ffa1;
   padding: 0px 14px;
   white-space: nowrap;
 }
@@ -746,6 +747,7 @@ body {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 2147483646;
+  border: 3px solid #4dffa6;
   border-radius: 10px;
 }
 
@@ -754,6 +756,7 @@ body {
   padding: 13px 17px;
   text-decoration: none;
   display: block;
+  
 }
 
 .dropdown-menuccc a:hover {
