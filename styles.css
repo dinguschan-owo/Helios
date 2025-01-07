@@ -261,7 +261,7 @@ body {
   display: flex;
   align-items: center;
   padding: 2.3px 15px;
-  background-color: #3c4043;
+  background-color: #383c3f;
   z-index: 2147483644;
 }
 
@@ -449,7 +449,7 @@ body {
   color: #80ffbf;
   margin-right: 1px;
   margin-left: 0px;
-  margin-top: 8px;
+  margin-top: 5px;
   cursor: text;
   font-size: 14px;
   z-index: 2147483644;
@@ -464,9 +464,11 @@ body {
   height: 29px;
   width: 122px;
   text-align: center;
-  border-radius: 500px;
+  border-radius: 14px;
   cursor: text;
   z-index: 2147483644;
+  border: 3px solid #80ffbf; 
+  box-sizing: border-box; 
 }
 
 .browser-baraa .menu-buttonaa {
@@ -550,7 +552,7 @@ body {
   content: "";
   position: absolute;
   left: 0px;
-  bottom: -3px;
+  bottom: -5px;
   width: calc(100% + 1px);
   height: 3px;
   background-color: #4dffa6;
@@ -571,6 +573,8 @@ body {
   font-weight: 600;
   margin: 0;
   letter-spacing: 1px;
+  border-bottom: 3.6px solid #4dffa6;
+  margin-bottom: 10px;
 }
 
 .tab-contentaa h24 {
