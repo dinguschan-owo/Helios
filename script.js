@@ -1,3 +1,14 @@
+function activatePreview(element) {
+  // Add the active class on click
+  element.classList.add("active");
+
+  // Optionally, remove the active class after a short time (if you want it to toggle)
+  setTimeout(() => {
+    element.classList.remove("active");
+  }, 2000); // Remove after 2 seconds, adjust time as needed
+}
+
+
 // Function to show and hide AI
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
@@ -534,7 +545,7 @@ function updateTabContent(url, content, tab) {
   
 <button class="active" onclick="showCategory('historyvv')">History</button>
   <button onclick="showCategory('cloakingvv')">Cloaking</button>
-  <button onclick="showCategory('miscvv')">Miscellaneous</button>
+  <button onclick="showCategory('miscvv')">Appearance</button>
 </div>
 
 <div class="content-containervv activevv" id="historyvv">
@@ -544,14 +555,28 @@ function updateTabContent(url, content, tab) {
 </div>
 
 <div class="content-containervv" id="cloakingvv">
-  <h3>Cloaking Options</h3>
+  <h3>Tab Cloaking Options</h3>
   <button onclick="openInAboutBlank()">Open in about:blank</button>
   <button onclick="openInBlob()">Open in blob:</button>
 </div>
 
 <div class="content-containervv" id="miscvv">
-  <h3>Miscellaneous</h3>
-  <button id="reset-history">idk i didnt get this far</button>
+  <h3>Customize Helios's Appearance</h3>
+<div class="theme-preview" onclick="activatePreview(this)">
+  <div class="browser-simulation">
+    <div class="browser-header">
+      <div class="circle red"></div>
+      <div class="circle1 yellow"></div>
+            <div class="circle1 yellow"></div>
+      <div class="circle2 green"></div>
+            <div class="barbarbar"></div>
+
+    </div>
+    <div class="browser-content"><div class="hetitle">Helios</div><div class="dropmed"></div><div class="send4"></div></div>
+  </div>
+  <p class="theme-name"><i>Default Dark</i> by 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗</p>
+</div>
+
 </div>
 
         `;
