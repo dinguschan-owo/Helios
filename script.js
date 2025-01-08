@@ -1,13 +1,8 @@
+// Function to select themes (visual)
+
 function activatePreview(element) {
-  // Add the active class on click
   element.classList.add("active");
-
-  // Optionally, remove the active class after a short time (if you want it to toggle)
-  setTimeout(() => {
-    element.classList.remove("active");
-  }, 2000); // Remove after 2 seconds, adjust time as needed
 }
-
 
 // Function to show and hide AI
 
@@ -562,7 +557,7 @@ function updateTabContent(url, content, tab) {
 
 <div class="content-containervv" id="miscvv">
   <h3>Customize Helios's Appearance</h3>
-<div class="theme-preview" onclick="activatePreview(this)">
+<div class="theme-preview active" onclick="activatePreview(this)">
   <div class="browser-simulation">
     <div class="browser-header">
       <div class="circle red"></div>
