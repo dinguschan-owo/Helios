@@ -451,7 +451,7 @@ body {
   color: #80ffbf;
   margin-right: 1px;
   margin-left: 0px;
-  margin-top: 5px;
+  margin-top: 8px;
   cursor: text;
   font-size: 14px;
   z-index: 2147483644;
@@ -466,13 +466,10 @@ body {
   height: 29px;
   width: 122px;
   text-align: center;
-  border-radius: 14px;
+  border-radius: 500px;
   cursor: text;
   z-index: 2147483644;
-  border: 3px solid #80ffbf; 
-  box-sizing: border-box; 
 }
-
 .browser-baraa .menu-buttonaa {
   font-size: 33px;
   cursor: pointer;
@@ -1223,4 +1220,127 @@ body.show-chatbot .chatbot {
   position: relative;
   z-index: 2147483646;
   left: -1.6px;
+}
+
+.theme-preview {
+  text-align: center;
+  max-width: 300px;
+  margin: 20px auto;
+  transition: transform 0.2s ease;
+}
+
+.theme-preview.active .browser-simulation {
+  border: 3px solid #4dffa6;
+}
+
+.browser-simulation {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  border: 3px solid #4dffa6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: border 0.2s ease;
+}
+
+.browser-header {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background: #242729;
+  border-bottom: 24px solid #383c3f;
+}
+
+.circle {
+  width: 14px;
+  height: 13px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 4.5px;
+}
+.circle2 {
+  width: 10px;
+  height: 9px;
+  border-radius: 400px;
+  margin-left: 3px;
+  margin-top: 1px;
+}
+.circle1 {
+  width: 45px;
+  height: 12px;
+  border-radius: 6px 6px 4px 4px;
+  margin-right: 4.5px;
+}
+
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #666666;
+  border-bottom: 3px solid #4dffa6;
+}
+
+.green {
+  background: #bfbfbf;
+}
+
+.browser-content {
+  flex-grow: 1;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+}
+
+.theme-name {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+.send4 {
+  width: 100px;
+  height: 15px;
+  border-top-left-radius: 25px; 
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #52565b;
+  position: relative;
+  top: 33px;
+  left: 110px;
+  margin-right: 6px;
+}
+.dropmed {
+  width: 15px;
+  height: 15px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  background-color: #52565b;
+  position: relative;
+  top: 48px;
+  left: 91px;
+}
+
+.hetitle {
+  width: 100px;
+  height: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: none;
+  position: relative;
+  top: 33px;
+  left: 99px;
+  margin-right: 6px;
+}
+
+.barbarbar {
+  width: 180px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: #5e6368;
+  position: relative;
+  top: 28px;
+  right: 50px;
+  margin-right: 6px;
 }
