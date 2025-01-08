@@ -4,94 +4,116 @@ function activatePreview(element) {
   element.classList.add("active");
 }
 
-// Function to show and hide AI
-
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
-      const closeBtn = document.querySelector(".close-btn");
-      const chatbox = document.querySelector(".chatbox");
-      const chatInput = document.querySelector(".chat-input textarea");
-      const sendChatBtn = document.querySelector(".chat-input span");
+const closeBtn = document.querySelector(".close-btn");
+const chatbox = document.querySelector(".chatbox");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
 
-      let userMessage = null;
-      const inputHeight = '18px';
+let userMessage = null;
+const inputHeight = '18px';
 
-// API key for Gemini AI. This is completely free, so if your fork and build your own proxy please visit（https://aistudio.google.com/apikey）and get your own.
+// Store past messages for memory
+let chatHistory = [];
 
-      const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk"; 
-      const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk"; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-      const createChatLi = (message, className) => {
-        const chatLi = document.createElement("li");
-        chatLi.classList.add("chat", `${className}`);
-        let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
-        chatLi.innerHTML = chatContent;
-        chatLi.querySelector("p").textContent = message;
-        return chatLi;
-      }
+const createChatLi = (message, className) => {
+  const chatLi = document.createElement("li");
+  chatLi.classList.add("chat", `${className}`);
+  let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+  chatLi.innerHTML = chatContent;
+  chatLi.querySelector("p").textContent = message;
+  return chatLi;
+}
 
-      // Communication with the Gemini database
-      
-      const generateResponse = async (chatElement) => {
-        const messageElement = chatElement.querySelector("p");
-        const requestOptions = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
-            contents: [{ 
-              role: "user", 
-              parts: [{ text: userMessage }] 
-            }] 
-          }),
-        }
+// Function to replace bullet points with the custom "•" symbol
+const replaceBulletPoints = (text) => {
+  return text.replace(/(?:\n|^)\* (.*?)(?=\n|$)/g, (match, p1) => `\n• ${p1}`);
+}
 
-        try {
-          const response = await fetch(API_URL, requestOptions);
-          const data = await response.json();
-          if (!response.ok) throw new Error(data.error.message);
-          messageElement.textContent = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
-        } catch (error) {
-          messageElement.classList.add("error");
-          messageElement.textContent = error.message;
-        } finally {
-          chatbox.scrollTo(0, chatbox.scrollHeight);
-        }
-      }
+// Function to replace any mention of Google with dinguschan (lowercase)
+const replaceGoogleWithDinguschan = (text) => {
+  return text.replace(/Google/g, "dinguschan");
+}
 
-      // Auto scroll down 
-      
-      const handleChat = () => {
-        userMessage = chatInput.value.trim();
-        if (!userMessage) return;
-        chatInput.value = "";
-        chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-        chatbox.scrollTo(0, chatbox.scrollHeight);
+// Communication with the Gemini database
+const generateResponse = async (chatElement) => {
+  const messageElement = chatElement.querySelector("p");
 
-        setTimeout(() => {
-          const incomingChatLi = createChatLi("Thinking...", "incoming");
-          chatbox.appendChild(incomingChatLi);
-          chatbox.scrollTo(0, chatbox.scrollHeight);
-          generateResponse(incomingChatLi);
-        }, 600);
-      }
+  const context = chatHistory.length > 0 ? chatHistory.join("\n") : "";
+  const requestBody = {
+    contents: [{
+      role: "user",
+      parts: [{ text: `${context}\n${userMessage}` }] 
+    }]
+  };
 
-      chatInput.style.height = inputHeight;
-      const chatStyles = document.styleSheets[0];
-      chatStyles.insertRule(`
-        .chatbox .chat {
-          margin-bottom: 5px;
-        }
-      `, chatStyles.cssRules.length);
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestBody),
+  };
 
-      chatInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          handleChat();
-        }
-      });
+  try {
+    const response = await fetch(API_URL, requestOptions);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error.message);
+    
+    let responseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
+    responseText = replaceBulletPoints(responseText); // Fix bullet points
+    responseText = replaceGoogleWithDinguschan(responseText); 
+    
+    messageElement.textContent = responseText;
+    // Store the response in chat history
+    chatHistory.push(`${responseText}`);
+  } catch (error) {
+    messageElement.classList.add("error");
+    messageElement.textContent = error.message;
+  } finally {
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+  }
+}
 
-      sendChatBtn.addEventListener("click", handleChat);
-      closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-      chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+// Auto scroll down 
+const handleChat = () => {
+  userMessage = chatInput.value.trim();
+  if (!userMessage) return;
+  chatInput.value = "";
+
+  // Store the user message in chat history
+  chatHistory.push(`${userMessage}`);
+
+  chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+  chatbox.scrollTo(0, chatbox.scrollHeight);
+
+  setTimeout(() => {
+    const incomingChatLi = createChatLi("Thinking...", "incoming");
+    chatbox.appendChild(incomingChatLi);
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+    generateResponse(incomingChatLi);
+  }, 600);
+}
+
+chatInput.style.height = inputHeight;
+const chatStyles = document.styleSheets[0];
+chatStyles.insertRule(`
+  .chatbox .chat {
+    margin-bottom: 5px;
+  }
+`, chatStyles.cssRules.length);
+
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    handleChat();
+  }
+});
+
+sendChatBtn.addEventListener("click", handleChat);
+closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 
 document.addEventListener("click", (e) => {
   if (!chatbotToggler.contains(e.target) && !document.querySelector(".chatbot").contains(e.target)) {
