@@ -49,6 +49,8 @@
   height: 55px;
   background-color: #3c4043;
   border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+
   cursor: pointer;
   padding: 0;
   display: flex;
@@ -467,7 +469,7 @@
   color: #80ffbf;
   margin-right: 1px;
   margin-left: 0px;
-  margin-top: 5px;
+  margin-top: 8px;
   cursor: text;
   font-size: 14px;
   z-index: 2147483644;
@@ -482,13 +484,10 @@
   height: 29px;
   width: 122px;
   text-align: center;
-  border-radius: 14px;
+  border-radius: 500px;
   cursor: text;
   z-index: 2147483644;
-  border: 3px solid #80ffbf; 
-  box-sizing: border-box; 
 }
-
 .browser-baraa .menu-buttonaa {
   font-size: 33px;
   cursor: pointer;
@@ -541,7 +540,7 @@
   margin-left: 10px;
   margin-right: 9px;
   z-index: 2147483644;
-  margin-top: 1px;
+  margin-top: 1.6px;
 }
 
 .browser-baraa .settings-buttonaa:hover {
@@ -719,7 +718,6 @@
 
 .top-right-boxaa:hover {
   background-color: #43474c;
-  border: 2px solid #65ec99;
 }
 .Xt7Lm9Kp3R8f {
   position: absolute;
@@ -938,7 +936,7 @@
   background-color: #3c4043;
   border: none;
   color: #f8f8f2;
-  padding: 11px;
+  padding: 12px;
   margin-bottom: 9px;
   text-align: left;
   cursor: pointer;
@@ -975,6 +973,7 @@
   background-color: #ff5555;
   border: none;
   color: white;
+  font-size: 15px;
   padding: 10px 15px;
   cursor: pointer;
   border-radius: 5px;
@@ -997,16 +996,16 @@
   margin-top: 0.67em;
   margin-bottom: 0.67em;
   padding-bottom: 8px;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 1;
+  margin-right: 1;
   font-weight: bold;
-  border-bottom: 2px solid white;
+  border-bottom: 3px solid white;
 }
 .sidebarvv button.active {
   border: 3px solid #4dffa6;
   position: relative;
   box-sizing: border-box;
-  padding: 8.6px;
+  padding: 9.6px;
 }
 
 .sidebarvv button.active::after {
@@ -1052,6 +1051,7 @@ body.show-chatbot .chatbot {
   color: #e8eaed;
   font-size: 1.3rem;
   font-weight: bold;
+  margin-top: -2px;
   z-index: 2147483646;
 }
 
@@ -1062,7 +1062,7 @@ body.show-chatbot .chatbot {
   background-color: #none;
   border-radius: 50px;
   padding-top: 3px;
-  padding-bottom: 6.5px;
+  padding-bottom: 9px;
   padding-left: 6px;
   padding-right: 6px;
   color: #e8eaed;
@@ -1234,12 +1234,134 @@ body.show-chatbot .chatbot {
   background-color: #e8eaed;
   width: 101%;
   border-radius: 50px;
-  margin-top: 12px;
+  margin-top: 10px;
   position: relative;
   z-index: 2147483646;
   left: -1.6px;
 }
-</styles>
+
+.theme-preview {
+  text-align: center;
+  max-width: 300px;
+  margin: 20px auto;
+  transition: transform 0.2s ease;
+}
+
+.theme-preview.active .browser-simulation {
+  border: 3px solid #4dffa6;
+}
+
+.browser-simulation {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  border: 3px solid #4dffa6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: border 0.2s ease;
+}
+
+.browser-header {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background: #242729;
+  border-bottom: 24px solid #383c3f;
+}
+
+.circle {
+  width: 14px;
+  height: 13px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 4.5px;
+}
+.circle2 {
+  width: 10px;
+  height: 9px;
+  border-radius: 400px;
+  margin-left: 3px;
+  margin-top: 1px;
+}
+.circle1 {
+  width: 45px;
+  height: 12px;
+  border-radius: 6px 6px 4px 4px;
+  margin-right: 4.5px;
+}
+
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #666666;
+  border-bottom: 3px solid #4dffa6;
+}
+
+.green {
+  background: #bfbfbf;
+}
+
+.browser-content {
+  flex-grow: 1;
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+}
+
+.theme-name {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+}
+.send4 {
+  width: 100px;
+  height: 15px;
+  border-top-left-radius: 25px; 
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #52565b;
+  position: relative;
+  top: 33px;
+  left: 110px;
+  margin-right: 6px;
+}
+.dropmed {
+  width: 15px;
+  height: 15px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  background-color: #52565b;
+  position: relative;
+  top: 48px;
+  left: 91px;
+}
+
+.hetitle {
+  width: 100px;
+  height: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: none;
+  position: relative;
+  top: 33px;
+  left: 99px;
+  margin-right: 6px;
+}
+
+.barbarbar {
+  width: 180px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: #5e6368;
+  position: relative;
+  top: 28px;
+  right: 50px;
+  margin-right: 6px;
+}</styles>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
@@ -1344,12 +1466,12 @@ body.show-chatbot .chatbot {
       <div class="chatbot">
       <header>
         <div>Helios AI (Experimental)</div>
-        <span class="close-btn material-symbols-outlined">✖</span>
+        <span class="close-btn material-symbols-outlined"><b>✕</b></span>
       </header><div class="header-bar"></div>
       <ul class="chatbox">
         <li class="chat incoming">
           <span class="material-symbols-outlined">smart_toy</span>
-          <p>Hi there <br>How can I help you today?</p>
+          <p>Hi there! How may I assist you?</p>
         </li>
       </ul>
       <div class="chat-input">
@@ -1357,7 +1479,18 @@ body.show-chatbot .chatbot {
         <span id="send-btn" class="material-symbols-rounded">send</span>
       </div>
     </div>
-      <script>// Function to show and hide AI
+      <script>function activatePreview(element) {
+  // Add the active class on click
+  element.classList.add("active");
+
+  // Optionally, remove the active class after a short time (if you want it to toggle)
+  setTimeout(() => {
+    element.classList.remove("active");
+  }, 2000); // Remove after 2 seconds, adjust time as needed
+}
+
+
+// Function to show and hide AI
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
       const closeBtn = document.querySelector(".close-btn");
@@ -1891,9 +2024,9 @@ function updateTabContent(url, content, tab) {
         <div class="sidebarvv">
   <h1>Helios Settings</h1>
   
-  <button onclick="showCategory('historyvv')">History</button>
+<button class="active" onclick="showCategory('historyvv')">History</button>
   <button onclick="showCategory('cloakingvv')">Cloaking</button>
-  <button onclick="showCategory('miscvv')">Miscellaneous</button>
+  <button onclick="showCategory('miscvv')">Appearance</button>
 </div>
 
 <div class="content-containervv activevv" id="historyvv">
@@ -1903,14 +2036,28 @@ function updateTabContent(url, content, tab) {
 </div>
 
 <div class="content-containervv" id="cloakingvv">
-  <h3>Cloaking Options</h3>
+  <h3>Tab Cloaking Options</h3>
   <button onclick="openInAboutBlank()">Open in about:blank</button>
   <button onclick="openInBlob()">Open in blob:</button>
 </div>
 
 <div class="content-containervv" id="miscvv">
-  <h3>Miscellaneous</h3>
-  <button id="reset-history">idk i didnt get this far</button>
+  <h3>Customize Helios's Appearance</h3>
+<div class="theme-preview" onclick="activatePreview(this)">
+  <div class="browser-simulation">
+    <div class="browser-header">
+      <div class="circle red"></div>
+      <div class="circle1 yellow"></div>
+            <div class="circle1 yellow"></div>
+      <div class="circle2 green"></div>
+            <div class="barbarbar"></div>
+
+    </div>
+    <div class="browser-content"><div class="hetitle">Helios</div><div class="dropmed"></div><div class="send4"></div></div>
+  </div>
+  <p class="theme-name"><i>Default Dark</i> by 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗</p>
+</div>
+
 </div>
 
         `;
