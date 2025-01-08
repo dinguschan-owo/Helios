@@ -63,8 +63,10 @@ Vercel:
 - website caching
 - about:blank and blob: tab cloaking
 - random proxy rotation so ur harder to trace
-- clear all tabs and reset browser button (why would you want this, you 𝓯𝓻𝓮𝓪𝓴 ❤️)
-- session ID generation 
+- clear all tabs and reset browser button (why would you want this, you 𝓯𝓻𝓮𝓪𝓴 )
+- session ID generation
+- unique data: url generation based off your session ID
+- one cool theme (more to come)
 
 ## ***`License`***
 
