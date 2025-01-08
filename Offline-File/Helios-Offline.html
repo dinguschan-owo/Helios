@@ -35,13 +35,13 @@
   opacity: 1; /* For Firefox users */
 }
 
-.search-containeraa {
+.search-container {
   display: flex;
   align-items: center;
   position: relative;
 }
 
-.search-engine-dropdownaa {
+.search-engine-dropdown {
   position: absolute;
   right: 23px;
   top: -27px;
@@ -61,7 +61,7 @@
   z-index: 2;
 }
 
-.search-engine-dropdownaa img {
+.search-engine-dropdown img {
   width: 38px;
   height: 38px;
   pointer-events: none;
@@ -69,7 +69,7 @@
   margin-left: 1px;
 }
 
-.dropdown-contentaa {
+.dropdown-content {
   display: none;
   position: absolute;
   background-color: #3c4043;
@@ -83,7 +83,7 @@
   border: 3px solid #66ffa1;
 }
 
-.dropdown-contentaa .status-messageaa {
+.dropdown-content .status-message {
   color: #f1f1f1;
   padding: 14px 14px; 
   background-color: #484d51; 
@@ -92,7 +92,7 @@
   font-size: 15px;
 }
 
-.dropdown-contentaa a {
+.dropdown-content a {
   color: #fff;
   padding: 12px 12px;
   text-decoration: none;
@@ -103,25 +103,25 @@
   border-radius: 10px;
 }
 
-.dropdown-contentaa a:hover {
+.dropdown-content a:hover {
   background-color: #484d51;
   border-radius: 10px;
 }
 
-.dropdown-contentaa a img {
+.dropdown-content a img {
   width: 28px;
   height: 28px; 
   margin-right: 12px; 
 }
 
-.dropdown-contentaa,
-.dropdown-contentaa a,
-.status-messageaa {
+.dropdown-content,
+.dropdown-content a,
+.status-message {
   font-family: Arial, sans-serif;
   font-size: 15px; 
 }
 
-.cloak-buttonaa {
+.cloak-button {
   margin-top: 25px;
   margin-right: 4px;
   margin-left: 4px;
@@ -136,12 +136,12 @@
   transition: background-color 0.3s ease;
 }
 
-.cloak-buttonaa:hover {
+.cloak-button:hover {
   background-color: #ff4747;
 }
 
 
-.uptop-baraa {
+.uptop-bar {
   background-color: #242729;
   display: flex;
   align-items: center;
@@ -149,7 +149,7 @@
   z-index: 2147483644;
 }
 
-.uptop-baraa .tabaa {
+.uptop-bar .tab {
   display: flex;
   align-items: center;
   background-color: #454545;
@@ -187,7 +187,7 @@
     border-radius: 8px;
 }
 
-.uptop-baraa .tabaa .tab-nameaa {
+.uptop-bar .tab .tab-name {
   flex-grow: 1;
   margin-right: 5px;
   margin-left: 3px;
@@ -203,11 +203,11 @@
   transition: margin-left 0.3s ease;
 }
 
-.tabaa:has(.spinner) .tab-nameaa {
+.tab:has(.spinner) .tab-name {
   margin-left: 22px;
 }
 
-.uptop-baraa .tabaa .close-btnaa {
+.uptop-bar .tab .close-btn {
   font-size: 15px;
   color: #aaa;
   cursor: pointer;
@@ -220,19 +220,19 @@
   transition: background-color 0.3s;
 }
 
-.uptop-baraa .tabaa .close-btnaa:hover {
+.uptop-bar .tab .close-btn:hover {
   color: #fff;
   z-index: 2147483644;
 }
 
-.uptop-baraa .tabaa.activeaa {
+.uptop-bar .tab.active {
   position: relative;
   background-color: #5c5c5c;
   color: #fff;
   z-index: 2147483644;
 }
 
-.uptop-baraa .tabaa.activeaa::after {
+.uptop-bar .tab.active::after {
   content: "";
   position: absolute;
   left: 0;
@@ -242,24 +242,24 @@
   background-color: #4dffa6;
 }
 
-.uptop-baraa .tabaa.activeaa:hover {
+.uptop-bar .tab.active:hover {
   background-color: #666666;
   color: #fff;
   z-index: 2147483644;
 }
 
-.uptop-baraa .tabaa.activeaa::after:hover {
+.uptop-bar .tab.active::after:hover {
   background-color: #666666;
   color: #fff;
   z-index: 2147483644;
 }
 
-.uptop-baraa .tabaa:hover {
+.uptop-bar .tab:hover {
   background-color: #505050;
   z-index: 2147483644;
 }
 
-.uptop-baraa .add-tabaa {
+.uptop-bar .add-tab {
   font-size: 23px;
   color: #bfbfbf;
   cursor: pointer;
@@ -271,12 +271,12 @@
   margin-right: 3px;
 }
 
-.uptop-baraa .add-tabaa:hover {
+.uptop-bar .add-tab:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.browser-baraa {
+.browser-bar {
   display: flex;
   align-items: center;
   padding: 2.3px 15px;
@@ -285,12 +285,12 @@
 }
 
 @-moz-document url-prefix() {
-  .browser-baraa {
+  .browser-bar {
     padding: 5px 15px;
   }
 }
 
-.browser-baraa button {
+.browser-bar button {
   background-color: transparent;
   border: none;
   font-size: 20px;
@@ -301,13 +301,13 @@
   z-index: 2147483644;
 }
 
-.browser-baraa button:hover {
+.browser-bar button:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.browser-baraa .forward-buttonaa,
-.browser-baraa .backward-buttonaa {
+.browser-bar .forward-button,
+.browser-bar .backward-button {
   font-size: 23px;
   font-weight: 600;
   z-index: 2147483644;
@@ -317,12 +317,12 @@
   animation-play-state: paused;
 }
 
-.browser-baraa .forward-buttonaa:hover {
+.browser-bar .forward-button:hover {
   animation: bounceForward 0.5s ease-out forwards;
   animation-play-state: running; 
 }
 
-.browser-baraa .backward-buttonaa:hover {
+.browser-bar .backward-button:hover {
   animation: bounceBackward 0.5s ease-out forwards;
   animation-play-state: running;
 }
@@ -363,14 +363,14 @@
   }
 }
 
-.browser-baraa .home-button,
-.browser-baraa .reload-button,
-.browser-baraa .forward-buttonaa,
-.browser-baraa .backward-buttonaa {
+.browser-bar .home-button,
+.browser-bar .reload-button,
+.browser-bar .forward-button,
+.browser-bar .backward-button {
   animation-delay: 0.1s;
 }
 
-.browser-baraa .reload-buttonaa {
+.browser-bar .reload-button {
   font-size: 22px;
   font-weight: 600;
   margin-bottom: -1px;
@@ -378,7 +378,7 @@
   animation: none;
 }
 
-.browser-baraa .reload-buttonaa:hover {
+.browser-bar .reload-button:hover {
   animation: spin 0.7s forwards; 
 }
 
@@ -392,7 +392,7 @@
 }
 
 
-.browser-baraa .home-buttonaa {
+.browser-bar .home-button {
   z-index: 2147483644;
   transition: transform 0.3s ease;
   animation-duration: 0.5s;
@@ -400,7 +400,7 @@
   animation-play-state: paused;
 }
 
-.browser-baraa .home-buttonaa:hover {
+.browser-bar .home-button:hover {
   animation: bounceHome 0.5s ease-out forwards;
   animation-play-state: running;
 }
@@ -423,15 +423,15 @@
   }
 }
 
-.browser-baraa .search-buttonaa {
+.browser-bar .search-button {
   z-index: 2147483644;
 }
 
-.browser-baraa .microphone-buttonaa {
+.browser-bar .microphone-button {
   z-index: 2147483644;
 }
 
-.browser-baraa .address-baraa {
+.browser-bar .address-bar {
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -447,7 +447,7 @@
   z-index: 2147483644;
 }
 
-.browser-baraa .address-baraa input {
+.browser-bar .address-bar input {
   border: none;
   width: 100%;
   outline: none;
@@ -457,7 +457,7 @@
   z-index: 2147483644;
 }
 
-.browser-baraa .address-baraa .lock-iconaa {
+.browser-bar .address-bar .lock-icon {
   color: #8ab4f8;
   margin-right: 10px;
   margin-left: 1px;
@@ -465,7 +465,7 @@
   font-size: 16px;
   z-index: 2147483644;
 }
-.browser-baraa .address-baraa .officialaa {
+.browser-bar .address-bar .official {
   color: #80ffbf;
   margin-right: 1px;
   margin-left: 0px;
@@ -474,7 +474,7 @@
   font-size: 14px;
   z-index: 2147483644;
 }
-.browser-baraa .address-baraa .official-caa {
+.browser-bar .address-bar .official-c {
   color: #fff;
   margin-right: -7.3px;
   margin-left: 0px;
@@ -489,7 +489,7 @@
   z-index: 2147483644;
 }
 
-.browser-baraa .menu-buttonaa {
+.browser-bar .menu-button {
   font-size: 33px;
   cursor: pointer;
   margin-left: 7px;
@@ -502,12 +502,12 @@
   font-stretch: 50%;
 }
 
-.browser-baraa .menu-buttonaa:hover {
+.browser-bar .menu-button:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.browser-baraa .wrench-buttonaa {
+.browser-bar .wrench-button {
   font-size: 22px;
   cursor: pointer;
   margin-right: 1px;
@@ -516,12 +516,12 @@
   z-index: 2147483644;
 }
 
-.browser-baraa .fullscreen-button:hover {
+.browser-bar .fullscreen-button:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.browser-baraa .fullscreen-button {
+.browser-bar .fullscreen-button {
   font-size: 23px;
   cursor: pointer;
   margin-right: 12px;
@@ -530,12 +530,12 @@
   z-index: 2147483644;
 }
 
-.browser-baraa .wrench-buttonaa:hover {
+.browser-bar .wrench-button:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.browser-baraa .settings-buttonaa {
+.browser-bar .settings-button {
   font-size: 22px;
   cursor: pointer;
   margin-left: 10px;
@@ -544,19 +544,19 @@
   margin-top: 1px;
 }
 
-.browser-baraa .settings-buttonaa:hover {
+.browser-bar .settings-button:hover {
   color: #ffffff;
   z-index: 2147483644;
 }
 
-.tab-contentaa h20 {
+.tab-content h20 {
   font-size: 61px;
   font-weight: 600;
   margin: 0;
   letter-spacing: 1px;
 }
 
-.tab-contentaa h21 {
+.tab-content h21 {
   font-size: 24px;
   font-weight: 400;
   color: #b3b3b3;
@@ -566,7 +566,7 @@
   position: relative;
 }
 
-.tab-contentaa h21::after {
+.tab-content h21::after {
   content: '';
   position: absolute;
   left: 0px;
@@ -578,7 +578,7 @@
 }
 
 
-.tab-contentaa h22 {
+.tab-content h22 {
   font-size: 40px;
   font-weight: 600;
   margin: 0;
@@ -587,14 +587,14 @@
   margin-top: -320px;
 }
 
-.tab-contentaa h23 {
+.tab-content h23 {
   font-size: 61px;
   font-weight: 600;
   margin: 0;
   letter-spacing: 1px;
 }
 
-.tab-contentaa h24 {
+.tab-content h24 {
   font-size: 38px;
   font-weight: 600;
   background: linear-gradient(145deg, #1e1e1e, #292929);
@@ -604,7 +604,7 @@
   margin-top: 50px;
 }
 
-.search-baraa {
+.search-bar {
   display: flex;
   align-items: center;
 
@@ -621,7 +621,7 @@
   z-index: 1;
 }
 
-.search-baraa input {
+.search-bar input {
   border: none;
   width: 100%;
   outline: none;
@@ -630,24 +630,24 @@
   color: #e8eaed;
 }
 
-.search-baraa i {
+.search-bar i {
   color: #9aa0a6;
   margin-right: 15px;
   cursor: pointer;
   transition: color 0.3s;
 }
 
-.search-baraa i:hover {
+.search-bar i:hover {
   color: #ffffff;
 }
 
-.search-baraa .search-iconaa {
+.search-bar .search-icon {
   font-weight: 600;
   font-size: 18px;
   margin-right: 6px;
 }
 
-.tab-contentaa {
+.tab-content {
   display: none;
   flex-grow: 1;
   flex-direction: column;
@@ -661,13 +661,13 @@
   background: linear-gradient(145deg, #1e1e1e, #292929);
 }
 
-.tab-contentaa.activeaa {
+.tab-content.active {
   display: flex;
   margin: 0; 
   padding: 0;
 }
 
-.clear-buttonaa {
+.clear-button {
   margin-top: 25px;
   background-color: #ff6161;
   color: white;
@@ -679,11 +679,11 @@
   font-weight: 500;
 }
 
-.clear-buttonaa:hover {
+.clear-button:hover {
   background-color: #ff4747;
 }
 
-.clear-messageaa {
+.clear-message {
   background-color: #ff6161;
   padding: 10px 12px;
   border-radius: 9px;
@@ -698,7 +698,7 @@
   display: none;
   z-index: 2147483647;
 }
-.top-right-boxaa {
+.top-right-box {
   position: absolute;
   top: 119px;
   left: 9px;
@@ -717,7 +717,7 @@
   border: 3px solid #66ffa1;
 }
 
-.top-right-boxaa:hover {
+.top-right-box:hover {
   background-color: #43474c;
   border: 2px solid #65ec99;
 }
@@ -1211,7 +1211,7 @@
       }
 
       @media (max-width: 490px) {
-        .wrench-buttonaa {
+        .wrench-button {
           right: 20px;
           z-index: 2147483646;
           bottom: 20px;
@@ -1245,45 +1245,45 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
   </head>
   <body>
-    <div class="uptop-baraa">
-    <div class="tabaa activeaa">
-      <span class="tab-nameaa">New Tab</span>
-      <i class="fas fa-times close-btnaa"></i>
+    <div class="uptop-bar">
+    <div class="tab active">
+      <span class="tab-name">New Tab</span>
+      <i class="fas fa-times close-btn"></i>
     </div>
-  <div class="add-tabaa" title="Add tab" id="add-tabaa">
+  <div class="add-tab" title="Add tab" id="add-tab">
     <i class="fa-solid fa-circle-plus"></i>
   </div>
 </div>
-    <div class="browser-baraa">
-      <button class="backward-buttonaa" title="Click to go back">
+    <div class="browser-bar">
+      <button class="backward-button" title="Click to go back">
         <i class="fas fa-arrow-left"></i>
       </button>
-      <button class="forward-buttonaa" title="Click to go forward">
+      <button class="forward-button" title="Click to go forward">
         <i class="fas fa-arrow-right"></i>
       </button>
-      <button class="reload-buttonaa" title="Reload this page">
+      <button class="reload-button" title="Reload this page">
         <i class="fas fa-redo"></i>
       </button>
-      <button class="home-buttonaa" title="Shortcut to helios://start">
+      <button class="home-button" title="Shortcut to helios://start">
         <i class="fas fa-home"></i>
       </button>
-      <div class="address-baraa">
-        <i class="fas fa-lock lock-iconaa"></i>
-        <input type="text" placeholder="Enter a URL" value="helios://start" id="url-baraa">
-        <div class="official-caa">
-          <i class="fa-solid fa-circle-check officialaa">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i>
+      <div class="address-bar">
+        <i class="fas fa-lock lock-icon"></i>
+        <input type="text" placeholder="Enter a URL" value="helios://start" id="url-bar">
+        <div class="official-c">
+          <i class="fa-solid fa-circle-check official">&nbsp;&nbsp;𝙾𝚏𝚏𝚒𝚌𝚒𝚊𝚕</i>
         </div>
       </div>
       <button class="fullscreen-button" title="Enter fullscreen" onclick="toggleFullscreen()">
         <i class="fas fa-expand"></i>
       </button>
-      <button class="wrench-buttonaa" title="Open Helios AI (Experimental)" id="toggleSourceCode">
+      <button class="wrench-button" title="Open Helios AI (Experimental)" id="toggleSourceCode">
         <i class="fa-solid fa-robot"></i>
       </button>
-      <button class="settings-buttonaa" title="Shortcut to helios://settings">
+      <button class="settings-button" title="Shortcut to helios://settings">
         <i class="fas fa-cog"></i>
       </button>
-      <button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
+      <button class="menu-button" title="More options" onclick="toggleDropdownccc()">⋮</button>
       <div id="myDropdownccc" class="dropdown-menuccc">
         <a href="javascript:void(0);">New Tab</a>
         <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
@@ -1300,24 +1300,24 @@
     </div>
     </head>
     <body>
-      <div class="contentaa tab-contentaa activeaa">
+      <div class="content tab-content active">
         <div class="Xt7Lm9Kp3R8f">
           <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
         </div>
-        <div class="top-right-boxaa">
+        <div class="top-right-box">
           <p>
             <i class="fa-brands fa-github"></i>
           </p>
         </div>
         <h23>Helios</h23>
         <h21>𝚟𝟷.𝟿.𝟶</h21>
-        <div class="search-baraa">
-          <div class="search-containeraa">
-            <div class="search-engine-dropdownaa" onclick="toggleDropdown()">
-              <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engineaa">
+        <div class="search-bar">
+          <div class="search-container">
+            <div class="search-engine-dropdown" onclick="toggleDropdown()">
+              <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engine">
             </div>
-            <div class="dropdown-contentaa" id="engineDropdownaa">
-              <div class="status-messageaa" id="statusMessageaa">Searching with Google</div>
+            <div class="dropdown-content" id="engineDropdown">
+              <div class="status-message" id="statusMessage">Searching with Google</div>
               <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get')" data-engine="4get">
                 <img src="https://4get.ca/favicon.ico" alt="4get"> - <s>Search with 4get</s>- </a>
               <a href="javascript:void(0);" onclick="selectEngine('https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256', 'Google')" data-engine="Google">
@@ -1329,7 +1329,7 @@
             </div>
           </div>
           <input type="text" placeholder="Search the web or enter a URL">
-          <i class="fas fa-search search-iconaa"></i>
+          <i class="fas fa-search search-icon"></i>
         </div>
       </div>
       <div class="modalgg" id="myModal">
@@ -1359,7 +1359,7 @@
     </div>
       <script>// Function to show and hide AI
 
-const chatbotToggler = document.querySelector(".wrench-buttonaa");
+const chatbotToggler = document.querySelector(".wrench-button");
       const closeBtn = document.querySelector(".close-btn");
       const chatbox = document.querySelector(".chatbox");
       const chatInput = document.querySelector(".chat-input textarea");
@@ -1537,12 +1537,12 @@ async function handleFetchedContent(html, url) {
 
 function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
-    const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
-    const activeTab = document.querySelectorAll('.tabaa')[tabIndex];
+    const activeContent = document.querySelectorAll('.tab-content')[tabIndex];
+    const activeTab = document.querySelectorAll('.tab')[tabIndex];
 
     if (activeContent && activeTab) {
-        activeContent.classList.add('activeaa');
-        activeTab.classList.add('activeaa');
+        activeContent.classList.add('active');
+        activeTab.classList.add('active');
     }
 }
 
@@ -1692,12 +1692,12 @@ function initializeTabs() {
     // Create the second tab
     const newTabIndex = tabs.length;
     const newTab = document.createElement('div');
-    newTab.className = 'tabaa';
-    newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-    document.querySelector('.uptop-baraa').insertBefore(newTab, document.getElementById('add-tabaa'));
+    newTab.className = 'tab';
+    newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
+    document.querySelector('.uptop-bar').insertBefore(newTab, document.getElementById('add-tab'));
 
     const newContent = document.createElement('div');
-    newContent.className = 'contentaa tab-contentaa';
+    newContent.className = 'content tab-content';
     newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
     document.body.appendChild(newContent);
 
@@ -1707,9 +1707,9 @@ function initializeTabs() {
     });
 
     // Close the original tab
-    const originalTab = document.querySelector('.tabaa');
+    const originalTab = document.querySelector('.tab');
     originalTab.remove();
-    document.querySelectorAll('.tab-contentaa')[0].remove();
+    document.querySelectorAll('.tab-content')[0].remove();
     tabs.shift();
 
     // Update active tab
@@ -1729,18 +1729,18 @@ const tabs = [{
     url: 'helios://start',
     content: `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-box">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
         <h21>𝚟𝟷.𝟿.𝟶</h21>
-        <div class="search-baraa">
-          <div class="search-containeraa">
-  <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
+        <div class="search-bar">
+          <div class="search-container">
+  <div class="search-engine-dropdown" onclick="toggleDropdown(${currentTabIndex})">
     <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
-  <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
-    <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
+  <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
+    <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
@@ -1756,20 +1756,20 @@ const tabs = [{
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i>`
+            <i class="fas fa-search search-icon"></i>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'http://'];
 
-document.getElementById('add-tabaa').addEventListener('click', function() {
+document.getElementById('add-tab').addEventListener('click', function() {
     const newTabIndex = tabs.length;
     const newTab = document.createElement('div');
-    newTab.className = 'tabaa';
-    newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-    document.querySelector('.uptop-baraa').insertBefore(newTab, this);
+    newTab.className = 'tab';
+    newTab.innerHTML = `<span class="tab-name">New Tab</span><i class="fas fa-times close-btn"></i>`;
+    document.querySelector('.uptop-bar').insertBefore(newTab, this);
 
     const newContent = document.createElement('div');
-    newContent.className = 'contentaa tab-contentaa';
+    newContent.className = 'content tab-content';
     newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
     document.body.appendChild(newContent);
 
@@ -1783,25 +1783,25 @@ document.getElementById('add-tabaa').addEventListener('click', function() {
     addTabClickListener(newTab, newContent, newTabIndex);
 });
 
-document.querySelectorAll('.tabaa').forEach((tab, index) => {
+document.querySelectorAll('.tab').forEach((tab, index) => {
     addCloseButtonFunctionality(tab);
-    addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
+    addTabClickListener(tab, document.querySelectorAll('.tab-content')[index], index);
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.top-right-boxaa').addEventListener('click', function() {
+    document.querySelector('.top-right-box').addEventListener('click', function() {
         window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
     });
 });
 
 function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function() {
-        const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+    tab.querySelector('.close-btn').addEventListener('click', function() {
+        const index = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
         tab.remove();
-        document.querySelectorAll('.tab-contentaa')[index].remove();
+        document.querySelectorAll('.tab-content')[index].remove();
         tabs.splice(index, 1);
         if (index === currentTabIndex) {
-            const newActiveTab = document.querySelectorAll('.tabaa')[index] || document.querySelectorAll('.tabaa')[index - 1];
+            const newActiveTab = document.querySelectorAll('.tab')[index] || document.querySelectorAll('.tab')[index - 1];
             if (newActiveTab) {
                 newActiveTab.click();
             }
@@ -1816,20 +1816,20 @@ function addTabClickListener(tab, content, index) {
 }
 
 function updateActiveTab(tab, content, index) {
-    document.querySelectorAll('.tab-contentaa').forEach(content => {
-        content.classList.remove('activeaa');
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
     });
 
-    document.querySelectorAll('.tabaa').forEach(tab => {
-        tab.classList.remove('activeaa');
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
     });
 
-    tab.classList.add('activeaa');
-    content.classList.add('activeaa');
+    tab.classList.add('active');
+    content.classList.add('active');
 
     currentTabIndex = index;
     const url = tabs[index].url;
-    document.getElementById('url-baraa').value = url;
+    document.getElementById('url-bar').value = url;
 
     updateTabContent(url, content, tab);
     updateLockIcon(url);
@@ -1844,18 +1844,18 @@ function updateTabContent(url, content, tab) {
     if (url === 'helios://start') {
         content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-box">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
         <h21>𝚟𝟷.𝟿.𝟶</h21>
-        <div class="search-baraa">
-          <div class="search-containeraa">
-  <div class="search-engine-dropdownaa" onclick="toggleDropdown(${currentTabIndex})">
+        <div class="search-bar">
+          <div class="search-container">
+  <div class="search-engine-dropdown" onclick="toggleDropdown(${currentTabIndex})">
     <img src="https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://google.com&size=256" alt="Google" id="selected-engine-${currentTabIndex}">
   </div>
-  <div class="dropdown-contentaa" id="engineDropdown-${currentTabIndex}">
-    <div class="status-messageaa" id="statusMessage-${currentTabIndex}">Searching with Google</div>
+  <div class="dropdown-content" id="engineDropdown-${currentTabIndex}">
+    <div class="status-message" id="statusMessage-${currentTabIndex}">Searching with Google</div>
     <a href="javascript:void(0);" onclick="selectEngine('https://4get.ca/favicon.ico', '4get', ${currentTabIndex})" data-engine="4get">
       <img src="https://4get.ca/favicon.ico" alt="4get"> -<s>Search with 4get</s>-
     </a>
@@ -1871,9 +1871,9 @@ function updateTabContent(url, content, tab) {
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i>`;
+            <i class="fas fa-search search-icon"></i>`;
 
-        tab.querySelector('.tab-nameaa').textContent = 'New Tab';
+        tab.querySelector('.tab-name').textContent = 'New Tab';
         tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
@@ -1914,7 +1914,7 @@ function updateTabContent(url, content, tab) {
 </div>
 
         `;
-        tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
+        tab.querySelector('.tab-name').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
@@ -1935,7 +1935,7 @@ function updateTabContent(url, content, tab) {
         fetchExternalContent(url, content, currentTabIndex);
     }
 
-    document.getElementById('url-baraa').value = url;
+    document.getElementById('url-bar').value = url;
 
     tabs[currentTabIndex].content = content.innerHTML;
     tabs[currentTabIndex].url = url;
@@ -1952,7 +1952,7 @@ function updateTabContent(url, content, tab) {
 }
 
 async function fetchExternalContent(url, content, tabIndex) {
-    const tab = document.querySelectorAll('.tabaa')[tabIndex];
+    const tab = document.querySelectorAll('.tab')[tabIndex];
     showSpinner(tab);
 
     console.log(`Fetching content for URL: ${url}`);
@@ -2046,7 +2046,7 @@ async function fetchExternalContent(url, content, tabIndex) {
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
     if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+        tab.querySelector('.tab-name').textContent = title || 'Untitled';
     }
 
     console.log(`Parsed document title: ${title || 'Untitled'}`);
@@ -2103,8 +2103,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.getElementById('url-baraa');
-    const content = document.getElementById('contentaa');
+    const urlBar = document.getElementById('url-bar');
+    const content = document.getElementById('content');
 
     urlBar.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -2162,9 +2162,9 @@ async function fetchExternalContent(url, content, tabIndex) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
-    const tab = document.querySelectorAll('.tabaa')[tabIndex];
+    const tab = document.querySelectorAll('.tab')[tabIndex];
     if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+        tab.querySelector('.tab-name').textContent = title || 'Untitled';
     }
 
     async function fetchAndInjectResources(html, tabIndex) {
@@ -2302,7 +2302,7 @@ async function fetchExternalContent(url, content, tabIndex) {
 }
 
 function updateLockIcon(url) {
-    const lockIcon = document.querySelector('.lock-iconaa');
+    const lockIcon = document.querySelector('.lock-icon');
     const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
     if (isLocked) {
         lockIcon.classList.remove('fa-unlock');
@@ -2327,8 +2327,8 @@ function modifyCss(cssText) {
 
 function updateSpecialDivs(url) {
     const isHeliosURL = url.startsWith('helios://');
-    const officialC = document.querySelector('.official-caa');
-    const official = document.querySelector('.officialaa');
+    const officialC = document.querySelector('.official-c');
+    const official = document.querySelector('.official');
 
     if (officialC) {
         officialC.style.backgroundColor = isHeliosURL ? '' : '#52565b';
@@ -2339,14 +2339,14 @@ function updateSpecialDivs(url) {
     }
 }
 
-document.getElementById('url-baraa').addEventListener('input', function() {
+document.getElementById('url-bar').addEventListener('input', function() {
     const url = this.value;
     tabs[currentTabIndex].url = url;
     updateLockIcon(url);
     updateSpecialDivs(url);
 });
 
-document.getElementById('url-baraa').addEventListener('keypress', function(e) {
+document.getElementById('url-bar').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         let url = e.target.value.trim();
 
@@ -2356,31 +2356,31 @@ document.getElementById('url-baraa').addEventListener('keypress', function(e) {
             url = 'https://' + url;
         }
 
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
 
         tabs[currentTabIndex].url = url;
-        document.getElementById('url-baraa').value = url;
+        document.getElementById('url-bar').value = url;
         updateTabContent(url, currentContent, currentTab);
         updateLockIcon(url);
         updateSpecialDivs(url);
     }
 });
 
-document.querySelector('.home-buttonaa').addEventListener('click', function() {
+document.querySelector('.home-button').addEventListener('click', function() {
     changeTabContent('helios://start');
 });
 
-document.querySelector('.settings-buttonaa').addEventListener('click', function() {
+document.querySelector('.settings-button').addEventListener('click', function() {
     changeTabContent('helios://settings');
 });
 
 function changeTabContent(url) {
-    const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-    const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
 
     if (currentTab && currentContent) {
-        document.getElementById('url-baraa').value = url;
+        document.getElementById('url-bar').value = url;
 
         tabs[currentTabIndex].url = url;
         updateTabContent(url, currentContent, currentTab);
@@ -2391,7 +2391,7 @@ function changeTabContent(url) {
             key: 'Enter',
             code: 'Enter'
         });
-        document.getElementById('url-baraa').dispatchEvent(event);
+        document.getElementById('url-bar').dispatchEvent(event);
     }
 }
 // Function to open Helios in an about:blank tab
@@ -2402,7 +2402,7 @@ function openInAboutBlank() {
     const clonedDocument = document.documentElement.cloneNode(true);
     
     // Remove the square button from the cloned document
-    const squareButton = clonedDocument.querySelector('#square-buttonaa');
+    const squareButton = clonedDocument.querySelector('#square-button');
     if (squareButton) {
         squareButton.remove();
     }
@@ -2417,7 +2417,7 @@ async function openInBlob() {
     // Clone the document's static DOM structure
     const htmlDocument = document.documentElement.cloneNode(true);
   // Block duplication of square button
-const squareButton = htmlDocument.querySelector('#square-buttonaa');
+const squareButton = htmlDocument.querySelector('#square-button');
     if (squareButton) {
         squareButton.remove();
     }
@@ -2500,8 +2500,8 @@ function updateDropdownVisibility(tabIndex) {
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.search-engine-dropdownaa') && !event.target.matches('.search-engine-dropdownaa img')) {
-        var dropdowns = document.querySelectorAll('.dropdown-contentaa');
+    if (!event.target.matches('.search-engine-dropdown') && !event.target.matches('.search-engine-dropdown img')) {
+        var dropdowns = document.querySelectorAll('.dropdown-content');
         dropdowns.forEach(function(dropdown) {
             if (dropdown.style.display === "block") {
                 dropdown.style.display = "none";
@@ -2517,7 +2517,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-document.getElementById('url-baraa').addEventListener('input', function(e) {
+document.getElementById('url-bar').addEventListener('input', function(e) {
     this.value = this.value.toLowerCase();
 });
 
@@ -2540,7 +2540,7 @@ function handleSearchOrNavigation(input, tabIndex) {
         if (!/^https?:\/\//i.test(url)) {
             url = 'https://' + url;
         }
-        updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+        updateTabContent(url, document.querySelectorAll('.tab-content')[tabIndex], document.querySelectorAll('.tab')[tabIndex]);
     } else {
         // If not a URL, perform a search
         const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
@@ -2561,14 +2561,14 @@ function handleSearchOrNavigation(input, tabIndex) {
             default:
                 searchUrl = `https://www.google.com/search?q=${encodeURIComponent(input.replace(/\s+/g, '+'))}`;
         }
-        updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
+        updateTabContent(searchUrl, document.querySelectorAll('.tab-content')[tabIndex], document.querySelectorAll('.tab')[tabIndex]);
     }
 }
 
 // Add event listener for the search input in each tab
 document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('search-iconaa')) {
-        const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
+    if (event.target.classList.contains('search-icon')) {
+        const tabIndex = parseInt(event.target.closest('.search-bar').querySelector('input').id.split('-')[2]);
         const input = document.getElementById(`search-input-${tabIndex}`).value;
         handleSearchOrNavigation(input, tabIndex);
     }
@@ -2582,9 +2582,9 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-document.querySelector('.reload-buttonaa').addEventListener('click', function() {
-    const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-    const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+document.querySelector('.reload-button').addEventListener('click', function() {
+    const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+    const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
     const currentUrl = tabs[currentTabIndex].url;
 
     updateTabContent(currentUrl, currentContent, currentTab);
@@ -2615,45 +2615,45 @@ function updateHistory(tabIndex, url) {
 // Modify updateTabContent to update history
 const originalUpdateTabContent = updateTabContent;
 updateTabContent = function(url, content, tab) {
-    const tabIndex = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+    const tabIndex = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
     updateHistory(tabIndex, url);
     originalUpdateTabContent(url, content, tab);
 };
 
 // Back button functionality
-document.querySelector('.backward-buttonaa').addEventListener('click', function() {
+document.querySelector('.backward-button').addEventListener('click', function() {
     const history = getTabHistory(currentTabIndex);
     if (history.currentIndex > 0) {
         history.currentIndex--;
         const previousUrl = history.history[history.currentIndex];
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
         originalUpdateTabContent(previousUrl, currentContent, currentTab);
     }
 });
 
 // Forward button functionality
-document.querySelector('.forward-buttonaa').addEventListener('click', function() {
+document.querySelector('.forward-button').addEventListener('click', function() {
     const history = getTabHistory(currentTabIndex);
     if (history.currentIndex < history.history.length - 1) {
         history.currentIndex++;
         const nextUrl = history.history[history.currentIndex];
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+        const currentContent = document.querySelectorAll('.tab-content')[currentTabIndex];
+        const currentTab = document.querySelectorAll('.tab')[currentTabIndex];
         originalUpdateTabContent(nextUrl, currentContent, currentTab);
     }
 });
 
 // Initialize history for existing tabs
-document.querySelectorAll('.tabaa').forEach((tab, index) => {
-    const url = tab.querySelector('.tab-nameaa').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-baraa').value;
+document.querySelectorAll('.tab').forEach((tab, index) => {
+    const url = tab.querySelector('.tab-name').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-bar').value;
     updateHistory(index, url);
 });
 
 function closeTab(tab) {
-    const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
+    const index = Array.from(document.querySelectorAll('.tab')).indexOf(tab);
     tab.remove();
-    document.querySelectorAll('.tab-contentaa')[index].remove();
+    document.querySelectorAll('.tab-content')[index].remove();
     tabs.splice(index, 1);
     tabHistory.delete(index);
 
@@ -2669,12 +2669,12 @@ function closeTab(tab) {
         }
         // If there are no tabs left, create a new one
         else {
-            document.getElementById('add-tabaa').click();
+            document.getElementById('add-tab').click();
             return;
         }
 
-        const newActiveTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-        const newActiveContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+        const newActiveTab = document.querySelectorAll('.tab')[currentTabIndex];
+        const newActiveContent = document.querySelectorAll('.tab-content')[currentTabIndex];
         updateActiveTab(newActiveTab, newActiveContent, currentTabIndex);
     }
     // If a tab to the left of the active tab was closed, update the currentTabIndex
@@ -2685,34 +2685,34 @@ function closeTab(tab) {
 
 // Replace the existing close button functionality with this new function
 function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function(event) {
+    tab.querySelector('.close-btn').addEventListener('click', function(event) {
         event.stopPropagation(); // Prevent the tab from being activated when closing
         closeTab(tab);
     });
 }
 
 // Update existing tabs with the new close functionality
-document.querySelectorAll('.tabaa').forEach(tab => {
+document.querySelectorAll('.tab').forEach(tab => {
     addCloseButtonFunctionality(tab);
 });
 
 // Function to handle the square button click (browser reset)
 function handleSquareButtonClick() {
     // Close all tabs except the first one
-    const tabs = document.querySelectorAll('.tabaa');
+    const tabs = document.querySelectorAll('.tab');
     for (let i = tabs.length - 1; i > 0; i--) {
         closeTab(tabs[i]);
     }
 
     // Reset the first tab to initial state
     const firstTab = tabs[0];
-    const firstTabContent = document.querySelectorAll('.tab-contentaa')[0];
+    const firstTabContent = document.querySelectorAll('.tab-content')[0];
 
     // Update tab name
-    firstTab.querySelector('.tab-nameaa').textContent = 'New Tab';
+    firstTab.querySelector('.tab-name').textContent = 'New Tab';
 
     // Reset URL bar
-    document.getElementById('url-baraa').value = 'helios://start';
+    document.getElementById('url-bar').value = 'helios://start';
 
     // Reset tab content
     updateTabContent('helios://start', firstTabContent, firstTab);
@@ -2728,13 +2728,13 @@ function handleSquareButtonClick() {
 
 // Add the square button to the DOM
 const squareButton = document.createElement('div');
-squareButton.className = 'square-buttonaa';
-squareButton.id = 'square-buttonaa';
+squareButton.className = 'square-button';
+squareButton.id = 'square-button';
 squareButton.textContent = '×';
 squareButton.title = 'Reset Tabs';
 
 // Insert the square button before the first tab
-const topBar = document.querySelector('.uptop-baraa');
+const topBar = document.querySelector('.uptop-bar');
 topBar.insertBefore(squareButton, topBar.firstChild);
 
 // Add event listener to the square button
@@ -2743,7 +2743,7 @@ squareButton.addEventListener('click', handleSquareButtonClick);
 // Add CSS for the square button
 const style = document.createElement('style');
 style.textContent = `
-    .square-buttonaa {
+    .square-button {
         margin-top: 1px;
         height: 32px;
         padding-top: 2px;
@@ -2766,7 +2766,7 @@ style.textContent = `
         margin-left: -2px;
     }
 
-    .square-buttonaa:hover {
+    .square-button:hover {
         background-color: #ff4747;
     }
 `;
@@ -2787,7 +2787,7 @@ function toggleDropdownccc() {
 }
 
 window.onclick = function(event) {
-    if (!event.target.matches('.menu-buttonaa')) {
+    if (!event.target.matches('.menu-button')) {
         var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
         for (var i = 0; i < dropdownsccc.length; i++) {
             var openDropdownccc = dropdownsccc[i];
@@ -2800,7 +2800,7 @@ window.onclick = function(event) {
 
 function handleNewTabMenuClick(event) {
     event.preventDefault();
-    document.getElementById('add-tabaa').click();
+    document.getElementById('add-tab').click();
     toggleDropdownccc(); // Close the dropdown after creating a new tab
 }
 
@@ -2830,21 +2830,21 @@ function showUrlsList(content, tab) {
             </li>
         </ul>
     `;
-    tab.querySelector('.tab-nameaa').textContent = 'Helios URLs';
+    tab.querySelector('.tab-name').textContent = 'Helios URLs';
 
     // Add click event listeners to the custom URL links
     content.querySelectorAll('.custom-url-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const url = this.getAttribute('data-url');
-            document.getElementById('url-baraa').value = url;
+            document.getElementById('url-bar').value = url;
             updateTabContent(url, content, tab);
         });
     });
 }
 
 function showSpinner(tabElement) {
-    let tabName = tabElement.querySelector('.tab-nameaa');
+    let tabName = tabElement.querySelector('.tab-name');
     if (!tabName.querySelector('.spinner')) {
         let spinner = document.createElement('div');
         spinner.className = 'spinner';
