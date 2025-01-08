@@ -28,18 +28,21 @@ const createChatLi = (message, className) => {
   return chatLi;
 }
 
-// Function to replace bullet points with the custom "•" symbol
-const replaceBulletPoints = (text) => {
-  return text.replace(/(?:\n|^)\* (.*?)(?=\n|$)/g, (match, p1) => `\n• ${p1}`);
-}
-
-// Function to replace any mention of Google with dinguschan (lowercase)
-const replaceGoogleWithDinguschan = (text) => {
-  return text.replace(/Google/g, "dinguschan");
+// Typing animation for the AI
+const typingAnimation = (element) => {
+  const messages = ["Thinking.", "Thinking..", "Thinking..."];
+  let index = 0;
+  const typingInterval = setInterval(() => {
+    element.querySelector("p").textContent = messages[index];
+    index = (index + 1) % messages.length;
+  }, 500);
+  
+  // Stop the animation once the AI response is ready
+  return typingInterval;
 }
 
 // Communication with the Gemini database
-const generateResponse = async (chatElement) => {
+const generateResponse = async (chatElement, typingInterval) => {
   const messageElement = chatElement.querySelector("p");
 
   const context = chatHistory.length > 0 ? chatHistory.join("\n") : "";
@@ -62,15 +65,17 @@ const generateResponse = async (chatElement) => {
     if (!response.ok) throw new Error(data.error.message);
     
     let responseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
-    responseText = replaceBulletPoints(responseText); // Fix bullet points
-    responseText = replaceGoogleWithDinguschan(responseText); 
     
+    // Stop typing animation and update message
+    clearInterval(typingInterval);
+
     messageElement.textContent = responseText;
     // Store the response in chat history
     chatHistory.push(`${responseText}`);
   } catch (error) {
+    clearInterval(typingInterval);
     messageElement.classList.add("error");
-    messageElement.textContent = error.message;
+    messageElement.textContent = "Oops! Something went wrong. Please try again.";
   } finally {
     chatbox.scrollTo(0, chatbox.scrollHeight);
   }
@@ -89,10 +94,15 @@ const handleChat = () => {
   chatbox.scrollTo(0, chatbox.scrollHeight);
 
   setTimeout(() => {
-    const incomingChatLi = createChatLi("Thinking...", "incoming");
+    const incomingChatLi = createChatLi("Thinking.", "incoming");
     chatbox.appendChild(incomingChatLi);
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    generateResponse(incomingChatLi);
+
+    // Start typing animation
+    const typingInterval = typingAnimation(incomingChatLi);
+
+    // Generate the AI response
+    generateResponse(incomingChatLi, typingInterval);
   }, 600);
 }
 
