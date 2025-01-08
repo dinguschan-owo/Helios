@@ -31,6 +31,8 @@ body {
   height: 55px;
   background-color: #3c4043;
   border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+
   cursor: pointer;
   padding: 0;
   display: flex;
