@@ -1,8 +1,12 @@
 // Function to select themes (visual)
 
 function activatePreview(element) {
-  element.classList.add("active");
+  const allElements = document.querySelectorAll('.your-element-class');
+  allElements.forEach(el => el.classList.remove('active'));
+  
+  element.classList.add('active');
 }
+
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
 const closeBtn = document.querySelector(".close-btn");
