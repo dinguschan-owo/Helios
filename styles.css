@@ -148,8 +148,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   position: relative;
-  width: 184px;
-  max-width: 184px;
+  width: 194px;
+  max-width: 194px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -551,7 +551,7 @@ body {
   content: "";
   position: absolute;
   left: 0px;
-  bottom: -5px;
+  bottom: -2px;
   width: calc(100% + 1px);
   height: 3px;
   background-color: #4dffa6;
