@@ -1329,7 +1329,7 @@ body.show-chatbot .chatbot {
   font-weight: 600;
   background-color: none;
   position: relative;
-  top: 33px;
+  top: 30px;
   left: 99px;
   margin-right: 6px;
 }
@@ -1343,4 +1343,15 @@ body.show-chatbot .chatbot {
   top: 28px;
   right: 50px;
   margin-right: 6px;
+}
+
+.titlelinee {
+  width: 62px;
+  height: 2px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #4dffa6;
+  position: relative;
+  top: 39px;
+  left: 118px;
 }
