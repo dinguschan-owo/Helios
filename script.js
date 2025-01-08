@@ -1480,18 +1480,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function showUrlsList(content, tab) {
     content.innerHTML = `
-        <h2 style="font-size: 48px; margin-bottom: 20px;">Helios Internal URLs</h2>
+        <h2 style="font-size: 48px; margin-bottom: 20px; border-bottom: 3px solid #fff;">Helios Internal URLs</h2>
         <ul style="list-style-type: none; padding: 0;">
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start</a>
+                <a href="javascript:void(0);" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios start page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings</a>
+                <a href="javascript:void(0);" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios settings page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls</a>
+                <a href="javascript:void(0);" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">List of Helios internal URLs</p>
             </li>
         </ul>
