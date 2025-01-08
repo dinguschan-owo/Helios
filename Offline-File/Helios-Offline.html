@@ -569,7 +569,7 @@
   content: "";
   position: absolute;
   left: 0px;
-  bottom: -2px;
+  bottom: -5px;
   width: calc(100% + 1px);
   height: 3px;
   background-color: #4dffa6;
@@ -1299,7 +1299,7 @@ body.show-chatbot .chatbot {
   margin-right: 4.5px;
 }
 .circle2 {
-  width: 10.5px;
+  width: 10.2px;
   height: 9px;
   border-radius: 400px;
   margin-left: 3px;
@@ -1308,7 +1308,7 @@ body.show-chatbot .chatbot {
 .circle1 {
   width: 46px;
   height: 12px;
-  border-radius: 6px 6px 4px 4px;
+  border-radius: 6px 6px 3.2px 3.2px;
   margin-right: 4.5px;
 }
 
@@ -1381,7 +1381,7 @@ body.show-chatbot .chatbot {
   position: relative;
   top: 28px;
   right: 50px;
-  margin-right: 6px;
+  margin-right: 14px;
 }
 
 .titlelinee {
@@ -1514,97 +1514,133 @@ body.show-chatbot .chatbot {
       <script>// Function to select themes (visual)
 
 function activatePreview(element) {
-  element.classList.add("active");
+  const allElements = document.querySelectorAll('.your-element-class');
+  allElements.forEach(el => el.classList.remove('active'));
+  
+  element.classList.add('active');
 }
 
-// Function to show and hide AI
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
-      const closeBtn = document.querySelector(".close-btn");
-      const chatbox = document.querySelector(".chatbox");
-      const chatInput = document.querySelector(".chat-input textarea");
-      const sendChatBtn = document.querySelector(".chat-input span");
+const closeBtn = document.querySelector(".close-btn");
+const chatbox = document.querySelector(".chatbox");
+const chatInput = document.querySelector(".chat-input textarea");
+const sendChatBtn = document.querySelector(".chat-input span");
 
-      let userMessage = null;
-      const inputHeight = '18px';
+let userMessage = null;
+const inputHeight = '18px';
 
-// API key for Gemini AI. This is completely free, so if your fork and build your own proxy please visit（https://aistudio.google.com/apikey）and get your own.
+// Store past messages for memory
+let chatHistory = [];
 
-      const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk"; 
-      const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
+const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk"; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
-      const createChatLi = (message, className) => {
-        const chatLi = document.createElement("li");
-        chatLi.classList.add("chat", `${className}`);
-        let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
-        chatLi.innerHTML = chatContent;
-        chatLi.querySelector("p").textContent = message;
-        return chatLi;
-      }
+const createChatLi = (message, className) => {
+  const chatLi = document.createElement("li");
+  chatLi.classList.add("chat", `${className}`);
+  let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+  chatLi.innerHTML = chatContent;
+  chatLi.querySelector("p").textContent = message;
+  return chatLi;
+}
 
-      // Communication with the Gemini database
-      
-      const generateResponse = async (chatElement) => {
-        const messageElement = chatElement.querySelector("p");
-        const requestOptions = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
-            contents: [{ 
-              role: "user", 
-              parts: [{ text: userMessage }] 
-            }] 
-          }),
-        }
+// Typing animation for the AI
+const typingAnimation = (element) => {
+  const messages = ["Thinking.", "Thinking..", "Thinking..."];
+  let index = 0;
+  const typingInterval = setInterval(() => {
+    element.querySelector("p").textContent = messages[index];
+    index = (index + 1) % messages.length;
+  }, 500);
+  
+  // Stop the animation once the AI response is ready
+  return typingInterval;
+}
 
-        try {
-          const response = await fetch(API_URL, requestOptions);
-          const data = await response.json();
-          if (!response.ok) throw new Error(data.error.message);
-          messageElement.textContent = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
-        } catch (error) {
-          messageElement.classList.add("error");
-          messageElement.textContent = error.message;
-        } finally {
-          chatbox.scrollTo(0, chatbox.scrollHeight);
-        }
-      }
+// Communication with the Gemini database
+const generateResponse = async (chatElement, typingInterval) => {
+  const messageElement = chatElement.querySelector("p");
 
-      // Auto scroll down 
-      
-      const handleChat = () => {
-        userMessage = chatInput.value.trim();
-        if (!userMessage) return;
-        chatInput.value = "";
-        chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-        chatbox.scrollTo(0, chatbox.scrollHeight);
+  const context = chatHistory.length > 0 ? chatHistory.join("\n") : "";
+  const requestBody = {
+    contents: [{
+      role: "user",
+      parts: [{ text: `${context}\n${userMessage}` }] 
+    }]
+  };
 
-        setTimeout(() => {
-          const incomingChatLi = createChatLi("Thinking...", "incoming");
-          chatbox.appendChild(incomingChatLi);
-          chatbox.scrollTo(0, chatbox.scrollHeight);
-          generateResponse(incomingChatLi);
-        }, 600);
-      }
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(requestBody),
+  };
 
-      chatInput.style.height = inputHeight;
-      const chatStyles = document.styleSheets[0];
-      chatStyles.insertRule(`
-        .chatbox .chat {
-          margin-bottom: 5px;
-        }
-      `, chatStyles.cssRules.length);
+  try {
+    const response = await fetch(API_URL, requestOptions);
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error.message);
+    
+    let responseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
+    
+    // Stop typing animation and update message
+    clearInterval(typingInterval);
 
-      chatInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && !e.shiftKey) {
-          e.preventDefault();
-          handleChat();
-        }
-      });
+    messageElement.textContent = responseText;
+    // Store the response in chat history
+    chatHistory.push(`${responseText}`);
+  } catch (error) {
+    clearInterval(typingInterval);
+    messageElement.classList.add("error");
+    messageElement.textContent = "Oops! Something went wrong. Please try again.";
+  } finally {
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+  }
+}
 
-      sendChatBtn.addEventListener("click", handleChat);
-      closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
-      chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
+// Auto scroll down 
+const handleChat = () => {
+  userMessage = chatInput.value.trim();
+  if (!userMessage) return;
+  chatInput.value = "";
+
+  // Store the user message in chat history
+  chatHistory.push(`${userMessage}`);
+
+  chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+  chatbox.scrollTo(0, chatbox.scrollHeight);
+
+  setTimeout(() => {
+    const incomingChatLi = createChatLi("Thinking.", "incoming");
+    chatbox.appendChild(incomingChatLi);
+    chatbox.scrollTo(0, chatbox.scrollHeight);
+
+    // Start typing animation
+    const typingInterval = typingAnimation(incomingChatLi);
+
+    // Generate the AI response
+    generateResponse(incomingChatLi, typingInterval);
+  }, 600);
+}
+
+chatInput.style.height = inputHeight;
+const chatStyles = document.styleSheets[0];
+chatStyles.insertRule(`
+  .chatbox .chat {
+    margin-bottom: 5px;
+  }
+`, chatStyles.cssRules.length);
+
+chatInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    handleChat();
+  }
+});
+
+sendChatBtn.addEventListener("click", handleChat);
+closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 
 document.addEventListener("click", (e) => {
   if (!chatbotToggler.contains(e.target) && !document.querySelector(".chatbot").contains(e.target)) {
