@@ -49,7 +49,7 @@
   height: 55px;
   background-color: #3c4043;
   border: none;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 
   cursor: pointer;
   padding: 0;
@@ -166,8 +166,8 @@
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
   position: relative;
-  width: 184px;
-  max-width: 184px;
+  width: 194px;
+  max-width: 194px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -569,7 +569,7 @@
   content: "";
   position: absolute;
   left: 0px;
-  bottom: -5px;
+  bottom: -2px;
   width: calc(100% + 1px);
   height: 3px;
   background-color: #4dffa6;
@@ -722,7 +722,7 @@
 .Xt7Lm9Kp3R8f {
   position: absolute;
   top: 119px;
-  left: 65px;
+  left: 66px;
   width: auto;
   height: 42px;
   background-color: #3c4043;
@@ -1245,11 +1245,32 @@ body.show-chatbot .chatbot {
   max-width: 300px;
   margin: 20px auto;
   transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
 .theme-preview.active .browser-simulation {
-  border: 3px solid #4dffa6;
+  position: relative;
 }
+
+.theme-preview.active .browser-simulation::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #0d874a;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #fff;
+}
+
 
 .browser-simulation {
   width: 100%;
@@ -1271,21 +1292,21 @@ body.show-chatbot .chatbot {
 }
 
 .circle {
-  width: 14px;
+  width: 15px;
   height: 13px;
   margin-top: 1.6px;
   border-radius: 4px;
   margin-right: 4.5px;
 }
 .circle2 {
-  width: 10px;
+  width: 10.5px;
   height: 9px;
   border-radius: 400px;
   margin-left: 3px;
   margin-top: 1px;
 }
 .circle1 {
-  width: 45px;
+  width: 46px;
   height: 12px;
   border-radius: 6px 6px 4px 4px;
   margin-right: 4.5px;
@@ -1310,15 +1331,15 @@ body.show-chatbot .chatbot {
 }
 
 .theme-name {
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 8px;
+  font-size: 17px;
   font-weight: bold;
   color: #fff;
 }
 .send4 {
   width: 100px;
   height: 15px;
-  border-top-left-radius: 25px; 
+  border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -1347,7 +1368,7 @@ body.show-chatbot .chatbot {
   font-weight: 600;
   background-color: none;
   position: relative;
-  top: 33px;
+  top: 30px;
   left: 99px;
   margin-right: 6px;
 }
@@ -1361,6 +1382,17 @@ body.show-chatbot .chatbot {
   top: 28px;
   right: 50px;
   margin-right: 6px;
+}
+
+.titlelinee {
+  width: 62px;
+  height: 2px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #4dffa6;
+  position: relative;
+  top: 39px;
+  left: 118px;
 }</styles>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -1479,16 +1511,11 @@ body.show-chatbot .chatbot {
         <span id="send-btn" class="material-symbols-rounded">send</span>
       </div>
     </div>
-      <script>function activatePreview(element) {
-  // Add the active class on click
+      <script>// Function to select themes (visual)
+
+function activatePreview(element) {
   element.classList.add("active");
-
-  // Optionally, remove the active class after a short time (if you want it to toggle)
-  setTimeout(() => {
-    element.classList.remove("active");
-  }, 2000); // Remove after 2 seconds, adjust time as needed
 }
-
 
 // Function to show and hide AI
 
@@ -2043,7 +2070,7 @@ function updateTabContent(url, content, tab) {
 
 <div class="content-containervv" id="miscvv">
   <h3>Customize Helios's Appearance</h3>
-<div class="theme-preview" onclick="activatePreview(this)">
+<div class="theme-preview active" onclick="activatePreview(this)">
   <div class="browser-simulation">
     <div class="browser-header">
       <div class="circle red"></div>
@@ -2053,7 +2080,7 @@ function updateTabContent(url, content, tab) {
             <div class="barbarbar"></div>
 
     </div>
-    <div class="browser-content"><div class="hetitle">Helios</div><div class="dropmed"></div><div class="send4"></div></div>
+    <div class="browser-content"><div class="hetitle">Helios</div><div class="titlelinee"></div><div class="dropmed"></div><div class="send4"></div></div>
   </div>
   <p class="theme-name"><i>Default Dark</i> by 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗</p>
 </div>
@@ -2961,18 +2988,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function showUrlsList(content, tab) {
     content.innerHTML = `
-        <h2 style="font-size: 48px; margin-bottom: 20px;">Helios Internal URLs</h2>
+        <h2 style="font-size: 48px; margin-bottom: 20px; border-bottom: 3px solid #fff;">Helios Internal URLs</h2>
         <ul style="list-style-type: none; padding: 0;">
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start</a>
+                <a href="javascript:void(0);" data-url="helios://start" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://start&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios start page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings</a>
+                <a href="javascript:void(0);" data-url="helios://settings" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://settings&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">Helios settings page</p>
             </li>
             <li style="margin-bottom: 15px;">
-                <a href="javascript:void(0);" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls</a>
+                <a href="javascript:void(0);" data-url="helios://urls" class="custom-url-link" style="font-size: 24px; color: #66ffa1; text-decoration: none;">helios://urls&nbsp;<i class="fa-solid fa-link" style="font-size: 18px; color: #66ffa1;"></i></a>
                 <p style="margin: 5px 0 0 0; color: #b3b3b3;">List of Helios internal URLs</p>
             </li>
         </ul>
