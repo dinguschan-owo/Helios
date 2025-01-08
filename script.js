@@ -532,7 +532,7 @@ function updateTabContent(url, content, tab) {
         <div class="sidebarvv">
   <h1>Helios Settings</h1>
   
-  <button onclick="showCategory('historyvv')">History</button>
+<button class="active" onclick="showCategory('historyvv')">History</button>
   <button onclick="showCategory('cloakingvv')">Cloaking</button>
   <button onclick="showCategory('miscvv')">Miscellaneous</button>
 </div>
