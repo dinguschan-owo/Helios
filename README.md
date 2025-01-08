@@ -53,6 +53,7 @@ Vercel:
 
 ## ***`Features`***
 
+- BUILT IN AI CHATBOT
 - built in request encryption
 - user agent disguising
 - open up to 23 tabs before it starts breaking (thats a lot!)
@@ -63,6 +64,7 @@ Vercel:
 - about:blank and blob: tab cloaking
 - random proxy rotation so ur harder to trace
 - clear all tabs and reset browser button (why would you want this, you 𝓯𝓻𝓮𝓪𝓴 ❤️)
+- session ID generation 
 
 ## ***`License`***
 
