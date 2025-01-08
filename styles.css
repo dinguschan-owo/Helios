@@ -1036,6 +1036,7 @@ body.show-chatbot .chatbot {
   color: #e8eaed;
   font-size: 1.3rem;
   font-weight: bold;
+  margin-top: -2px;
   z-index: 2147483646;
 }
 
@@ -1046,7 +1047,7 @@ body.show-chatbot .chatbot {
   background-color: #none;
   border-radius: 50px;
   padding-top: 3px;
-  padding-bottom: 6.5px;
+  padding-bottom: 9px;
   padding-left: 6px;
   padding-right: 6px;
   color: #e8eaed;
@@ -1218,7 +1219,7 @@ body.show-chatbot .chatbot {
   background-color: #e8eaed;
   width: 101%;
   border-radius: 50px;
-  margin-top: 12px;
+  margin-top: 10px;
   position: relative;
   z-index: 2147483646;
   left: -1.6px;
