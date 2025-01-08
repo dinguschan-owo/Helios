@@ -551,7 +551,7 @@ body {
   content: "";
   position: absolute;
   left: 0px;
-  bottom: -2px;
+  bottom: -5px;
   width: calc(100% + 1px);
   height: 3px;
   background-color: #4dffa6;
