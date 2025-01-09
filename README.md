@@ -4,6 +4,12 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 ## ***`Screenshots`***
 
+![image](https://github.com/user-attachments/assets/7e1f731f-f156-4d5c-b7ca-796434212c37)
+
+![image](https://github.com/user-attachments/assets/f9362f99-f081-4f6b-9aa9-fc4b77c1f23d)
+
+![image](https://github.com/user-attachments/assets/403c3b08-1765-4a0e-ab1d-035921029a4a)
+
 
 ## ***`Official Links`***
 
