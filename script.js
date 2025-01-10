@@ -1,11 +1,14 @@
-// Function to select themes (visual)
-
 function activatePreview(element) {
-  const allElements = document.querySelectorAll('.your-element-class');
-  allElements.forEach(el => el.classList.remove('active'));
+  // Select all theme preview elements
+  const allElements = document.querySelectorAll('.theme-preview, .theme-preview-lightmode');
   
+  // Remove 'active' class from all elements
+  allElements.forEach(el => el.classList.remove('active'));
+
+  // Add 'active' class to the clicked element
   element.classList.add('active');
 }
+
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
 const closeBtn = document.querySelector(".close-btn");
@@ -577,7 +580,7 @@ function updateTabContent(url, content, tab) {
     <div class="browser-header">
       <div class="circle red"></div>
       <div class="circle1 yellow"></div>
-            <div class="circle1 yellow"></div>
+            <div class="circle1 yellow2"></div>
       <div class="circle2 green"></div>
             <div class="barbarbar"></div>
 
@@ -587,8 +590,23 @@ function updateTabContent(url, content, tab) {
   <p class="theme-name"><i>Default Dark</i> by 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗</p>
 </div>
 
+
+<div class="theme-preview-lightmode" onclick="activatePreview(this)">
+  <div class="browser-simulation-lightmode">
+    <div class="browser-header-lightmode">
+      <div class="circle-lightmode red-lightmode"></div>
+      <div class="circle1-lightmode yellow-lightmode"></div>
+            <div class="circle1-lightmode yellow2-lightmode"></div>
+      <div class="circle2-lightmode green-lightmode"></div>
+            <div class="barbarbar-lightmode"></div>
+
+    </div>
+    <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
+  </div>
+  <p class="theme-name-lightmode"><i>Dark Copper</i> by Bryce</p>
 </div>
 
+</div>
         `;
         tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
