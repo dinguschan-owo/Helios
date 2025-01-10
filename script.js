@@ -652,10 +652,11 @@ async function fetchExternalContent(url, content, tabIndex) {
     console.log(`Fetching content for URL: ${url}`);
 
     const proxies = [
-        `https://corsproxy.io/?${encodeURIComponent(url)}`,
+        `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+      `https://corsproxy.io/?url=${encodeURIComponent(url)}`
     ];
 
     const timeout = 10000;
@@ -810,10 +811,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function fetchExternalContent(url, content, tabIndex) {
     const proxies = [
-        `https://corsproxy.io/?${url}`,
+        `https://api.cors.lol/?url=${url}`,
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
-        `https://api.allorigins.win/raw?url=${url}`
+        `https://api.allorigins.win/raw?url=${url}`,
+        `https://corsproxy.io/?url=${encodeURIComponent(url)}`
     ];
 
     const timeout = 10000;
