@@ -1288,7 +1288,7 @@ body.show-chatbot .chatbot {
   margin-top: 1px;
 }
 .circle1 {
-  width: 46px;
+  width: 50px;
   height: 12px;
   border-radius: 6px 6px 3.2px 3.2px;
   margin-right: 4.5px;
@@ -1302,7 +1302,10 @@ body.show-chatbot .chatbot {
   background: #666666;
   border-bottom: 3px solid #4dffa6;
 }
-
+.yellow2 {
+  background: #535353;
+  border-bottom: 3px solid #535353;
+}
 .green {
   background: #bfbfbf;
 }
@@ -1314,6 +1317,7 @@ body.show-chatbot .chatbot {
 
 .theme-name {
   margin-top: 8px;
+  margin-bottom: 16px;
   font-size: 17px;
   font-weight: bold;
   color: #fff;
@@ -1372,6 +1376,170 @@ body.show-chatbot .chatbot {
   font-size: 20px;
   font-weight: 600;
   background-color: #4dffa6;
+  position: relative;
+  top: 39px;
+  left: 118px;
+}
+
+/**/
+
+.theme-preview-lightmode {
+  text-align: center;
+  max-width: 300px;
+  margin: 20px auto;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.theme-preview-lightmode.active .browser-simulation-lightmode {
+  position: relative;
+}
+
+.theme-preview-lightmode.active .browser-simulation-lightmode::after {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #0d874a;
+  color: #fff;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #fff;
+}
+
+.browser-simulation-lightmode {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, #1a1a1a, #1a1a1a);
+  border: 3px solid #ff9603;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: border 0.2s ease;
+}
+
+.browser-header-lightmode {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  background: #000;
+  border-bottom: 24px solid #303030;
+}
+
+.circle-lightmode {
+  width: 15px;
+  height: 13px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 4.5px;
+}
+
+.circle2-lightmode {
+  width: 10.5px;
+  height: 9px;
+  border-radius: 400px;
+  margin-left: 3px;
+  margin-top: 1px;
+}
+
+.circle1-lightmode {
+  width: 50px;
+  height: 12px;
+  border-radius: 6px 6px 3.2px 3.2px;
+  margin-right: 4.5px;
+}
+
+.red-lightmode {
+  background: #ff5f56;
+}
+
+.yellow-lightmode {
+  background: #303030;
+  border-bottom: 3px solid #f79104;
+}
+.yellow2-lightmode {
+  background: #2b2b2b;
+  border-bottom: 3px solid #2b2b2b;
+}
+.green-lightmode {
+  background: #f79104;
+}
+
+.browser-content-lightmode {
+  flex-grow: 1;
+  background: linear-gradient(145deg, #1a1a1a, #1a1a1a);
+}
+
+.theme-name-lightmode {
+  margin-top: 8px;
+  margin-bottom: 16px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.send4-lightmode {
+  width: 100px;
+  height: 15px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  background-color: #303030;
+  position: relative;
+  top: 33px;
+  left: 110px;
+  margin-right: 6px;
+}
+
+.dropmed-lightmode {
+  width: 15px;
+  height: 15px;
+  margin-top: 1.6px;
+  border-radius: 4px;
+  margin-right: 6px;
+  background-color: #303030;
+  position: relative;
+  top: 48px;
+  left: 91px;
+}
+
+.hetitle-lightmode {
+  width: 100px;
+  height: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: none;
+  position: relative;
+  top: 30px;
+  left: 99px;
+  margin-right: 6px;
+}
+
+.barbarbar-lightmode {
+  width: 180px;
+  height: 12px;
+  border-radius: 50px;
+  background-color: #171717;
+  position: relative;
+  top: 28px;
+  right: 50px;
+  margin-right: 14px;
+}
+
+.titlelinee-lightmode {
+  width: 62px;
+  height: 2px;
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #f79104;
   position: relative;
   top: 39px;
   left: 118px;
