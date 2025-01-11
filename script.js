@@ -421,7 +421,7 @@
     </div>
   </div>
               <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
-              <i class="fas fa-search search-iconaa"></i>`
+              <i class="fas fa-search search-iconaa"></i></div>`
   }];
 
   const trustedSchemes = ['helios://', 'https://', 'http://'];
@@ -536,7 +536,7 @@
     </div>
   </div>
               <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
-              <i class="fas fa-search search-iconaa"></i>`;
+              <i class="fas fa-search search-iconaa"></i></div>`;
 
           tab.querySelector('.tab-nameaa').textContent = 'New Tab';
           tabs[currentTabIndex].content = content.innerHTML;
