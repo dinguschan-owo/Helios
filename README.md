@@ -10,6 +10,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 - https://helios-browser.pages.dev/
 - https://helios-browser.ct.ws
 - https://helios-blue.vercel.app/
+- https://helios-browser.neocities.org/ (neocities javascript has issues, so expect this instance to not work)
   
 ## ***`How To Use`***
 
