@@ -611,6 +611,10 @@ body {
   color: #e8eaed;
 }
 
+.search-baraa input:focus::placeholder {
+  opacity: 0.3;
+}
+
 .search-baraa i {
   color: #9aa0a6;
   margin-right: 15px;
