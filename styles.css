@@ -1228,13 +1228,10 @@ body.show-chatbot .chatbot {
   margin: 20px auto;
   transition: transform 0.2s ease;
   cursor: pointer;
-}
-
-.theme-preview.active .browser-simulation {
   position: relative;
 }
 
-.theme-preview.active .browser-simulation::after {
+.theme-preview .browser-simulation::after {
   content: "\f00c";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
