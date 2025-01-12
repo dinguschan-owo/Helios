@@ -1,10 +1,16 @@
-    // Listen for Ctrl + K to focus on the search bar
-    window.addEventListener('keydown', function(event) {
-      if (event.ctrlKey && event.key === 'k') {
-        event.preventDefault();  // Prevent default Ctrl+K action
-        document.querySelector('.search-baraa input').focus();
-      }
-    });
+// Listen for Ctrl + K to focus on the search bar
+window.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'k') {
+    event.preventDefault();  // Prevent default Ctrl+K action
+    
+    const searchInput = document.querySelector('.search-baraa input');
+    
+    if (searchInput) {
+      searchInput.focus();
+    }
+  }
+});
+
 
 // Activate the selected theme preview and apply the corresponding theme
 function activatePreview(element) {
