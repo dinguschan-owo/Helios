@@ -1314,8 +1314,7 @@ body.show-chatbot .chatbot {
 }
 
 .theme-name {
-  margin-top: 8px;
-  margin-bottom: 16px;
+  margin-top: 4px;
   font-size: 17px;
   font-weight: bold;
   color: #fff;
