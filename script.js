@@ -1915,10 +1915,21 @@ function showCategory(category) {
 }
 
 document.getElementById('clear-history').addEventListener('click', () => {
+    // Clear localStorage and sessionStorage
     localStorage.clear();
     sessionStorage.clear();
+
+    // Clear cookies
+    document.cookie.split(';').forEach((cookie) => {
+        const cookieName = cookie.split('=')[0].trim();
+        document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;`;
+    });
+
+    // Display cleared message
     const message = document.getElementById('cleared-message');
     message.style.display = 'block';
+
+    // Hide the message after 3 seconds
     setTimeout(() => {
         message.style.display = 'none';
     }, 3000);
