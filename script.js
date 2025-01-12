@@ -640,7 +640,7 @@ function updateTabContent(url, content, tab) {
 </div>
 
 <div class="content-containervv" id="miscvv">
-  <h3>Customize Helios's Appearance</h3>
+  <h31>Customize Helios's Appearance</h31><div class="theme-preview-container">
 <div class="theme-preview" onclick="activatePreview(this)">
   <div class="browser-simulation">
     <div class="browser-header">
@@ -655,7 +655,6 @@ function updateTabContent(url, content, tab) {
   </div>
   <p class="theme-name"><i>Default Dark</i> by 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗</p>
 </div>
-
 
 <div class="theme-preview-lightmode" onclick="activatePreview(this)">
   <div class="browser-simulation-lightmode">
@@ -672,7 +671,8 @@ function updateTabContent(url, content, tab) {
   <p class="theme-name-lightmode"><i>Dark Ember</i> by Bryce</p>
 </div>
 
-</div>
+</div></div>
+
         `;
         tab.querySelector('.tab-nameaa').textContent = 'Helios Settings';
         tabs[currentTabIndex].content = content.innerHTML;
