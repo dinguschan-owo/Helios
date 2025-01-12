@@ -6,7 +6,7 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 
 - https://helios-browser.vercel.app/
 - https://helios-browser.rf.gd
-- https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< )
+- https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< ) (this link is likely very far behind other links because of this)
 - https://helios-browser.pages.dev/
 - https://helios-browser.ct.ws
 - https://helios-blue.vercel.app/
