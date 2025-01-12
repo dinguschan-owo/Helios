@@ -1,3 +1,11 @@
+    // Listen for Ctrl + K to focus on the search bar
+    window.addEventListener('keydown', function(event) {
+      if (event.ctrlKey && event.key === 'k') {
+        event.preventDefault();  // Prevent default Ctrl+K action
+        document.querySelector('.search-baraa input').focus();
+      }
+    });
+
 // Activate the selected theme preview and apply the corresponding theme
 function activatePreview(element) {
     // Select all theme preview elements
@@ -472,7 +480,7 @@ const tabs = [{
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i></div>`
 }];
 
@@ -587,7 +595,7 @@ function updateTabContent(url, content, tab) {
     </a>
   </div>
 </div>
-            <input type="text" placeholder="Search the web or enter a URL" id="search-input-${currentTabIndex}">
+            <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
             <i class="fas fa-search search-iconaa"></i></div>`;
 
         tab.querySelector('.tab-nameaa').textContent = 'New Tab';
