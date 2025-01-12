@@ -1,20 +1,24 @@
-// Function to switch themes
+// Activate the selected theme preview and apply the corresponding theme
 function activatePreview(element) {
+    // Select all theme preview elements
     const allElements = document.querySelectorAll('.theme-preview, .theme-preview-lightmode');
 
+    // Remove 'active' class from all elements
     allElements.forEach(el => el.classList.remove('active'));
 
+    // Add 'active' class to the clicked element
     element.classList.add('active');
 
-    // Identify the theme based on the clicked element
+    // Determine the theme based on the clicked element
     if (element.classList.contains('theme-preview-lightmode')) {
-        switchTheme('dark-ember.css'); // Switch to dark ember theme
+        switchTheme('dark-ember.css', 'theme-preview-lightmode'); // Switch to dark theme
     } else if (element.classList.contains('theme-preview')) {
-        switchTheme('styles.css'); // Switch back to default theme
+        switchTheme('styles.css', 'theme-preview'); // Switch to light theme
     }
 }
 
-function switchTheme(themeFile) {
+// Switch the theme and save the active state to localStorage
+function switchTheme(themeFile, activeClass) {
     // Find the existing <link> tag for the stylesheet
     const link = document.querySelector('link[rel="stylesheet"]');
 
@@ -22,46 +26,36 @@ function switchTheme(themeFile) {
         // Update the href to the new theme file
         link.href = themeFile;
     } else {
+        // Create a new <link> tag if not found
         const newLink = document.createElement('link');
         newLink.rel = 'stylesheet';
         newLink.href = themeFile;
         document.head.appendChild(newLink);
     }
 
+    // Save the selected theme and active state to localStorage
     localStorage.setItem('selectedTheme', themeFile);
+    localStorage.setItem('activeClass', activeClass);
 }
 
-// Apply the saved theme from localStorage on page load
+// Apply the saved theme and update the active state on page load
 function applySavedTheme() {
-    const savedTheme = localStorage.getItem('selectedTheme') || 'styles.css'; // Default to styles.css
-    switchTheme(savedTheme);
+    // Retrieve saved theme and active class from localStorage
+    const savedTheme = localStorage.getItem('selectedTheme') || 'styles.css'; // Default to light theme
+    const activeClass = localStorage.getItem('activeClass') || 'theme-preview'; // Default active class (light mode)
 
-    const activeElement = savedTheme === 'dark-ember.css'
-        ? document.querySelector('.theme-preview-lightmode')
-        : document.querySelector('.theme-preview');
+    // Apply the saved theme
+    switchTheme(savedTheme, activeClass);
 
+    // Set the 'active' class on the corresponding preview element
+    const activeElement = document.querySelector(`.${activeClass}`);
     if (activeElement) {
-        activatePreview(activeElement);
+        activeElement.classList.add('active');
     }
 }
 
+// Run on page load
 window.onload = applySavedTheme;
-
-
-function switchTheme(themeFile) {
-    // Find the existing <link> tag for the stylesheet
-    const link = document.querySelector('link[rel="stylesheet"]');
-
-    if (link) {
-        // Update the href to the new theme file
-        link.href = themeFile;
-    } else {
-        const newLink = document.createElement('link');
-        newLink.rel = 'stylesheet';
-        newLink.href = themeFile;
-        document.head.appendChild(newLink);
-    }
-}
 
 
 const chatbotToggler = document.querySelector(".wrench-buttonaa");
@@ -76,95 +70,99 @@ const inputHeight = '18px';
 // Store past messages for memory
 let chatHistory = [];
 
-const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk"; 
+const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const createChatLi = (message, className) => {
-  const chatLi = document.createElement("li");
-  chatLi.classList.add("chat", `${className}`);
-  let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
-  chatLi.innerHTML = chatContent;
-  chatLi.querySelector("p").textContent = message;
-  return chatLi;
+    const chatLi = document.createElement("li");
+    chatLi.classList.add("chat", `${className}`);
+    let chatContent = className === "outgoing" ? `<p></p>` : `<span class="material-symbols-outlined">smart_toy</span><p></p>`;
+    chatLi.innerHTML = chatContent;
+    chatLi.querySelector("p").textContent = message;
+    return chatLi;
 }
 
 // Function to replace bullet points with the custom "•" symbol
 const replaceBulletPoints = (text) => {
-  return text.replace(/(?:\n|^)\* (.*?)(?=\n|$)/g, (match, p1) => `\n• ${p1}`);
+    return text.replace(/(?:\n|^)\* (.*?)(?=\n|$)/g, (match, p1) => `\n• ${p1}`);
 }
 
 // Function to replace any mention of Google with dinguschan (lowercase)
 const replaceGoogleWithDinguschan = (text) => {
-  return text.replace(/Google/g, "dinguschan");
+    return text.replace(/Google/g, "dinguschan");
 }
 
 // Communication with the Gemini database
 const generateResponse = async (chatElement) => {
-  const messageElement = chatElement.querySelector("p");
+    const messageElement = chatElement.querySelector("p");
 
-  const context = chatHistory.length > 0 ? chatHistory.join("\n") : "";
-  const requestBody = {
-    contents: [{
-      role: "user",
-      parts: [{ text: `${context}\n${userMessage}` }] 
-    }]
-  };
+    const context = chatHistory.length > 0 ? chatHistory.join("\n") : "";
+    const requestBody = {
+        contents: [{
+            role: "user",
+            parts: [{
+                text: `${context}\n${userMessage}`
+            }]
+        }]
+    };
 
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(requestBody),
-  };
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody),
+    };
 
-  // Typing animation
-  let dots = "";
-  const typingInterval = setInterval(() => {
-    dots += ".";
-    messageElement.textContent = "Thinking" + dots;
-    if (dots.length > 3) {
-      dots = "";
+    // Typing animation
+    let dots = "";
+    const typingInterval = setInterval(() => {
+        dots += ".";
+        messageElement.textContent = "Thinking" + dots;
+        if (dots.length > 3) {
+            dots = "";
+        }
+    }, 500);
+
+    try {
+        const response = await fetch(API_URL, requestOptions);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error.message);
+
+        let responseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
+        responseText = replaceBulletPoints(responseText); // Fix bullet points
+        responseText = replaceGoogleWithDinguschan(responseText);
+
+        messageElement.textContent = responseText;
+        // Store the response in chat history
+        chatHistory.push(`${responseText}`);
+    } catch (error) {
+        messageElement.classList.add("error");
+        messageElement.textContent = error.message;
+    } finally {
+        clearInterval(typingInterval); // Stop typing animation once the response is ready
+        chatbox.scrollTo(0, chatbox.scrollHeight);
     }
-  }, 500);
-
-  try {
-    const response = await fetch(API_URL, requestOptions);
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error.message);
-
-    let responseText = data.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
-    responseText = replaceBulletPoints(responseText); // Fix bullet points
-    responseText = replaceGoogleWithDinguschan(responseText); 
-
-    messageElement.textContent = responseText;
-    // Store the response in chat history
-    chatHistory.push(`${responseText}`);
-  } catch (error) {
-    messageElement.classList.add("error");
-    messageElement.textContent = error.message;
-  } finally {
-    clearInterval(typingInterval); // Stop typing animation once the response is ready
-    chatbox.scrollTo(0, chatbox.scrollHeight);
-  }
 }
 
 // Auto scroll down 
 const handleChat = () => {
-  userMessage = chatInput.value.trim();
-  if (!userMessage) return;
-  chatInput.value = "";
+    userMessage = chatInput.value.trim();
+    if (!userMessage) return;
+    chatInput.value = "";
 
-  // Store the user message in chat history
-  chatHistory.push(`${userMessage}`);
+    // Store the user message in chat history
+    chatHistory.push(`${userMessage}`);
 
-  chatbox.appendChild(createChatLi(userMessage, "outgoing"));
-  chatbox.scrollTo(0, chatbox.scrollHeight);
-
-  setTimeout(() => {
-    const incomingChatLi = createChatLi("Thinking...", "incoming");
-    chatbox.appendChild(incomingChatLi);
+    chatbox.appendChild(createChatLi(userMessage, "outgoing"));
     chatbox.scrollTo(0, chatbox.scrollHeight);
-    generateResponse(incomingChatLi);
-  }, 600);
+
+    setTimeout(() => {
+        const incomingChatLi = createChatLi("Thinking...", "incoming");
+        chatbox.appendChild(incomingChatLi);
+        chatbox.scrollTo(0, chatbox.scrollHeight);
+        generateResponse(incomingChatLi);
+    }, 600);
 }
 
 chatInput.style.height = inputHeight;
@@ -176,10 +174,10 @@ chatStyles.insertRule(`
 `, chatStyles.cssRules.length);
 
 chatInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    handleChat();
-  }
+    if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleChat();
+    }
 });
 
 sendChatBtn.addEventListener("click", handleChat);
@@ -187,9 +185,9 @@ closeBtn.addEventListener("click", () => document.body.classList.remove("show-ch
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));
 
 document.addEventListener("click", (e) => {
-  if (!chatbotToggler.contains(e.target) && !document.querySelector(".chatbot").contains(e.target)) {
-    document.body.classList.remove("show-chatbot");
-  }
+    if (!chatbotToggler.contains(e.target) && !document.querySelector(".chatbot").contains(e.target)) {
+        document.body.classList.remove("show-chatbot");
+    }
 });
 
 
@@ -629,7 +627,7 @@ function updateTabContent(url, content, tab) {
 
 <div class="content-containervv" id="miscvv">
   <h3>Customize Helios's Appearance</h3>
-<div class="theme-preview active" onclick="activatePreview(this)">
+<div class="theme-preview" onclick="activatePreview(this)">
   <div class="browser-simulation">
     <div class="browser-header">
       <div class="circle red"></div>
@@ -709,8 +707,9 @@ async function fetchExternalContent(url, content, tabIndex) {
         `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`,
-        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`/*,
-        `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`
+        /*,
+                `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
     ];
 
     const timeout = 10000;
@@ -868,8 +867,9 @@ async function fetchExternalContent(url, content, tabIndex) {
         `https://api.cors.lol/?url=${url}`,
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
-        `https://api.allorigins.win/raw?url=${url}`/*,
-        `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
+        `https://api.allorigins.win/raw?url=${url}`
+        /*,
+                `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
     ];
 
     const timeout = 10000;
@@ -1166,8 +1166,8 @@ function openInAboutBlank() {
 async function openInBlob() {
     // Clone the document's static DOM structure
     const htmlDocument = document.documentElement.cloneNode(true);
-  // Block duplication of square button
-const squareButton = htmlDocument.querySelector('#square-buttonaa');
+    // Block duplication of square button
+    const squareButton = htmlDocument.querySelector('#square-buttonaa');
     if (squareButton) {
         squareButton.remove();
     }
@@ -1218,7 +1218,9 @@ const squareButton = htmlDocument.querySelector('#square-buttonaa');
     await Promise.all(cssPromises);
 
     // Serialize the modified document and create a Blob
-    const blob = new Blob([htmlDocument.outerHTML], { type: 'text/html' });
+    const blob = new Blob([htmlDocument.outerHTML], {
+        type: 'text/html'
+    });
     const url = URL.createObjectURL(blob);
     window.open(url, '_blank');
 }
@@ -1613,7 +1615,7 @@ function downloadPage() {
     // Attempt to fetch from GitHub first
     const url = "https://raw.githubusercontent.com/dinguschan-owo/Helios/refs/heads/main/Offline-File/Helios-Offline.html";
     fetch(url)
-        .then(response => response.blob())        .then(blob => {
+        .then(response => response.blob()).then(blob => {
             const a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.download = "Helios-Offline.html";
@@ -1641,7 +1643,7 @@ function downloadPage() {
 
     function downloadFile(data) {
         const blob = new Blob([data], {
-            type: 'text/html'  // Set the MIME type for HTML files
+            type: 'text/html' // Set the MIME type for HTML files
         });
         const url = URL.createObjectURL(blob);
 
@@ -1680,40 +1682,40 @@ function generateUserID() {
 window.onload = generateUserID;
 
 function executeScriptsFromContent(content) {
-  // Create a temporary div to hold the content
-  const tempDiv = document.createElement('div');
-  tempDiv.innerHTML = content;
+    // Create a temporary div to hold the content
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
 
-  // Find all script tags in the content
-  const scripts = tempDiv.getElementsByTagName('script');
+    // Find all script tags in the content
+    const scripts = tempDiv.getElementsByTagName('script');
 
-  // Execute each script
-  Array.from(scripts).forEach(script => {
-    const newScript = document.createElement('script');
+    // Execute each script
+    Array.from(scripts).forEach(script => {
+        const newScript = document.createElement('script');
 
-    // If the script has a src attribute, copy it
-    if (script.src) {
-      newScript.src = script.src;
-    } else {
-      // Otherwise, copy the inline script content
-      newScript.textContent = script.textContent;
-    }
+        // If the script has a src attribute, copy it
+        if (script.src) {
+            newScript.src = script.src;
+        } else {
+            // Otherwise, copy the inline script content
+            newScript.textContent = script.textContent;
+        }
 
-    // Set other attributes like type, async, defer if present
-    Array.from(script.attributes).forEach(attr => {
-      if (attr.name !== 'src') {
-        newScript.setAttribute(attr.name, attr.value);
-      }
+        // Set other attributes like type, async, defer if present
+        Array.from(script.attributes).forEach(attr => {
+            if (attr.name !== 'src') {
+                newScript.setAttribute(attr.name, attr.value);
+            }
+        });
+
+        // Append the new script to the document to execute it
+        document.head.appendChild(newScript);
+        // Optionally remove the script after execution
+        // document.head.removeChild(newScript);
     });
 
-    // Append the new script to the document to execute it
-    document.head.appendChild(newScript);
-    // Optionally remove the script after execution
-    // document.head.removeChild(newScript);
-  });
-
-  // Return the content without the original script tags
-  return tempDiv.innerHTML;
+    // Return the content without the original script tags
+    return tempDiv.innerHTML;
 }
 // Execute scripts and update the content
 const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
@@ -1842,42 +1844,42 @@ async function decryptData(encryptedObj, key) {
     return new TextDecoder().decode(decryptedData);
 }
 
-    // Function to generate a unique data URL
+// Function to generate a unique data URL
 
-       function generateDataURL() {
+function generateDataURL() {
     const htmlContent = document.documentElement.outerHTML;
     const dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
 
     document.getElementById("dataURLText").value = dataURL;
-    document.getElementById("myModal").style.display = "flex"; 
+    document.getElementById("myModal").style.display = "flex";
     document.querySelector(".modal-contentgg").style.display = "block";
 }
 
 document.getElementById("dataURL").addEventListener("click", generateDataURL);
 
-        // Function to copy the data URL to clipboard
-        function copyDataURL() {
-            const dataURLText = document.getElementById("dataURLText");
-            const copyButton = document.getElementById("copyButton");
+// Function to copy the data URL to clipboard
+function copyDataURL() {
+    const dataURLText = document.getElementById("dataURLText");
+    const copyButton = document.getElementById("copyButton");
 
-            dataURLText.select(); 
-            navigator.clipboard.writeText(dataURLText.value)
-                .then(() => {
-                    copyButton.textContent = "Copied!"; 
-                    setTimeout(() => {
-                        copyButton.textContent = "Copy"; 
-                    }, 3000);
-                })
-                .catch(() => {
-                    copyButton.textContent = "Error"; 
-                    setTimeout(() => {
-                        copyButton.textContent = "Copy";
-                    }, 3000);
-                });
-        }
+    dataURLText.select();
+    navigator.clipboard.writeText(dataURLText.value)
+        .then(() => {
+            copyButton.textContent = "Copied!";
+            setTimeout(() => {
+                copyButton.textContent = "Copy";
+            }, 3000);
+        })
+        .catch(() => {
+            copyButton.textContent = "Error";
+            setTimeout(() => {
+                copyButton.textContent = "Copy";
+            }, 3000);
+        });
+}
 
-        // Function to close the modal
-        function closeModal() {
+// Function to close the modal
+function closeModal() {
     document.getElementById("myModal").style.display = "none";
     document.querySelector(".modal-contentgg").style.display = "none";
 }
@@ -1889,35 +1891,35 @@ window.onload = function() {
     document.querySelector(".modal-contentgg").style.display = "none";
 };
 
-  // Function to switch categories
+// Function to switch categories
 
-  function showCategory(category) {
+function showCategory(category) {
     document.querySelectorAll('.content-containervv').forEach(content => {
-      content.classList.remove('activevv');
+        content.classList.remove('activevv');
     });
     document.getElementById(category).classList.add('activevv');
-  }
+}
 
-  document.getElementById('clear-history').addEventListener('click', () => {
+document.getElementById('clear-history').addEventListener('click', () => {
     localStorage.clear();
     sessionStorage.clear();
     const message = document.getElementById('cleared-message');
     message.style.display = 'block';
     setTimeout(() => {
-      message.style.display = 'none';
+        message.style.display = 'none';
     }, 3000);
-  });
+});
 
 // Function to hide and show relavent categories by ID
 
-    function showCategory(categoryId) {
-      document.querySelectorAll('.content-containervv').forEach(container => {
+function showCategory(categoryId) {
+    document.querySelectorAll('.content-containervv').forEach(container => {
         container.classList.remove('activevv');
-      });
-      document.getElementById(categoryId).classList.add('activevv');
+    });
+    document.getElementById(categoryId).classList.add('activevv');
 
-      document.querySelectorAll('.sidebarvv button').forEach(button => {
+    document.querySelectorAll('.sidebarvv button').forEach(button => {
         button.classList.remove('active');
-      });
-      document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
-    }
+    });
+    document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+}
