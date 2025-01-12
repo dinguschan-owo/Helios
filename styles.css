@@ -972,6 +972,16 @@ body {
   border-bottom: 2px solid white;
 }
 
+.content-containervv h31 {
+  font-size: 25px;
+  margin-top: 3px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+  padding-bottom: 3px;
+  border-bottom: 2px solid white;
+}
+
 .content-containervv button {
   background-color: #ff5555;
   border: none;
@@ -1333,8 +1343,7 @@ body.show-chatbot .chatbot {
 }
 
 .theme-name {
-  margin-top: 8px;
-  margin-bottom: 16px;
+  margin-top: 4px;
   font-size: 17px;
   font-weight: bold;
   color: #fff;
@@ -1531,11 +1540,20 @@ body.show-chatbot .chatbot {
 
 .titlelinee-lightmode {
   width: 62px;
-  height: 2px;
+  height: 2px; 
   font-size: 20px;
   font-weight: 600;
   background-color: #f79104;
   position: relative;
   top: 39px;
   left: 118px;
+}
+
+.theme-preview-container {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  gap: 10px; 
+  width: 630px;
+  overflow-x: auto;
 }
