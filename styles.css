@@ -1250,7 +1250,6 @@ body.show-chatbot .chatbot {
   border: 3px solid #fff;
 }
 
-
 .browser-simulation {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -1386,29 +1385,6 @@ body.show-chatbot .chatbot {
   margin: 20px auto;
   transition: transform 0.2s ease;
   cursor: pointer;
-}
-
-.theme-preview-lightmode.active .browser-simulation-lightmode {
-  position: relative;
-}
-
-.theme-preview-lightmode.active .browser-simulation-lightmode::after {
-  content: "\f00c";
-  font-family: "Font Awesome 5 Free";
-  font-weight: 900;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: #0d874a;
-  color: #fff;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid #fff;
 }
 
 .browser-simulation-lightmode {
