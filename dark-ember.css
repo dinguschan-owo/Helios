@@ -972,6 +972,16 @@ body {
   border-bottom: 2px solid #f79104;
 }
 
+.content-containervv h31 {
+  font-size: 25px;
+  margin-top: 3px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #fff;
+  padding-bottom: 3px;
+  border-bottom: 2px solid white;
+}
+
 .content-containervv button {
   background-color: #ff5555;
   border: none;
