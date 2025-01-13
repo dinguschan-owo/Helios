@@ -1089,18 +1089,24 @@ function modifyCss(cssText) {
     return modifiedCss;
 }
 
-function updateSpecialDivs(url) {
-    const isHeliosURL = url.startsWith('helios://');
-    const officialC = document.querySelector('.official-caa');
-    const official = document.querySelector('.officialaa');
+function updateSpecialDivs() {
+    const checkURL = () => {
+        const urlInput = document.querySelector('.browser-baraa .address-baraa input');
+        const isHeliosURL = urlInput && urlInput.value.startsWith('helios://');
+        const officialC = document.querySelector('.official-caa');
+        const official = document.querySelector('.officialaa');
 
-    if (officialC) {
-        officialC.style.backgroundColor = isHeliosURL ? '' : '#52565b';
-    }
-    if (official) {
-        official.style.backgroundColor = isHeliosURL ? '' : '#52565b';
-        official.style.color = isHeliosURL ? '' : '#52565b';
-    }
+        if (officialC) {
+            officialC.style.opacity = isHeliosURL ? '1' : '0';
+            officialC.style.pointerEvents = isHeliosURL ? '' : 'none';
+        }
+        if (official) {
+            official.style.opacity = isHeliosURL ? '1' : '0';
+            official.style.pointerEvents = isHeliosURL ? '' : 'none';
+        }
+    };
+
+    setInterval(checkURL, 100);
 }
 
 document.getElementById('url-baraa').addEventListener('input', function() {
