@@ -84,7 +84,7 @@ const inputHeight = '18px';
 // Store past messages for memory
 let chatHistory = [];
 
-const API_KEY = "AIzaSyBJabFopbbZGIh4qLSJ3Zeex1n8JE_TYNk";
+const API_KEY = "AIzaSyDgOyGw2T5hwEPmeDO0zpp0UCmgvWv8uu8";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
 const createChatLi = (message, className) => {
