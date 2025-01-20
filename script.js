@@ -107,8 +107,16 @@ const sendChatBtn = document.querySelector(".send-btn");
 
 chatbotToggler.addEventListener("click", () => {
   document.body.classList.toggle("show-chatbot");
-  addHeliosMessage("Hi there! How may I assist you?", false); // Hello message
+
+  const existingWelcomeMessage = Array.from(chatbox.children).some(child =>
+    child.textContent === "Hi there! How may I assist you?"
+  );
+
+  if (!existingWelcomeMessage) {
+    addHeliosMessage("Hi there! How may I assist you?", false);
+  }
 });
+
 
 closeBtn.addEventListener("click", () => {
   document.body.classList.remove("show-chatbot");
