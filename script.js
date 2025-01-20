@@ -161,12 +161,24 @@ async function sendHeliosMessage() {
 function addHeliosMessage(content, isUser) {
   const messageElement = document.createElement("div");
   messageElement.classList.add("chat", isUser ? "outgoing" : "incoming");
+
   const messageContent = document.createElement("p");
   messageContent.textContent = content;
+
+  if (!isUser) {
+    const messageAvatar = document.createElement("span");
+    messageAvatar.classList.add("message-avatar");
+    messageAvatar.textContent = "H";
+    messageElement.appendChild(messageAvatar); 
+  }
+
+  // Append the content (text) to the message element
   messageElement.appendChild(messageContent);
+  
   chatbox.appendChild(messageElement);
   messageElement.scrollIntoView({ behavior: 'smooth' });
 }
+
 
 function addLoadingMessage() {
   const loadingMessage = document.createElement("p");
