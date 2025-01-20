@@ -1064,7 +1064,7 @@ body {
     font-weight: bold;
     margin-top: -5px;
     z-index: 2147483646;
-    border-bottom: 3.1px solid white;
+    border-bottom: 3.1px solid #f79104;
     border-radius: 5px 5px 0 0; 
     padding-bottom: 7px;
 }
@@ -1155,7 +1155,7 @@ body {
         border-radius: 10px 10px 10px 4px;
         background: #4a4e51;
         color: #fff;
-        border: 3px solid #66ffa1;
+        border: 3px solid #f79104;
         z-index: 2147483646;
       }
 
