@@ -1121,8 +1121,7 @@ body.show-chatbot .chatbot {
   margin-right: -14px;
   z-index: 2147483646;
 }
-
-.chatbox .incoming span {
+.chatbox .incoming-avatar {
   width: 32px;
   height: 32px;
   color: #fff;
@@ -1132,12 +1131,19 @@ body.show-chatbot .chatbot {
   line-height: 32px;
   align-self: flex-end;
   background: #ff6161;
-  border-radius: 400px;
+  border-radius: 50%;
   margin-top: 0;
-  margin-right: 9px;
+  margin-right: 10px;
   margin-bottom: 13px;
-  margin-left: -15px;
+  margin-left: -16px;
   z-index: 2147483646;
+}
+
+.chatbox .incoming-avatar i {
+  margin-left: 0.8px;
+  margin-top: 4.7px;
+  font-size: 20px; 
+  color: #fff; 
 }
 
 .chatbox .chat p {
