@@ -165,16 +165,18 @@ function addHeliosMessage(content, isUser) {
   const messageContent = document.createElement("p");
   messageContent.textContent = content;
 
-  if (!isUser) {
+  if (!isUser) { 
     const messageAvatar = document.createElement("span");
-    messageAvatar.classList.add("message-avatar");
-    messageAvatar.textContent = "H";
-    messageElement.appendChild(messageAvatar); 
+    messageAvatar.classList.add("incoming-avatar");
+
+    const icon = document.createElement("i");
+    icon.classList.add("fa-solid", "fa-robot"); 
+
+    messageAvatar.appendChild(icon); 
+    messageElement.appendChild(messageAvatar);  
   }
 
-  // Append the content (text) to the message element
-  messageElement.appendChild(messageContent);
-  
+  messageElement.appendChild(messageContent); 
   chatbox.appendChild(messageElement);
   messageElement.scrollIntoView({ behavior: 'smooth' });
 }
