@@ -724,7 +724,7 @@ function updateTabContent(url, content, tab) {
     </div>
     <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
   </div>
-  <p class="theme-name-lightmode"><i>Dark Ember</i> by Bryce</p>
+  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p>
 </div>
 
 </div></div>
