@@ -5,12 +5,16 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
 ## ***`Official Links`***
 
 - https://helios-browser.vercel.app/ (immediate auto updates)
+  
 - https://helios-blue.vercel.app/ (immediate auto updates)
+  
 - https://helios-browser.rf.gd (constant updates)
-- https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< ) (this link is likely very far behind other links because of this)
+  
+- https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< ) (this link is VERY far behind other links because of this)
+  
 - https://helios-browser.pages.dev/ (immediate auto updates)
+  
 - https://helios-browser.ct.ws (constant updates)
-- https://helios-browser.neocities.org/ (neocities javascript has issues, so expect this instance to not work)
   
 ## ***`How To Use`***
 
