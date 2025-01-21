@@ -1184,7 +1184,7 @@ body.show-chatbot .chatbot {
 .chatbox .incoming p {
 	border-radius: 10px 10px 10px 4px;
 	background: #3d4043;
-	color: #f79104;
+	color: #fc9f1d;
 	border: 3px solid #f79104;
 	z-index: 2147483646;
 }
@@ -1235,7 +1235,7 @@ body.show-chatbot .chatbot {
 
 .chat-input span {
 	align-self: flex-end;
-	color: #9aa0a6;
+	color: #fc9f1d;
 	cursor: pointer;
 	height: 55px;
 	font-size: 30px;
@@ -1249,7 +1249,7 @@ body.show-chatbot .chatbot {
 }
 
 .chat-input span:hover {
-	color: #fff;
+	color: #ffd5b3;
 	z-index: 2147483646;
 }
 
