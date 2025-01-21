@@ -1229,7 +1229,7 @@ body.show-chatbot .chatbot {
 }
 
 .chat-input textarea::placeholder {
-	color: #c4d4d4;
+	color: #fc9f1d;
 	z-index: 2147483646;
 }
 
