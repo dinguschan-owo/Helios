@@ -1183,8 +1183,8 @@ body.show-chatbot .chatbot {
 
 .chatbox .incoming p {
 	border-radius: 10px 10px 10px 4px;
-	background: #4a4e51;
-	color: #fff;
+	background: #3d4043;
+	color: #f79104;
 	border: 3px solid #f79104;
 	z-index: 2147483646;
 }
@@ -1202,7 +1202,7 @@ body.show-chatbot .chatbot {
 	bottom: 20px;
 	left: 20px;
 	right: 20px;
-	background: #4a4e51;
+	background: #3d4043;
 	padding: 10px;
 	border-radius: 100px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -1222,7 +1222,7 @@ body.show-chatbot .chatbot {
 	padding: 15px 15px 15px 0;
 	font-size: 16px;
 	color: #fff;
-	background: #4a4e51;
+	background: #3d4043;
 	border-radius: 5px;
 	font-family: Arial, sans-serif;
 	z-index: 2147483646;
