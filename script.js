@@ -317,11 +317,6 @@ async function handleFetchedContent(html, url) {
     contentContainer.innerHTML = fixedHtml;
 }
 
-// Usage: Call `handleFetchedContent(html, url)`
-// - `html`: Fetched HTML content as a string.
-// - `url`: URL of the fetched site.
-
-
 function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
     const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
