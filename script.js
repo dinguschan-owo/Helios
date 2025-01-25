@@ -928,14 +928,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchExternalContent(url, content, tabIndex) {
-    const proxies = [
+    let proxies = [
         `https://api.cors.lol/?url=${url}`,
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
         `https://api.allorigins.win/raw?url=${url}`
-        /*,
-                `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
     ];
+
+    // Remove cors.lol proxy for Google search queries
+    if (url.startsWith('https://www.google.com/search?')) {
+        proxies = proxies.filter(proxy => !proxy.includes('cors.lol'));
+    }
 
     const timeout = 10000;
 
@@ -1115,6 +1118,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
+
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-iconaa');
