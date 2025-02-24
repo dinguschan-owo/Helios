@@ -1348,7 +1348,6 @@ document.getElementById('url-baraa').addEventListener('input', function(e) {
     this.value = this.value.toLowerCase();
 });
 
-// Function to check if a string is a valid URL
 function isValidURL(string) {
     try {
         new URL(string);
@@ -1362,8 +1361,9 @@ function isValidURL(string) {
 function handleSearchOrNavigation(input, tabIndex) {
     let url = input.trim();
 
-    // Check if it's a valid URL
+    // Check if it's a valid URL or starts with http(s)
     if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
+        // Only append 'https://' if the URL doesn't already have it
         if (!/^https?:\/\//i.test(url)) {
             url = 'https://' + url;
         }
@@ -1391,6 +1391,7 @@ function handleSearchOrNavigation(input, tabIndex) {
         updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
     }
 }
+
 
 // Add event listener for the search input in each tab
 document.addEventListener('click', function(event) {
