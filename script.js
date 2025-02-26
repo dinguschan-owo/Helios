@@ -687,7 +687,7 @@ function updateTabContent(url, content, tab) {
 
 <div class="content-containervv" id="browserlogsvv">
   <h3>Helios Browser Logs</h3>
-  <div id="logContainer" style="max-height: 300px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 700px;"></div>
+  <div id="logContainer" style="max-height: 500px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 700px;"></div>
 </div>
 
 
