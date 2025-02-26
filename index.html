@@ -137,22 +137,68 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Logging: Helios started");
     displayHeliosStarted();
 
-    // Log all button clicks with their names
+    // Track all clicks, regardless of element type
     document.body.addEventListener("click", function (event) {
         let target = event.target;
 
+        // Log button clicks
         if (target.closest("button")) {
             let button = target.closest("button");
-            let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Button";
+            let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Element";
             logEvent(`${buttonName} clicked`);
         }
 
-        // Find the nearest link if clicked
+        // Log link clicks
         if (target.closest("a")) {
             let link = target.closest("a");
             let linkText = link.innerText.trim() || link.href || "Unnamed Link";
-            logEvent(`Navigated to ${linkText}`); 
+            logEvent(`Navigated to ${linkText}`);
         }
+
+        logEvent(`Element clicked: ${target.tagName.toLowerCase()} - ${target.className || "No Class"}`);
+    });
+
+    // Track form submissions
+    document.body.addEventListener("submit", function (event) {
+        let target = event.target;
+        if (target.tagName === "FORM") {
+            let formName = target.getAttribute("name") || "Unnamed Form";
+            logEvent(`Form ${formName} submitted`);
+        }
+    });
+
+    document.body.addEventListener("focus", function (event) {
+        let target = event.target;
+        if ((target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !target.dataset.logged) {
+            let inputName = target.name || target.placeholder || "Unnamed Input";
+            logEvent(`Input field ${inputName} focused and edited`);
+            target.dataset.logged = true; 
+        }
+    }, true); 
+
+    let lastHoverTime = 0;
+    const hoverCooldown = 750;
+
+    document.body.addEventListener("mouseover", function (event) {
+        let target = event.target;
+
+        const currentTime = Date.now();
+        if (currentTime - lastHoverTime < hoverCooldown) {
+            return; 
+        }
+
+        if (target.closest("button") || target.closest("a") || target.closest("img")) {
+            let element = target.closest("button") || target.closest("a") || target.closest("img");
+            let elementType = element.tagName.toLowerCase();
+            let elementName = element.innerText.trim() || element.src || element.href || "Unnamed Element";
+            logEvent(`Hovered over ${elementType}: ${elementName}`);
+            lastHoverTime = currentTime; 
+        }
+    });
+
+    // Track errors in the console
+    window.addEventListener("error", function (event) {
+        logEvent(`Error: ${event.message} at ${event.filename}:${event.lineno}`);
     });
 });
 
@@ -161,7 +207,7 @@ function logNavigation(url) {
 }
 
 function changeTabContent(url) {
-    logNavigation(url); // to be added
+    logNavigation(url); // To be added
 }
 
 function displayHeliosStarted() {
@@ -174,7 +220,7 @@ function displayHeliosStarted() {
 
     const timestamp = new Date().toLocaleTimeString();
     const logEntry = document.createElement("div");
-    logEntry.textContent = `[Helios Log] [${timestamp}] Helios Started`;
+    logEntry.textContent = `[Helios Log] [${timestamp}] Helios started successfully`;
     logEntry.style.padding = "6px 0";
     logEntry.style.borderBottom = "2px solid #444";
     logEntry.style.borderTop = "2px solid #444";
