@@ -1,3 +1,204 @@
+  document.addEventListener("DOMContentLoaded", function() {
+    console.log("DEBUG: Script is running...");
+
+    // List of official Helios URLs
+    const officialUrls = [
+      "https://helios-browser.vercel.app/",
+      "https://helios-blue.vercel.app/",
+      "https://helios-browser.rf.gd",
+      "https://helios-browser.w3spaces.com/",
+      "https://helios-browser.pages.dev/",
+      "https://helios-browser.ct.ws"
+    ];
+
+    function normalizeUrl(url) {
+      return url.split("#")[0].split("?")[0]; // Remove hash and query params
+    }
+
+    // Create the verification box dynamically
+    const sitecheckerContainer = document.createElement("div");
+    sitecheckerContainer.classList.add("sitechecker-container");
+
+    sitecheckerContainer.innerHTML = `
+      <p id="sitechecker-message">
+        <i id="sitechecker-icon" class="sitechecker-icon"></i>
+        <span id="sitechecker-text" style="visibility: visible !important;"></span>
+      </p>
+    `;
+
+    // Find the search bar and insert the sitechecker **below it**
+    const searchBar = document.querySelector(".search-baraa");
+    if (searchBar) {
+      searchBar.insertAdjacentElement("afterend", sitecheckerContainer);
+      console.log("DEBUG: Sitechecker added below search bar.");
+    } else {
+      console.error("ERROR: Search bar not found! Cannot insert Sitechecker.");
+      return;
+    }
+
+    // Delay text update slightly to ensure DOM is fully updated
+    setTimeout(() => {
+      // Now that elements exist, find them
+      const messageElement = document.getElementById("sitechecker-text");
+      const iconElement = document.getElementById("sitechecker-icon");
+
+      if (!messageElement || !iconElement) {
+        console.error("ERROR: Verification elements not found in the DOM.");
+        return;
+      }
+
+      // Get the current URL
+      const pageUrl = normalizeUrl(window.location.href);
+      console.log("DEBUG: Current Page URL:", pageUrl);
+
+      // Set the verification message
+      if (officialUrls.includes(pageUrl)) {
+        console.log("DEBUG: Official Helios URL detected.");
+        iconElement.classList.add("fa", "fa-circle-check", "sitechecker-secure");
+        messageElement.innerHTML = `This link <b>(${pageUrl})</b> is a secure, official Helios Browser link.`;
+      } else {
+        console.log("DEBUG: UNOFFICIAL URL detected!");
+        iconElement.classList.add("fa", "fa-triangle-exclamation", "sitechecker-warning");
+        messageElement.innerHTML = `This link <b>(${pageUrl})</b> is not an official Helios Browser link. Use at your own risk, or find a list of official Helios Browser links <a href="https://github.com/dinguschan-owo/Helios/blob/main/README.md" target="_blank" class="sitechecker-link">here</a>.`;
+      }
+
+      console.log("DEBUG: Text updated inside Sitechecker box.");
+    }, 200); // Small delay to ensure the element is visible before updating
+
+    // **Automatically hide the box after 20 seconds**
+    setTimeout(() => {
+      if (sitecheckerContainer) {
+        sitecheckerContainer.style.opacity = "0";  // Fade out effect
+        sitecheckerContainer.style.transition = "opacity 0.5s ease-out";
+        setTimeout(() => {
+          sitecheckerContainer.remove(); // Remove element after fade-out
+          console.log("DEBUG: Sitechecker removed after 20 seconds.");
+        }, 500);
+      }
+    }, 20000); // 20 seconds (20000ms)
+
+  });
+
+(function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Logging: Helios started");
+        displayHeliosStarted();
+
+        document.body.addEventListener("click", function (event) {
+            let target = event.target;
+            
+            if (!target) return;
+
+            // Log button clicks
+            let button = target.closest("button");
+            if (button) {
+                let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Button";
+                logEvent(`${buttonName} clicked`);
+                return;
+            }
+
+            // Log link clicks
+            let link = target.closest("a");
+            if (link) {
+                let linkText = link.innerText.trim() || link.href || "Unnamed Link";
+                logEvent(`Navigated to ${linkText}`);
+                return;
+            }
+
+            logEvent(`Element clicked: ${target.tagName.toLowerCase()} - ${target.className || "No Class"}`);
+        });
+
+        // Track form submissions
+        document.body.addEventListener("submit", function (event) {
+            if (event.target.tagName === "FORM") {
+                let formName = event.target.getAttribute("name") || "Unnamed Form";
+                logEvent(`Form ${formName} submitted`);
+            }
+        });
+
+        // Track input focus (once per element)
+        document.body.addEventListener("focus", function (event) {
+            let target = event.target;
+            if ((target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !target.dataset.logged) {
+                let inputName = target.name || target.placeholder || "Unnamed Input";
+                logEvent(`Input field ${inputName} focused and edited`);
+                target.dataset.logged = true;
+            }
+        }, true);
+
+        // Prevent excessive hover logging
+        let lastHoverTime = 0;
+        const hoverCooldown = 750;
+
+        document.body.addEventListener("mouseover", function (event) {
+            let target = event.target;
+            if (!target) return;
+
+            const currentTime = Date.now();
+            if (currentTime - lastHoverTime < hoverCooldown) return;
+
+            let element = target.closest("button, a, img");
+            if (element) {
+                let elementType = element.tagName.toLowerCase();
+                let elementName = element.innerText.trim() || element.src || element.href || "Unnamed Element";
+                logEvent(`Hovered over ${elementType}: ${elementName}`);
+                lastHoverTime = currentTime;
+            }
+        });
+
+        // Track errors in the console
+        window.addEventListener("error", function (event) {
+            logEvent(`Error: ${event.message} at ${event.filename}:${event.lineno}`);
+        });
+    });
+
+    function displayHeliosStarted() {
+        let logContainer = document.getElementById("logContainer");
+
+        if (!logContainer) {
+            setTimeout(displayHeliosStarted, 100);
+            return;
+        }
+
+        addLogEntry(`[Helios Log] Helios started successfully`, true);
+    }
+
+    let retryCount = 0;
+    function logEvent(message) {
+        let logContainer = document.getElementById("logContainer");
+
+        if (!logContainer && retryCount < 2) {
+            retryCount++;
+            console.warn("Log container not found, retrying...");
+            setTimeout(() => logEvent(message), 100);
+            return;
+        }
+
+        addLogEntry(`[Helios Log] ${message}`);
+    }
+
+    function addLogEntry(message, isHeader = false) {
+        let logContainer = document.getElementById("logContainer");
+        if (!logContainer) return;
+
+        const timestamp = new Date().toLocaleTimeString();
+        const logEntry = document.createElement("div");
+        logEntry.textContent = `[${timestamp}] ${message}`;
+        logEntry.style.padding = "6px 0";
+        logEntry.style.borderBottom = "2px solid #444";
+        logEntry.style.textAlign = "left";
+
+        if (isHeader) {
+            logEntry.style.borderTop = "2px solid #444";
+            logEntry.style.fontWeight = "bold";
+            logContainer.prepend(logEntry);
+        } else {
+            logContainer.appendChild(logEntry);
+        }
+
+        logContainer.scrollTop = logContainer.scrollHeight;
+    }
+})();
 // Listen for Ctrl + K to focus on the search bar
 window.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.key === 'k') {
@@ -538,7 +739,12 @@ const tabs = [{
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i></div>`
+            <i class="fas fa-search search-iconaa"></i></div><div class="sitechecker-container">
+  <p id="sitechecker-message">
+    <i id="sitechecker-icon" class="sitechecker-icon"></i>
+    <span id="sitechecker-text"></span>
+  </p>
+</div>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'http://'];
@@ -653,7 +859,12 @@ function updateTabContent(url, content, tab) {
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i></div>`;
+            <i class="fas fa-search search-iconaa"></i></div><div class="sitechecker-container">
+  <p id="sitechecker-message">
+    <i id="sitechecker-icon" class="sitechecker-icon"></i>
+    <span id="sitechecker-text"></span>
+  </p>
+</div>`;
 
         tab.querySelector('.tab-nameaa').textContent = 'New Tab';
         tabs[currentTabIndex].content = content.innerHTML;
@@ -2016,4 +2227,3 @@ function showCategory(categoryId) {
     });
     document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
 }
-
