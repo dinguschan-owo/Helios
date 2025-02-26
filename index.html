@@ -132,5 +132,80 @@
       </div>
     </div>
       <script src="script.js"></script>
+      <script>
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Logging: Helios started");
+    displayHeliosStarted();
+
+    // Log all button clicks with their names
+    document.body.addEventListener("click", function (event) {
+        let target = event.target;
+
+        if (target.closest("button")) {
+            let button = target.closest("button");
+            let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Button";
+            logEvent(`${buttonName} clicked`);
+        }
+
+        // Find the nearest link if clicked
+        if (target.closest("a")) {
+            let link = target.closest("a");
+            let linkText = link.innerText.trim() || link.href || "Unnamed Link";
+            logEvent(`Navigated to ${linkText}`); 
+        }
+    });
+});
+
+function logNavigation(url) {
+    logEvent(`Navigated to ${url}`);
+}
+
+function changeTabContent(url) {
+    logNavigation(url); // to be added
+}
+
+function displayHeliosStarted() {
+    let logContainer = document.getElementById("logContainer");
+
+    if (!logContainer) {
+        setTimeout(displayHeliosStarted, 100);
+        return;
+    }
+
+    const timestamp = new Date().toLocaleTimeString();
+    const logEntry = document.createElement("div");
+    logEntry.textContent = `[Helios Log] [${timestamp}] Helios Started`;
+    logEntry.style.padding = "6px 0";
+    logEntry.style.borderBottom = "2px solid #444";
+    logEntry.style.borderTop = "2px solid #444";
+    logEntry.style.textAlign = "left"; 
+    logEntry.style.fontWeight = "bold"; 
+    logContainer.prepend(logEntry); 
+}
+
+// Log function
+let retryCount = 0;
+function logEvent(message) {
+    let logContainer = document.getElementById("logContainer");
+
+    if (!logContainer && retryCount < 2) {
+        retryCount++;
+        console.warn("Log container not found, retrying...");
+        setTimeout(() => logEvent(message), 100);
+        return;
+    }
+
+    const timestamp = new Date().toLocaleTimeString();
+    const logEntry = document.createElement("div");
+    logEntry.textContent = `[Helios Log] [${timestamp}] ${message}`;
+    logEntry.style.padding = "6px 0";
+    logEntry.style.borderBottom = "2px solid #444";
+    logEntry.style.textAlign = "left";
+    logContainer.appendChild(logEntry);
+    logContainer.scrollTop = logContainer.scrollHeight;
+}
+
+</script>
+
     </body>
 </html>
