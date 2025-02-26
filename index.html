@@ -107,8 +107,13 @@
                 <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> - <s>Search with DuckDuckGo</s>- </a>
             </div>
           </div>
-          <input type="text" placeholder="Search the web or enter a URL">
-          <i class="fas fa-search search-iconaa"></i>
+          <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]">
+          <i class="fas fa-search search-iconaa"></i></div><div class="sitechecker-container">
+  <p id="sitechecker-message">
+    <i id="sitechecker-icon" class="sitechecker-icon"></i>
+    <span id="sitechecker-text"></span>
+  </p>
+</div>
         </div>
       </div>
       <div class="modalgg" id="myModal">
@@ -132,126 +137,5 @@
       </div>
     </div>
       <script src="script.js"></script>
-      <script>
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Logging: Helios started");
-    displayHeliosStarted();
-
-    // Track all clicks, regardless of element type
-    document.body.addEventListener("click", function (event) {
-        let target = event.target;
-
-        // Log button clicks
-        if (target.closest("button")) {
-            let button = target.closest("button");
-            let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Element";
-            logEvent(`${buttonName} clicked`);
-        }
-
-        // Log link clicks
-        if (target.closest("a")) {
-            let link = target.closest("a");
-            let linkText = link.innerText.trim() || link.href || "Unnamed Link";
-            logEvent(`Navigated to ${linkText}`);
-        }
-
-        logEvent(`Element clicked: ${target.tagName.toLowerCase()} - ${target.className || "No Class"}`);
-    });
-
-    // Track form submissions
-    document.body.addEventListener("submit", function (event) {
-        let target = event.target;
-        if (target.tagName === "FORM") {
-            let formName = target.getAttribute("name") || "Unnamed Form";
-            logEvent(`Form ${formName} submitted`);
-        }
-    });
-
-    document.body.addEventListener("focus", function (event) {
-        let target = event.target;
-        if ((target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !target.dataset.logged) {
-            let inputName = target.name || target.placeholder || "Unnamed Input";
-            logEvent(`Input field ${inputName} focused and edited`);
-            target.dataset.logged = true; 
-        }
-    }, true); 
-
-    let lastHoverTime = 0;
-    const hoverCooldown = 750;
-
-    document.body.addEventListener("mouseover", function (event) {
-        let target = event.target;
-
-        const currentTime = Date.now();
-        if (currentTime - lastHoverTime < hoverCooldown) {
-            return; 
-        }
-
-        if (target.closest("button") || target.closest("a") || target.closest("img")) {
-            let element = target.closest("button") || target.closest("a") || target.closest("img");
-            let elementType = element.tagName.toLowerCase();
-            let elementName = element.innerText.trim() || element.src || element.href || "Unnamed Element";
-            logEvent(`Hovered over ${elementType}: ${elementName}`);
-            lastHoverTime = currentTime; 
-        }
-    });
-
-    // Track errors in the console
-    window.addEventListener("error", function (event) {
-        logEvent(`Error: ${event.message} at ${event.filename}:${event.lineno}`);
-    });
-});
-
-function logNavigation(url) {
-    logEvent(`Navigated to ${url}`);
-}
-
-function changeTabContent(url) {
-    logNavigation(url); // To be added
-}
-
-function displayHeliosStarted() {
-    let logContainer = document.getElementById("logContainer");
-
-    if (!logContainer) {
-        setTimeout(displayHeliosStarted, 100);
-        return;
-    }
-
-    const timestamp = new Date().toLocaleTimeString();
-    const logEntry = document.createElement("div");
-    logEntry.textContent = `[Helios Log] [${timestamp}] Helios started successfully`;
-    logEntry.style.padding = "6px 0";
-    logEntry.style.borderBottom = "2px solid #444";
-    logEntry.style.borderTop = "2px solid #444";
-    logEntry.style.textAlign = "left"; 
-    logEntry.style.fontWeight = "bold"; 
-    logContainer.prepend(logEntry); 
-}
-
-// Log function
-let retryCount = 0;
-function logEvent(message) {
-    let logContainer = document.getElementById("logContainer");
-
-    if (!logContainer && retryCount < 2) {
-        retryCount++;
-        console.warn("Log container not found, retrying...");
-        setTimeout(() => logEvent(message), 100);
-        return;
-    }
-
-    const timestamp = new Date().toLocaleTimeString();
-    const logEntry = document.createElement("div");
-    logEntry.textContent = `[Helios Log] [${timestamp}] ${message}`;
-    logEntry.style.padding = "6px 0";
-    logEntry.style.borderBottom = "2px solid #444";
-    logEntry.style.textAlign = "left";
-    logContainer.appendChild(logEntry);
-    logContainer.scrollTop = logContainer.scrollHeight;
-}
-
-</script>
-
     </body>
 </html>
