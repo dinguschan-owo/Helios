@@ -1568,3 +1568,50 @@ body.show-chatbot .chatbot {
   width: 630px;
   overflow-x: auto;
 }
+
+.sitechecker-container {
+  background: #3c4043;
+  padding: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: left;
+  color: #fff;
+  border: 3px solid #66ffa1;
+  font-family: Arial, sans-serif;
+  
+  position: fixed;
+  bottom: 11px;
+  right: 11px;
+  max-width: 300px;
+  width: auto;
+  z-index: 9999;
+}
+
+.sitechecker-container p {
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.sitechecker-container .sitechecker-icon {
+  font-size: 36px;
+  margin-left: 4px;
+  margin-right: 6px;
+}
+
+.sitechecker-container .sitechecker-secure {
+  color: #66ffa1;
+}
+
+.sitechecker-container .sitechecker-warning {
+  color: #ff4d4d;
+}
+
+.sitechecker-container .sitechecker-link {
+  text-decoration: underline;
+  color: #007BFF;
+}
