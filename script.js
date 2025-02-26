@@ -676,6 +676,7 @@ function updateTabContent(url, content, tab) {
 <button class="active" onclick="showCategory('historyvv')">History</button>
   <button onclick="showCategory('cloakingvv')">Cloaking</button>
   <button onclick="showCategory('miscvv')">Appearance</button>
+  <button onclick="showCategory('browserlogsvv')">Browser Logs</button>
 </div>
 
 <div class="content-containervv activevv" id="historyvv">
@@ -684,12 +685,17 @@ function updateTabContent(url, content, tab) {
   <div class="cleared-messagevv" id="cleared-message">History cleared!</div>
 </div>
 
+<div class="content-containervv" id="browserlogsvv">
+  <h3>Helios Browser Logs</h3>
+  <div id="logContainer" style="max-height: 300px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 700px;"></div>
+</div>
+
+
 <div class="content-containervv" id="cloakingvv">
   <h3>Tab Cloaking Options</h3>
   <button onclick="openInAboutBlank()">Open in about:blank</button>
   <button onclick="openInBlob()">Open in blob:</button>
 </div>
-
 <div class="content-containervv" id="miscvv">
   <h31>Customize Helios's Appearance</h31><div class="theme-preview-container">
 <div class="theme-preview" onclick="activatePreview(this)">
@@ -2010,3 +2016,4 @@ function showCategory(categoryId) {
     });
     document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
 }
+
