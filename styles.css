@@ -1580,8 +1580,8 @@ body.show-chatbot .chatbot {
   font-family: Arial, sans-serif;
   
   position: fixed;
-  bottom: 11px;
-  right: 11px;
+  bottom: 10px;
+  right: 10px;
   max-width: 300px;
   width: auto;
   z-index: 9999;
