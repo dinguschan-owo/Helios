@@ -61,6 +61,7 @@ Vercel:
 - BUILT IN AI CHATBOT
 - built in request encryption
 - user agent disguising
+- absolutely fucking sexy user interface
 - open up to 23 tabs before it starts breaking (thats a lot!)
 - search bar for searching
 - basic navigation buttons (back, forwards, reload, home)
@@ -72,6 +73,7 @@ Vercel:
 - session ID generation
 - unique data: url generation based off your session ID
 - one cool theme (more to come)
+- browser logs that you can check (nerd)
 
 ## ***`License`***
 
