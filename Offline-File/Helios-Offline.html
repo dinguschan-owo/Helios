@@ -1445,7 +1445,8 @@ body.show-chatbot .chatbot {
   max-width: 300px;
   margin: 20px auto;
   transition: transform 0.2s ease;
-  cursor: pointer;
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 .browser-simulation-lightmode {
@@ -1587,6 +1588,53 @@ body.show-chatbot .chatbot {
   gap: 10px;
   width: 630px;
   overflow-x: auto;
+}
+
+.sitechecker-container {
+  background: #3c4043;
+  padding: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-align: left;
+  color: #fff;
+  border: 3px solid #66ffa1;
+  font-family: Arial, sans-serif;
+  
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  max-width: 300px;
+  width: auto;
+  z-index: 9999;
+}
+
+.sitechecker-container p {
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.sitechecker-container .sitechecker-icon {
+  font-size: 36px;
+  margin-left: 4px;
+  margin-right: 6px;
+}
+
+.sitechecker-container .sitechecker-secure {
+  color: #66ffa1;
+}
+
+.sitechecker-container .sitechecker-warning {
+  color: #ff4d4d;
+}
+
+.sitechecker-container .sitechecker-link {
+  text-decoration: underline;
+  color: #007BFF;
 }</style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -1634,8 +1682,8 @@ body.show-chatbot .chatbot {
       <button class="menu-buttonaa" title="More options" onclick="toggleDropdownccc()">⋮</button>
       <div id="myDropdownccc" class="dropdown-menuccc">
         <a href="javascript:void(0);">New Tab</a>
-        <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Settings</a>
-        <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Internal URLs</a>
+        <a href="javascript:void(0);" onclick="changeTabContent('helios://settings')">Helios Settings</a>
+        <a href="javascript:void(0);" onclick="changeTabContent('helios://urls')">Helios Internal URLs</a>
         <a href="javascript:void(0);" onclick="downloadPage()">Download Helios-Offline&nbsp;&nbsp; <i class="fa-solid fa-download" style="font-size: 15px; color: #66ffa1;"></i>
         </a>
         <a href="javascript:void(0);" id="dataURL" onclick="generateDataURL()">Generate Session's Data Url</a>
@@ -1646,7 +1694,6 @@ body.show-chatbot .chatbot {
         <div class="user-idff" id="user-idff"> Your User ID will appear here</div>
       </div>
     </div>
-    </head>
     <body>
       <div class="contentaa tab-contentaa activeaa">
         <div class="Xt7Lm9Kp3R8f">
@@ -1676,10 +1723,9 @@ body.show-chatbot .chatbot {
                 <img src="https://duckduckgo.com/favicon.ico" alt="DuckDuckGo"> - <s>Search with DuckDuckGo</s>- </a>
             </div>
           </div>
-          <input type="text" placeholder="Search the web or enter a URL">
-          <i class="fas fa-search search-iconaa"></i>
+          <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]">
+          <i class="fas fa-search search-iconaa"></i></div>
         </div>
-      </div>
       <div class="modalgg" id="myModal">
         <div class="modal-contentgg">
           <h2>Here is the data URL for this session (HTML):</h2>
@@ -1691,7 +1737,7 @@ body.show-chatbot .chatbot {
       </div>
           <div class="chatbot">
       <header>
-        &nbspHelios AI (Experimental)
+        &nbsp;Helios AI (Experimental)
         <button class="close-btn">✕</button>
       </header>
       <div class="chatbox"></div>
@@ -1700,7 +1746,223 @@ body.show-chatbot .chatbot {
         <span class="send-btn material-symbols-rounded">send</span>
       </div>
     </div>
-      <script>// Listen for Ctrl + K to focus on the search bar
+      <script>document.addEventListener("DOMContentLoaded", function() {
+    console.log("DEBUG: Script is running...");
+
+    // List of official Helios URLs
+    const officialUrls = [
+        "https://helios-browser.vercel.app/",
+        "https://helios-blue.vercel.app/",
+        "https://helios-browser.rf.gd",
+        "https://helios-browser.w3spaces.com/",
+        "https://helios-browser.pages.dev/",
+        "https://helios-browser.ct.ws"
+    ];
+
+    function normalizeUrl(url) {
+        return url.split("#")[0].split("?")[0]; // Remove hash and query params
+    }
+
+    function createSitechecker() {
+        // Check if Sitechecker already exists
+        let sitecheckerContainer = document.querySelector(".sitechecker-container");
+        if (!sitecheckerContainer) {
+            sitecheckerContainer = document.createElement("div");
+            sitecheckerContainer.classList.add("sitechecker-container");
+            sitecheckerContainer.style.opacity = "1"; // Ensure it's visible initially
+
+            sitecheckerContainer.innerHTML = `
+                <p id="sitechecker-message">
+                    <i id="sitechecker-icon" class="sitechecker-icon"></i>
+                    <span id="sitechecker-text" style="visibility: visible !important;"></span>
+                </p>
+            `;
+
+            document.body.appendChild(sitecheckerContainer);
+            console.log("DEBUG: Sitechecker added to the body.");
+        } else {
+            console.log("DEBUG: Sitechecker already exists. No duplicate added.");
+        }
+
+        updateSitecheckerMessage();
+        fadeOutSitechecker();
+    }
+
+    function updateSitecheckerMessage() {
+        setTimeout(() => {
+            const messageElement = document.getElementById("sitechecker-text");
+            const iconElement = document.getElementById("sitechecker-icon");
+
+            if (!messageElement || !iconElement) {
+                console.error("ERROR: Verification elements not found in the DOM.");
+                return;
+            }
+
+            // Get the current URL
+            const pageUrl = normalizeUrl(window.location.href);
+            console.log("DEBUG: Current Page URL:", pageUrl);
+
+            // Set the verification message
+            if (officialUrls.includes(pageUrl)) {
+                console.log("DEBUG: Official Helios URL detected.");
+                iconElement.classList.add("fa", "fa-circle-check", "sitechecker-secure");
+                messageElement.innerHTML = `This link <b>(${pageUrl})</b> is a secure, official Helios Browser link.`;
+            } else {
+                console.log("DEBUG: UNOFFICIAL URL detected!");
+                iconElement.classList.add("fa", "fa-triangle-exclamation", "sitechecker-warning");
+                messageElement.innerHTML = `This link <b>(${pageUrl})</b> is not an official Helios Browser link. Use at your own risk, or find a list of official Helios Browser links <a href="https://github.com/dinguschan-owo/Helios/blob/main/README.md" target="_blank" class="sitechecker-link">here</a>.`;
+            }
+
+            console.log("DEBUG: Text updated inside Sitechecker box.");
+        }, 200); 
+    }
+
+    function fadeOutSitechecker() {
+        setTimeout(() => {
+            let sitecheckerContainer = document.querySelector(".sitechecker-container");
+            if (sitecheckerContainer) {
+                sitecheckerContainer.style.transition = "opacity 1s ease-out";
+                sitecheckerContainer.style.opacity = "0";
+                console.log("DEBUG: Sitechecker is fading out.");
+            }
+        }, 20000); 
+    } 
+
+    // Create Sitechecker once on initial page load
+    createSitechecker();
+
+    // Ensure Sitechecker remains visible when switching tabs
+    document.addEventListener("click", function(event) {
+        if (event.target.closest(".tabaa")) {
+            setTimeout(() => {
+                createSitechecker(); 
+            }, 100);
+        }
+    });
+});
+
+
+(function () {
+    document.addEventListener("DOMContentLoaded", function () {
+        console.log("Logging: Helios started");
+        displayHeliosStarted();
+
+        document.body.addEventListener("click", function (event) {
+            let target = event.target;
+            
+            if (!target) return;
+
+            // Log button clicks
+            let button = target.closest("button");
+            if (button) {
+                let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Button";
+                logEvent(`${buttonName} clicked`);
+                return;
+            }
+
+            // Log link clicks
+            let link = target.closest("a");
+            if (link) {
+                let linkText = link.innerText.trim() || link.href || "Unnamed Link";
+                logEvent(`Navigated to ${linkText}`);
+                return;
+            }
+
+            logEvent(`Element clicked: ${target.tagName.toLowerCase()} - ${target.className || "No Class"}`);
+        });
+
+        // Track form submissions
+        document.body.addEventListener("submit", function (event) {
+            if (event.target.tagName === "FORM") {
+                let formName = event.target.getAttribute("name") || "Unnamed Form";
+                logEvent(`Form ${formName} submitted`);
+            }
+        });
+
+        // Track input focus (once per element)
+        document.body.addEventListener("focus", function (event) {
+            let target = event.target;
+            if ((target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !target.dataset.logged) {
+                let inputName = target.name || target.placeholder || "Unnamed Input";
+                logEvent(`Input field ${inputName} focused and edited`);
+                target.dataset.logged = true;
+            }
+        }, true);
+
+        // Prevent excessive hover logging
+        let lastHoverTime = 0;
+        const hoverCooldown = 750;
+
+        document.body.addEventListener("mouseover", function (event) {
+            let target = event.target;
+            if (!target) return;
+
+            const currentTime = Date.now();
+            if (currentTime - lastHoverTime < hoverCooldown) return;
+
+            let element = target.closest("button, a, img");
+            if (element) {
+                let elementType = element.tagName.toLowerCase();
+                let elementName = element.innerText.trim() || element.src || element.href || "Unnamed Element";
+                logEvent(`Hovered over ${elementType}: ${elementName}`);
+                lastHoverTime = currentTime;
+            }
+        });
+
+        // Track errors in the console
+        window.addEventListener("error", function (event) {
+            logEvent(`Error: ${event.message} at ${event.filename}:${event.lineno}`);
+        });
+    });
+
+    function displayHeliosStarted() {
+        let logContainer = document.getElementById("logContainer");
+
+        if (!logContainer) {
+            setTimeout(displayHeliosStarted, 100);
+            return;
+        }
+
+        addLogEntry(`[Helios Log] Helios started successfully`, true);
+    }
+
+    let retryCount = 0;
+    function logEvent(message) {
+        let logContainer = document.getElementById("logContainer");
+
+        if (!logContainer && retryCount < 2) {
+            retryCount++;
+            console.warn("Log container not found, retrying...");
+            setTimeout(() => logEvent(message), 100);
+            return;
+        }
+
+        addLogEntry(`[Helios Log] ${message}`);
+    }
+
+    function addLogEntry(message, isHeader = false) {
+        let logContainer = document.getElementById("logContainer");
+        if (!logContainer) return;
+
+        const timestamp = new Date().toLocaleTimeString();
+        const logEntry = document.createElement("div");
+        logEntry.textContent = `[${timestamp}] ${message}`;
+        logEntry.style.padding = "6px 0";
+        logEntry.style.borderBottom = "2px solid #444";
+        logEntry.style.textAlign = "left";
+
+        if (isHeader) {
+            logEntry.style.borderTop = "2px solid #444";
+            logEntry.style.fontWeight = "bold";
+            logContainer.prepend(logEntry);
+        } else {
+            logContainer.appendChild(logEntry);
+        }
+
+        logContainer.scrollTop = logContainer.scrollHeight;
+    }
+})();
+// Listen for Ctrl + K to focus on the search bar
 window.addEventListener('keydown', function(event) {
   if (event.ctrlKey && event.key === 'k') {
     event.preventDefault();  // Prevent default Ctrl+K action
@@ -2019,11 +2281,6 @@ async function handleFetchedContent(html, url) {
     contentContainer.innerHTML = fixedHtml;
 }
 
-// Usage: Call `handleFetchedContent(html, url)`
-// - `html`: Fetched HTML content as a string.
-// - `url`: URL of the fetched site.
-
-
 function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
     const activeContent = document.querySelectorAll('.tab-contentaa')[tabIndex];
@@ -2277,11 +2534,26 @@ document.querySelectorAll('.tabaa').forEach((tab, index) => {
     addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.top-right-boxaa').addEventListener('click', function() {
-        window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+function attachClickListeners() {
+    document.querySelectorAll('.top-right-boxaa').forEach(function(element) {
+        element.removeEventListener('click', openGitHub); 
+        element.addEventListener('click', openGitHub);
     });
+}
+
+function openGitHub() {
+    window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', attachClickListeners);
+
+document.addEventListener('click', function(event) {
+    if (event.target.closest('.add-tabaa')) {
+        setTimeout(attachClickListeners, 100);
+    }
 });
+
+
 
 function addCloseButtonFunctionality(tab) {
     tab.querySelector('.close-btnaa').addEventListener('click', function() {
@@ -2383,6 +2655,7 @@ function updateTabContent(url, content, tab) {
 <button class="active" onclick="showCategory('historyvv')">History</button>
   <button onclick="showCategory('cloakingvv')">Cloaking</button>
   <button onclick="showCategory('miscvv')">Appearance</button>
+  <button onclick="showCategory('browserlogsvv')">Browser Logs</button>
 </div>
 
 <div class="content-containervv activevv" id="historyvv">
@@ -2391,12 +2664,17 @@ function updateTabContent(url, content, tab) {
   <div class="cleared-messagevv" id="cleared-message">History cleared!</div>
 </div>
 
+<div class="content-containervv" id="browserlogsvv">
+  <h3>Helios Browser Logs</h3>
+  <div id="logContainer" style="max-height: 500px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 750px;"></div>
+</div>
+
+
 <div class="content-containervv" id="cloakingvv">
   <h3>Tab Cloaking Options</h3>
   <button onclick="openInAboutBlank()">Open in about:blank</button>
   <button onclick="openInBlob()">Open in blob:</button>
 </div>
-
 <div class="content-containervv" id="miscvv">
   <h31>Customize Helios's Appearance</h31><div class="theme-preview-container">
 <div class="theme-preview" onclick="activatePreview(this)">
@@ -2426,7 +2704,7 @@ function updateTabContent(url, content, tab) {
     </div>
     <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
   </div>
-  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse<br>[Does not work in Helios Offline]</p>
+  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p><br>[Unavailable in Helios Offline]
 </div>
 
 </div></div>
@@ -2635,14 +2913,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function fetchExternalContent(url, content, tabIndex) {
-    const proxies = [
+    let proxies = [
         `https://api.cors.lol/?url=${url}`,
         `https://api.codetabs.com/v1/proxy?quest=${url}`,
         `https://api.codetabs.com/v1/tmp/?quest=${url}`,
         `https://api.allorigins.win/raw?url=${url}`
-        /*,
-                `https://corsproxy.io/?url=${encodeURIComponent(url)}`*/
     ];
+
+    // Remove cors.lol proxy for Google search queries
+    if (url.startsWith('https://www.google.com/search?')) {
+        proxies = proxies.filter(proxy => !proxy.includes('cors.lol'));
+    }
 
     const timeout = 10000;
 
@@ -2822,6 +3103,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
+
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-iconaa');
@@ -3051,7 +3333,6 @@ document.getElementById('url-baraa').addEventListener('input', function(e) {
     this.value = this.value.toLowerCase();
 });
 
-// Function to check if a string is a valid URL
 function isValidURL(string) {
     try {
         new URL(string);
@@ -3065,8 +3346,9 @@ function isValidURL(string) {
 function handleSearchOrNavigation(input, tabIndex) {
     let url = input.trim();
 
-    // Check if it's a valid URL
+    // Check if it's a valid URL or starts with http(s)
     if (isValidURL(url) || /^(https?:\/\/)?[\w\-]+(\.[\w\-]+)+[/#?]?.*$/.test(url)) {
+        // Only append 'https://' if the URL doesn't already have it
         if (!/^https?:\/\//i.test(url)) {
             url = 'https://' + url;
         }
@@ -3094,6 +3376,7 @@ function handleSearchOrNavigation(input, tabIndex) {
         updateTabContent(searchUrl, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
     }
 }
+
 
 // Add event listener for the search input in each tab
 document.addEventListener('click', function(event) {
