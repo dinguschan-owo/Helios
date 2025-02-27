@@ -26,15 +26,8 @@
       </p>
     `;
 
-    // Find the search bar and insert the sitechecker **below it**
-    const searchBar = document.querySelector(".search-baraa");
-    if (searchBar) {
-      searchBar.insertAdjacentElement("afterend", sitecheckerContainer);
-      console.log("DEBUG: Sitechecker added below search bar.");
-    } else {
-      console.error("ERROR: Search bar not found! Cannot insert Sitechecker.");
-      return;
-    }
+document.body.appendChild(sitecheckerContainer); // Ensure it's added to the body so it persists
+console.log("DEBUG: Sitechecker added to the body.");
 
     // Delay text update slightly to ensure DOM is fully updated
     setTimeout(() => {
@@ -65,17 +58,22 @@
       console.log("DEBUG: Text updated inside Sitechecker box.");
     }, 200); // Small delay to ensure the element is visible before updating
 
-    // **Automatically hide the box after 20 seconds**
-    setTimeout(() => {
-      if (sitecheckerContainer) {
-        sitecheckerContainer.style.opacity = "0";  // Fade out effect
-        sitecheckerContainer.style.transition = "opacity 0.5s ease-out";
-        setTimeout(() => {
-          sitecheckerContainer.remove(); // Remove element after fade-out
-          console.log("DEBUG: Sitechecker removed after 20 seconds.");
-        }, 500);
-      }
-    }, 20000); // 20 seconds (20000ms)
+// Ensure Sitechecker stays visible across tab changes
+function ensureSitecheckerExists() {
+    let existingChecker = document.querySelector(".sitechecker-container");
+    if (!existingChecker) {
+        document.body.appendChild(sitecheckerContainer);
+        console.log("DEBUG: Sitechecker re-added after tab change.");
+    }
+}
+
+// Run check whenever a new tab is selected
+document.addEventListener("click", function(event) {
+    if (event.target.closest(".tabaa")) { // Detects tab clicks
+        ensureSitecheckerExists();
+    }
+});
+
 
   });
 
@@ -739,12 +737,7 @@ const tabs = [{
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i></div><div class="sitechecker-container">
-  <p id="sitechecker-message">
-    <i id="sitechecker-icon" class="sitechecker-icon"></i>
-    <span id="sitechecker-text"></span>
-  </p>
-</div>`
+            <i class="fas fa-search search-iconaa"></i></div>`
 }];
 
 const trustedSchemes = ['helios://', 'https://', 'http://'];
@@ -859,12 +852,7 @@ function updateTabContent(url, content, tab) {
   </div>
 </div>
             <input type="text" placeholder="Search the web or enter a URL [Ctrl + K]" id="search-input-${currentTabIndex}">
-            <i class="fas fa-search search-iconaa"></i></div><div class="sitechecker-container">
-  <p id="sitechecker-message">
-    <i id="sitechecker-icon" class="sitechecker-icon"></i>
-    <span id="sitechecker-text"></span>
-  </p>
-</div>`;
+            <i class="fas fa-search search-iconaa"></i></div>`;
 
         tab.querySelector('.tab-nameaa').textContent = 'New Tab';
         tabs[currentTabIndex].content = content.innerHTML;
