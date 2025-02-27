@@ -1,30 +1,3 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const lightModePreview = document.querySelector('.theme-preview-lightmode');
-  
-  if (lightModePreview) {
-    lightModePreview.addEventListener('click', function() {
-      // Create a style element to add CSS rules directly
-      const styleElement = document.createElement('style');
-      
-      // Add rules to override all borders and color properties to #f79104
-      styleElement.textContent = `
-        * {
-          border-color: #f79104 !important;
-          color: #f79104 !important;
-        }
-        *[style*="border"] {
-          border-color: #f79104 !important;
-        }
-        *[style*="color"] {
-          color: #f79104 !important;
-        }
-      `;
-      
-      // Add the style element to the document head
-      document.head.appendChild(styleElement);
-    });
-  }
-});
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DEBUG: Script is running...");
 
