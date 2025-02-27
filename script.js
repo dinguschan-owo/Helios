@@ -1,32 +1,30 @@
-(function() {
-  window.addEventListener('load', function() {
-    const lightModePreview = document.querySelector('.theme-preview-lightmode');
-    
-    if (lightModePreview) {
-      lightModePreview.addEventListener('click', function() {
-        const allElements = document.querySelectorAll('*');
-        
-        allElements.forEach(element => {
-          const style = element.style;
-          
-          for (let i = 0; i < style.length; i++) {
-            const property = style[i];
-            if (property.includes('color') || property.includes('Color')) {
-              style.setProperty(property, '#f79104');
-            }
-          }
-          
-          const borderProperties = ['border', 'borderTop', 'borderRight', 'borderBottom', 'borderLeft'];
-          borderProperties.forEach(prop => {
-            if (style[prop]) {
-              style[`${prop}Color`] = '#f79104';
-            }
-          });
-        });
-      });
-    }
-  });
-})();
+document.addEventListener('DOMContentLoaded', function() {
+  const lightModePreview = document.querySelector('.theme-preview-lightmode');
+  
+  if (lightModePreview) {
+    lightModePreview.addEventListener('click', function() {
+      // Create a style element to add CSS rules directly
+      const styleElement = document.createElement('style');
+      
+      // Add rules to override all borders and color properties to #f79104
+      styleElement.textContent = `
+        * {
+          border-color: #f79104 !important;
+          color: #f79104 !important;
+        }
+        *[style*="border"] {
+          border-color: #f79104 !important;
+        }
+        *[style*="color"] {
+          color: #f79104 !important;
+        }
+      `;
+      
+      // Add the style element to the document head
+      document.head.appendChild(styleElement);
+    });
+  }
+});
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DEBUG: Script is running...");
 
