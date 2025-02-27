@@ -1,81 +1,98 @@
-  document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     console.log("DEBUG: Script is running...");
 
     // List of official Helios URLs
     const officialUrls = [
-      "https://helios-browser.vercel.app/",
-      "https://helios-blue.vercel.app/",
-      "https://helios-browser.rf.gd",
-      "https://helios-browser.w3spaces.com/",
-      "https://helios-browser.pages.dev/",
-      "https://helios-browser.ct.ws"
+        "https://helios-browser.vercel.app/",
+        "https://helios-blue.vercel.app/",
+        "https://helios-browser.rf.gd",
+        "https://helios-browser.w3spaces.com/",
+        "https://helios-browser.pages.dev/",
+        "https://helios-browser.ct.ws"
     ];
 
     function normalizeUrl(url) {
-      return url.split("#")[0].split("?")[0]; // Remove hash and query params
+        return url.split("#")[0].split("?")[0]; // Remove hash and query params
     }
 
-    // Create the verification box dynamically
-    const sitecheckerContainer = document.createElement("div");
-    sitecheckerContainer.classList.add("sitechecker-container");
+    function createSitechecker() {
+        // Check if Sitechecker already exists
+        let sitecheckerContainer = document.querySelector(".sitechecker-container");
+        if (!sitecheckerContainer) {
+            sitecheckerContainer = document.createElement("div");
+            sitecheckerContainer.classList.add("sitechecker-container");
+            sitecheckerContainer.style.opacity = "1"; // Ensure it's visible initially
 
-    sitecheckerContainer.innerHTML = `
-      <p id="sitechecker-message">
-        <i id="sitechecker-icon" class="sitechecker-icon"></i>
-        <span id="sitechecker-text" style="visibility: visible !important;"></span>
-      </p>
-    `;
+            sitecheckerContainer.innerHTML = `
+                <p id="sitechecker-message">
+                    <i id="sitechecker-icon" class="sitechecker-icon"></i>
+                    <span id="sitechecker-text" style="visibility: visible !important;"></span>
+                </p>
+            `;
 
-document.body.appendChild(sitecheckerContainer); // Ensure it's added to the body so it persists
-console.log("DEBUG: Sitechecker added to the body.");
+            document.body.appendChild(sitecheckerContainer);
+            console.log("DEBUG: Sitechecker added to the body.");
+        } else {
+            console.log("DEBUG: Sitechecker already exists. No duplicate added.");
+        }
 
-    // Delay text update slightly to ensure DOM is fully updated
-    setTimeout(() => {
-      // Now that elements exist, find them
-      const messageElement = document.getElementById("sitechecker-text");
-      const iconElement = document.getElementById("sitechecker-icon");
-
-      if (!messageElement || !iconElement) {
-        console.error("ERROR: Verification elements not found in the DOM.");
-        return;
-      }
-
-      // Get the current URL
-      const pageUrl = normalizeUrl(window.location.href);
-      console.log("DEBUG: Current Page URL:", pageUrl);
-
-      // Set the verification message
-      if (officialUrls.includes(pageUrl)) {
-        console.log("DEBUG: Official Helios URL detected.");
-        iconElement.classList.add("fa", "fa-circle-check", "sitechecker-secure");
-        messageElement.innerHTML = `This link <b>(${pageUrl})</b> is a secure, official Helios Browser link.`;
-      } else {
-        console.log("DEBUG: UNOFFICIAL URL detected!");
-        iconElement.classList.add("fa", "fa-triangle-exclamation", "sitechecker-warning");
-        messageElement.innerHTML = `This link <b>(${pageUrl})</b> is not an official Helios Browser link. Use at your own risk, or find a list of official Helios Browser links <a href="https://github.com/dinguschan-owo/Helios/blob/main/README.md" target="_blank" class="sitechecker-link">here</a>.`;
-      }
-
-      console.log("DEBUG: Text updated inside Sitechecker box.");
-    }, 200); // Small delay to ensure the element is visible before updating
-
-// Ensure Sitechecker stays visible across tab changes
-function ensureSitecheckerExists() {
-    let existingChecker = document.querySelector(".sitechecker-container");
-    if (!existingChecker) {
-        document.body.appendChild(sitecheckerContainer);
-        console.log("DEBUG: Sitechecker re-added after tab change.");
+        updateSitecheckerMessage();
+        fadeOutSitechecker();
     }
-}
 
-// Run check whenever a new tab is selected
-document.addEventListener("click", function(event) {
-    if (event.target.closest(".tabaa")) { // Detects tab clicks
-        ensureSitecheckerExists();
+    function updateSitecheckerMessage() {
+        setTimeout(() => {
+            const messageElement = document.getElementById("sitechecker-text");
+            const iconElement = document.getElementById("sitechecker-icon");
+
+            if (!messageElement || !iconElement) {
+                console.error("ERROR: Verification elements not found in the DOM.");
+                return;
+            }
+
+            // Get the current URL
+            const pageUrl = normalizeUrl(window.location.href);
+            console.log("DEBUG: Current Page URL:", pageUrl);
+
+            // Set the verification message
+            if (officialUrls.includes(pageUrl)) {
+                console.log("DEBUG: Official Helios URL detected.");
+                iconElement.classList.add("fa", "fa-circle-check", "sitechecker-secure");
+                messageElement.innerHTML = `This link <b>(${pageUrl})</b> is a secure, official Helios Browser link.`;
+            } else {
+                console.log("DEBUG: UNOFFICIAL URL detected!");
+                iconElement.classList.add("fa", "fa-triangle-exclamation", "sitechecker-warning");
+                messageElement.innerHTML = `This link <b>(${pageUrl})</b> is not an official Helios Browser link. Use at your own risk, or find a list of official Helios Browser links <a href="https://github.com/dinguschan-owo/Helios/blob/main/README.md" target="_blank" class="sitechecker-link">here</a>.`;
+            }
+
+            console.log("DEBUG: Text updated inside Sitechecker box.");
+        }, 200); 
     }
+
+    function fadeOutSitechecker() {
+        setTimeout(() => {
+            let sitecheckerContainer = document.querySelector(".sitechecker-container");
+            if (sitecheckerContainer) {
+                sitecheckerContainer.style.transition = "opacity 1.2s ease-out";
+                sitecheckerContainer.style.opacity = "0";
+                console.log("DEBUG: Sitechecker is fading out.");
+            }
+        }, 20000); 
+    } 
+
+    // Create Sitechecker once on initial page load
+    createSitechecker();
+
+    // Ensure Sitechecker remains visible when switching tabs
+    document.addEventListener("click", function(event) {
+        if (event.target.closest(".tabaa")) {
+            setTimeout(() => {
+                createSitechecker(); 
+            }, 100);
+        }
+    });
 });
 
-
-  });
 
 (function () {
     document.addEventListener("DOMContentLoaded", function () {
