@@ -1,3 +1,32 @@
+(function() {
+  window.addEventListener('load', function() {
+    const lightModePreview = document.querySelector('.theme-preview-lightmode');
+    
+    if (lightModePreview) {
+      lightModePreview.addEventListener('click', function() {
+        const allElements = document.querySelectorAll('*');
+        
+        allElements.forEach(element => {
+          const style = element.style;
+          
+          for (let i = 0; i < style.length; i++) {
+            const property = style[i];
+            if (property.includes('color') || property.includes('Color')) {
+              style.setProperty(property, '#f79104');
+            }
+          }
+          
+          const borderProperties = ['border', 'borderTop', 'borderRight', 'borderBottom', 'borderLeft'];
+          borderProperties.forEach(prop => {
+            if (style[prop]) {
+              style[`${prop}Color`] = '#f79104';
+            }
+          });
+        });
+      });
+    }
+  });
+})();
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DEBUG: Script is running...");
 
