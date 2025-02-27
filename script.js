@@ -786,11 +786,26 @@ document.querySelectorAll('.tabaa').forEach((tab, index) => {
     addTabClickListener(tab, document.querySelectorAll('.tab-contentaa')[index], index);
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector('.top-right-boxaa').addEventListener('click', function() {
-        window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+function attachClickListeners() {
+    document.querySelectorAll('.top-right-boxaa').forEach(function(element) {
+        element.removeEventListener('click', openGitHub); 
+        element.addEventListener('click', openGitHub);
     });
+}
+
+function openGitHub() {
+    window.open('https://github.com/dinguschan-owo/Helios/', '_blank');
+}
+
+document.addEventListener('DOMContentLoaded', attachClickListeners);
+
+document.addEventListener('click', function(event) {
+    if (event.target.closest('.add-tabaa')) {
+        setTimeout(attachClickListeners, 100);
+    }
 });
+
+
 
 function addCloseButtonFunctionality(tab) {
     tab.querySelector('.close-btnaa').addEventListener('click', function() {
