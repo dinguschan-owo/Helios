@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             let sitecheckerContainer = document.querySelector(".sitechecker-container");
             if (sitecheckerContainer) {
-                sitecheckerContainer.style.transition = "opacity 1.2s ease-out";
+                sitecheckerContainer.style.transition = "opacity 1s ease-out";
                 sitecheckerContainer.style.opacity = "0";
                 console.log("DEBUG: Sitechecker is fading out.");
             }
