@@ -912,24 +912,15 @@ body {
 	overflow: auto;
 }
 
-.copy-buttongg {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	background-color: #52565b;
-	color: white;
-	border: 2px solid #66ffa1;
-	padding: 5px 10px;
-	border-radius: 5px;
-	cursor: pointer;
-	font-size: 12px;
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.copy-buttongg:hover {
-	background-color: #55595e;
-}
-
-.close-buttongg {
+.copy-buttongg, .close-buttongg {
 	margin-top: 20px;
 	background-color: #52565b;
 	border: 2px solid #66ffa1;
@@ -938,6 +929,10 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
+}
+
+.copy-buttongg:hover {
+	background-color: #55595e;
 }
 
 .close-buttongg:hover {
