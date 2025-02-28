@@ -116,3 +116,8 @@ NONE ITS PERFECT (submit a issue if you find one and ill fix it)
 ## ***`FAQ`***
 
 [FAQ.md](faq.md).
+
+## ***`Stats`***
+
+![Alt](https://repobeats.axiom.co/api/embed/645615345cd0ab25bdb26cdda11f17fae8cd76f1.svg "Repobeats analytics image")
+
