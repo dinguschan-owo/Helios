@@ -867,7 +867,8 @@ body {
   position: relative;
 }
 .modal-contentgg h2 {
-  margin-bottom: 20px;
+  margin-bottom: 6px;
+  margin-top: -8px
 }
 
 .modal-contentgg textarea {
@@ -877,7 +878,7 @@ body {
   font-size: 14px;
   color: #fff;
   background-color: #52565b;
-  border: none;
+  border: 3px solid #66ffa1;
   border-radius: 5px;
   margin-top: 10px;
   resize: none;
