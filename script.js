@@ -1019,7 +1019,9 @@ async function fetchExternalContent(url, content, tabIndex) {
     const key = await generateKey();
     const encryptedUrl = await encryptData(url, key);
 
-    async function fetchWithProxy(proxy) {
+
+
+        async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
             const id = setTimeout(() => {
@@ -1164,6 +1166,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
 async function fetchExternalContent(url, content, tabIndex) {
     let proxies = [
         `https://api.cors.lol/?url=${url}`,
@@ -1222,7 +1226,8 @@ async function fetchExternalContent(url, content, tabIndex) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
 
-    async function fetchAndInjectResources(html, tabIndex) {
+
+        async function fetchAndInjectResources(html, tabIndex) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
