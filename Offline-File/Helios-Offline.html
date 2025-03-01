@@ -887,7 +887,8 @@
   position: relative;
 }
 .modal-contentgg h2 {
-  margin-bottom: 20px;
+  margin-bottom: 6px;
+  margin-top: -8px
 }
 
 .modal-contentgg textarea {
@@ -897,7 +898,7 @@
   font-size: 14px;
   color: #fff;
   background-color: #52565b;
-  border: none;
+  border: 3px solid #66ffa1;
   border-radius: 5px;
   margin-top: 10px;
   resize: none;
@@ -906,37 +907,30 @@
   overflow: auto;
 }
 
-.copy-buttongg {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #52565b;
-  color: white;
-  border: 2px solid #66ffa1;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
-.copy-buttongg:hover {
-  background-color: #55595e;
-}
-
-.close-buttongg {
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   margin-top: 20px;
+}
+
+.copy-buttongg, .close-buttongg {
   background-color: #52565b;
-  border: 2px solid #66ffa1;
+  border: 3px solid #66ffa1;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  display: inline-block;
+  white-space: nowrap;
 }
 
-.close-buttongg:hover {
+.copy-buttongg:hover, .close-buttongg:hover {
   background-color: #55595e;
 }
+
 .sidebarvv {
   position: fixed;
   top: 0;
@@ -973,7 +967,7 @@
 }
 
 .content-containervv {
-  margin-left: 250px;
+  margin-left: 296px;
   padding: 20px;
   flex: 1;
   display: none;
@@ -1445,8 +1439,7 @@ body.show-chatbot .chatbot {
   max-width: 300px;
   margin: 20px auto;
   transition: transform 0.2s ease;
-  cursor: not-allowed;
-  pointer-events: none;
+  cursor: pointer;
 }
 
 .browser-simulation-lightmode {
@@ -1730,9 +1723,12 @@ body.show-chatbot .chatbot {
         <div class="modal-contentgg">
           <h2>Here is the data URL for this session (HTML):</h2>
           <textarea id="dataURLText" rows="5" style="height: 250px; font-size: 14.6px; width: 100%; white-space: pre-wrap; overflow-wrap: break-word; resize: none;" readonly></textarea>
-          <button class="copy-buttongg" id="copyButton" onclick="copyDataURL()">Copy</button>
           <br>
-          <button class="close-buttongg" onclick="closeModal()">Close</button>
+          <div class="button-container">
+  <button class="copy-buttongg" onclick="copyDataURL()">Copy</button>
+  <button class="close-buttongg" onclick="closeModal()">Close</button>
+</div>
+
         </div>
       </div>
           <div class="chatbot">
@@ -2666,7 +2662,7 @@ function updateTabContent(url, content, tab) {
 
 <div class="content-containervv" id="browserlogsvv">
   <h3>Helios Browser Logs</h3>
-  <div id="logContainer" style="max-height: 500px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 750px;"></div>
+  <div id="logContainer" style="max-height: 400px; overflow-y: auto; border: 3px solid #66ffa1; padding: 10px; background: #222; color: #fff; border-radius: 5px; width: 750px;"></div>
 </div>
 
 
@@ -2704,7 +2700,7 @@ function updateTabContent(url, content, tab) {
     </div>
     <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
   </div>
-  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p>[Unavailable in Helios Offline]
+  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p><b>[Unavailable in Helios Offline]</b>
 </div>
 
 </div></div>
@@ -2767,7 +2763,9 @@ async function fetchExternalContent(url, content, tabIndex) {
     const key = await generateKey();
     const encryptedUrl = await encryptData(url, key);
 
-    async function fetchWithProxy(proxy) {
+
+
+        async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
             const id = setTimeout(() => {
@@ -2912,6 +2910,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
 async function fetchExternalContent(url, content, tabIndex) {
     let proxies = [
         `https://api.cors.lol/?url=${url}`,
@@ -2970,7 +2970,8 @@ async function fetchExternalContent(url, content, tabIndex) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
 
-    async function fetchAndInjectResources(html, tabIndex) {
+
+        async function fetchAndInjectResources(html, tabIndex) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
