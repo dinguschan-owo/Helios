@@ -363,25 +363,28 @@ body {
 }
 
 .browser-baraa .reload-buttonaa {
-	font-size: 22px;
-	font-weight: 600;
-	margin-bottom: -1px;
-	z-index: 2147483644;
-	animation: none;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: -1px;
+  z-index: 2147483644;
+  animation: none;
+}
+
+.browser-baraa .reload-buttonaa.hover-triggered {
+  animation: spin 0.7s forwards;
 }
 
 .browser-baraa .reload-buttonaa:hover {
-	animation: spin 0.7s forwards;
+  cursor: pointer;
 }
 
 @keyframes spin {
-	0% {
-		transform: rotate(0deg);
-	}
-
-	100% {
-		transform: rotate(360deg);
-	}
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .browser-baraa .home-buttonaa {
