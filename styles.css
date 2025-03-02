@@ -361,8 +361,12 @@ body {
   animation: none;
 }
 
-.browser-baraa .reload-buttonaa:hover {
+.browser-baraa .reload-buttonaa.hover-triggered {
   animation: spin 0.7s forwards;
+}
+
+.browser-baraa .reload-buttonaa:hover {
+  cursor: pointer;
 }
 
 @keyframes spin {
