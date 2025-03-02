@@ -1,3 +1,12 @@
+document.querySelector('.reload-buttonaa').addEventListener('mouseenter', function() {
+  this.classList.add('hover-triggered');
+});
+
+document.querySelector('.reload-buttonaa').addEventListener('animationend', function() {
+  this.classList.remove('hover-triggered');
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DEBUG: Script is running...");
 
