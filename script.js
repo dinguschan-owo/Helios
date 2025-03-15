@@ -1158,7 +1158,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const key = localStorage.key(i);
         if (key.startsWith('tab_')) {
             const url = localStorage.getItem(key);
-            // Logic to create a new tab with this URL
         }
     }
 });
@@ -1175,8 +1174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-
 async function fetchExternalContent(url, content, tabIndex) {
     let proxies = [
         `https://api.cors.lol/?url=${url}`,
@@ -1185,30 +1182,24 @@ async function fetchExternalContent(url, content, tabIndex) {
         `https://api.allorigins.win/raw?url=${url}`
     ];
 
-    // Remove cors.lol proxy for Google search queries
+    // Remove the cors.lol proxy for Google search URLs
     if (url.startsWith('https://www.google.com/search?')) {
         proxies = proxies.filter(proxy => !proxy.includes('cors.lol'));
     }
 
-    const timeout = 10000;
+    const timeout = 10000; 
 
     async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
             const id = setTimeout(() => controller.abort(), timeout);
 
-            fetch(proxy, {
-                    signal: controller.signal
-                })
+            axios.get(proxy, { signal: controller.signal })
                 .then(response => {
                     clearTimeout(id);
-                    if (!response.ok) {
-                        reject(`Failed to fetch content from ${proxy}: ${response.statusText}`);
-                    }
-                    return response.text();
+                    resolve(response.data);
                 })
-                .then(resolve)
-                .catch(reject);
+                .catch(error => reject(`Failed to fetch content from ${proxy}: ${error.message}`));
         });
     }
 
@@ -1222,6 +1213,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         }
     }
 
+    // If all proxies fail
     if (!htmlText) {
         console.error('Failed to fetch content from all proxies');
         return;
@@ -1235,11 +1227,12 @@ async function fetchExternalContent(url, content, tabIndex) {
         tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
     }
 
-
-        async function fetchAndInjectResources(html, tabIndex) {
+    // Function to fetch and inject resources (CSS, JS, Images, etc.)
+    async function fetchAndInjectResources(html, tabIndex) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
+        // Collect resources (CSS, JS, Images, Videos, Audios)
         const resources = [];
         const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
         const jsScripts = doc.querySelectorAll('script[src]');
@@ -1259,20 +1252,13 @@ async function fetchExternalContent(url, content, tabIndex) {
             audio.querySelectorAll('source').forEach(source => resources.push(source.src));
         });
 
+        // Fetch each resource and replace URLs with Blob URLs
         const fetchResource = async (url) => {
             try {
-                const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch resource ${url}`);
-                }
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('text')) {
-                    return await response.text();
-                } else {
-                    return await response.blob();
-                }
+                const response = await axios.get(url, { responseType: 'blob' });
+                return response.data;
             } catch (error) {
-                console.error(error);
+                console.error(`Failed to fetch resource ${url}: ${error.message}`);
                 return null;
             }
         };
@@ -1280,16 +1266,15 @@ async function fetchExternalContent(url, content, tabIndex) {
         const promises = resources.map(fetchResource);
         const results = await Promise.all(promises);
 
+        // Create shadow container and inject styles
         const shadowContainer = document.createElement('div');
         shadowContainer.style.position = 'relative';
-        shadowContainer.style.width = (content.clientWidth - 0) + 'px';
-        shadowContainer.style.height = (content.clientHeight + 100) + 'px';
+        shadowContainer.style.width = `${content.clientWidth}px`;
+        shadowContainer.style.height = `${content.clientHeight + 100}px`;
         shadowContainer.style.overflow = 'auto';
         shadowContainer.style.border = 'none';
 
-        const shadowRoot = shadowContainer.attachShadow({
-            mode: 'open'
-        });
+        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
         const defaultStyle = document.createElement('style');
         defaultStyle.textContent = `
             :host {
@@ -1301,60 +1286,21 @@ async function fetchExternalContent(url, content, tabIndex) {
         shadowRoot.appendChild(defaultStyle);
         shadowRoot.innerHTML += html;
 
-        const fixRelativeURLs = (baseUrl) => {
-            const elements = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src], video[src], audio[src], source[src]');
-
-            elements.forEach(element => {
-                const attributeName = element.hasAttribute('href') ? 'href' : 'src';
-                const url = new URL(element.getAttribute(attributeName), baseUrl);
-                element.setAttribute(attributeName, url.href);
-            });
-        };
-
+        // Replace resource URLs with Blob URLs in shadow DOM
         results.forEach((result, index) => {
             const url = resources[index];
             if (result instanceof Blob) {
                 const objectURL = URL.createObjectURL(result);
                 const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
                 elements.forEach(element => element.src = objectURL);
-            } else if (typeof result === 'string') {
-                if (url.endsWith('.css')) {
-                    const style = document.createElement('style');
-                    style.textContent = result; // result is already modified CSS
-                    shadowRoot.appendChild(style);
-                } else if (url.endsWith('.js')) {
-                    const script = document.createElement('script');
-                    script.textContent = result;
-                    shadowRoot.appendChild(script);
-                }
             }
         });
 
-        // Execute inline scripts
+        // Inject inline scripts
         shadowRoot.querySelectorAll('script:not([src])').forEach(script => {
             const newScript = document.createElement('script');
             newScript.textContent = script.textContent;
             shadowRoot.appendChild(newScript);
-        });
-
-        shadowRoot.querySelectorAll('style').forEach(style => {
-            style.textContent = `
-                :host {
-                    all: initial;
-                }
-                ${style.textContent}
-            `;
-        });
-
-        const baseUrl = new URL(html.match(/<base href="([^"]+)"/)?.[1] || '', url).href;
-        fixRelativeURLs(baseUrl);
-
-        shadowRoot.querySelectorAll('a').forEach(anchor => {
-            anchor.addEventListener('click', (event) => {
-                event.preventDefault();
-                const newUrl = anchor.href;
-                updateTabContent(newUrl, content, tab);
-            });
         });
 
         return shadowContainer;
@@ -1369,7 +1315,6 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
-
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-iconaa');
