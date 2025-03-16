@@ -8,11 +8,11 @@ this is the orgignal Helios proxy slapped together soley by me, dinguschan. its 
   
 - https://helios-blue.vercel.app/ (immediate auto updates)
   
-- https://helios-browser.rf.gd (constant updates)
+- https://helios-browser.rf.gd (constant updates. if it says the site is insecure just ignore it, i probably forgot to renew the SSL certifcate)
   
 - https://helios-browser.w3spaces.com/ (sorry guys im broke, so only 500 requests per month :< ) (this link is VERY far behind other links because of this)
   
-- https://helios-browser.pages.dev/ (immediate auto updates)
+- https://helios-browser.pages.dev/ (immediate auto updates. if it says the site is insecure just ignore it, i probably forgot to renew the SSL certifcate)
   
 - https://helios-browser.ct.ws (constant updates)
   
