@@ -1175,7 +1175,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 async function fetchExternalContent(url, content, tabIndex) {
     let proxies = [
         `https://api.cors.lol/?url=${url}`,
@@ -1184,8 +1183,8 @@ async function fetchExternalContent(url, content, tabIndex) {
         `https://api.allorigins.win/raw?url=${url}`
     ];
 
-    // Remove cors.lol proxy for Google search queries
-    if (url.startsWith('https://www.google.com/search?')) {
+    // Remove cors.lol proxy for any URL containing 'google.com'
+    if (url.includes('google.com')) {
         proxies = proxies.filter(proxy => !proxy.includes('cors.lol'));
     }
 
@@ -1361,7 +1360,6 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
-
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-iconaa');
