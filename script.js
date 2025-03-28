@@ -1315,7 +1315,7 @@ async function fetchExternalContent(url, content, tabIndex) {
                     shadowRoot.appendChild(style);
                 } else if (url.endsWith('.js')) {
                     const script = document.createElement('script');
-                    script.textContent = result;
+                    script.textContent = result; // Inject JavaScript as text
                     shadowRoot.appendChild(script);
                 }
             }
@@ -1333,7 +1333,7 @@ async function fetchExternalContent(url, content, tabIndex) {
                 :host {
                     all: initial;
                 }
-                ${style.textContent}
+                ${style.textContent} 
             `;
         });
 
@@ -1351,7 +1351,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         return shadowContainer;
     }
 
-    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
+    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex, url);
     content.innerHTML = '';
     content.appendChild(newShadowContainer);
 
