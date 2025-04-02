@@ -2715,7 +2715,7 @@ function updateTabContent(url, content, tab) {
     </div>
     <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
   </div>
-  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p><b>[Unavailable in Helios Offline]</b>
+  <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p>
 </div>
 
 </div></div>
@@ -2925,7 +2925,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
 async function fetchExternalContent(url, content, tabIndex) {
     let proxies = [
         `https://api.cors.lol/?url=${url}`,
@@ -2934,8 +2933,8 @@ async function fetchExternalContent(url, content, tabIndex) {
         `https://api.allorigins.win/raw?url=${url}`
     ];
 
-    // Remove cors.lol proxy for Google search queries
-    if (url.startsWith('https://www.google.com/search?')) {
+    // Remove cors.lol proxy for any URL containing 'google.com'
+    if (url.includes('google.com')) {
         proxies = proxies.filter(proxy => !proxy.includes('cors.lol'));
     }
 
@@ -3066,7 +3065,7 @@ async function fetchExternalContent(url, content, tabIndex) {
                     shadowRoot.appendChild(style);
                 } else if (url.endsWith('.js')) {
                     const script = document.createElement('script');
-                    script.textContent = result;
+                    script.textContent = result; // Inject JavaScript as text
                     shadowRoot.appendChild(script);
                 }
             }
@@ -3084,7 +3083,7 @@ async function fetchExternalContent(url, content, tabIndex) {
                 :host {
                     all: initial;
                 }
-                ${style.textContent}
+                ${style.textContent} 
             `;
         });
 
@@ -3102,7 +3101,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         return shadowContainer;
     }
 
-    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
+    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex, url);
     content.innerHTML = '';
     content.appendChild(newShadowContainer);
 
@@ -3111,7 +3110,6 @@ async function fetchExternalContent(url, content, tabIndex) {
         tabs[tabIndex].url = url;
     });
 }
-
 
 function updateLockIcon(url) {
     const lockIcon = document.querySelector('.lock-iconaa');
