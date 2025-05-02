@@ -736,7 +736,7 @@ const tabs = [{
     url: 'helios://start',
     content: `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-boxaa" title="Click here to visit the Helios GitHub page!">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
@@ -866,7 +866,7 @@ function updateTabContent(url, content, tab) {
     if (url === 'helios://start') {
         content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-boxaa" title="Click here to visit the Helios GitHub page!">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
