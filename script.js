@@ -2254,12 +2254,28 @@ function showCategory(categoryId) {
 }
 
 function sanitizeHtmlText(htmlText) {
+    console.log("Before any replacement: ", htmlText);
+
     // Rule 1: If � is between a lowercase letter and an uppercase letter, assume it's a missing space
     htmlText = htmlText.replace(/([a-z])�([A-Z])/g, '$1 $2');
+    console.log("After Rule 1 (fixing � between letters): ", htmlText);
 
     // Rule 2: Replace remaining � with é
     htmlText = htmlText.replace(/\uFFFD/g, 'é');
+    console.log("After Rule 2 (replacing remaining � with é): ", htmlText); 
+
+    // Rule 3: Translate the redirection notice
+    htmlText = htmlText.replace(/Avertissement de redirection/g, 'Redirect Notice');
+    console.log("After Rule 3 (redirection message): ", htmlText);
+
+    htmlText = htmlText.replace(/La page que vous consultiez essaie de vous rediriger vers/g, 'The page you were on is trying to send you to');
+    console.log("After Rule 4 (translation of the redirection page): ", htmlText);
+
+    htmlText = htmlText.replace(/Si\s+vous\s+ne\s+souhaitez\s+pas\s+consulter\s+Cette\s+page/i, 'If you do not want to visit that page');
+    console.log("After Rule 5 (translation of the notice about visiting the page): ", htmlText);
+
+    htmlText = htmlText.replace(/vous\s* pouvez\s*revenir\s*à\s*la\s*page\s*précédente\./i, 'you can return to the previous page.');
+    console.log("After Rule 6 (translation of the return to previous page): ", htmlText);
 
     return htmlText;
 }
-
