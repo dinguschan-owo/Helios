@@ -1066,7 +1066,7 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     for (const proxy of proxies) {
         try {
-            htmlText = await fetchWithProxy(proxy);
+htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
             console.log(`Fetch successful using proxy: ${proxy}`);
             break;
         } catch (error) {
@@ -1095,17 +1095,13 @@ async function fetchExternalContent(url, content, tabIndex) {
     console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
     // Fix the function to fix fonts in the fetched content
-    htmlText = await fixFetchedFonts(htmlText, url);
+htmlText = sanitizeHtmlText(htmlText);
+htmlText = await fixFetchedFonts(htmlText, url);
+htmlText = await fixFontsInFetchedContent(htmlText, url);
 
-    // Fix fonts in the fetched content
-    htmlText = await fixFontsInFetchedContent(htmlText, url);
 
     // Execute scripts from the fetched content
     htmlText = executeScriptsFromContent(htmlText);
-  
-  // Replace U+FFFD (�) with é
-htmlText = htmlText.replace(/\uFFFD/g, 'é');
-
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -1128,7 +1124,7 @@ htmlText = htmlText.replace(/\uFFFD/g, 'é');
     });
 
     // Remove the default style that forces a white background
-    shadowRoot.innerHTML = doc.documentElement.outerHTML;
+shadowRoot.innerHTML = sanitizeHtmlText(doc.documentElement.outerHTML);
 
     console.log('Shadow DOM created and populated with fetched content');
 
@@ -1209,10 +1205,8 @@ async function fetchExternalContent(url, content, tabIndex) {
     let htmlText;
     for (const proxy of proxies) {
         try {
-            htmlText = await fetchWithProxy(proxy);
-          
-            htmlText = htmlText.replace(/\uFFFD/g, 'é');
-          
+            htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
+
             break;
         } catch (error) {
             console.error(`Error with proxy ${proxy}: ${error.message}`);
@@ -2257,4 +2251,8 @@ function showCategory(categoryId) {
         button.classList.remove('active');
     });
     document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+}
+
+function sanitizeHtmlText(htmlText) {
+    return htmlText.replace(/\uFFFD/g, 'é');
 }
