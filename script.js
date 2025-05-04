@@ -2254,5 +2254,12 @@ function showCategory(categoryId) {
 }
 
 function sanitizeHtmlText(htmlText) {
-    return htmlText.replace(/\uFFFD/g, 'é');
+    // Rule 1: If � is between a lowercase letter and an uppercase letter, assume it's a missing space
+    htmlText = htmlText.replace(/([a-z])�([A-Z])/g, '$1 $2');
+
+    // Rule 2: Replace remaining � with é
+    htmlText = htmlText.replace(/\uFFFD/g, 'é');
+
+    return htmlText;
 }
+
