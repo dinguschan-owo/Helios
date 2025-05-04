@@ -1102,6 +1102,10 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     // Execute scripts from the fetched content
     htmlText = executeScriptsFromContent(htmlText);
+  
+  // Replace U+FFFD (�) with é
+htmlText = htmlText.replace(/\uFFFD/g, 'é');
+
 
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlText, 'text/html');
@@ -1206,6 +1210,9 @@ async function fetchExternalContent(url, content, tabIndex) {
     for (const proxy of proxies) {
         try {
             htmlText = await fetchWithProxy(proxy);
+          
+            htmlText = htmlText.replace(/\uFFFD/g, 'é');
+          
             break;
         } catch (error) {
             console.error(`Error with proxy ${proxy}: ${error.message}`);
