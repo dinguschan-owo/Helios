@@ -1,13 +1,15 @@
-document.querySelector('.reload-buttonaa').addEventListener('mouseenter', function() {
-  this.classList.add('hover-triggered');
+import axios from "axios";
+
+document.querySelector('.reload-buttonaa')!.addEventListener('mouseenter', function () {
+    this.classList.add('hover-triggered');
 });
 
-document.querySelector('.reload-buttonaa').addEventListener('animationend', function() {
-  this.classList.remove('hover-triggered');
+document.querySelector('.reload-buttonaa')!.addEventListener('animationend', function () {
+    this.classList.remove('hover-triggered');
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     console.log("DEBUG: Script is running...");
 
     // List of official Helios URLs
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function createSitechecker() {
         // Check if Sitechecker already exists
-        let sitecheckerContainer = document.querySelector(".sitechecker-container");
+        let sitecheckerContainer: HTMLDivElement | null = document.querySelector(".sitechecker-container");
         if (!sitecheckerContainer) {
             sitecheckerContainer = document.createElement("div");
             sitecheckerContainer.classList.add("sitechecker-container");
@@ -75,28 +77,28 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             console.log("DEBUG: Text updated inside Sitechecker box.");
-        }, 200); 
+        }, 200);
     }
 
     function fadeOutSitechecker() {
         setTimeout(() => {
-            let sitecheckerContainer = document.querySelector(".sitechecker-container");
+            let sitecheckerContainer: HTMLElement | null = document.querySelector(".sitechecker-container");
             if (sitecheckerContainer) {
                 sitecheckerContainer.style.transition = "opacity 1s ease-out";
                 sitecheckerContainer.style.opacity = "0";
                 console.log("DEBUG: Sitechecker is fading out.");
             }
-        }, 20000); 
-    } 
+        }, 20000);
+    }
 
     // Create Sitechecker once on initial page load
     createSitechecker();
 
     // Ensure Sitechecker remains visible when switching tabs
-    document.addEventListener("click", function(event) {
-        if (event.target.closest(".tabaa")) {
+    document.addEventListener("click", function (event) {
+        if (event.target?.["closest"]?.(".tabaa")) {
             setTimeout(() => {
-                createSitechecker(); 
+                createSitechecker();
             }, 100);
         }
     });
@@ -110,11 +112,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         document.body.addEventListener("click", function (event) {
             let target = event.target;
-            
+
             if (!target) return;
 
             // Log button clicks
-            let button = target.closest("button");
+            let button: HTMLButtonElement | undefined = target?.["closest"]?.("button");
             if (button) {
                 let buttonName = button.innerText.trim() || button.getAttribute("aria-label") || "Unnamed Button";
                 logEvent(`${buttonName} clicked`);
@@ -122,31 +124,33 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             // Log link clicks
-            let link = target.closest("a");
+            let link: HTMLLinkElement | undefined = target?.["closest"]?.("a");
             if (link) {
                 let linkText = link.innerText.trim() || link.href || "Unnamed Link";
                 logEvent(`Navigated to ${linkText}`);
                 return;
             }
 
-            logEvent(`Element clicked: ${target.tagName.toLowerCase()} - ${target.className || "No Class"}`);
+            logEvent(`Element clicked: ${target?.["tagName"]?.toLowerCase?.() ?? `unknown`} - ${target?.["className"] ?? "No Class"}`);
         });
 
         // Track form submissions
         document.body.addEventListener("submit", function (event) {
-            if (event.target.tagName === "FORM") {
-                let formName = event.target.getAttribute("name") || "Unnamed Form";
+            if (event.target?.["tagName"] === "FORM") {
+                let formName = event.target?.["getAttribute"]?.("name") ?? "Unnamed Form";
                 logEvent(`Form ${formName} submitted`);
             }
         });
 
+        const logged = new WeakSet();
+
         // Track input focus (once per element)
         document.body.addEventListener("focus", function (event) {
             let target = event.target;
-            if ((target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !target.dataset.logged) {
-                let inputName = target.name || target.placeholder || "Unnamed Input";
+            if ((target?.["tagName"] === "INPUT" || target?.["tagName"] === "TEXTAREA") && !logged.has(target)) {
+                let inputName = target?.["name"] ?? target?.["placeholder"] ?? "Unnamed Input";
                 logEvent(`Input field ${inputName} focused and edited`);
-                target.dataset.logged = true;
+                logged.add(target);
             }
         }, true);
 
@@ -161,10 +165,10 @@ document.addEventListener("DOMContentLoaded", function() {
             const currentTime = Date.now();
             if (currentTime - lastHoverTime < hoverCooldown) return;
 
-            let element = target.closest("button, a, img");
+            let element: HTMLElement | undefined = target?.["closest"]?.("button, a, img");
             if (element) {
                 let elementType = element.tagName.toLowerCase();
-                let elementName = element.innerText.trim() || element.src || element.href || "Unnamed Element";
+                let elementName = element.innerText.trim() ?? element?.["src"] ?? element?.["href"] ?? "Unnamed Element";
                 logEvent(`Hovered over ${elementType}: ${elementName}`);
                 lastHoverTime = currentTime;
             }
@@ -224,16 +228,16 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 })();
 // Listen for Ctrl + K to focus on the search bar
-window.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && event.key === 'k') {
-    event.preventDefault();  // Prevent default Ctrl+K action
-    
-    const searchInput = document.querySelector('.search-baraa input');
-    
-    if (searchInput) {
-      searchInput.focus();
+window.addEventListener('keydown', function (event) {
+    if (event.ctrlKey && event.key === 'k') {
+        event.preventDefault();  // Prevent default Ctrl+K action
+
+        const searchInput: HTMLInputElement | null = document.querySelector('.search-baraa input');
+
+        if (searchInput) {
+            searchInput.focus();
+        }
     }
-  }
 });
 
 
@@ -259,7 +263,7 @@ function activatePreview(element) {
 // Switch the theme and save the active state to localStorage
 function switchTheme(themeFile, activeClass) {
     // Find the existing <link> tag for the stylesheet
-    const link = document.querySelector('link[rel="stylesheet"]');
+    const link: HTMLLinkElement | null = document.querySelector('link[rel="stylesheet"]');
 
     if (link) {
         // Update the href to the new theme file
@@ -297,192 +301,192 @@ function applySavedTheme() {
 window.onload = applySavedTheme;
 
 
-const heliosMessageHistory = [];
+const heliosMessageHistory: any[] = [];
 const HELIOS_API_KEY_PARTS = [
-  's', 'k', '-', 'o', 'r', '-', 'v', '1', '-', '8', 'e', 'f', '6', '7', '3', 'c', 
-  'a', '3', '4', 'g', 'h', 'i', 'j', 'l', 'm', 'n', '2', '2', '5', '2', '3', '3', '0', 'f', 'c', '2', 'd', '5', '4', 
-  '2', 'c', '1', '7', '0', '9', 'e', '9', '3', '3', '1', 'e', '2', 'c', '7', 'd', 
-  '6', '9', '0', '4', '4', '5', 'd', '1', '2', '3', '2', '1', '9', 'd', 'a', '3', 
-  '6', '0', '0', '5', 'd', '5', '5', '6', 'c',
-'b', 'p', 'q', 't', 'u', 'w', 'x', 'y', 'z'
+    's', 'k', '-', 'o', 'r', '-', 'v', '1', '-', '8', 'e', 'f', '6', '7', '3', 'c',
+    'a', '3', '4', 'g', 'h', 'i', 'j', 'l', 'm', 'n', '2', '2', '5', '2', '3', '3', '0', 'f', 'c', '2', 'd', '5', '4',
+    '2', 'c', '1', '7', '0', '9', 'e', '9', '3', '3', '1', 'e', '2', 'c', '7', 'd',
+    '6', '9', '0', '4', '4', '5', 'd', '1', '2', '3', '2', '1', '9', 'd', 'a', '3',
+    '6', '0', '0', '5', 'd', '5', '5', '6', 'c',
+    'b', 'p', 'q', 't', 'u', 'w', 'x', 'y', 'z'
 ];
 
-const uselessChars = [ 's', 'k', '-', 'o', 'r', '-', 'v', '1', '-', '8', 'e', 'f', '6', '7', '3', 'c', 
-  'a', '3', '4', '2', '2', '5', '2', '3', '3', '0', 'f', 'c', '2', 'd', '5', '4', 
-  '2', 'c', '1', '7', '0', '9', 'e', '9', '3', '3', '1', 'e', '2', 'c', '7', 'd', 
-  '6', '9', '0', '4', '4', '5', 'd', '1', '2', '3', '2', '1', '9', 'd', 'a', '3', 
-  '6', '0', '0', '5', 'd', '5', '5', '6', 'c'];
+const uselessChars = ['s', 'k', '-', 'o', 'r', '-', 'v', '1', '-', '8', 'e', 'f', '6', '7', '3', 'c',
+    'a', '3', '4', '2', '2', '5', '2', '3', '3', '0', 'f', 'c', '2', 'd', '5', '4',
+    '2', 'c', '1', '7', '0', '9', 'e', '9', '3', '3', '1', 'e', '2', 'c', '7', 'd',
+    '6', '9', '0', '4', '4', '5', 'd', '1', '2', '3', '2', '1', '9', 'd', 'a', '3',
+    '6', '0', '0', '5', 'd', '5', '5', '6', 'c'];
 
 function getHeliosApiKey() {
-  const filteredParts = HELIOS_API_KEY_PARTS.filter(part => part !== 'X' && uselessChars.includes(part));
-  return filteredParts.join('');
+    const filteredParts = HELIOS_API_KEY_PARTS.filter(part => part !== 'X' && uselessChars.includes(part));
+    return filteredParts.join('');
 }
 
 
 const heliosSystemMessage = {
-  role: "system",
-  content: `You are Helios AI, an advanced AI assistant designed to be helpful, knowledgeable, and adaptable. You were made by dinguschan.`
+    role: "system",
+    content: `You are Helios AI, an advanced AI assistant designed to be helpful, knowledgeable, and adaptable. You were made by dinguschan.`
 };
 
-const chatbotToggler = document.querySelector(".wrench-buttonaa");
-const closeBtn = document.querySelector(".close-btn");
-const chatbox = document.querySelector(".chatbox");
-const chatInput = document.querySelector(".chat-input textarea");
-const sendChatBtn = document.querySelector(".send-btn");
+const chatbotToggler: HTMLButtonElement = document.querySelector(".wrench-buttonaa")!;
+const closeBtn: HTMLButtonElement = document.querySelector(".close-btn")!;
+const chatbox: HTMLDivElement = document.querySelector(".chatbox")!;
+const chatInput: HTMLTextAreaElement = document.querySelector(".chat-input textarea")!;
+const sendChatBtn: HTMLButtonElement = document.querySelector(".send-btn")!;
 
 chatbotToggler.addEventListener("click", () => {
-  document.body.classList.toggle("show-chatbot");
+    document.body.classList.toggle("show-chatbot");
 
-  const existingWelcomeMessage = Array.from(chatbox.children).some(child =>
-    child.textContent === "Hi there! How may I assist you?"
-  );
+    const existingWelcomeMessage = Array.from(chatbox.children).some(child =>
+        child.textContent === "Hi there! How may I assist you?"
+    );
 
-  if (!existingWelcomeMessage) {
-    addHeliosMessage("Hi there! How may I assist you?", false);
-  }
+    if (!existingWelcomeMessage) {
+        addHeliosMessage("Hi there! How may I assist you?", false);
+    }
 });
 
 
 closeBtn.addEventListener("click", () => {
-  document.body.classList.remove("show-chatbot");
+    document.body.classList.remove("show-chatbot");
 });
 
 sendChatBtn.addEventListener("click", sendHeliosMessage);
 
 chatInput.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    sendHeliosMessage();
-  }
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendHeliosMessage();
+    }
 });
 
 async function sendHeliosMessage() {
-  const userMessage = chatInput.value.trim();
-  if (!userMessage) return;
+    const userMessage = chatInput.value.trim();
+    if (!userMessage) return;
 
-  addHeliosMessage(userMessage, true);
-  chatInput.value = '';
+    addHeliosMessage(userMessage, true);
+    chatInput.value = '';
 
-  heliosMessageHistory.push({ role: "user", content: userMessage });
-  const loadingElement = addLoadingMessage();
+    heliosMessageHistory.push({ role: "user", content: userMessage });
+    const loadingElement = addLoadingMessage();
 
-  try {
-    const response = await tryHeliosModels(userMessage);
-    let formattedResponse = response.text;
+    try {
+        const response = await tryHeliosModels(userMessage);
+        let formattedResponse = response.text;
 
-    formattedResponse = formatBulletedList(formattedResponse);
-    
-    formattedResponse = convertToStyledBold(formattedResponse);
-    
-    heliosMessageHistory.push({ role: "assistant", content: formattedResponse });
-    loadingElement.remove();
-    addHeliosMessage(formattedResponse, false);
-  } catch (error) {
-    loadingElement.remove();
-    addHeliosMessage(`Error: ${error.message}`, false);
-  }
+        formattedResponse = formatBulletedList(formattedResponse);
+
+        formattedResponse = convertToStyledBold(formattedResponse);
+
+        heliosMessageHistory.push({ role: "assistant", content: formattedResponse });
+        loadingElement.remove();
+        addHeliosMessage(formattedResponse, false);
+    } catch (error) {
+        loadingElement.remove();
+        addHeliosMessage(`Error: ${error.message}`, false);
+    }
 }
 
 function addHeliosMessage(content, isUser) {
-  const messageElement = document.createElement("div");
-  messageElement.classList.add("chat", isUser ? "outgoing" : "incoming");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("chat", isUser ? "outgoing" : "incoming");
 
-  const messageContent = document.createElement("p");
-  messageContent.textContent = content;
+    const messageContent = document.createElement("p");
+    messageContent.textContent = content;
 
-  if (!isUser) { 
-    const messageAvatar = document.createElement("span");
-    messageAvatar.classList.add("incoming-avatar");
+    if (!isUser) {
+        const messageAvatar = document.createElement("span");
+        messageAvatar.classList.add("incoming-avatar");
 
-    const icon = document.createElement("i");
-    icon.classList.add("fa-solid", "fa-robot"); 
+        const icon = document.createElement("i");
+        icon.classList.add("fa-solid", "fa-robot");
 
-    messageAvatar.appendChild(icon); 
-    messageElement.appendChild(messageAvatar);  
-  }
+        messageAvatar.appendChild(icon);
+        messageElement.appendChild(messageAvatar);
+    }
 
-  messageElement.appendChild(messageContent); 
-  chatbox.appendChild(messageElement);
-  messageElement.scrollIntoView({ behavior: 'smooth' });
+    messageElement.appendChild(messageContent);
+    chatbox.appendChild(messageElement);
+    messageElement.scrollIntoView({ behavior: 'smooth' });
 }
 
 
 function addLoadingMessage() {
-  const loadingMessage = document.createElement("p");
-  loadingMessage.textContent = "Thinking...";
-  const loadingElement = document.createElement("div");
-  loadingElement.classList.add("chat", "incoming");
-  loadingElement.appendChild(loadingMessage);
-  chatbox.appendChild(loadingElement);
-  loadingElement.scrollIntoView({ behavior: 'smooth' });
-  return loadingElement;
+    const loadingMessage = document.createElement("p");
+    loadingMessage.textContent = "Thinking...";
+    const loadingElement = document.createElement("div");
+    loadingElement.classList.add("chat", "incoming");
+    loadingElement.appendChild(loadingMessage);
+    chatbox.appendChild(loadingElement);
+    loadingElement.scrollIntoView({ behavior: 'smooth' });
+    return loadingElement;
 }
 
 async function tryHeliosModels(userMessage) {
-  const models = [
-    { name: "google/gemini-2.0-flash-exp:free", free: true },
-    { name: "google/gemini-flash-1.5-exp", free: true },
-    { name: "meta-llama/llama-3.2-3b-instruct:free", free: true },
-    { name: "mistralai/mistral-7b-instruct:free", free: true }
-  ];
+    const models = [
+        { name: "google/gemini-2.0-flash-exp:free", free: true },
+        { name: "google/gemini-flash-1.5-exp", free: true },
+        { name: "meta-llama/llama-3.2-3b-instruct:free", free: true },
+        { name: "mistralai/mistral-7b-instruct:free", free: true }
+    ];
 
-  for (let model of models) {
-    try {
-      const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${getHeliosApiKey()}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: model.name,
-          messages: [heliosSystemMessage, ...heliosMessageHistory],
-          temperature: 0.7,
-          max_tokens: 2048,
-          repetition_penalty: 1
-        })
-      });
+    for (let model of models) {
+        try {
+            const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${getHeliosApiKey()}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    model: model.name,
+                    messages: [heliosSystemMessage, ...heliosMessageHistory],
+                    temperature: 0.7,
+                    max_tokens: 2048,
+                    repetition_penalty: 1
+                })
+            });
 
-      if (!response.ok) {
-        throw new Error(`Model ${model.name} failed.`);
-      }
+            if (!response.ok) {
+                throw new Error(`Model ${model.name} failed.`);
+            }
 
-      const data = await response.json();
-      if (data.choices && data.choices[0].message.content) {
-        return { text: data.choices[0].message.content };
-      }
-    } catch (error) {
-      console.warn(`Model ${model.name} failed: ${error.message}`);
+            const data = await response.json();
+            if (data.choices && data.choices[0].message.content) {
+                return { text: data.choices[0].message.content };
+            }
+        } catch (error) {
+            console.warn(`Model ${model.name} failed: ${error.message}`);
+        }
     }
-  }
 
-  throw new Error("All models failed to respond. API might be exhausted for today.");
+    throw new Error("All models failed to respond. API might be exhausted for today.");
 }
 
 function formatBulletedList(text) {
-  const bulletPattern = /^(?:-|\*|\u2022)\s+/gm; 
-  
-  return text.replace(bulletPattern, '• ');
+    const bulletPattern = /^(?:-|\*|\u2022)\s+/gm;
+
+    return text.replace(bulletPattern, '• ');
 }
 
-  // Define a mapping for numbers and letters to their respective stylized forms
+// Define a mapping for numbers and letters to their respective stylized forms
 
 function convertToStyledBold(text) {
-  const normalToStyled = {
-    '0': '𝟎', '1': '𝟏', '2': '𝟐', '3': '𝟑', '4': '𝟒', '5': '𝟓', '6': '𝟔', '7': '𝟕', '8': '𝟖', '9': '𝟗',
-    'a': '𝗮', 'b': '𝗯', 'c': '𝗰', 'd': '𝗱', 'e': '𝗲', 'f': '𝗳', 'g': '𝗴', 'h': '𝗵', 'i': '𝗶', 'j': '𝗷', 
-    'k': '𝗸', 'l': '𝗹', 'm': '𝗺', 'n': '𝗻', 'o': '𝗼', 'p': '𝗽', 'q': '𝗾', 'r': '𝗿', 's': '𝘀', 't': '𝘁', 
-    'u': '𝘂', 'v': '𝘃', 'w': '𝘄', 'x': '𝘅', 'y': '𝘆', 'z': '𝘇',
-    'A': '𝗔', 'B': '𝗕', 'C': '𝗖', 'D': '𝗗', 'E': '𝗘', 'F': '𝗙', 'G': '𝗚', 'H': '𝗛', 'I': '𝗜', 'J': '𝗝',
-    'K': '𝗞', 'L': '𝗟', 'M': '𝗠', 'N': '𝗡', 'O': '𝗢', 'P': '𝗣', 'Q': '𝗤', 'R': '𝗥', 'S': '𝗦', 'T': '𝗧',
-    'U': '𝗨', 'V': '𝗩', 'W': '𝗪', 'X': '𝗫', 'Y': '𝗬', 'Z': '𝗭'
-  };
+    const normalToStyled = {
+        '0': '𝟎', '1': '𝟏', '2': '𝟐', '3': '𝟑', '4': '𝟒', '5': '𝟓', '6': '𝟔', '7': '𝟕', '8': '𝟖', '9': '𝟗',
+        'a': '𝗮', 'b': '𝗯', 'c': '𝗰', 'd': '𝗱', 'e': '𝗲', 'f': '𝗳', 'g': '𝗴', 'h': '𝗵', 'i': '𝗶', 'j': '𝗷',
+        'k': '𝗸', 'l': '𝗹', 'm': '𝗺', 'n': '𝗻', 'o': '𝗼', 'p': '𝗽', 'q': '𝗾', 'r': '𝗿', 's': '𝘀', 't': '𝘁',
+        'u': '𝘂', 'v': '𝘃', 'w': '𝘄', 'x': '𝘅', 'y': '𝘆', 'z': '𝘇',
+        'A': '𝗔', 'B': '𝗕', 'C': '𝗖', 'D': '𝗗', 'E': '𝗘', 'F': '𝗙', 'G': '𝗚', 'H': '𝗛', 'I': '𝗜', 'J': '𝗝',
+        'K': '𝗞', 'L': '𝗟', 'M': '𝗠', 'N': '𝗡', 'O': '𝗢', 'P': '𝗣', 'Q': '𝗤', 'R': '𝗥', 'S': '𝗦', 'T': '𝗧',
+        'U': '𝗨', 'V': '𝗩', 'W': '𝗪', 'X': '𝗫', 'Y': '𝗬', 'Z': '𝗭'
+    };
 
-  function convertWord(word) {
-    return word.split('').map(char => normalToStyled[char] || char).join('');
-  }
+    function convertWord(word) {
+        return word.split('').map(char => normalToStyled[char] || char).join('');
+    }
 
-  return text.replace(/\*\*(.*?)\*\*/g, (match, p1) => convertWord(p1));
+    return text.replace(/\*\*(.*?)\*\*/g, (match, p1) => convertWord(p1));
 }
 
 
@@ -534,13 +538,13 @@ function setFallbackFont(doc) {
     doc.head.appendChild(styleTag);
 }
 
-async function handleFetchedContent(html, url) {
-    const fixedHtml = await fixFetchedFonts(html, url);
+// async function handleFetchedContent(html, url) {
+//     const fixedHtml = await fixFetchedFonts(html, url);
 
-    // Inject the modified content into your page or Shadow DOM
-    const contentContainer = document.getElementById('content'); // Adjust to your container
-    contentContainer.innerHTML = fixedHtml;
-}
+//     // Inject the modified content into your page or Shadow DOM
+//     const contentContainer = document.getElementById('content'); // Adjust to your container
+//     contentContainer.innerHTML = fixedHtml;
+// }
 
 function switchTabWithoutDeactivating(tabIndex) {
     // Activate the clicked tab and its content
@@ -555,18 +559,18 @@ function switchTabWithoutDeactivating(tabIndex) {
 
 // Prevent administrators from closing the tab
 function preventUnwantedTabClosing(message = 'This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.') {
-    window.addEventListener('beforeunload', function(e) {
+    window.addEventListener('beforeunload', function (e) {
         e.preventDefault();
         e.returnValue = message;
         return message;
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     preventUnwantedTabClosing('Custom message: This page is asking you to confirm that you want to leave — information you’ve entered may not be saved.');
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const contentFetchingProtocolExpectedOutput = "𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!";
     const contentFetchingProtocolElements = document.querySelectorAll('.Xt7Lm9Kp3R8f, #h2Dv8e46q');
 
@@ -590,7 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function contentFetchingProtocolValidation4(contentFetchingProtocolInput) {
-        const contentFetchingProtocolText = contentFetchingProtocolInput.textContent.trim();
+        const contentFetchingProtocolText: string = contentFetchingProtocolInput.textContent.trim();
         const contentFetchingProtocolInputCodePoints = Array.from(contentFetchingProtocolText).map(char => char.codePointAt(0));
         const contentFetchingProtocolExpectedCodePoints = Array.from(contentFetchingProtocolExpectedOutput).map(char => char.codePointAt(0));
         return contentFetchingProtocolInputCodePoints.length === contentFetchingProtocolExpectedCodePoints.length &&
@@ -609,7 +613,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function contentFetchingProtocolLevenshteinDistance(a, b) {
             if (a.length === 0) return b.length;
             if (b.length === 0) return a.length;
-            let matrix = [];
+            let matrix: number[][] = [];
             for (let i = 0; i <= b.length; i++) {
                 matrix[i] = [i];
             }
@@ -701,11 +705,11 @@ function initializeTabs() {
     const newTab = document.createElement('div');
     newTab.className = 'tabaa';
     newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-    document.querySelector('.uptop-baraa').insertBefore(newTab, document.getElementById('add-tabaa'));
+    document.querySelector('.uptop-baraa')!.insertBefore(newTab, document.getElementById('add-tabaa'));
 
     const newContent = document.createElement('div');
     newContent.className = 'contentaa tab-contentaa';
-    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
+    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, `${newTabIndex}`);
     document.body.appendChild(newContent);
 
     tabs.push({
@@ -715,7 +719,7 @@ function initializeTabs() {
 
     // Close the original tab
     const originalTab = document.querySelector('.tabaa');
-    originalTab.remove();
+    if (originalTab) originalTab.remove();
     document.querySelectorAll('.tab-contentaa')[0].remove();
     tabs.shift();
 
@@ -768,16 +772,16 @@ const tabs = [{
 
 const trustedSchemes = ['helios://', 'https://', 'http://'];
 
-document.getElementById('add-tabaa').addEventListener('click', function() {
+document.getElementById('add-tabaa')!.addEventListener('click', function () {
     const newTabIndex = tabs.length;
     const newTab = document.createElement('div');
     newTab.className = 'tabaa';
     newTab.innerHTML = `<span class="tab-nameaa">New Tab</span><i class="fas fa-times close-btnaa"></i>`;
-    document.querySelector('.uptop-baraa').insertBefore(newTab, this);
+    document.querySelector('.uptop-baraa')!.insertBefore(newTab, this);
 
     const newContent = document.createElement('div');
     newContent.className = 'contentaa tab-contentaa';
-    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, newTabIndex);
+    newContent.innerHTML = tabs[0].content.replace(/\${currentTabIndex}/g, `${newTabIndex}`);
     document.body.appendChild(newContent);
 
     tabs.push({
@@ -796,8 +800,8 @@ document.querySelectorAll('.tabaa').forEach((tab, index) => {
 });
 
 function attachClickListeners() {
-    document.querySelectorAll('.top-right-boxaa').forEach(function(element) {
-        element.removeEventListener('click', openGitHub); 
+    document.querySelectorAll('.top-right-boxaa').forEach(function (element) {
+        element.removeEventListener('click', openGitHub);
         element.addEventListener('click', openGitHub);
     });
 }
@@ -808,22 +812,22 @@ function openGitHub() {
 
 document.addEventListener('DOMContentLoaded', attachClickListeners);
 
-document.addEventListener('click', function(event) {
-    if (event.target.closest('.add-tabaa')) {
+document.addEventListener('click', function (event) {
+    if (event.target?.["closest"]?.('.add-tabaa')) {
         setTimeout(attachClickListeners, 100);
     }
 });
 
 
 
-function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function() {
+function addCloseButtonFunctionality1(tab) {
+    tab.querySelector('.close-btnaa').addEventListener('click', function () {
         const index = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
         tab.remove();
         document.querySelectorAll('.tab-contentaa')[index].remove();
         tabs.splice(index, 1);
         if (index === currentTabIndex) {
-            const newActiveTab = document.querySelectorAll('.tabaa')[index] || document.querySelectorAll('.tabaa')[index - 1];
+            const newActiveTab: HTMLElement | undefined = (document.querySelectorAll('.tabaa')[index] ?? document.querySelectorAll('.tabaa')[index - 1]) as HTMLElement | undefined;
             if (newActiveTab) {
                 newActiveTab.click();
             }
@@ -832,7 +836,7 @@ function addCloseButtonFunctionality(tab) {
 }
 
 function addTabClickListener(tab, content, index) {
-    tab.addEventListener('click', function() {
+    tab.addEventListener('click', function () {
         updateActiveTab(tab, content, index);
     });
 }
@@ -851,14 +855,15 @@ function updateActiveTab(tab, content, index) {
 
     currentTabIndex = index;
     const url = tabs[index].url;
-    document.getElementById('url-baraa').value = url;
+    const baraa = document.getElementById('url-baraa');
+    if (baraa && 'value' in baraa) baraa.value = url;
 
     updateTabContent(url, content, tab);
     updateLockIcon(url);
-    updateSpecialDivs(url);
+    updateSpecialDivs();
 }
 
-function updateTabContent(url, content, tab) {
+let updateTabContent = function (url, content, tab) {
     showSpinner(tab);
     localStorage.setItem(`tab_${currentTabIndex}`, url);
     sessionStorage.setItem(`tab_${currentTabIndex}`, url);
@@ -899,9 +904,10 @@ function updateTabContent(url, content, tab) {
         tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
-        document.getElementById(`search-input-${currentTabIndex}`).addEventListener('keydown', function(event) {
+        const inp: HTMLInputElement | null = document.getElementById(`search-input-${currentTabIndex}`) as HTMLInputElement | null;
+        if (inp) inp.addEventListener('keydown', function (event) {
             if (event.key === 'Enter') {
-                const enteredUrl = this.value;
+                const enteredUrl = inp.value;
                 if (enteredUrl) {
                     updateTabContent(enteredUrl, content, tab);
                 }
@@ -975,10 +981,10 @@ function updateTabContent(url, content, tab) {
         tabs[currentTabIndex].content = content.innerHTML;
         tabs[currentTabIndex].url = url;
 
-        document.getElementById(`clear-history-${currentTabIndex}`).addEventListener('click', function() {
+        document.getElementById(`clear-history-${currentTabIndex}`)?.addEventListener('click', function () {
             localStorage.removeItem(`tab_${currentTabIndex}`);
             sessionStorage.removeItem(`tab_${currentTabIndex}`);
-            const messageDiv = document.getElementById(`clear-message-${currentTabIndex}`);
+            const messageDiv: HTMLDivElement = document.getElementById(`clear-message-${currentTabIndex}`)! as HTMLDivElement;
             messageDiv.textContent = 'History has been cleared for this tab!';
             messageDiv.style.display = 'block';
 
@@ -991,14 +997,14 @@ function updateTabContent(url, content, tab) {
     } else {
         fetchExternalContent(url, content, currentTabIndex);
     }
-
-    document.getElementById('url-baraa').value = url;
+    const baraa = document.getElementById('url-baraa');
+    if (baraa && 'value' in baraa) baraa.value = url;
 
     tabs[currentTabIndex].content = content.innerHTML;
     tabs[currentTabIndex].url = url;
 
     updateLockIcon(url);
-    updateSpecialDivs(url);
+    updateSpecialDivs();
     if (url === 'helios://start' || url === 'helios://settings' || url === 'helios://urls') {
         // For internal pages, hide the spinner immediately after setting content
         hideSpinner(tab);
@@ -1008,7 +1014,7 @@ function updateTabContent(url, content, tab) {
     }
 }
 
-async function fetchExternalContent(url, content, tabIndex) {
+async function fetchExternalContent1(url, content, tabIndex) {
     const tab = document.querySelectorAll('.tabaa')[tabIndex];
     showSpinner(tab);
 
@@ -1030,7 +1036,7 @@ async function fetchExternalContent(url, content, tabIndex) {
 
 
 
-        async function fetchWithProxy(proxy) {
+    async function fetchWithProxy(proxy) {
         return new Promise((resolve, reject) => {
             const controller = new AbortController();
             const id = setTimeout(() => {
@@ -1041,11 +1047,11 @@ async function fetchExternalContent(url, content, tabIndex) {
             console.log(`Attempting to fetch with proxy: ${proxy}`);
 
             fetch(proxy, {
-                    signal: controller.signal,
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' // User agent to spoof your actual User ID to the CORS proxy server and target server
-                    }
-                })
+                signal: controller.signal,
+                headers: {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' // User agent to spoof your actual User ID to the CORS proxy server and target server
+                }
+            })
                 .then(response => {
                     clearTimeout(id);
                     if (!response.ok) {
@@ -1062,11 +1068,11 @@ async function fetchExternalContent(url, content, tabIndex) {
     }
 
     let htmlText;
-    let errors = [];
+    let errors: string[] = [];
 
     for (const proxy of proxies) {
         try {
-htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
+            htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
             console.log(`Fetch successful using proxy: ${proxy}`);
             break;
         } catch (error) {
@@ -1095,9 +1101,9 @@ htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
     console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
     // Fix the function to fix fonts in the fetched content
-htmlText = sanitizeHtmlText(htmlText);
-htmlText = await fixFetchedFonts(htmlText, url);
-htmlText = await fixFontsInFetchedContent(htmlText, url);
+    htmlText = sanitizeHtmlText(htmlText);
+    // htmlText = await fixFetchedFonts(htmlText, url);
+    htmlText = await fixFontsInFetchedContent(htmlText, url);
 
 
     // Execute scripts from the fetched content
@@ -1107,7 +1113,8 @@ htmlText = await fixFontsInFetchedContent(htmlText, url);
     const doc = parser.parseFromString(htmlText, 'text/html');
     const title = doc.title;
     if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+        const name = tab.querySelector('.tab-nameaa');
+        if (name && 'textContent' in name) name.textContent = title || 'Untitled';
     }
 
     console.log(`Parsed document title: ${title || 'Untitled'}`);
@@ -1124,16 +1131,17 @@ htmlText = await fixFontsInFetchedContent(htmlText, url);
     });
 
     // Remove the default style that forces a white background
-shadowRoot.innerHTML = sanitizeHtmlText(doc.documentElement.outerHTML);
+    shadowRoot.innerHTML = sanitizeHtmlText(doc.documentElement.outerHTML);
 
     console.log('Shadow DOM created and populated with fetched content');
 
     // Rewrite relative URLs to absolute URLs
     const baseUrl = new URL(url);
     let rewrittenUrls = 0;
-    shadowRoot.querySelectorAll('a[href]').forEach(a => {
+    shadowRoot.querySelectorAll('a[href]').forEach(a_ => {
+        const a = a_ as HTMLLinkElement;
         try {
-            a.href = new URL(a.getAttribute('href'), baseUrl).href;
+            a.href = new URL(a.getAttribute('href')!, baseUrl).href;
             rewrittenUrls++;
         } catch (e) {
             console.error('Error rewriting URL:', e);
@@ -1156,7 +1164,7 @@ shadowRoot.innerHTML = sanitizeHtmlText(doc.documentElement.outerHTML);
 document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
-        if (key.startsWith('tab_')) {
+        if (key && key.startsWith('tab_')) {
             const url = localStorage.getItem(key);
             // Logic to create a new tab with this URL
         }
@@ -1164,7 +1172,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.getElementById('url-baraa');
+    const urlBar: HTMLInputElement = document.getElementById('url-baraa')! as HTMLInputElement;
     const content = document.getElementById('contentaa');
 
     urlBar.addEventListener('keydown', (event) => {
@@ -1223,16 +1231,17 @@ async function fetchExternalContent(url, content, tabIndex) {
     const title = doc.title;
     const tab = document.querySelectorAll('.tabaa')[tabIndex];
     if (tab) {
-        tab.querySelector('.tab-nameaa').textContent = title || 'Untitled';
+        const name = tab.querySelector('.tab-nameaa');
+        if (name && 'textContent' in name) name.textContent = title || 'Untitled';
     }
 
     async function fetchAndInjectResources(html, tabIndex) {
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
-        const resources = [];
-        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-        const jsScripts = doc.querySelectorAll('script[src]');
+        const resources: string[] = [];
+        const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]') as NodeListOf<HTMLLinkElement>;
+        const jsScripts = doc.querySelectorAll('script[src]') as NodeListOf<HTMLScriptElement>;
         const images = doc.querySelectorAll('img');
         const videos = doc.querySelectorAll('video');
         const audios = doc.querySelectorAll('audio');
@@ -1297,7 +1306,7 @@ async function fetchExternalContent(url, content, tabIndex) {
             const elements = shadowRoot.querySelectorAll('a[href], link[href], script[src], img[src], video[src], audio[src], source[src]');
             elements.forEach(element => {
                 const attributeName = element.hasAttribute('href') ? 'href' : 'src';
-                const url = new URL(element.getAttribute(attributeName), baseUrl);
+                const url = new URL(element.getAttribute(attributeName)!, baseUrl);
                 element.setAttribute(attributeName, url.href);
             });
         };
@@ -1308,7 +1317,9 @@ async function fetchExternalContent(url, content, tabIndex) {
             if (result instanceof Blob) {
                 const objectURL = URL.createObjectURL(result);
                 const elements = shadowRoot.querySelectorAll(`[src="${url}"]`);
-                elements.forEach(element => element.src = objectURL);
+                elements.forEach(element => {
+                    if ('src' in element) element.src = objectURL
+                });
             } else if (typeof result === 'string') {
                 if (url.endsWith('.css')) {
                     const style = document.createElement('style');
@@ -1352,7 +1363,7 @@ async function fetchExternalContent(url, content, tabIndex) {
         return shadowContainer;
     }
 
-    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex, url);
+    const newShadowContainer = await fetchAndInjectResources(htmlText, tabIndex);
     content.innerHTML = '';
     content.appendChild(newShadowContainer);
 
@@ -1363,7 +1374,7 @@ async function fetchExternalContent(url, content, tabIndex) {
 }
 
 function updateLockIcon(url) {
-    const lockIcon = document.querySelector('.lock-iconaa');
+    const lockIcon = document.querySelector('.lock-iconaa')! as HTMLElement;
     const isLocked = trustedSchemes.some(scheme => url.startsWith(scheme));
     if (isLocked) {
         lockIcon.classList.remove('fa-unlock');
@@ -1389,9 +1400,9 @@ function modifyCss(cssText) {
 function updateSpecialDivs() {
     const checkURL = () => {
         const urlInput = document.querySelector('.browser-baraa .address-baraa input');
-        const isHeliosURL = urlInput && urlInput.value.startsWith('helios://');
-        const officialC = document.querySelector('.official-caa');
-        const official = document.querySelector('.officialaa');
+        const isHeliosURL = urlInput && urlInput?.["value"]?.startsWith('helios://');
+        const officialC = document.querySelector('.official-caa')! as HTMLElement;
+        const official = document.querySelector('.officialaa')! as HTMLElement;
 
         if (officialC) {
             officialC.style.opacity = isHeliosURL ? '1' : '0';
@@ -1405,40 +1416,43 @@ function updateSpecialDivs() {
 
     setInterval(checkURL, 100);
 }
-
-document.getElementById('url-baraa').addEventListener('input', function() {
-    const url = this.value;
+const baraa = document.getElementById('url-baraa')! as HTMLInputElement;
+baraa.addEventListener('input', function () {
+    const url = baraa.value;
     tabs[currentTabIndex].url = url;
     updateLockIcon(url);
-    updateSpecialDivs(url);
+    updateSpecialDivs();
 });
 
-document.getElementById('url-baraa').addEventListener('keypress', function(e) {
+document.getElementById('url-baraa')!.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
-        let url = e.target.value.trim();
+        if (e.target && 'value' in e.target && typeof e.target.value === "string") {
+            let url = e.target.value.trim();
 
-        const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
+            const hasValidScheme = trustedSchemes.some(scheme => url.startsWith(scheme));
 
-        if (!hasValidScheme) {
-            url = 'https://' + url;
+            if (!hasValidScheme) {
+                url = 'https://' + url;
+            }
+
+            const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
+            const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
+
+            tabs[currentTabIndex].url = url;
+            const baraa = document.getElementById('url-baraa');
+            if (baraa && 'value' in baraa) baraa.value = url;
+            updateTabContent(url, currentContent, currentTab);
+            updateLockIcon(url);
+            updateSpecialDivs();
         }
-
-        const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
-        const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
-
-        tabs[currentTabIndex].url = url;
-        document.getElementById('url-baraa').value = url;
-        updateTabContent(url, currentContent, currentTab);
-        updateLockIcon(url);
-        updateSpecialDivs(url);
     }
 });
 
-document.querySelector('.home-buttonaa').addEventListener('click', function() {
+document.querySelector('.home-buttonaa')!.addEventListener('click', function () {
     changeTabContent('helios://start');
 });
 
-document.querySelector('.settings-buttonaa').addEventListener('click', function() {
+document.querySelector('.settings-buttonaa')!.addEventListener('click', function () {
     changeTabContent('helios://settings');
 });
 
@@ -1447,7 +1461,8 @@ function changeTabContent(url) {
     const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
 
     if (currentTab && currentContent) {
-        document.getElementById('url-baraa').value = url;
+        const baraa = document.getElementById('url-baraa');
+        if (baraa && 'value' in baraa) baraa.value = url;
 
         tabs[currentTabIndex].url = url;
         updateTabContent(url, currentContent, currentTab);
@@ -1458,15 +1473,15 @@ function changeTabContent(url) {
             key: 'Enter',
             code: 'Enter'
         });
-        document.getElementById('url-baraa').dispatchEvent(event);
+        if (baraa) baraa.dispatchEvent(event);
     }
 }
 // Function to open Helios in an about:blank tab
 
 function openInAboutBlank() {
-    const newWindow = window.open('about:blank', '_blank');
+    const newWindow = window.open('about:blank', '_blank')!;
 
-    const clonedDocument = document.documentElement.cloneNode(true);
+    const clonedDocument: HTMLElement = document.documentElement.cloneNode(true) as HTMLElement;
 
     // Remove the square button from the cloned document
     const squareButton = clonedDocument.querySelector('#square-buttonaa');
@@ -1482,7 +1497,7 @@ function openInAboutBlank() {
 
 async function openInBlob() {
     // Clone the document's static DOM structure
-    const htmlDocument = document.documentElement.cloneNode(true);
+    const htmlDocument = document.documentElement.cloneNode(true) as HTMLHtmlElement;
     // Block duplication of square button
     const squareButton = htmlDocument.querySelector('#square-buttonaa');
     if (squareButton) {
@@ -1490,7 +1505,8 @@ async function openInBlob() {
     }
     // Defer all scripts in the cloned document
     const scripts = htmlDocument.querySelectorAll('script[src], script:not([src])');
-    scripts.forEach(script => {
+    scripts.forEach(script_ => {
+        const script = script_ as HTMLScriptElement;
         const deferredScript = document.createElement('script');
         deferredScript.type = 'text/javascript';
 
@@ -1514,18 +1530,18 @@ async function openInBlob() {
             `;
         }
 
-        script.parentNode.replaceChild(deferredScript, script);
+        script.parentNode?.replaceChild(deferredScript, script);
     });
 
     // Inline CSS styles concurrently
     const stylesheets = Array.from(document.styleSheets).filter(sheet => sheet.href);
     const cssPromises = stylesheets.map(async sheet => {
         try {
-            const response = await fetch(sheet.href);
+            const response = await fetch(sheet.href!);
             const text = await response.text();
             const style = document.createElement('style');
             style.textContent = text;
-            htmlDocument.querySelector('head').appendChild(style);
+            htmlDocument.querySelector('head')?.appendChild(style);
         } catch (e) {
             console.warn('Could not inline CSS:', sheet.href, e);
         }
@@ -1544,22 +1560,22 @@ async function openInBlob() {
 
 
 function toggleDropdown(tabIndex) {
-    var dropdown = document.getElementById(`engineDropdown-${tabIndex}`);
+    var dropdown = document.getElementById(`engineDropdown-${tabIndex}`)!;
     dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
     updateDropdownVisibility(tabIndex);
 }
 
 function selectEngine(iconSrc, engineName, tabIndex) {
-    document.getElementById(`selected-engine-${tabIndex}`).src = iconSrc;
-    document.getElementById(`selected-engine-${tabIndex}`).alt = engineName;
-    document.getElementById(`statusMessage-${tabIndex}`).textContent = "Searching with " + engineName;
+    (document.getElementById(`selected-engine-${tabIndex}`)! as HTMLImageElement).src = iconSrc;
+    (document.getElementById(`selected-engine-${tabIndex}`)! as HTMLImageElement).alt = engineName;
+    (document.getElementById(`statusMessage-${tabIndex}`)! as HTMLImageElement).textContent = "Searching with " + engineName;
     toggleDropdown(tabIndex);
 }
 
 function updateDropdownVisibility(tabIndex) {
-    var selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
-    var options = document.querySelectorAll(`#engineDropdown-${tabIndex} a`);
-    options.forEach(function(option) {
+    var selectedEngine = (document.getElementById(`selected-engine-${tabIndex}`)! as HTMLImageElement).alt;
+    var options = document.querySelectorAll(`#engineDropdown-${tabIndex} a`) as NodeListOf<HTMLElement>;
+    options.forEach(function (option) {
         if (option.getAttribute("data-engine") === selectedEngine) {
             option.style.display = "none";
         } else {
@@ -1568,10 +1584,10 @@ function updateDropdownVisibility(tabIndex) {
     });
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('.search-engine-dropdownaa') && !event.target.matches('.search-engine-dropdownaa img')) {
-        var dropdowns = document.querySelectorAll('.dropdown-contentaa');
-        dropdowns.forEach(function(dropdown) {
+        var dropdowns = document.querySelectorAll('.dropdown-contentaa') as NodeListOf<HTMLElement>;
+        dropdowns.forEach(function (dropdown) {
             if (dropdown.style.display === "block") {
                 dropdown.style.display = "none";
             }
@@ -1579,15 +1595,16 @@ window.onclick = function(event) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     tabs.forEach((tab, index) => {
-        document.getElementById(`statusMessage-${index}`).textContent = "Searching with Google";
+        const status = document.getElementById(`statusMessage-${index}`);
+        if (status) status.textContent = "Searching with Google";
         updateDropdownVisibility(index);
     });
 });
 
-document.getElementById('url-baraa').addEventListener('input', function(e) {
-    this.value = this.value.toLowerCase();
+document.getElementById('url-baraa')!.addEventListener('input', function (e) {
+    baraa.value = baraa.value.toLowerCase();
 });
 
 function isValidURL(string) {
@@ -1612,7 +1629,7 @@ function handleSearchOrNavigation(input, tabIndex) {
         updateTabContent(url, document.querySelectorAll('.tab-contentaa')[tabIndex], document.querySelectorAll('.tabaa')[tabIndex]);
     } else {
         // If not a URL, perform a search
-        const selectedEngine = document.getElementById(`selected-engine-${tabIndex}`).alt;
+        const selectedEngine = (document.getElementById(`selected-engine-${tabIndex}`)! as HTMLImageElement).alt;
         let searchUrl;
         switch (selectedEngine) {
             case '4get':
@@ -1636,23 +1653,27 @@ function handleSearchOrNavigation(input, tabIndex) {
 
 
 // Add event listener for the search input in each tab
-document.addEventListener('click', function(event) {
-    if (event.target.classList.contains('search-iconaa')) {
-        const tabIndex = parseInt(event.target.closest('.search-baraa').querySelector('input').id.split('-')[2]);
-        const input = document.getElementById(`search-input-${tabIndex}`).value;
-        handleSearchOrNavigation(input, tabIndex);
+document.addEventListener('click', function (event) {
+    if (event.target instanceof HTMLElement) {
+        if (event.target.classList.contains('search-iconaa')) {
+            const tabIndex = parseInt(event.target.closest('.search-baraa')?.querySelector('input')?.id?.split('-')?.[2] ?? `nope`);
+            const input = (document.getElementById(`search-input-${tabIndex}`)! as HTMLInputElement).value;
+            handleSearchOrNavigation(input, tabIndex);
+        }
     }
 });
 
 // Add event listener for the Enter key in search inputs
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
-        const tabIndex = parseInt(event.target.id.split('-')[2]);
-        handleSearchOrNavigation(event.target.value, tabIndex);
+document.addEventListener('keydown', function (event) {
+    if (event.target instanceof HTMLElement) {
+        if (event.key === 'Enter' && event.target.id.startsWith('search-input-')) {
+            const tabIndex = parseInt(event.target.id.split('-')[2]);
+            if ('value' in event.target) handleSearchOrNavigation(event.target.value, tabIndex);
+        }
     }
 });
 
-document.querySelector('.reload-buttonaa').addEventListener('click', function() {
+document.querySelector('.reload-buttonaa')!.addEventListener('click', function () {
     const currentContent = document.querySelectorAll('.tab-contentaa')[currentTabIndex];
     const currentTab = document.querySelectorAll('.tabaa')[currentTabIndex];
     const currentUrl = tabs[currentTabIndex].url;
@@ -1684,14 +1705,14 @@ function updateHistory(tabIndex, url) {
 
 // Modify updateTabContent to update history
 const originalUpdateTabContent = updateTabContent;
-updateTabContent = function(url, content, tab) {
+updateTabContent = function (url, content, tab) {
     const tabIndex = Array.from(document.querySelectorAll('.tabaa')).indexOf(tab);
     updateHistory(tabIndex, url);
     originalUpdateTabContent(url, content, tab);
 };
 
 // Back button functionality
-document.querySelector('.backward-buttonaa').addEventListener('click', function() {
+document.querySelector('.backward-buttonaa')!.addEventListener('click', function () {
     const history = getTabHistory(currentTabIndex);
     if (history.currentIndex > 0) {
         history.currentIndex--;
@@ -1703,7 +1724,7 @@ document.querySelector('.backward-buttonaa').addEventListener('click', function(
 });
 
 // Forward button functionality
-document.querySelector('.forward-buttonaa').addEventListener('click', function() {
+document.querySelector('.forward-buttonaa')!.addEventListener('click', function () {
     const history = getTabHistory(currentTabIndex);
     if (history.currentIndex < history.history.length - 1) {
         history.currentIndex++;
@@ -1716,7 +1737,7 @@ document.querySelector('.forward-buttonaa').addEventListener('click', function()
 
 // Initialize history for existing tabs
 document.querySelectorAll('.tabaa').forEach((tab, index) => {
-    const url = tab.querySelector('.tab-nameaa').textContent === 'New Tab' ? 'helios://start' : document.getElementById('url-baraa').value;
+    const url = tab.querySelector('.tab-nameaa')!.textContent === 'New Tab' ? 'helios://start' : (document.getElementById('url-baraa')! as HTMLInputElement).value;
     updateHistory(index, url);
 });
 
@@ -1739,7 +1760,7 @@ function closeTab(tab) {
         }
         // If there are no tabs left, create a new one
         else {
-            document.getElementById('add-tabaa').click();
+            document.getElementById('add-tabaa')?.["click"]?.();
             return;
         }
 
@@ -1755,7 +1776,7 @@ function closeTab(tab) {
 
 // Replace the existing close button functionality with this new function
 function addCloseButtonFunctionality(tab) {
-    tab.querySelector('.close-btnaa').addEventListener('click', function(event) {
+    tab.querySelector('.close-btnaa').addEventListener('click', function (event) {
         event.stopPropagation(); // Prevent the tab from being activated when closing
         closeTab(tab);
     });
@@ -1779,10 +1800,11 @@ function handleSquareButtonClick() {
     const firstTabContent = document.querySelectorAll('.tab-contentaa')[0];
 
     // Update tab name
-    firstTab.querySelector('.tab-nameaa').textContent = 'New Tab';
+    const tab = firstTab?.querySelector('.tab-nameaa');
+    if (tab) tab.textContent = 'New Tab';
 
     // Reset URL bar
-    document.getElementById('url-baraa').value = 'helios://start';
+    (document.getElementById('url-baraa')! as HTMLInputElement).value = 'helios://start';
 
     // Reset tab content
     updateTabContent('helios://start', firstTabContent, firstTab);
@@ -1804,7 +1826,7 @@ squareButton.textContent = '×';
 squareButton.title = 'Reset Tabs';
 
 // Insert the square button before the first tab
-const topBar = document.querySelector('.uptop-baraa');
+const topBar = document.querySelector('.uptop-baraa')!;
 topBar.insertBefore(squareButton, topBar.firstChild);
 
 // Add event listener to the square button
@@ -1853,10 +1875,10 @@ function toggleFullscreen() {
 }
 
 function toggleDropdownccc() {
-    document.getElementById("myDropdownccc").classList.toggle("showccc");
+    document.getElementById("myDropdownccc")!.classList.toggle("showccc");
 }
 
-window.onclick = function(event) {
+window.onclick = function (event) {
     if (!event.target.matches('.menu-buttonaa')) {
         var dropdownsccc = document.getElementsByClassName("dropdown-menuccc");
         for (var i = 0; i < dropdownsccc.length; i++) {
@@ -1870,12 +1892,12 @@ window.onclick = function(event) {
 
 function handleNewTabMenuClick(event) {
     event.preventDefault();
-    document.getElementById('add-tabaa').click();
+    document.getElementById('add-tabaa')!.click();
     toggleDropdownccc(); // Close the dropdown after creating a new tab
 }
 
 // Modify the dropdown menu HTML to include an event handler
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const newTabMenuItem = document.querySelector('.dropdown-menuccc a');
     if (newTabMenuItem) {
         newTabMenuItem.addEventListener('click', handleNewTabMenuClick);
@@ -1904,10 +1926,10 @@ function showUrlsList(content, tab) {
 
     // Add click event listeners to the custom URL links
     content.querySelectorAll('.custom-url-link').forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const url = this.getAttribute('data-url');
-            document.getElementById('url-baraa').value = url;
+            (document.getElementById('url-baraa')! as HTMLInputElement).value = url;
             updateTabContent(url, content, tab);
         });
     });
@@ -1994,7 +2016,7 @@ function generateUserID() {
         }
     }
 
-    document.getElementById('user-idff').textContent = userId;
+    document.getElementById('user-idff')!.textContent = userId;
 }
 
 window.onload = generateUserID;
@@ -2036,14 +2058,14 @@ function executeScriptsFromContent(content) {
     return tempDiv.innerHTML;
 }
 // Execute scripts and update the content
-const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
+// const contentWithoutScripts = executeScriptsFromContent(fetchedContent);
 
 // Display the code
-console.log('Function code:');
-console.log(executeScriptsFromContent.toString());
+// console.log('Function code:');
+// console.log(executeScriptsFromContent.toString());
 
-console.log('\nModified content:');
-console.log(contentWithoutScripts);
+// console.log('\nModified content:');
+// console.log(contentWithoutScripts);
 
 console.log('\nCheck the browser console for script execution results.');
 
@@ -2052,7 +2074,7 @@ function fixFontsInFetchedContent(htmlContent, baseUrl) {
     const doc = parser.parseFromString(htmlContent, 'text/html');
 
     // Find all stylesheet links
-    const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]');
+    const stylesheets = doc.querySelectorAll('link[rel="stylesheet"]') as NodeListOf<HTMLLinkElement>;
 
     // Function to fetch and parse CSS
     async function fetchAndParseCss(url) {
@@ -2079,7 +2101,7 @@ function fixFontsInFetchedContent(htmlContent, baseUrl) {
 
     // Process stylesheets
     Promise.all(Array.from(stylesheets).map(link => {
-        const href = new URL(link.getAttribute('href'), baseUrl).href;
+        const href = new URL(link.getAttribute('href')!, baseUrl).href;
         return fetchAndParseCss(href).then(css => {
             const fontFaceRules = extractFontFaceRules(css);
             return fontFaceRules.map(rule => modifyFontUrls(rule, href));
@@ -2117,17 +2139,17 @@ function fixFontsInFetchedContent(htmlContent, baseUrl) {
     // Return the original content for now (async operation will update later)
     return htmlContent;
 }
-fixFontsInFetchedContent(fetchedHtml, baseUrl);
+// fixFontsInFetchedContent(fetchedHtml, baseUrl);
 
 // Display the code
-document.getElementById('codeBlock').textContent = fixFontsInFetchedContent.toString();
+document.getElementById('codeBlock')!.textContent = fixFontsInFetchedContent.toString();
 
 // Generates a cryptographic key using the Web Crypto API which wil be used for the encryption and decryption of the request
 async function generateKey() {
     return await window.crypto.subtle.generateKey({
-            name: "AES-GCM",
-            length: 256
-        },
+        name: "AES-GCM",
+        length: 256
+    },
         true,
         ["encrypt", "decrypt"]
     );
@@ -2138,9 +2160,9 @@ async function encryptData(data, key) {
     const encodedData = new TextEncoder().encode(data);
     const iv = window.crypto.getRandomValues(new Uint8Array(12));
     const encryptedData = await window.crypto.subtle.encrypt({
-            name: "AES-GCM",
-            iv: iv
-        },
+        name: "AES-GCM",
+        iv: iv
+    },
         key,
         encodedData
     );
@@ -2153,9 +2175,9 @@ async function encryptData(data, key) {
 
 async function decryptData(encryptedObj, key) {
     const decryptedData = await window.crypto.subtle.decrypt({
-            name: "AES-GCM",
-            iv: new Uint8Array(encryptedObj.iv)
-        },
+        name: "AES-GCM",
+        iv: new Uint8Array(encryptedObj.iv)
+    },
         key,
         new Uint8Array(encryptedObj.encryptedData)
     );
@@ -2168,17 +2190,17 @@ function generateDataURL() {
     const htmlContent = document.documentElement.outerHTML;
     const dataURL = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
 
-    document.getElementById("dataURLText").value = dataURL;
-    document.getElementById("myModal").style.display = "flex";
-    document.querySelector(".modal-contentgg").style.display = "block";
+    (document.getElementById("dataURLText")! as HTMLInputElement).value = dataURL;
+    document.getElementById("myModal")!.style.display = "flex";
+    (document.querySelector(".modal-contentgg")! as HTMLElement).style.display = "block";
 }
 
-document.getElementById("dataURL").addEventListener("click", generateDataURL);
+document.getElementById("dataURL")!.addEventListener("click", generateDataURL);
 
 // Function to copy the data URL to clipboard
 function copyDataURL() {
-    const dataURLText = document.getElementById("dataURLText");
-    const copyButton = document.getElementById("copyButton");
+    const dataURLText = document.getElementById("dataURLText")! as HTMLInputElement;
+    const copyButton = document.getElementById("copyButton")!;
 
     dataURLText.select();
     navigator.clipboard.writeText(dataURLText.value)
@@ -2198,27 +2220,21 @@ function copyDataURL() {
 
 // Function to close the modal
 function closeModal() {
-    document.getElementById("myModal").style.display = "none";
-    document.querySelector(".modal-contentgg").style.display = "none";
+    document.getElementById("myModal")!.style.display = "none";
+      (document.querySelector(".modal-contentgg")! as HTMLElement).style.display = "none";
 }
 
-document.getElementById("dataURL").addEventListener("click", generateDataURL);
+document.getElementById("dataURL")!.addEventListener("click", generateDataURL);
 
-window.onload = function() {
-    document.getElementById("myModal").style.display = "none";
-    document.querySelector(".modal-contentgg").style.display = "none";
-};
+window.addEventListener('load',function () {
+    document.getElementById("myModal")!.style.display = "none";
+    (document.querySelector(".modal-contentgg")! as HTMLElement).style.display = "none";
+});
 
 // Function to switch categories
 
-function showCategory(category) {
-    document.querySelectorAll('.content-containervv').forEach(content => {
-        content.classList.remove('activevv');
-    });
-    document.getElementById(category).classList.add('activevv');
-}
 
-document.getElementById('clear-history').addEventListener('click', () => {
+document.getElementById('clear-history')!.addEventListener('click', () => {
     // Clear localStorage and sessionStorage
     localStorage.clear();
     sessionStorage.clear();
@@ -2230,7 +2246,7 @@ document.getElementById('clear-history').addEventListener('click', () => {
     });
 
     // Display cleared message
-    const message = document.getElementById('cleared-message');
+    const message = document.getElementById('cleared-message')!;
     message.style.display = 'block';
 
     // Hide the message after 3 seconds
@@ -2245,12 +2261,12 @@ function showCategory(categoryId) {
     document.querySelectorAll('.content-containervv').forEach(container => {
         container.classList.remove('activevv');
     });
-    document.getElementById(categoryId).classList.add('activevv');
+    document.getElementById(categoryId)!.classList.add('activevv');
 
     document.querySelectorAll('.sidebarvv button').forEach(button => {
         button.classList.remove('active');
     });
-    document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+    document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`)!.classList.add('active');
 }
 
 function sanitizeHtmlText(htmlText) {
@@ -2262,7 +2278,7 @@ function sanitizeHtmlText(htmlText) {
 
     // Rule 2: Replace remaining � with é
     htmlText = htmlText.replace(/\uFFFD/g, 'é');
-    console.log("After Rule 2 (replacing remaining � with é): ", htmlText); 
+    console.log("After Rule 2 (replacing remaining � with é): ", htmlText);
 
     // Rule 3: Translate the redirection notice
     htmlText = htmlText.replace(/Avertissement de redirection/g, 'Redirect Notice');
