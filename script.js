@@ -275,10 +275,7 @@ function activatePreview(element) {
         switchTheme('dark-ember.css', 'theme-preview-lightmode'); // Switch to dark theme
     } else if (element.classList.contains('theme-preview')) {
         switchTheme('styles.css', 'theme-preview'); // Switch to light theme
-    } else if (element.classList.contains("blue-pre")) {
-        switchTheme('coolbluex8r.css', "blue-pre")
     }
-}
 
 // Switch the theme and save the active state to localStorage
 function switchTheme(themeFile, activeClass) {
@@ -990,21 +987,6 @@ function updateTabContent(url, content, tab) {
     <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
   </div>
   <p class="theme-name-lightmode"><i>Dark Ember</i> by bromse</p>
-</div>
-
-<div class="blue-pre" onclick="activatePreview(this)">
-  <div class="browser-simulation-lightmode">
-    <div class="browser-header-lightmode">
-      <div class="circle-lightmode red-lightmode"></div>
-      <div class="circle1-lightmode yellow-lightmode"></div>
-            <div class="circle1-lightmode yellow2-lightmode"></div>
-      <div class="circle2-lightmode green-lightmode"></div>
-            <div class="barbarbar-lightmode"></div>
-
-    </div>
-    <div class="browser-content-lightmode"><div class="hetitle-lightmode">Helios</div><div class="titlelinee-lightmode"></div><div class="dropmed-lightmode"></div><div class="send4-lightmode"></div></div>
-  </div>
-  <p class="theme-name-lightmode"><i>Dodgerblue</i> by xor</p>
 </div>
 
 </div></div>
