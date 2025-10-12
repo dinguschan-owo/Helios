@@ -17,8 +17,14 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://helios-browser.rf.gd",
         "https://helios-browser.w3spaces.com/",
         "https://helios-browser.pages.dev/",
-        "https://helios-browser.ct.ws"
+        "https://helios-browser.ct.ws",
     ];
+
+    const warnedUrlComponents = [
+        "localhost:",
+        "127.0.0.1",
+        ".app.github.dev"
+    ]
 
     function normalizeUrl(url) {
         return url.split("#")[0].split("?")[0]; // Remove hash and query params
@@ -68,6 +74,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("DEBUG: Official Helios URL detected.");
                 iconElement.classList.add("fa", "fa-circle-check", "sitechecker-secure");
                 messageElement.innerHTML = `This link <b>(${pageUrl})</b> is a secure, official Helios Browser link.`;
+            } else if (warnedUrlComponents.some(entry => pageUrl.includes(entry))) {
+                console.log("DEBUG: Development Helios URL detected.");
+                iconElement.classList.add(
+                  "fa",
+                  "fa-triangle-exclamation",
+                  "sitechecker-warning2"
+                );
+                messageElement.innerHTML = `This link <b>(${pageUrl})</b> seems to be a development URL. If this was set up by you, then you can continue. Otherwise, we recommend using an official link which can be found <a href="https://github.com/dinguschan-owo/Helios/blob/main/README.md" target="_blank" class="sitechecker-link">here</a>.`;
+            } else if (pageUrl.includes("file:///")) {
+                console.log("DEBUG: Local (File) Helios URL detected.");
+                iconElement.classList.add(
+                  "fa",
+                  "fa-triangle-exclamation",
+                  "sitechecker-warning2"
+                );
+                messageElement.innerHTML = `This link is a local file. Keep in mind this could have been modified, so use at your own risk. Be sure to use official offline builds for the best experience.`;
             } else {
                 console.log("DEBUG: UNOFFICIAL URL detected!");
                 iconElement.classList.add("fa", "fa-triangle-exclamation", "sitechecker-warning");
@@ -240,7 +262,7 @@ window.addEventListener('keydown', function(event) {
 // Activate the selected theme preview and apply the corresponding theme
 function activatePreview(element) {
     // Select all theme preview elements
-    const allElements = document.querySelectorAll('.theme-preview, .theme-preview-lightmode');
+    const allElements = document.querySelectorAll('.theme-preview, .theme-preview-lightmode, .blue-pre');
 
     // Remove 'active' class from all elements
     allElements.forEach(el => el.classList.remove('active'));
@@ -254,7 +276,6 @@ function activatePreview(element) {
     } else if (element.classList.contains('theme-preview')) {
         switchTheme('styles.css', 'theme-preview'); // Switch to light theme
     }
-}
 
 // Switch the theme and save the active state to localStorage
 function switchTheme(themeFile, activeClass) {
