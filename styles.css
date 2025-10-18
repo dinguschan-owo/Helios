@@ -1609,10 +1609,6 @@ body.show-chatbot .chatbot {
   color: #ff4d4d;
 }
 
-.sitechecker-container .sitechecker-warning2 {
-  color: orange;
-}
-
 .sitechecker-container .sitechecker-link {
   text-decoration: underline;
   color: #007BFF;
