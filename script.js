@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
         "https://helios-browser.rf.gd",
         "https://helios-browser.w3spaces.com/",
         "https://helios-browser.pages.dev/",
-        "https://helios-browser.ct.ws",
+        "https://helios-browser.ct.ws"
     ];
 
     const warnedUrlComponents = [
