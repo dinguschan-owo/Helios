@@ -1566,7 +1566,117 @@ body.show-chatbot .chatbot {
   width: 630px;
   overflow-x: auto;
 }
+.sitechecker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+  display: none;
+}
+.sitechecker-container-center {
+  background: #383c3f;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  border: 3px solid #66ffa1;
+  font-family: Arial, sans-serif;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: auto;
+  z-index: 9999;
+  display: none;
+}
 
+.sitechecker-container-center .nautilus-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #66ffa1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto 20px auto;
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sitechecker-container-center .nautilus-icon i {
+  font-size: 40px;
+  color: #1e1e1e;
+}
+
+.sitechecker-container-center h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.sitechecker-container-center p {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.sitechecker-button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.sitechecker-container-center .sitechecker-close {
+  background: #52565b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+  flex: 1;
+}
+
+.sitechecker-container-center .sitechecker-close:hover {
+  background: #5e6368;
+}
+
+.sitechecker-container-center .sitechecker-visit {
+  background: #66ffa1;
+  color: #1e1e1e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  flex: 1;
+}
+
+.sitechecker-container-center .sitechecker-visit:hover {
+  background: #5ce891;
+}
 .sitechecker-container {
   background: #3c4043;
   padding: 12px;
