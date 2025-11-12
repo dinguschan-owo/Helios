@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 200); 
     }
 
-    function fadeOutSitechecker() {
+function fadeOutSitechecker() {
         setTimeout(() => {
             let sitecheckerContainer = document.querySelector(".sitechecker-container");
             if (sitecheckerContainer) {
@@ -87,10 +87,65 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("DEBUG: Sitechecker is fading out.");
             }
         }, 20000); 
-    } 
+    }
 
-    // Create Sitechecker once on initial page load
-    createSitechecker();
+function createCenterSitechecker() {
+        // Check if center Sitechecker already exists
+        let centerSitecheckerContainer = document.querySelector(".sitechecker-container-center");
+        let backdrop = document.querySelector(".sitechecker-backdrop");
+        
+        if (!centerSitecheckerContainer) {
+            // Create backdrop
+            backdrop = document.createElement("div");
+            backdrop.classList.add("sitechecker-backdrop");
+            document.body.appendChild(backdrop);
+            
+            // Create center sitechecker
+            centerSitecheckerContainer = document.createElement("div");
+            centerSitecheckerContainer.classList.add("sitechecker-container-center");
+
+            centerSitecheckerContainer.innerHTML = `
+                <div class="nautilus-icon">
+                    <i class="fa-solid fa-fish"></i>
+                </div>
+                <h2>Announcing NautilusOS!!</h2>
+                <p id="sitechecker-center-text">Hey there! dinguschan speaking! I'm excited to introduce the brand-new <strong>𝘕𝘢𝘶𝘵𝘪𝘭𝘶𝘴𝘖𝘚</strong> - a fully functional web operating system developed alongside x8rr and lanefiedler731-gif. Experience games, apps, themes, cloaking, settings, and 3 whole proxy browsers built right in (including Helios, if you'd ever wanna use it lol), all in your browser! Check it out now!</p>
+                <div class="sitechecker-button-container">
+                    <button class="sitechecker-close">Maybe later</button>
+                    <button class="sitechecker-visit">Take me there!</button>
+                </div>
+            `;
+
+            document.body.appendChild(centerSitecheckerContainer);
+            console.log("DEBUG: Center Sitechecker added to the body.");
+
+            // Show the backdrop and center sitechecker
+            backdrop.style.display = "block";
+            centerSitecheckerContainer.style.display = "block";
+
+            // Add close button functionality
+            const closeButton = centerSitecheckerContainer.querySelector(".sitechecker-close");
+            closeButton.addEventListener("click", function() {
+                centerSitecheckerContainer.style.display = "none";
+                backdrop.style.display = "none";
+                // Show the original sitechecker after closing the popup
+                createSitechecker();
+            });
+
+            // Add visit button functionality
+            const visitButton = centerSitecheckerContainer.querySelector(".sitechecker-visit");
+            visitButton.addEventListener("click", function() {
+                window.open("https://github.com/nautilus-os/NautilusOS", "_blank");
+                centerSitecheckerContainer.style.display = "none";
+                backdrop.style.display = "none";
+                // Show the original sitechecker after closing the popup
+                createSitechecker();
+            });
+        }
+    }
+
+    // Create center Sitechecker first (delays the original sitechecker)
+    createCenterSitechecker();
 
     // Ensure Sitechecker remains visible when switching tabs
     document.addEventListener("click", function(event) {
