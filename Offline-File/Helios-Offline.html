@@ -1588,7 +1588,117 @@ body.show-chatbot .chatbot {
   width: 630px;
   overflow-x: auto;
 }
+.sitechecker-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  z-index: 9998;
+  display: none;
+}
+.sitechecker-container-center {
+  background: #383c3f;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  text-align: center;
+  color: #fff;
+  border: 3px solid #66ffa1;
+  font-family: Arial, sans-serif;
+  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: auto;
+  z-index: 9999;
+  display: none;
+}
 
+.sitechecker-container-center .nautilus-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #66ffa1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px auto 20px auto;
+  animation: bob 2s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.sitechecker-container-center .nautilus-icon i {
+  font-size: 40px;
+  color: #1e1e1e;
+}
+
+.sitechecker-container-center h2 {
+  color: #ffffff;
+  font-size: 24px;
+  margin: 0 0 15px 0;
+  font-weight: 600;
+}
+
+.sitechecker-container-center p {
+  color: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.sitechecker-button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.sitechecker-container-center .sitechecker-close {
+  background: #52565b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background-color 0.3s;
+  flex: 1;
+}
+
+.sitechecker-container-center .sitechecker-close:hover {
+  background: #5e6368;
+}
+
+.sitechecker-container-center .sitechecker-visit {
+  background: #66ffa1;
+  color: #1e1e1e;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+  flex: 1;
+}
+
+.sitechecker-container-center .sitechecker-visit:hover {
+  background: #5ce891;
+}
 .sitechecker-container {
   background: #3c4043;
   padding: 12px;
@@ -1828,7 +1938,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 200); 
     }
 
-    function fadeOutSitechecker() {
+function fadeOutSitechecker() {
         setTimeout(() => {
             let sitecheckerContainer = document.querySelector(".sitechecker-container");
             if (sitecheckerContainer) {
@@ -1837,10 +1947,65 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.log("DEBUG: Sitechecker is fading out.");
             }
         }, 20000); 
-    } 
+    }
 
-    // Create Sitechecker once on initial page load
-    createSitechecker();
+function createCenterSitechecker() {
+        // Check if center Sitechecker already exists
+        let centerSitecheckerContainer = document.querySelector(".sitechecker-container-center");
+        let backdrop = document.querySelector(".sitechecker-backdrop");
+        
+        if (!centerSitecheckerContainer) {
+            // Create backdrop
+            backdrop = document.createElement("div");
+            backdrop.classList.add("sitechecker-backdrop");
+            document.body.appendChild(backdrop);
+            
+            // Create center sitechecker
+            centerSitecheckerContainer = document.createElement("div");
+            centerSitecheckerContainer.classList.add("sitechecker-container-center");
+
+            centerSitecheckerContainer.innerHTML = `
+                <div class="nautilus-icon">
+                    <i class="fa-solid fa-fish"></i>
+                </div>
+                <h2>Announcing NautilusOS!!</h2>
+                <p id="sitechecker-center-text">Hey there! dinguschan speaking! I'm excited to introduce the brand-new <strong>𝘕𝘢𝘶𝘵𝘪𝘭𝘶𝘴𝘖𝘚</strong> - a fully functional web operating system developed alongside x8rr and lanefiedler731-gif. Experience games, apps, themes, cloaking, settings, and 3 whole proxy browsers built right in (including Helios, if you'd ever wanna use it lol), all in your browser! Check it out now!</p>
+                <div class="sitechecker-button-container">
+                    <button class="sitechecker-close">Maybe later</button>
+                    <button class="sitechecker-visit">Take me there!</button>
+                </div>
+            `;
+
+            document.body.appendChild(centerSitecheckerContainer);
+            console.log("DEBUG: Center Sitechecker added to the body.");
+
+            // Show the backdrop and center sitechecker
+            backdrop.style.display = "block";
+            centerSitecheckerContainer.style.display = "block";
+
+            // Add close button functionality
+            const closeButton = centerSitecheckerContainer.querySelector(".sitechecker-close");
+            closeButton.addEventListener("click", function() {
+                centerSitecheckerContainer.style.display = "none";
+                backdrop.style.display = "none";
+                // Show the original sitechecker after closing the popup
+                createSitechecker();
+            });
+
+            // Add visit button functionality
+            const visitButton = centerSitecheckerContainer.querySelector(".sitechecker-visit");
+            visitButton.addEventListener("click", function() {
+                window.open("https://github.com/nautilus-os/NautilusOS", "_blank");
+                centerSitecheckerContainer.style.display = "none";
+                backdrop.style.display = "none";
+                // Show the original sitechecker after closing the popup
+                createSitechecker();
+            });
+        }
+    }
+
+    // Create center Sitechecker first (delays the original sitechecker)
+    createCenterSitechecker();
 
     // Ensure Sitechecker remains visible when switching tabs
     document.addEventListener("click", function(event) {
@@ -2486,7 +2651,7 @@ const tabs = [{
     url: 'helios://start',
     content: `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-boxaa" title="Click here to visit the Helios GitHub page!">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
@@ -2616,7 +2781,7 @@ function updateTabContent(url, content, tab) {
     if (url === 'helios://start') {
         content.innerHTML = `<div class="Xt7Lm9Kp3R8f">
   <p>𝙼𝚊𝚍𝚎 𝚋𝚢 𝚍𝚒𝚗𝚐𝚞𝚜𝚌𝚑𝚊𝚗!</p>
-</div><div class="top-right-boxaa">
+</div><div class="top-right-boxaa" title="Click here to visit the Helios GitHub page!">
   <p><i class="fa-brands fa-github"></i></p>
 </div>
         <h23>Helios</h23>
@@ -2816,7 +2981,7 @@ async function fetchExternalContent(url, content, tabIndex) {
 
     for (const proxy of proxies) {
         try {
-            htmlText = await fetchWithProxy(proxy);
+htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
             console.log(`Fetch successful using proxy: ${proxy}`);
             break;
         } catch (error) {
@@ -2845,10 +3010,10 @@ async function fetchExternalContent(url, content, tabIndex) {
     console.log(`Content fetched successfully. Length: ${htmlText.length}`);
 
     // Fix the function to fix fonts in the fetched content
-    htmlText = await fixFetchedFonts(htmlText, url);
+htmlText = sanitizeHtmlText(htmlText);
+htmlText = await fixFetchedFonts(htmlText, url);
+htmlText = await fixFontsInFetchedContent(htmlText, url);
 
-    // Fix fonts in the fetched content
-    htmlText = await fixFontsInFetchedContent(htmlText, url);
 
     // Execute scripts from the fetched content
     htmlText = executeScriptsFromContent(htmlText);
@@ -2874,7 +3039,7 @@ async function fetchExternalContent(url, content, tabIndex) {
     });
 
     // Remove the default style that forces a white background
-    shadowRoot.innerHTML = doc.documentElement.outerHTML;
+shadowRoot.innerHTML = sanitizeHtmlText(doc.documentElement.outerHTML);
 
     console.log('Shadow DOM created and populated with fetched content');
 
@@ -2955,7 +3120,8 @@ async function fetchExternalContent(url, content, tabIndex) {
     let htmlText;
     for (const proxy of proxies) {
         try {
-            htmlText = await fetchWithProxy(proxy);
+            htmlText = sanitizeHtmlText(await fetchWithProxy(proxy));
+
             break;
         } catch (error) {
             console.error(`Error with proxy ${proxy}: ${error.message}`);
@@ -4000,6 +4166,33 @@ function showCategory(categoryId) {
         button.classList.remove('active');
     });
     document.querySelector(`.sidebarvv button[onclick="showCategory('${categoryId}')"]`).classList.add('active');
+}
+
+function sanitizeHtmlText(htmlText) {
+    console.log("Before any replacement: ", htmlText);
+
+    // Rule 1: If � is between a lowercase letter and an uppercase letter, assume it's a missing space
+    htmlText = htmlText.replace(/([a-z])�([A-Z])/g, '$1 $2');
+    console.log("After Rule 1 (fixing � between letters): ", htmlText);
+
+    // Rule 2: Replace remaining � with é
+    htmlText = htmlText.replace(/\uFFFD/g, 'é');
+    console.log("After Rule 2 (replacing remaining � with é): ", htmlText); 
+
+    // Rule 3: Translate the redirection notice
+    htmlText = htmlText.replace(/Avertissement de redirection/g, 'Redirect Notice');
+    console.log("After Rule 3 (redirection message): ", htmlText);
+
+    htmlText = htmlText.replace(/La page que vous consultiez essaie de vous rediriger vers/g, 'The page you were on is trying to send you to');
+    console.log("After Rule 4 (translation of the redirection page): ", htmlText);
+
+    htmlText = htmlText.replace(/Si\s+vous\s+ne\s+souhaitez\s+pas\s+consulter\s+Cette\s+page/i, 'If you do not want to visit that page');
+    console.log("After Rule 5 (translation of the notice about visiting the page): ", htmlText);
+
+    htmlText = htmlText.replace(/vous\s* pouvez\s*revenir\s*à\s*la\s*page\s*précédente\./i, 'you can return to the previous page.');
+    console.log("After Rule 6 (translation of the return to previous page): ", htmlText);
+
+    return htmlText;
 }</script>
     </body>
 </html>
