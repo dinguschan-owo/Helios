@@ -1070,6 +1070,7 @@ async function fetchExternalContent(url, content, tabIndex) {
     console.log(`Fetching content for URL: ${url}`);
 
     const proxies = [
+        `https://embeddr.rhw.one/embed#${encodeURIComponent(url)}`,
         `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
         `https://api.codetabs.com/v1/tmp/?quest=${encodeURIComponent(url)}`,
