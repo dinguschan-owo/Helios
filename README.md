@@ -4,13 +4,6 @@ also pwease checkout NautilusOS its pretty cool but not as cool as GUST :3 it al
 https://github.com/nautilus-os/NautilusOS
 thx i love u
 
-
-## ***`stolen Helios links :(`*** 
-
-ya hate to see it. to whoever owns these please give credit, im a solo dev and it sucks to see my work stolen and passed off 
-- https://sounder-browser-try-2-17731297.codehs.me/
-
-
 ## ***`Background`***
 
 this is the orgignal Helios proxy slapped together soley by me, dinguschan. its a web browser proxy thing i whipped up while absolutly zonked out of my goose, and its in NO way finished. the aim is to be a replacement for dingusProxy and a replacement for your spyware ridden admin controlled browser. the idea for this was to expand upon dingusProxy's specialized static host, clientside, local, and html css js only web proxy code and unfuck the mess of code in there. i added sandboxed tabs, specialized settings and cloaking, built in threat protection and- I JUST WANNA TO CLONE CHROME. I WANNA BLATENTLY COPY CHROME SOOOOO FUCKING BAD. ITS GONNA BE 𝘽𝙀𝙏𝙏𝙀𝙍 ITS GONNA BE 𝙁𝘼𝙎𝙏𝙀𝙍 ITS GONNA TAKE YOUR ADMINS SHITASS CENSORSHIP AND FUCK. IT. UP. BEAT THAT SHIT DOWN WITH A RUSTY STEEL PIPE WRENCH MADE OF DINGUSCHAN CERTIFIED BOMB ASS CODE. (sorry.) to use Helios plase visit one of the OFFICIAL links below, or click the "Download Helios-Offline" option in the menu dropdown. you can also go through the file tree in the repository and download the "Helios-Offline.html" file to get the same result, and for more options check the [How To Use section](#How-To-Use). If you want to look at some screenshots of Helios before using it just scroll down to the [Screenshots section](#Screenshots).
