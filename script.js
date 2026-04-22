@@ -109,7 +109,7 @@ function createCenterSitechecker() {
                     <i class="fa-solid fa-fish"></i>
                 </div>
                 <h2>Announcing NautilusOS!!</h2>
-                <p id="sitechecker-center-text">Hey there! dinguschan speaking! I'm excited to introduce the brand-new <strong>𝘕𝘢𝘶𝘵𝘪𝘭𝘶𝘴𝘖𝘚</strong> - a fully functional web operating system developed alongside x8rr and lanefiedler731-gif. Experience games, apps, themes, cloaking, settings, and 3 whole proxy browsers built right in (including Helios, if you'd ever wanna use it lol), all in your browser! Check it out now!</p>
+                <p id="sitechecker-center-text">Hey there! dinguschan speaking! I'm excited to introduce the brand-new <strong>GUST</strong> - which is litrally just Helios but BETTER, developed alongside x8rr and lanefiedler731-gif. Nearly every issue you guys begged to be solved was solved in GUST, along with a stunning new UI and a much more powerful rendering engine! It still runs fully within a single HTML file, so the unblockable nature of Helios is preserved. Check it out now, and don't forget to star!</p>
                 <div class="sitechecker-button-container">
                     <button class="sitechecker-close">Maybe later</button>
                     <button class="sitechecker-visit">Take me there!</button>
