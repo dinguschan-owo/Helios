@@ -108,7 +108,7 @@ function createCenterSitechecker() {
                 <div class="nautilus-icon">
                     <i class="fa-solid fa-fish"></i>
                 </div>
-                <h2>Announcing NautilusOS!!</h2>
+                <h2>Announcing GUST!!</h2>
                 <p id="sitechecker-center-text">Hey there! dinguschan speaking! I'm excited to introduce the brand-new <strong>GUST</strong> - which is litrally just Helios but BETTER, developed alongside x8rr and lanefiedler731-gif. Nearly every issue you guys begged to be solved was solved in GUST, along with a stunning new UI and a much more powerful rendering engine! It still runs fully within a single HTML file, so the unblockable nature of Helios is preserved. Check it out now, and don't forget to star!</p>
                 <div class="sitechecker-button-container">
                     <button class="sitechecker-close">Maybe later</button>
@@ -135,7 +135,7 @@ function createCenterSitechecker() {
             // Add visit button functionality
             const visitButton = centerSitecheckerContainer.querySelector(".sitechecker-visit");
             visitButton.addEventListener("click", function() {
-                window.open("https://github.com/nautilus-os/NautilusOS", "_blank");
+                window.open("https://github.com/nautilus-os/GUST", "_blank");
                 centerSitecheckerContainer.style.display = "none";
                 backdrop.style.display = "none";
                 // Show the original sitechecker after closing the popup
