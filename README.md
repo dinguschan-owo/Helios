@@ -1,4 +1,6 @@
-pwease checkout NautilusOS :3 it has Helios built in if u really wanna use it but it also has 2 other proxies n games and some other cool things
+GO USE GUST AT (https://github.com/nautilus-os/GUST)!!!! ITS HELIOS BUT BETTER, WITH NEARLY EVERY SINGLE ISSUE SOLVED! I LOVE YOU GUYS AND MY BEAUTIFUL COMMUNITY AND GUST IS THE MODERN REINTERPREATION OF HELIOS, REIMAGINED AND UPGRADED BY NAUTILUS LABS!! GO USE IT!!
+
+also pwease checkout NautilusOS its pretty cool but not as cool as GUST :3 it also has Helios built in if u really wanna use it but it also has 2 other proxies n games and some other cool things
 https://github.com/nautilus-os/NautilusOS
 thx i love u
 
